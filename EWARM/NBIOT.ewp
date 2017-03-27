@@ -379,6 +379,7 @@
           <state>$PROJ_DIR$\..\Library\ble\common</state>
           <state>$PROJ_DIR$\..\User\APP\BLE\BLE_Adv</state>
           <state>$PROJ_DIR$\..\Library\toolchain</state>
+          <state>$PROJ_DIR$\..\User\APP\Debug</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -2105,6 +2106,21 @@
       </file>
       <file>
         <name>$PROJ_DIR$\..\User\APP\Communal\Communal_Timer.h</name>
+      </file>
+    </group>
+    <group>
+      <name>Debug</name>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\Debug\Debug.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\Debug\Debug.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\Debug\Debug_Port.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\Debug\Debug_Port.h</name>
       </file>
     </group>
     <group>

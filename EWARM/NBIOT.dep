@@ -2,7 +2,7 @@
 
 <project>
   <fileVersion>2</fileVersion>
-  <fileChecksum>2325036990</fileChecksum>
+  <fileChecksum>3326201750</fileChecksum>
   <configuration>
     <name>Debug</name>
     <outputs>
@@ -377,9 +377,19 @@
       <file>$PROJ_DIR$\System\Debug\Obj\Duck_Storage.__cstat.et</file>
       <file>$PROJ_DIR$\System\Debug\Obj\Communal_Flash.__cstat.et</file>
       <file>$PROJ_DIR$\System\Debug\Obj\Duck_BLE_Test_Ack.__cstat.et</file>
+      <file>$PROJ_DIR$\System\Debug\Obj\Debug_Port.pbi</file>
+      <file>$PROJ_DIR$\System\Debug\Obj\Debug_Test.o</file>
+      <file>$PROJ_DIR$\System\Debug\Obj\Debug_Port.o</file>
+      <file>$PROJ_DIR$\System\Debug\Obj\Debug.o</file>
+      <file>$PROJ_DIR$\System\Debug\Obj\Debug.pbi</file>
+      <file>$PROJ_DIR$\System\Debug\Obj\Debug_Test.pbi</file>
       <file>$PROJ_DIR$\..\User\Main\iar_s110_nrf51822_xxaa.icf</file>
       <file>$PROJ_DIR$\..\Library\toolchain\system_nrf51.c</file>
       <file>$TOOLKIT_DIR$\lib\dl6M_tlf.a</file>
+      <file>$PROJ_DIR$\..\User\APP\Debug\Debug_Test.h</file>
+      <file>$PROJ_DIR$\..\User\APP\Debug\Debug_Test.c</file>
+      <file>$PROJ_DIR$\..\User\APP\Debug\Debug.c</file>
+      <file>$PROJ_DIR$\..\User\APP\Debug\Debug_Port.c</file>
     </outputs>
     <file>
       <name>[ROOT_NODE]</name>
@@ -409,7 +419,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 106 343 91 62 89 102 268 67 335 272 363 139 88 138 281 117 6 144 244 80 142 136 128 196 361 120 137 12 107 94 175 344 24 163 111 341 99 269 126 108 305 132 299 285 86 81 145 98 23 224 340 348 356 355 185 109 154 179 140 70 266 207 352 171 66 57 7</file>
+          <file> 91 106 139 62 89 102 268 107 142 343 67 272 363 94 344 88 281 117 6 175 356 136 128 138 126 266 361 120 137 12 144 244 80 348 24 352 145 66 132 99 341 269 108 305 299 285 86 81 98 23 224 340 355 185 163 207 154 171 179 140 70 109 111 335 196 57 7</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -436,7 +446,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 361 136 140 139 171 244 106 356 137 98 126 7 272 120 12 145 102 224 340 91 348 343 24 142 111 88 70 344 62 278 119 281 268 117 363 6 269 132 23 355 109 335 266 57 138 25 197 190 108 305 299 285 86 81 107 144 94 80 175 185 154 99 66 67 2 128 163 207 352 341 196 89 179 337</file>
+          <file> 361 142 106 128 140 269 91 137 132 23 139 7 272 120 12 138 343 24 352 145 102 171 70 344 62 278 119 281 268 117 363 6 98 224 340 136 355 67 88 196 57 25 197 190 126 108 305 299 285 86 81 107 144 94 244 80 175 348 356 163 207 154 341 99 2 185 109 111 335 266 66 89 179 337</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -463,7 +473,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 344 67 62 86 94 136 89 102 361 190 305 107 142 91 138 106 126 299 175 139 24 88 196 337 7 262 269 108 132 285 81 144 244 80 128 352 145 120 197 25 272 119 281 268 117 137 363 12 6 98 23 224 340 343 348 356 355 163 207 154 341 179 335 245 185 109 111 99 266 171 66 57 140 70</file>
+          <file> 139 80 86 244 348 89 102 361 190 305 144 142 106 126 299 91 24 88 344 337 7 262 269 108 132 285 81 107 94 175 62 343 356 136 185 154 99 66 120 197 25 272 119 281 268 117 137 363 12 6 145 98 23 224 340 138 355 109 111 335 266 171 179 245 128 67 163 207 352 341 196 57 140 70</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -490,7 +500,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 335 106 268 24 91 136 344 272 363 139 343 88 138 251 281 117 6 144 244 80 142 109 179 62 99 197 361 120 137 12 107 94 175 126 111 341 145 190 245 248 7 269 108 305 132 299 285 86 81 102 98 23 224 340 348 356 355 185 154 67 196 128 89 119 262 163 207 352 266 171 66 57 140 70</file>
+          <file> 107 268 142 106 91 272 363 94 62 344 343 136 251 281 117 6 175 356 67 138 126 266 179 99 197 361 120 137 12 144 139 244 80 348 355 128 352 145 24 171 88 190 245 248 7 269 108 305 132 299 285 86 81 102 98 23 224 340 163 207 154 66 89 119 262 185 109 111 335 341 196 57 140 70</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -517,7 +527,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 6 142 269 281 244 80 138 343 88 117 144 24 126 111 99 106 361 272 268 363 139 91 94 66 132 7 120 137 12 107 175 62 344 136 128 109 335 23 197 194 108 305 299 285 86 81 145 102 98 224 340 348 356 355 185 154 266 171 57 140 70 258 67 163 207 352 341 196 89 179</file>
+          <file> 344 91 6 139 136 281 175 106 356 343 352 145 88 117 138 361 272 268 363 107 94 142 62 7 120 137 12 144 244 80 348 355 67 341 99 23 197 194 269 126 108 305 132 299 285 86 81 102 98 224 340 24 128 163 207 154 196 57 171 140 70 258 185 109 111 335 266 66 89 179</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -544,7 +554,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 356 137 106 344 98 154 348 139 197 24 272 361 244 185 190 351 120 12 145 102 224 340 91 62 99 94 108 262 281 268 117 363 6 269 132 23 142 343 136 88 66 143 83 126 87 263 245 305 299 285 86 81 107 144 80 175 138 355 109 111 335 266 171 57 7 140 70 202 25 67 119 255 128 163 207 352 341 196 89 179 334 116 337</file>
+          <file> 139 281 142 137 132 23 343 344 197 24 272 361 269 91 244 190 351 120 12 138 106 207 136 341 62 99 94 108 262 268 117 363 6 145 102 98 224 340 355 163 154 356 88 143 83 126 87 263 245 305 299 285 86 81 107 144 80 175 348 128 67 352 196 57 7 171 140 70 202 25 119 255 185 109 111 335 266 66 89 179 334 116 337</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -571,7 +581,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 285 98 126 266 106 154 348 272 108 244 355 88 185 343 57 91 138 269 132 81 145 102 224 340 344 136 7 62 197 305 299 86 23 142 139 356 24 171 140 70 251 281 361 268 120 117 137 363 12 6 107 144 94 80 175 128 109 111 335 99 66 252 67 163 207 352 341 196 89 179</file>
+          <file> 106 343 67 285 132 23 142 139 108 269 91 24 88 196 57 138 272 81 207 136 361 7 62 197 126 305 299 86 145 102 98 224 340 128 244 163 154 356 171 140 70 251 281 268 120 117 137 363 12 6 107 144 94 80 175 344 348 355 352 341 99 252 185 109 111 335 266 66 89 179</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -598,7 +608,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 106 343 137 2 98 341 245 361 244 139 142 126 351 246 120 12 145 102 224 340 91 348 185 154 356 281 138 334 94 119 272 108 258 6 268 117 363 269 132 23 355 88 344 179 87 34 256 251 200 279 262 305 299 285 86 81 107 144 80 175 62 136 24 109 111 335 67 196 128 89 116 337 190 263 163 207 352 99 266 171 66 57 7 140 70 143 197 83 202 25</file>
+          <file> 132 137 23 142 139 91 2 136 88 106 245 361 269 207 126 351 246 120 12 138 343 356 171 145 334 94 119 272 108 258 6 281 268 117 363 102 98 224 340 24 244 163 154 266 179 87 34 256 251 200 279 262 305 299 285 86 81 107 144 80 175 62 344 348 355 128 67 352 99 66 89 116 337 190 263 185 109 111 335 341 196 57 7 140 70 143 197 83 202 25</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -625,7 +635,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 154 126 348 334 175 139 24 356 281 251 299 343 185 138 145 106 94 119 351 262 305 86 107 142 91 62 344 136 341 108 12 269 132 285 81 144 244 80 88 179 102 120 361 87 34 245 6 200 272 268 117 137 363 98 23 224 340 355 109 111 335 67 196 128 89 116 337 190 99 256 163 207 352 266 171 66 57 7 140 70 143 197 83 202 25</file>
+          <file> 91 126 334 244 251 299 139 106 163 154 356 171 138 145 94 119 351 262 305 86 144 80 142 348 136 343 88 108 12 269 132 285 81 107 175 62 344 207 272 266 179 102 120 361 87 34 245 6 200 281 268 117 137 363 98 23 224 340 24 128 67 352 99 66 89 116 337 190 256 355 185 109 111 335 341 196 57 7 140 70 143 197 83 202 25</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -652,7 +662,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 139 171 363 132 23 142 343 355 109 356 268 269 91 126 351 281 117 6 106 24 335 136 88 94 337 361 108 86 120 137 12 145 102 98 224 340 244 348 111 272 266 57 7 116 87 305 299 285 81 107 144 80 175 62 344 138 185 154 99 66 334 246 128 67 163 207 352 341 196 89 179 140 70 143 197 83 202 25</file>
+          <file> 224 138 128 363 102 340 136 62 268 145 91 67 351 281 117 6 106 98 139 24 171 94 337 361 108 86 120 137 12 269 132 23 142 352 88 196 57 7 116 126 87 272 305 299 285 81 107 144 244 80 175 344 343 348 356 355 163 207 154 341 334 246 185 109 111 335 99 266 66 89 179 140 70 143 197 83 202 25</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -679,7 +689,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 91 126 266 268 24 154 348 272 363 139 106 343 185 57 138 281 117 6 144 244 80 142 7 62 197 361 120 137 12 107 94 175 344 136 88 356 171 140 70 252 269 108 305 132 299 285 86 81 145 102 98 23 224 340 355 109 111 335 99 66 251 128 67 163 207 352 341 196 89 179</file>
+          <file> 106 91 67 268 107 142 363 94 62 344 343 136 88 196 57 138 281 117 6 175 356 207 361 7 197 120 137 12 144 139 244 80 348 355 163 154 102 128 171 140 70 252 272 269 126 108 305 132 299 285 86 81 145 98 23 224 340 24 352 341 99 251 185 109 111 335 266 66 89 179</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -706,7 +716,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 106 89 102 117 144 142 207 361 281 6 244 80 138 343 139 136 88 272 268 363 91 126 67 196 120 137 12 107 94 175 62 344 24 355 185 163 154 356 128 99 341 269 108 305 132 299 285 86 81 145 98 23 224 340 348 352 179 140 70 265 109 111 335 266 171 66 57 7</file>
+          <file> 106 139 89 102 117 361 281 6 175 356 355 88 272 268 363 107 94 142 91 62 344 343 136 185 163 154 120 137 12 144 244 80 348 126 207 269 99 66 132 341 108 305 299 285 86 81 145 98 23 224 340 138 24 128 67 352 266 171 179 140 70 265 109 111 335 196 57 7</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -733,7 +743,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 139 91 171 62 120 107 142 343 67 356 12 94 344 136 24 126 361 137 175 128 88 106 283 272 281 268 117 363 6 144 244 80 138 154 348 266 57 7 341 269 108 305 132 299 285 86 81 145 102 98 23 224 340 355 185 109 111 335 99 66 275 163 207 352 196 89 179 140 70</file>
+          <file> 154 128 120 144 142 24 244 163 12 80 348 361 137 139 91 106 343 356 102 171 283 272 281 268 117 363 6 107 94 175 62 344 136 67 207 88 196 57 7 341 269 126 108 305 132 299 285 86 81 145 98 23 224 340 138 355 185 352 275 109 111 335 99 266 66 89 179 140 70</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -760,7 +770,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 299 126 106 356 136 88 272 7 21 305 86 269 132 91 23 142 139 343 62 67 138 266 57 361 34 108 285 81 145 102 98 224 340 244 348 24 352 171 12 200 281 268 120 117 137 363 6 107 144 94 80 175 344 355 128 163 207 154 99 66 279 185 109 111 335 341 196 89 179 140 70 8</file>
+          <file> 106 299 98 126 139 24 355 88 361 7 21 305 86 145 102 224 340 91 136 344 67 196 57 142 34 272 269 108 132 285 81 23 138 343 185 154 348 356 128 171 12 200 281 268 120 117 137 363 6 107 144 94 244 80 175 62 109 111 335 341 99 279 163 207 352 266 66 89 179 140 70 8</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -787,7 +797,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 106 89 102 117 144 142 207 361 281 6 244 80 138 343 139 136 88 272 268 363 91 126 67 196 120 137 12 107 94 175 62 344 24 355 185 163 154 356 128 99 341 269 108 305 132 299 285 86 81 145 98 23 224 340 348 352 179 140 70 286 109 111 335 266 171 66 57 7</file>
+          <file> 106 139 89 102 117 361 281 6 175 356 355 88 272 268 363 107 94 142 91 62 344 343 136 185 163 154 120 137 12 144 244 80 348 126 207 269 99 66 132 341 108 305 299 285 86 81 145 98 23 224 340 138 24 128 67 352 266 171 179 140 70 286 109 111 335 196 57 7</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -814,7 +824,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 340 106 269 102 348 140 81 224 88 138 132 145 91 344 136 352 286 108 285 98 244 355 179 70 287 275 126 305 299 86 23 142 139 343 356 62 67 281 341 265 272 361 268 120 117 137 363 12 6 107 144 94 80 175 24 128 163 207 154 196 89 99 283 185 109 111 335 266 171 66 57 7</file>
+          <file> 269 138 136 140 81 128 132 272 286 108 285 91 23 142 139 343 185 154 348 126 266 106 179 70 287 275 305 299 86 145 102 98 224 340 24 356 171 88 341 265 281 361 268 120 117 137 363 12 6 107 144 94 244 80 175 62 344 355 109 111 335 99 66 89 283 67 163 207 352 196 57 7</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -841,7 +851,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 106 89 102 117 144 142 207 361 281 6 244 80 138 343 139 136 88 272 268 363 91 126 67 196 120 137 12 107 94 175 62 344 24 355 185 163 154 356 128 99 341 269 108 305 132 299 285 86 81 145 98 23 224 340 348 352 179 140 70 287 109 111 335 266 171 66 57 7</file>
+          <file> 106 139 89 102 117 361 281 6 175 356 355 88 272 268 363 107 94 142 91 62 344 343 136 185 163 154 120 137 12 144 244 80 348 126 207 269 99 66 132 341 108 305 299 285 86 81 145 98 23 224 340 138 24 128 67 352 266 171 179 140 70 287 109 111 335 196 57 7</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -868,7 +878,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 106 89 102 132 145 91 24 244 207 361 269 81 224 340 348 136 88 108 285 98 343 67 196 126 305 299 86 23 142 139 356 128 62 163 154 120 99 272 281 268 117 137 363 12 6 107 144 94 80 175 344 138 355 185 352 341 179 140 70 278 109 111 335 266 171 66 57 7</file>
+          <file> 106 139 89 102 132 361 269 81 138 136 128 356 88 108 285 91 23 142 343 62 67 163 154 126 305 299 86 145 98 224 340 24 244 207 94 99 66 120 272 281 268 117 137 363 12 6 107 144 80 175 344 348 355 185 352 266 171 179 140 70 278 109 111 335 341 196 57 7</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -895,7 +905,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 106 89 102 132 145 91 361 269 81 224 340 348 343 139 88 108 285 98 244 136 142 126 24 67 196 305 299 86 23 356 355 344 185 154 128 120 62 99 281 268 117 137 363 12 6 107 144 94 80 175 138 109 111 335 341 179 140 70 272 163 207 352 266 171 66 57 7</file>
+          <file> 106 139 89 102 132 361 269 81 138 343 356 88 108 285 91 23 142 136 126 163 154 305 299 86 145 98 224 340 24 355 344 185 207 94 99 66 120 62 281 268 117 137 363 12 6 107 144 244 80 175 348 128 67 352 272 266 171 179 140 70 109 111 335 341 196 57 7</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -922,7 +932,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 106 142 89 102 108 244 126 285 98 136 88 269 132 81 145 224 340 91 348 343 139 109 335 138 196 305 299 86 23 356 355 344 185 111 281 341 128 120 62 99 266 272 361 268 117 137 363 12 6 107 144 94 80 175 24 67 163 154 179 140 70 207 352 171 66 57 7</file>
+          <file> 106 126 139 142 89 102 108 269 91 138 272 285 132 23 136 343 88 81 109 305 299 86 145 98 224 340 24 355 344 185 352 356 66 120 62 99 341 266 281 361 268 117 137 363 12 6 107 144 94 244 80 175 348 128 67 163 207 154 171 179 140 70 111 335 196 57 7</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -949,7 +959,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 106 91 142 89 102 268 126 207 361 272 363 139 136 88 281 117 6 144 244 80 138 343 67 196 120 137 12 107 94 175 62 344 24 355 185 163 154 356 128 99 269 108 305 132 299 285 86 81 145 98 23 224 340 348 352 341 179 140 70 264 109 111 335 266 171 66 57 7</file>
+          <file> 91 106 344 139 89 102 268 107 142 136 185 361 272 363 94 62 343 356 88 281 117 6 175 355 163 154 120 137 12 144 244 80 348 126 207 269 99 66 132 108 305 299 285 86 81 145 98 23 224 340 138 24 128 67 352 266 171 179 140 70 264 109 111 335 341 196 57 7</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -976,7 +986,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 244 81 138 80 295 269 120 132 144 142 24 163 154 128 197 108 285 139 91 106 356 102 62 99 289 272 126 305 299 86 107 94 175 344 136 343 207 88 67 361 196 89 341 251 281 268 117 137 363 12 6 145 98 23 224 340 348 355 352 179 140 70 293 185 109 111 335 266 171 66 57 7</file>
+          <file> 343 81 106 356 111 99 175 295 269 126 120 132 142 197 108 285 107 94 91 62 344 136 139 66 289 272 305 299 86 144 244 80 348 355 109 335 361 89 102 88 341 251 281 268 117 137 363 12 6 145 98 23 224 340 138 24 185 154 266 171 179 140 70 293 128 67 163 207 352 196 57 7</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -1003,7 +1013,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 144 142 106 89 102 132 207 361 295 269 81 244 80 138 136 91 88 108 285 139 343 67 196 272 126 305 299 86 107 94 175 62 344 24 163 154 356 128 120 99 341 293 281 268 117 137 363 12 6 145 98 23 224 340 348 355 352 179 140 70 289 185 109 111 335 266 171 66 57 7</file>
+          <file> 106 139 89 102 132 361 295 269 81 175 356 136 335 343 88 108 285 107 94 142 91 62 344 109 272 126 305 299 86 144 244 80 348 24 111 99 66 120 341 293 281 268 117 137 363 12 6 145 98 23 224 340 138 355 185 154 266 171 179 140 70 289 128 67 163 207 352 196 57 7</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -1039,7 +1049,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 91 268 24 207 272 363 139 106 343 136 7 281 117 6 144 244 80 142 138 88 67 266 57 361 102 349 120 137 12 107 94 175 62 344 128 163 154 356 171 126 162 269 108 305 132 299 285 86 81 145 98 23 224 340 348 355 185 352 341 99 66 109 111 335 196 89 179 140 70</file>
+          <file> 91 62 268 107 142 343 67 272 363 94 344 106 335 361 7 281 117 6 175 356 136 128 109 196 57 102 349 120 137 12 144 139 244 80 348 24 111 269 171 126 162 108 305 132 299 285 86 81 145 98 23 224 340 138 355 88 185 154 163 207 352 341 99 266 66 89 179 140 70</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -1093,7 +1103,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 139 361 126 142 67 363 132 23 343 57 268 269 91 62 138 272 266 186 281 117 6 106 356 136 7 337 120 137 12 145 102 98 224 340 244 348 24 128 352 171 88 108 305 299 285 86 81 107 144 94 80 175 344 355 163 207 154 99 66 25 291 185 109 111 335 341 196 89 179 140 70</file>
+          <file> 361 88 126 340 196 363 102 136 57 142 224 268 145 91 343 67 106 186 281 117 6 98 139 24 7 337 272 120 137 12 269 132 23 138 185 154 348 356 128 171 108 305 299 285 86 81 107 144 94 244 80 175 62 344 355 109 111 335 341 25 291 163 207 352 99 266 66 89 179 140 70</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -1120,7 +1130,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 136 106 144 356 126 88 132 91 179 70 341 154 269 81 244 139 343 138 344 140 337 197 361 304 349 143 163 207 23 142 272 108 285 62 281 102 107 25 120 109 111 98 224 352 185 305 299 86 94 348 24 128 145 67 196 89 99 83 202 116 80 175 268 117 137 363 12 6 340 355 335 266 171 66 57 7 334</file>
+          <file> 335 272 340 126 266 106 137 132 343 179 70 341 91 361 269 139 140 337 197 304 349 143 163 207 80 154 244 120 12 356 136 142 171 88 138 102 108 107 25 109 111 175 67 281 268 117 363 6 145 348 24 344 94 99 66 89 62 83 202 116 98 23 224 352 185 305 299 285 86 81 144 355 128 196 57 7 334</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -1255,7 +1265,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 281 224 283 12 102 340 348 334 130 120 145 91 106 139 138 94 351 291 361 137 98 244 88 341 142 126 134 67 272 108 162 263 285 86 268 117 363 6 269 132 23 343 356 24 185 154 344 179 171 275 87 349 190 143 293 255 264 305 299 81 107 144 80 175 62 136 355 109 111 335 196 128 89 116 337 198 304 163 207 352 99 266 66 57 7 140 70 197 83 202 25 172 295</file>
+          <file> 269 126 283 81 175 106 356 334 130 132 163 154 139 171 138 145 94 351 120 291 272 108 285 107 142 91 62 344 343 355 244 88 134 67 162 263 86 305 299 144 80 348 207 136 266 179 102 361 275 87 349 117 190 143 293 255 264 281 268 137 363 12 6 98 23 224 340 24 128 352 99 66 89 116 337 198 304 185 109 111 335 341 196 57 7 140 70 197 83 202 25 172 295</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -1309,7 +1319,7 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 106 268 89 102 91 207 361 363 139 136 88 272 281 117 6 144 244 80 142 138 343 67 196 120 137 12 107 94 175 62 344 24 355 163 154 356 128 99 341 269 126 108 305 132 299 285 86 81 145 98 23 224 340 348 352 179 140 70 295 185 109 111 335 266 171 66 57 7</file>
+          <file> 142 343 106 268 139 107 89 102 91 361 363 94 62 344 335 88 272 281 117 6 175 356 136 128 109 120 137 12 144 244 80 348 24 126 111 269 99 66 132 341 108 305 299 285 86 81 145 98 23 224 340 138 355 185 154 266 171 179 140 70 295 67 163 207 352 196 57 7</file>
         </tool>
         <tool>
           <name>ICCARM</name>
@@ -1336,11 +1346,11 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 348 139 106 24 136 154 91 142 86 102 344 356 3 305 145 185 244 88 269 175 126 299 355 361 7 62 80 272 108 132 285 81 138 343 94 99 66 74 18 340 98 23 224 140 281 268 120 117 137 363 12 6 107 144 109 111 335 266 171 57 70 128 67 163 207 352 341 196 89 179</file>
+          <file> 126 120 106 98 62 12 244 24 128 139 269 142 224 91 361 137 132 348 352 145 89 102 186 337 7 94 340 23 140 281 268 117 363 6 344 343 356 136 67 138 99 66 74 18 41 86 80 175 3 272 108 305 299 285 81 107 144 355 163 207 154 266 171 88 179 25 185 109 111 335 341 196 57 70</file>
         </tool>
         <tool>
           <name>ICCARM</name>
-          <file> 132 91 142 98 80 175 23 224 62 340 106 7 140 269 18 3 272 281 107 139 94 344 102 244 145 343 136 348 355 24 138 356 144 128 88 126 163 207 154 352 111 109 67 185 361 335 108 268 305 120 117 341 299 137 99 285 266 363 171 196 66 86 12 89 179 57 81 6 70</file>
+          <file> 132 91 142 98 80 175 23 224 62 340 106 7 140 269 18 3 272 281 107 139 94 344 102 244 145 343 136 348 355 24 138 356 144 128 88 126 163 207 154 352 111 109 67 185 361 335 108 268 305 120 117 341 299 137 99 285 266 363 171 196 66 86 12 89 179 57 81 6 70 41 186 25 337</file>
         </tool>
       </inputs>
     </file>
@@ -2007,7 +2017,7 @@
       <inputs>
         <tool>
           <name>ILINK</name>
-          <file> 371 35 27 96 15 63 45 33 47 342 36 22 362 16 58 42 26 339 113 160 84 127 235 178 181 40 29 238 133 100 110 121 101 131 236 167 165 234 189 164 240 122 157 93 48 30 68 14 51 37 78 44 77 82 193 159 156 173 118 187 149 357 177 241 373</file>
+          <file> 377 35 27 96 15 63 45 33 47 342 36 22 362 16 58 42 26 339 113 160 84 127 235 178 181 374 373 40 29 238 133 100 110 121 101 131 236 167 165 234 189 164 240 122 157 93 48 30 68 14 51 37 78 44 77 82 193 159 365 156 173 118 187 149 357 177 241 379</file>
         </tool>
       </inputs>
     </file>
@@ -2028,251 +2038,76 @@
           <name>BICOMP</name>
           <file> 175 106 154 91 185 111 88 142 80 126 163 139 98 23 224 67 109 207 352 244</file>
         </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 106 91 142 98 80 175 23 224 139 88 126 163 207 154 352 111 109 67 185 244</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\User\APP\Debug\Debug_Test.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 376</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 80 142 91 7 62 140 175 98 23 224</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\User\APP\Debug\Debug.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 375</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 374</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 98 126 138 117 106 62 269 281 6 139 24 136 67 99 120 268 363 145 102 224 340 91 94 66 132 142 361 186 337 7 137 12 23 344 128 352 89 41 3 272 108 305 299 285 86 81 107 144 244 80 175 343 348 356 355 163 207 154 266 171 88 179 25 18 185 109 111 335 341 196 57 140 70</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 18 3 272 269 281 107 106 91 142 98 80 175 23 224 139 132 62 340 94 344 102 244 145 343 136 348 355 24 138 356 144 128 88 126 163 207 154 352 111 109 67 185 361 335 108 268 305 120 117 341 299 137 99 285 266 363 171 196 66 86 12 89 7 140 179 57 81 6 70 41 186 25 337</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\User\APP\Debug\Debug_Port.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 371</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 373</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 126 269 81 175 106 356 136 88 132 361 7 108 285 107 94 142 91 62 344 343 67 196 57 186 337 41 272 305 299 86 144 139 244 80 348 24 185 154 102 128 171 341 281 268 120 117 137 363 12 6 145 98 23 224 340 138 355 109 111 335 25 3 163 207 352 99 266 66 89 179 140 70</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 3 272 269 281 107 106 91 142 98 80 175 23 224 139 132 62 340 94 344 102 244 145 343 136 348 355 24 138 356 144 128 88 126 163 207 154 352 111 109 67 185 361 335 108 268 305 120 117 341 299 137 99 285 266 363 171 196 66 86 12 89 7 140 179 57 81 6 70 41 186 25 337</file>
+        </tool>
       </inputs>
     </file>
     <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\GPIO\GPIO_Port.c</name>
+      <name>$PROJ_DIR$\..\User\APP\Debug\Debug_Test.c</name>
       <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\Storage\Duck_Storage.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Adv\DUCK_BLE_Adv.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Adv\DUCK_BLE_Adv_Port.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Services\Duck_BLE_DevInfo_Service.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\BLE\Duck_BLE.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Services\Duck_BLE_Test_Ack.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\BLE\Duck_BLE_Init.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Evt_Handler\Duck_BLE_Evt_Handler.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Peer\Duck_BLE_Peer.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Services\Duck_BLE_Private_Service.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\Button\Button_Long.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\Button\Button_Port.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\DFU\Duck_DFU.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\Button\Button_Double.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\Button\Button.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\Button\Button_Single.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\Communal\Communal_Flash.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\Global\Global.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\GPIO\GPIO.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\Communal\Communal_Timer.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\Temp_Humi\Temp_Humi.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\Temp_Humi\Temp_Humi_SHT30.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\Task\Task.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\ble\common\ble_advdata.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\WDT\WDT.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\Main\main.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\ble\ble_advertising\ble_advertising.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\ble\ble_services\ble_bas\ble_bas.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\ble\common\ble_conn_params.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\ble\ble_services\ble_dfu\ble_dfu.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\SysInit\SysInit.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\SW_I2C\SW_I2C.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\User\APP\Temp_Humi\Temp_Humi_Port.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\libraries\trace\app_trace.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\libraries\button\app_button.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\drivers_nrf\gpiote\nrf_drv_gpiote.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\libraries\scheduler\app_scheduler.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\libraries\util\app_util_platform.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\ble\device_manager\device_manager_peripheral.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\libraries\timer\app_timer.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\drivers_nrf\pstorage\pstorage.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\libraries\bootloader_dfu\dfu_app_handler.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\drivers_nrf\clock\nrf_drv_clock.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\libraries\uart\retarget.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\libraries\util\nrf_assert.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\softdevice\common\softdevice_handler\softdevice_handler.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\ble\common\ble_srv_common.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\drivers_nrf\hal\nrf_adc.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\libraries\util\app_error.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\drivers_nrf\hal\nrf_delay.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\drivers_nrf\uart\app_uart_fifo.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\drivers_nrf\wdt\nrf_drv_wdt.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\libraries\timer\app_timer_appsh.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\libraries\bootloader_dfu\bootloader_util.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\softdevice\common\softdevice_handler\softdevice_handler_appsh.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\ble\ble_services\ble_dis\ble_dis.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\drivers_nrf\common\nrf_drv_common.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\libraries\fifo\app_fifo.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>$PROJ_DIR$\..\Library\toolchain\system_nrf51.c</name>
-      <tool>ICCARM</tool>
-    </forcedrebuild>
-    <forcedrebuild>
-      <name>[MULTI_TOOL]</name>
-      <tool>ILINK</tool>
     </forcedrebuild>
   </configuration>
   <configuration>

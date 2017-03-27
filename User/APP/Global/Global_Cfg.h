@@ -18,14 +18,13 @@
 
 /* Private define ------------------------------------------------------------*/
 //----------------------- System ----------------------------------------------/
-//#define     DEBUG
+#define     DEBUG
 #ifdef      DEBUG
 #define     ENABLE_DEBUG_LOG_SUPPORT                                    // 使能系统调试
 #endif
 #define     SYS_WDT                                                     // 使能看门狗
 #define     BLE_OPEN                                                    // 使能BLE
-#define     SYS_TEST                                                    // 测试模式
-#define     MI_SERVICES
+
 
 
 #define     SYS_STATUS_IDLE             0x00                            // 默认状态
@@ -54,7 +53,7 @@
 //----------------------- BLE -------------------------------------------------/
 #define     CENTRAL_LINK_COUNT          0                               // 连接的主机数量    
 #define     PERIPHERAL_LINK_COUNT       1                               // 连接的从机数量
-#define     BLE_DEVICE_NAME             "MJ_HT_V1"                      // BLE设备名称
+#define     BLE_DEVICE_NAME             "NBIOT"                         // BLE设备名称
 
 #define     BLE_MANUFACTURER_NAME       "Cleargrass Inc"                // 制造商          
 #define     BLE_FW_REV_STR              "00.00.17"                       // 软件版本
@@ -121,9 +120,6 @@
 
 #define     BAT_ADC_PIN                 3                               // 电池ADC 管脚
 
-#define     LCD_SD_PIN                  9                               // LCD数据
-#define     LCD_SCL_PIN                 10                              // LCD时钟
-#define     LCD_CSB_PIN                 11                              // LCD片选
 
 #define     SHT30_SCL_PIN               12                              // 温湿度时钟
 #define     SHT30_SDA_PIN               13                              // 温湿度数据
@@ -132,24 +128,12 @@
 #define     HALL_OUT_PIN                15                              // 霍尔输出 管脚
 
 
-#ifdef  NRF51DK
 #define     BOUTTON_PIN                 17                              // 按键管脚
-#else
-#define     BOUTTON_PIN                 8                               // 按键管脚
-#endif
 
-#ifdef NRF51DK
 
 #define     UART_TX_PIN                 9                               // 串口
 #define     UART_RX_PIN                 11
 
-
-#else
-
-#define     UART_TX_PIN                 28
-#define     UART_RX_PIN                 29
-    
-#endif
 
 #define     MAX_INTERRUPT_PIN_NUM       1                               // 中断管脚数据
 #define     BUTTEN_EVENT_DELAY_MS       10                              // 按键事件延时时间

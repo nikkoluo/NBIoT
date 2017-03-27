@@ -10,7 +10,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "Debug.h"
 #include "app_uart.h"
-#include "Duck_Test.h"
 #include <string.h>
 
 /* Private variables ---------------------------------------------------------*/
@@ -126,12 +125,6 @@ void Receive_Data_Handler(u8* ucData, u16 usLen)
         return;
     }
 
-    // ≤‚ ‘–≠“È
-    if (ucData[0] == 'C' && ucData[1] == 'G')
-    {
-        Duck_Test_Handler(ucData, usLen);    
-    }
-    
 }// End of void Receive_Data_Handler(u8* ucData, u16 usLen)
 
 

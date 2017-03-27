@@ -2434,6 +2434,21 @@
       </file>
     </group>
     <group>
+      <name>Debug</name>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\Debug\Debug.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\Debug\Debug.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\Debug\Debug_Port.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\Debug\Debug_Port.h</name>
+      </file>
+    </group>
+    <group>
       <name>DFU</name>
       <file>
         <name>$PROJ_DIR$\..\User\APP\DFU\Duck_DFU.c</name>
