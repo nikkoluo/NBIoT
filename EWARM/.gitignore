@@ -1,0 +1,5 @@
+/settings/
+/Lib/
+/System/
+/Release/
+*.log
