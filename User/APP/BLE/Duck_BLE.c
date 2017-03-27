@@ -51,12 +51,12 @@ void Duck_BLE_Task_Create(void)
     BLE_Task.Timeout_handler = Duck_BLE_Task_Handle;
     BLE_Task.Period          = TASK_BLE_PERIOD;
 
-    err_code &= app_timer_create(&BLE_Task.p_ID,
+    err_code |= app_timer_create(&BLE_Task.p_ID,
                                  BLE_Task.Run_Mode,
                                  BLE_Task.Timeout_handler);
 
     // 开始任务
-    err_code &= Task_Timer_Start(&BLE_Task, NULL);
+    err_code |= Task_Timer_Start(&BLE_Task, NULL);
     if (err_code != NRF_SUCCESS)
     {
         app_trace_log("Task Temp&Humi create failed!\r\n");    

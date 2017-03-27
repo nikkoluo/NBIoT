@@ -39,22 +39,22 @@ void BLE_Adv_Package(void);                                             // ¹ã²¥Ê
 void BLE_Adv_Package(void)
 {
     u32           Err_Code;
-    u8            ucService_Data[MIOT_MAX_SIZE];
+//    u8            ucService_Data[MIOT_MAX_SIZE];
     ble_advdata_t Adv_Data;
     ble_advdata_t Scan_Rsp;
-    ble_advdata_service_data_t Service_Data;
+//    ble_advdata_service_data_t Service_Data;
     ble_uuid_t Scan_UUIDs[] = {{BLE_UUID_BATTERY_SERVICE, BLE_UUID_TYPE_BLE},
                                {BLE_UUID_DEVICE_INFORMATION_SERVICE, BLE_UUID_TYPE_BLE}};
     // Çå¿Õ»º´æ    
     memset(&Adv_Data, 0, sizeof(Adv_Data));
-    memset(&ucService_Data, 0, MIOT_MAX_SIZE);
+//    memset(&ucService_Data, 0, MIOT_MAX_SIZE);
 
 //    Scan_Rsp.name_type               = BLE_ADVDATA_FULL_NAME;
     
     // 1×éË½ÓÐ·þÎñ
-    Adv_Data.service_data_count   = 1;
-    Service_Data.data.p_data      = ucService_Data;
-    Adv_Data.p_service_data_array = &Service_Data;
+//    Adv_Data.service_data_count   = 1;
+//    Service_Data.data.p_data      = ucService_Data;
+//    Adv_Data.p_service_data_array = &Service_Data;
 
 
     // ¹ã²¥ÀàÐÍ

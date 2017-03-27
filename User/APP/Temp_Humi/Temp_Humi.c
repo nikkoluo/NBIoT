@@ -45,15 +45,23 @@ void Temp_Humi_Task_Create(void)
     Temp_Humi_Task.Timeout_handler = Temp_Humi_Task_Handle;
     Temp_Humi_Task.Period          = TASK_TEMP_HUMI_PERIOD;
 
-    err_code &= app_timer_create(&Temp_Humi_Task.p_ID,
+    err_code |= app_timer_create(&Temp_Humi_Task.p_ID,
                                  Temp_Humi_Task.Run_Mode,
                                  Temp_Humi_Task.Timeout_handler);
     // Ð¾Æ¬³õÊ¼»¯
-    err_code &= Temp_Humi_Chip_Init();
-    err_code &= Task_Timer_Start(&Temp_Humi_Task, NULL);
+    err_code |= Temp_Humi_Chip_Init();
+
     if (err_code != NRF_SUCCESS)
     {
-        app_trace_log("Task Temp&Humi create failed!\r\n");    
+        app_trace_log("ÎÂÊª¶ÈÐ¾Æ¬³õÊ¼»¯Ê§°Ü!\r\n");    
+    }
+    else
+    {
+        err_code |= Task_Timer_Start(&Temp_Humi_Task, NULL);
+        if (err_code != NRF_SUCCESS)
+        {
+            app_trace_log("Task Temp&Humi create failed!\r\n");    
+        }
     }
 
 

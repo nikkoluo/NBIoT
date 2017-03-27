@@ -35,10 +35,10 @@ void Communal_Timer_Task_Create(void)
     Communal_Timer_Task.Timeout_handler = Communal_Timer_Task_Handle;
     Communal_Timer_Task.Period          = TASK_COMMUNAL_TIMER_PERIOD;
 
-    err_code &= app_timer_create(&Communal_Timer_Task.p_ID,
+    err_code |= app_timer_create(&Communal_Timer_Task.p_ID,
                                  Communal_Timer_Task.Run_Mode,
                                  Communal_Timer_Task.Timeout_handler);
-    err_code &= Task_Timer_Start(&Communal_Timer_Task, NULL);
+    err_code |= Task_Timer_Start(&Communal_Timer_Task, NULL);
     if (err_code != NRF_SUCCESS)
     {
         app_trace_log("Task Communal_Timer create failed!\r\n");    
