@@ -28,13 +28,10 @@
 #include "Button_Port.h"
 #include "Button.h"
 #include "Temp_Humi.h"
-#include "Battery.h"
 #include "GPIO.h"
 #include "Duck_BLE.h"
-#include "LCD.h"
 #include "WDT.h"
 #include "Communal_Timer.h"
-#include "mibeacon.h"
 #include "app_trace.h"
 
 /* Private variables ---------------------------------------------------------*/
@@ -132,9 +129,6 @@ void Variable_Init(void)
 {
     // 清空错误标志位
     System_Err.ALL     = 0;
-
-    // 默认非测试模式
-    Test.LCD_Mode      = 0;
     
     // 默认在空闲态
     Sys_Status         = SYS_STATUS_IDLE;
@@ -142,45 +136,6 @@ void Variable_Init(void)
     // 初始化连接状态
     BLE_Connect_Handle = BLE_CONN_HANDLE_INVALID;
 
-
-    memset(&MIOT_Adv, 0, sizeof(MIOT_Adv));
-
-    MIOT_Adv.Frame_Control_Bit.Version            = MIOT_VERSION;
-
-    // 默认不绑定
-    MIOT_Adv.Frame_Control_Bit.Factory_New        = 0;
-    MIOT_Adv.Frame_Control_Bit.Capability_Include = 0;
-
-
-    // 默认可连接
-    MIOT_Adv.Capability_Bit.Connectable           = 1;
-    MIOT_Adv.Capability_Bit.Encrypt_Ability       = 1;
-    MIOT_Adv.Capability_Bit.Bond_Ability          = MIBEACON_BOND_PREBINDING;
-
-
-    // 清空时间戳
-    MIOT_Adv.Timestamp_Hall = 0;
-    MIOT_Adv.Timestamp_Bat  = 0;
-
-    // 默认温度显示
-    memset(&LCD, 0, sizeof(LCD));
-    LCD.Need_Update_Bit.Temp_Humi   = 1;
-    LCD.Need_Update_Bit.Bat_Percent = 0;
-
-
-    // 默认主显示温度
-    LCD.Main_Temp                   = 1;
-
-    // 默认显示蓝牙logo
-    LCD.BT_LOGO_Show                = 1;
-
-    // 默认不发送绑定广播
-    Sys_Bond.Adv_En = 0;
-
-    // 默认没有磁铁
-    Hall.Magnet_Near = 0;
-    Hall.Magnet_Last = 0;
-    Hall.Timestamp   = 0;
 
     // 默认未被占用
     Flash_Used = 0;
@@ -269,12 +224,6 @@ void Task_Init(void)
     
     // GPIO
     GPIO_Task_Create();
-
-    // LCD任务
-    LCD_Task_Create();
-
-    // ADC任务
-    Battery_Task_Create();
 
     // 公用定时器任务
     Communal_Timer_Task_Create();

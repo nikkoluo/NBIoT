@@ -9,8 +9,6 @@
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "Duck_Storage.h"
-#include "Duck_Storage_Token.h"
-#include "Duck_Storage_MAC.h"
 #include "nrf_soc.h"
 #include "Communal_Flash.h"
 #include <stdlib.h>
@@ -34,15 +32,7 @@ void Duck_Storage_Callback(pstorage_handle_t *  handle, u8   OP_Code,
 *******************************************************************************/
 void Duck_Storage_Init(void)
 {
-    MAC_Flash_Init();
 
-    Token_Flash_Init();
-
-    // ªÒ»°MACµÿ÷∑
-    Get_MAC();
-
-    Get_Token();
-    
 
 }// End of void Duck_Storage_Init(void)
 

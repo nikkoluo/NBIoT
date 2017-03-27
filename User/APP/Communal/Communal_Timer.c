@@ -9,9 +9,7 @@
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "Communal_Timer.h"
-#include "Duck_BLE_Mi_Bond.h"
-#include "Hall.h"
-#include "LCD_Battery.h"
+
 
 /* Private variables ---------------------------------------------------------*/
         
@@ -64,21 +62,7 @@ void Communal_Timer_Task_Create(void)
 *******************************************************************************/
 void Communal_Timer_Task_Handle(void *p_arg)
 {
-    // 保证与电量同步闪烁
-    if (Sys_Bond.Blink_Interval++ >= MIOT_BOND_BLINK)
-    {
-        Sys_Bond.Blink_Interval = 0;
-        
-    }
 
-    // 绑定超时判断
-    Mi_Bond_Timeout_Check();
-
-    // 磁铁判断
-    Hall_Magnet_Check();
-
-    // 电量闪烁
-    LCD_Bat_Update_Blink(LCD.Buffer, Sensor.Bat_Percent);
     
 }// End of void Communal_Timer_Task_Handle(void *p_arg)
 

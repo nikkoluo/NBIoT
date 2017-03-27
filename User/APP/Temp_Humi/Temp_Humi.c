@@ -12,7 +12,6 @@
 #include "nrf_gpio.h"
 #include "Temp_Humi_SHT30.h"
 #include "Duck_BLE_Private_Service.h"
-#include "LCD_Temp_Humi.h"
 #include <stdlib.h>
 
 /* Private variables ---------------------------------------------------------*/
@@ -172,7 +171,7 @@ void Temp_Humi_Task_Handle(void *p_arg)
 *******************************************************************************/
 void Temp_Humi_Update(float fTemp, float fHumi)
 {
-    u8 static i = 0;
+
     short sTemp_Now = -99;
     u16   usHumi_Now;
 
@@ -190,40 +189,12 @@ void Temp_Humi_Update(float fTemp, float fHumi)
     usHumi_Now = (s16)fHumi;
 
 
-//    if (sTemp_Now < 0)
-//    {
-//        sTemp_Now += 11;  
-//        usHumi_Now = abs(sTemp_Now);
-//    }
-//    else
-//    {
-//        sTemp_Now += 111; 
-//        
-
-//        if (sTemp_Now > 999)
-//        {
-//            sTemp_Now = -99;    
-//        }
-//        usHumi_Now = abs(sTemp_Now);
-//    }
-
     // 有数据刷新
     if((sTemp_Now != Sensor.sTemp) || (usHumi_Now != Sensor.usHumi))
     {
         Sensor.sTemp               = sTemp_Now;
         Sensor.usHumi              = usHumi_Now;
-        MIOT_Adv.Temp_Val          = sTemp_Now;
-        MIOT_Adv.Humi_Val          = (usHumi_Now + 5) / 10;
-        MIOT_Adv.Temp_Humi_Refresh = 1;
-
-        // 更新BLE温度 
-        Temp_BLE_Service_Update(&Duck_BLE_Service);
-        LCD_Temp_Humi_Update_Signal();
-
-        if (i++ % 4 == 0)
-        {
-            app_trace_log("                                             Current Temp = %d.%01d ℃  Humi = %d.%01d%%\r\n", sTemp_Now / 10, abs(sTemp_Now) % 10, usHumi_Now / 10, usHumi_Now % 10);
-        }
+        
     }
     else
     {

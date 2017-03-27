@@ -1,4 +1,4 @@
-﻿/******************** (C) COPYRIGHT 2017 陆超 **********************************
+/******************** (C) COPYRIGHT 2017 陆超 **********************************
 * File Name          :  Duck_BLE_Adv.c
 * Author             :  陆超
 * CPU Type           :  nRF51802
@@ -77,12 +77,6 @@ void BLE_Advertising_on_ble_evt(ble_evt_t const * p_ble_evt)
 void Duck_BLE_Bond_Adv_Handle(void *p_arg)
 {
 
-    // 是否已经在广播该事件
-    if (MIOT_Adv.Current_Event_ID != MIOT_EVENT_ID_BOND)
-    {
-        BLE_Adv_Package(MIOT_EVENT_ID_BOND, &MIOT_Adv);
-        app_trace_log("----------------start Mi bond adv!\r\n");
-    }
 
 }// End of void Duck_BLE_Bond_Adv_Handle(void *p_arg)
 

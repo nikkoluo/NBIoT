@@ -9,13 +9,13 @@
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "Duck_BLE_Adv_Port.h"
-#include <stdlib.h>
-#include <string.h>
 #include "Duck_BLE_Adv.h"
 #include "ble_srv_common.h"
 #include "Duck_BLE_Adv_MIOT.h"
 #include "Duck_BLE_Private_Service.h"
 #include "ble_advdata.h"
+#include <stdlib.h>
+#include <string.h>
 
 /* Private variables ---------------------------------------------------------*/
 
@@ -23,7 +23,7 @@
 /* Private function prototypes -----------------------------------------------*/
 
 void BLE_Adv_Start(u32 uiTimeout);                                      // Æô¶¯¹ã²¥
-void BLE_Adv_Package(u16 usEvent, MIOT_Typedef *MIOT);                  // ¹ã²¥Êý¾Ý´ò°ü
+void BLE_Adv_Package(void);                                             // ¹ã²¥Êý¾Ý´ò°ü
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -36,7 +36,7 @@ void BLE_Adv_Package(u16 usEvent, MIOT_Typedef *MIOT);                  // ¹ã²¥Ê
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void BLE_Adv_Package(u16 usEvent, MIOT_Typedef *MIOT)
+void BLE_Adv_Package(void)
 {
     u32           Err_Code;
     u8            ucService_Data[MIOT_MAX_SIZE];
@@ -61,15 +61,15 @@ void BLE_Adv_Package(u16 usEvent, MIOT_Typedef *MIOT)
     Adv_Data.flags = BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE;
     
 
-    // ·þÎñUUID
-    Service_Data.service_uuid   = MIOT_SERVICE_ID;
+//    // ·þÎñUUID
+//    Service_Data.service_uuid   = MIOT_SERVICE_ID;
 
-    // ×¼±¸Òª·¢ËÍµÄÊý¾Ý
-    MIOT->Frame_Control_Bit.Event_Include = 1;
-    MIOT->Event_ID         = usEvent; 
-    MIOT->Current_Event_ID = MIOT->Event_ID;
-    Service_Data.data.size = BLE_MIOT_Service_Package(MIOT->Event_ID, ucService_Data, MIOT);
-    (MIOT->Frame_Counter)++;
+//    // ×¼±¸Òª·¢ËÍµÄÊý¾Ý
+//    MIOT->Frame_Control_Bit.Event_Include = 1;
+//    MIOT->Event_ID         = usEvent; 
+//    MIOT->Current_Event_ID = MIOT->Event_ID;
+//    Service_Data.data.size = BLE_MIOT_Service_Package(MIOT->Event_ID, ucService_Data, MIOT);
+//    (MIOT->Frame_Counter)++;
 
     // Çå¿Õ»º´æ
     memset(&Scan_Rsp, 0, sizeof(Scan_Rsp)); 
@@ -81,7 +81,7 @@ void BLE_Adv_Package(u16 usEvent, MIOT_Typedef *MIOT)
     
     APP_ERROR_CHECK(Err_Code);
     
-}// End of void BLE_Adv_Package(u16 usEvent, MIOT_Typedef *MIOT)
+}// End of void BLE_Adv_Package(void)
 
 /*******************************************************************************
 *                           Â½³¬@2017-01-06
@@ -97,7 +97,7 @@ void BLE_Adv_Start(u32 uiTimeout)
     ble_gap_adv_params_t Adv_Params;
 
 
-    BLE_Adv_Package(MIOT_EVENT_ID_TH, &MIOT_Adv);
+    BLE_Adv_Package();
     
     // Start advertising.
     memset(&Adv_Params, 0, sizeof(Adv_Params));

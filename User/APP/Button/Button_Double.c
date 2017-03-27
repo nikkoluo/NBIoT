@@ -10,7 +10,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "Button_Double.h"
 #include "nrf_gpio.h"
-#include "LCD.h"
 
 /* Private variables ---------------------------------------------------------*/
 

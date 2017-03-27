@@ -17,11 +17,10 @@
 #include "ble_advertising.h"
 #include "Duck_BLE_Adv.h"
 #include "Duck_BLE_Private_Service.h"
-#include "LCD_BT.h"
-#include "ble_mis.h"
 #include "pstorage.h"
 #include "device_manager.h"
 #include "ble_conn_params.h"
+#include "Duck_BLE_Adv_Port.h"
 
 /* Private variables ---------------------------------------------------------*/
 #define APP_FEATURE_NOT_SUPPORTED       BLE_GATT_STATUS_ATTERR_APP_BEGIN + 2        /**< Reply when unsupported features are requested. */
@@ -123,12 +122,6 @@ void Duck_BLE_Evt_Handler(ble_evt_t * p_ble_evt)
 
     Duck_BLE_Private_Evt(&Duck_BLE_Service, p_ble_evt);
     
-#ifdef MI_SERVICES
-
-    // 小米事件
-    ble_mis_on_ble_evt(p_ble_evt);
-
-#endif
 
 
 

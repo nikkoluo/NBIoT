@@ -10,7 +10,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "Button_Single.h"
 #include "nrf_gpio.h"
-#include "LCD.h"
 
 /* Private variables ---------------------------------------------------------*/
 
@@ -30,12 +29,8 @@ void Single_Button_Handler(void);                                       // µ¥»÷´
 *******************************************************************************/
 void Single_Button_Handler(void)
 {
-
     // ·Çµ¥»÷×´Ì¬
     app_trace_log("µ¥»÷ÈÎÎñ\r\n");
-
-    LCD_Temp_Humi_Change();
-
 
 }// End of void Single_Button_Handler(void)
 

@@ -26,7 +26,7 @@
 
 /* Private function prototypes -----------------------------------------------*/
 extern  void BLE_Adv_Start(u32 uiTimeout);                              // 启动广播
-extern  void BLE_Adv_Package(u16 usEvent, MIOT_Typedef *MIOT);          // 广播数据打包
+extern  void BLE_Adv_Package(void);                                     // 广播数据打包
 
 #endif /* __DUCK_BLE_ADV_PORT_H */
 

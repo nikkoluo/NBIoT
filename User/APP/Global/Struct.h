@@ -173,9 +173,6 @@ typedef union
     struct
     {
         unsigned long   Temp_Humi               : 1;                    // 温湿度
-        unsigned long   Battery                 : 1;                    // 电池错误
-        unsigned long   MAC                     : 1;                    // 置一时未烧录mac
-        unsigned long   Token                   : 1;                    // 置一时未烧录token
         unsigned long   Reserved                : 28;
     };
     

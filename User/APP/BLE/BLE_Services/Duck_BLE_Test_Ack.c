@@ -9,13 +9,8 @@
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "Duck_BLE_Test_Ack.h"
-#include "LCD_Battery.h"
-#include "LCD_Temp_Humi.h"
-#include "LCD_BT.h"
-#include "LCD_BU9795AF.h"
 #include "Duck_BLE_Private_Service.h"
-#include "Duck_Storage_Token.h"
-#include "Hall.h"
+
 #include <stdlib.h>
 #include <string.h>
 
@@ -70,96 +65,7 @@ void Duck_BLE_PS_Ack_Handler(u8 * p_data, u16 usLen)
 *******************************************************************************/
 void Duck_BLE_App_Ack_Handler(u8 * p_data, u16 usLen)
 {
-    u16 usCMD;
-    u8 ucBuffer[8];
-    u8 ucLen = 0;
 
-
-    // 提取命令码
-    usCMD  = (p_data[0] << 8) + p_data[1];
-    usLen -= 2;
-
-    switch(usCMD)
-    {
-        // 段码屏
-        case PS_CMD_LCD_TEST:
-        {
-            if (p_data[2] == 0x04)
-            {
-                Test.LCD_Mode = 1;
-            }
-            else if (p_data[2] == 0x05)
-            {
-                Test.LCD_Mode = 0;
-
-                // 重新显示LOGO
-                LCD_BT_Update_Signal(1);
-            }
-
-            // 返回值
-            ucLen             = 0;
-            ucBuffer[ucLen++] = 1;
-            
-        }break;
-
-        // 霍尔
-        case PS_CMD_HALL_TEST:
-        {
-            // 更新hall
-            Hall_Update();
-            
-            // 返回值
-            ucLen             = 0;
-            ucBuffer[ucLen++] = Hall.Magnet_Near;
-            
-        }break;
-
-        // 获取token
-        case PS_CMD_GET_TOKEN:
-        {
-            // 获取token
-            memcpy(ucBuffer, MIOT_Adv.Token, TOKEN_FLASH_SIZE);
-
-            // 返回值
-            ucLen = TOKEN_FLASH_SIZE;
-            
-        }break;
-
-        // 设置token
-        case PS_CMD_SET_TOKEN:
-        {
-            // 设置
-            if (usLen == TOKEN_FLASH_SIZE)
-            {
-                ucBuffer[0] = Token_Save(&p_data[2]);
-
-                // 刷新token
-                Get_Token();
-            }
-            else
-            {
-                ucBuffer[0] = 0;
-            }
-
-            // 返回值
-            ucLen = 1;
-            
-        }break;
-
-        // reboot
-        case PS_CMD_REBOOT:
-        {
-            
-            NVIC_SystemReset();
-            
-        }break;
-        
-        default:
-        break;
-    }
-
-    // 应答
-    Duck_App_Ack(p_data, ucBuffer, ucLen);
     
     
 }// End of void Duck_BLE_App_Ack_Handler(u8 * p_data, u16 usLen)
@@ -174,43 +80,7 @@ void Duck_BLE_App_Ack_Handler(u8 * p_data, u16 usLen)
 *******************************************************************************/
 u8 Duck_BLE_Test_LCD_Prepare(void)
 {
-    static u16 usTemp = 0;
-    static u8 i = 0;
-    static u8 ucBat_Per = 10;
 
-    // 控制循环周期
-    i++;
-    if (i < 10)
-    {
-        return 0;
-    }
-    else
-    {
-        i = 0;
-    }
-    
-
-    // 虚拟温度数据
-    usTemp += 111;
-    if (usTemp > 999)
-    {
-        usTemp = 0;   
-    }
-    Sensor.sTemp  = usTemp;
-    Sensor.usHumi = usTemp;
-    LCD_Temp_Humi_Update_Signal();
-
-    // 准备BT logo
-    LCD_BT_Update_Signal(usTemp & 0x01);
-
-    // 电量数据
-    ucBat_Per += 20;
-    if (ucBat_Per > 100)
-    {
-        ucBat_Per = 10;    
-    }
-    Sensor.Bat_Percent = ucBat_Per;
-    LCD_Bat_Update_Signal();
 
     return 1;
     

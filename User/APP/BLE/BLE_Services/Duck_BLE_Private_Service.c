@@ -257,18 +257,6 @@ u8 Duck_Temp_Humi_Encode(s16 sTemp, u16 usHumi, u8 * pBuffer)
 
     // 16进制转ASCII
     ucLen            = sprintf((char*)pBuffer, "T=%d.%d H=%d.%d", sTemp/10 , sTemp % 10, usHumi / 10, usHumi % 10);
-
-    // 磁铁信息
-    if (Hall.Magnet_Near)
-    {
-        memcpy(&pBuffer[ucLen], " Near", 5);
-        ucLen += 5;
-    }
-    else
-    {
-        memcpy(&pBuffer[ucLen], " Far", 4);
-        ucLen += 4;
-    }
     
     pBuffer[ucLen++] = 0;
     return ucLen;

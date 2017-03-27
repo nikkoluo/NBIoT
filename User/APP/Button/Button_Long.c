@@ -10,8 +10,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "Button_Long.h"
 #include "nrf_gpio.h"
-#include "LCD.h"
-#include "Duck_BLE_Mi_Bond.h"
+
 
 /* Private variables ---------------------------------------------------------*/
 
@@ -37,8 +36,6 @@ void Long_Button_Handler(void)
 //    // 亮灭切换
 //    LCD_Temp_Humi_Change_On_Off();
 
-    // 开始绑定的
-    Mi_Bond_Start();
 
 }// End of void Long_Button_Handler(void)
 

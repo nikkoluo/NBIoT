@@ -43,12 +43,7 @@
 extern  u8                      Root_Access;                            // 超级权限
 extern  u8                      Sys_Status;                             // 系统状态
 extern  u8                      Sys_Init;                               // 置一完成初始化 
-extern  ADC_Typedef             Battery_ADC;                            // 电池ADC
-extern  LCD_Typedef             LCD;                                    // LCD
-extern  MIOT_Typedef            MIOT_Adv;                               // 小米广播数据
-extern  Hall_Typedef            Hall;                                   // hall
 extern  Task_Typedef            Button_Task;                            // 按键任务
-extern  Task_Typedef            LCD_Task;                               // 显示任务
 extern  Task_Typedef            Communal_Timer_Task;                    // 公用定时器任务
 extern  Task_Typedef            Battery_Task;                           // 电池任务
 extern  Task_Typedef            Temp_Humi_Task;                         // 温湿度任务

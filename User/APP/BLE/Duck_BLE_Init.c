@@ -19,15 +19,13 @@
 #include "Duck_BLE_Adv.h"
 #include "Duck_BLE_Evt_Handler.h"
 #include "Duck_BLE_DevInfo_Service.h"
-#include "Duck_BLE_Bat_Level_Service.h"
 #include "Duck_BLE_Private_Service.h"
 #include "Duck_BLE_Peer.h"
 #include "ble_conn_params.h"
-#include "ble_mis.h"
 #include "pstorage.h"
-#include "Duck_BLE_Mi_Bond.h"
 #include "Duck_DFU.h"
 #include "Duck_Storage.h"
+#include "Duck_BLE_Adv_Port.h"
 
 /* Private variables ---------------------------------------------------------*/
 
@@ -281,21 +279,11 @@ void BLE_Services_Init(void)
     // 私有服务初始化
     Duck_BLE_Private_Services_Init();
 
-    // 电量
-    Duck_BLE_Bat_Level_Services_Init();
- 
     // 设备信息初始化
     Duck_BLE_DevInfo_Services_Init();
 
     // DFU服务
     Duck_BLE_DFU_Services_Init();
-    
-#ifdef MI_SERVICES
-
-    // 小米服务初始化
-    Duck_BLE_Mi_Services_Init();
-    
-#endif
 
 
     

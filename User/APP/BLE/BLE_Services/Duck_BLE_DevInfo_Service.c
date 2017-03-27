@@ -46,15 +46,7 @@ void Duck_BLE_DevInfo_Services_Init(void)
     ble_srv_ascii_to_utf8(&BLE_Dis.fw_rev_str,          BLE_FW_REV_STR);
     ble_srv_ascii_to_utf8(&BLE_Dis.model_num_str,       BLE_MODULE_NUM);
 
-
-    // MACµÿ÷∑
-    memcpy(MIOT_Adv.MACToken, MIOT_Adv.MAC, MAC_FLASH_SIZE);
-    memcpy(&MIOT_Adv.MACToken[MAC_FLASH_SIZE], MIOT_Adv.Token, TOKEN_FLASH_SIZE);
-    BLE_Dis.serial_num_str.p_str  = MIOT_Adv.MACToken;
-    BLE_Dis.serial_num_str.length = MAC_FLASH_SIZE + TOKEN_FLASH_SIZE;
     
-//    BLE_Dis.serial_num_str.p_str  = MIOT_Adv.MAC;
-//    BLE_Dis.serial_num_str.length = MAC_FLASH_SIZE;
     
     // ≈‰÷√”≤º˛∞Ê±æ
     ble_srv_ascii_to_utf8(&BLE_Dis.hw_rev_str,          DEFAULT_HARDWARE_VERSION);    
