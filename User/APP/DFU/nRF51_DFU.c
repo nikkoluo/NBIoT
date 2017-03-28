@@ -1,14 +1,14 @@
 /******************** (C) COPYRIGHT 2017 陆超 **********************************
-* File Name          :  Duck_DFU.c
+* File Name          :  nRF51_DFU.c
 * Author             :  陆超
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  02/28/2017
-* Description        :  Duck_DFU 任务
+* Description        :  nRF51_DFU 任务
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
-#include "Duck_DFU.h"
+#include "nRF51_DFU.h"
 #include "device_manager.h"
 #include "ble_hci.h"
 #include "ble_dfu.h"
@@ -20,28 +20,28 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void Duck_DFU_Advertising_Stop(void);                                   // 停止广播
-void Duck_DFU_Reset_Prepare(void);                                      // 重启前准备
+void nRF51_DFU_Advertising_Stop(void);                                  // 停止广播
+void nRF51_DFU_Reset_Prepare(void);                                     // 重启前准备
 void DFU_App_Context_Load(dm_handle_t const * p_handle);                // 绑定模式下att table切换
-void Duck_BLE_DFU_Services_Init(void);                                  // DFU服务初始化
+void nRF51_BLE_DFU_Services_Init(void);                                 // DFU服务初始化
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
 *                           陆超@2017-02-28
-* Function Name  :  Duck_DFU_Advertising_Stop
+* Function Name  :  nRF51_DFU_Advertising_Stop
 * Description    :  停止广播
 * Input          :  None
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_DFU_Advertising_Stop(void)
+void nRF51_DFU_Advertising_Stop(void)
 {
     uint32_t err_code;
 
     err_code = sd_ble_gap_adv_stop();
     APP_ERROR_CHECK(err_code);
 
-}// End of void Duck_DFU_Advertising_Stop(void)
+}// End of void nRF51_DFU_Advertising_Stop(void)
 
 /*******************************************************************************
 *                           陆超@2017-02-28
@@ -93,23 +93,15 @@ void DFU_App_Context_Load(dm_handle_t const * p_handle)
 }// End of void DFU_App_Context_Load(dm_handle_t const * p_handle)
 
 
-/** @snippet [Duck_DFU BLE Reset prepare] */
-/**@brief Function for preparing for system reset.
- *
- * @details This function implements @ref Duck_DFU_app_reset_prepare_t. It will be called by 
- *          @ref Duck_DFU_app_handler.c before entering the bootloader/Duck_DFU.
- *          This allows the current running application to shut down gracefully.
- */
-
 /*******************************************************************************
 *                           陆超@2017-02-28
-* Function Name  :  Duck_DFU_Reset_Prepare
-* Description    :  重启前准备  被Duck_DFU_app_handler.c 调用
+* Function Name  :  nRF51_DFU_Reset_Prepare
+* Description    :  重启前准备  被nRF51_DFU_app_handler.c 调用
 * Input          :  None
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_DFU_Reset_Prepare(void)
+void nRF51_DFU_Reset_Prepare(void)
 {
     uint32_t err_code;
 
@@ -124,7 +116,7 @@ void Duck_DFU_Reset_Prepare(void)
     else
     {
         // 停止广播
-        Duck_DFU_Advertising_Stop();
+        nRF51_DFU_Advertising_Stop();
     }
 
     err_code = ble_conn_params_stop();
@@ -132,37 +124,37 @@ void Duck_DFU_Reset_Prepare(void)
 
     nrf_delay_ms(500);
     
-}// End of void Duck_DFU_Reset_Prepare(void)
+}// End of void nRF51_DFU_Reset_Prepare(void)
 
 /*******************************************************************************
 *                           陆超@2017-02-28
-* Function Name  :  Duck_BLE_DFU_Services_Init
-* Description    :  Duck BLE DFU服务初始化    
+* Function Name  :  nRF51_BLE_DFU_Services_Init
+* Description    :  nRF51 BLE DFU服务初始化    
 * Input          :  None
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_BLE_DFU_Services_Init(void)
+void nRF51_BLE_DFU_Services_Init(void)
 {
     u32 err_code;
-    ble_dfu_init_t   dfus_init;
+    ble_dfu_init_t   dfu_init;
 
     // Initialize the Device Firmware Update Service.
-    memset(&dfus_init, 0, sizeof(dfus_init));
+    memset(&dfu_init, 0, sizeof(dfu_init));
 
-    dfus_init.evt_handler   = dfu_app_on_dfu_evt;
-    dfus_init.error_handler = NULL;
-    dfus_init.evt_handler   = dfu_app_on_dfu_evt;
-    dfus_init.revision      = DFU_REVISION;
+    dfu_init.evt_handler   = dfu_app_on_dfu_evt;
+    dfu_init.error_handler = NULL;
+    dfu_init.evt_handler   = dfu_app_on_dfu_evt;
+    dfu_init.revision      = DFU_REVISION;
 
-    err_code = ble_dfu_init(&Duck_DFU_Services, &dfus_init);
+    err_code = ble_dfu_init(&nRF51_DFU_Services, &dfu_init);
     APP_ERROR_CHECK(err_code);
 
-    dfu_app_reset_prepare_set(Duck_DFU_Reset_Prepare);
+    dfu_app_reset_prepare_set(nRF51_DFU_Reset_Prepare);
     dfu_app_dm_appl_instance_set(DM_App_Handle);
  
 
-}// End of void Duck_BLE_DFU_Services_Init(void)
+}// End of void nRF51_BLE_DFU_Services_Init(void)
 
 /******************* (C) COPYRIGHT 2017 陆超 **************END OF FILE*********/
 

@@ -118,7 +118,7 @@ void Duck_BLE_Evt_Handler(ble_evt_t * p_ble_evt)
     BLE_Advertising_on_ble_evt(p_ble_evt);
 
     // dfuÊÂ¼þ
-    ble_dfu_on_ble_evt(&Duck_DFU_Services, p_ble_evt);
+    ble_dfu_on_ble_evt(&nRF51_DFU_Services, p_ble_evt);
 
     Duck_BLE_Private_Evt(&Duck_BLE_Service, p_ble_evt);
     

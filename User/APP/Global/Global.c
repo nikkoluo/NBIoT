@@ -37,7 +37,7 @@ nrf_drv_wdt_channel_id  WDT_Channel;                                    // ÉùÃ÷¿
 u16                     BLE_Connect_Handle;                             // µ±Ç°Á¬½Ó´¦Àí×´Ì¬
 ble_bas_t               Bat_Level_Service;                              // µçÁ¿·þÎñ
 dm_application_instance_t   DM_App_Handle;                              // dm handle
-ble_dfu_t               Duck_DFU_Services;                              // DFU service
+ble_dfu_t               nRF51_DFU_Services;                             // DFU service
 
 //----------------------- flash -----------------------------------------------/
 u8                      Flash_Used;                                     // ÖÃÒ»Ê±flash±»Õ¼ÓÃ

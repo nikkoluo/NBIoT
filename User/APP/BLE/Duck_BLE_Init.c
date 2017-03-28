@@ -23,8 +23,8 @@
 #include "Duck_BLE_Peer.h"
 #include "ble_conn_params.h"
 #include "pstorage.h"
-#include "Duck_DFU.h"
-#include "Duck_Storage.h"
+#include "nRF51_DFU.h"
+#include "nRF51_Storage.h"
 #include "Duck_BLE_Adv_Port.h"
 
 /* Private variables ---------------------------------------------------------*/
@@ -72,7 +72,7 @@ void Duck_BLE_Init(void)
     Duck_BLE_Peer_Manager_Init(0);
 
     // 储存初始化
-    Duck_Storage_Init();
+    nRF51_Storage_Init();
 
     // 通用访问配置初始化
     GAP_Parameters_Init();
@@ -283,7 +283,7 @@ void BLE_Services_Init(void)
     Duck_BLE_DevInfo_Services_Init();
 
     // DFU服务
-    Duck_BLE_DFU_Services_Init();
+    nRF51_BLE_DFU_Services_Init();
 
 
     

@@ -2126,10 +2126,10 @@
     <group>
       <name>DFU</name>
       <file>
-        <name>$PROJ_DIR$\..\User\APP\DFU\Duck_DFU.c</name>
+        <name>$PROJ_DIR$\..\User\APP\DFU\nRF51_DFU.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$\..\User\APP\DFU\Duck_DFU.h</name>
+        <name>$PROJ_DIR$\..\User\APP\DFU\nRF51_DFU.h</name>
       </file>
     </group>
     <group>
@@ -2168,10 +2168,10 @@
     <group>
       <name>Storage</name>
       <file>
-        <name>$PROJ_DIR$\..\User\APP\Storage\Duck_Storage.c</name>
+        <name>$PROJ_DIR$\..\User\APP\Storage\nRF51_Storage.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$\..\User\APP\Storage\Duck_Storage.h</name>
+        <name>$PROJ_DIR$\..\User\APP\Storage\nRF51_Storage.h</name>
       </file>
     </group>
     <group>

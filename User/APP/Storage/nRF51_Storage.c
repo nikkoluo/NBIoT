@@ -1,5 +1,5 @@
 /******************** (C) COPYRIGHT 2017 陆超 **********************************
-* File Name          :  Duck_Storage.c
+* File Name          :  nRF51_Storage.c
 * Author             :  陆超
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
@@ -8,7 +8,7 @@
 * Description        :  mac地址处理
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
-#include "Duck_Storage.h"
+#include "nRF51_Storage.h"
 #include "nrf_soc.h"
 #include "Communal_Flash.h"
 #include <stdlib.h>
@@ -17,28 +17,28 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* Private function prototypes -----------------------------------------------*/
-void Duck_Storage_Init(void);                                           // Duck_Storage初始化
-void Duck_Storage_Callback(pstorage_handle_t *  handle, u8   OP_Code,
+void nRF51_Storage_Init(void);                                          // nRF51_Storage初始化
+void nRF51_Storage_Callback(pstorage_handle_t *  handle, u8   OP_Code,
                            u32  Err_Code, u8*  pData, u32  uiData_Len); // 操作flash回调
                                                
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
 *                           陆超@2017-03-09
-* Function Name  :  Duck_Storage_Init
+* Function Name  :  nRF51_Storage_Init
 * Description    :  MAC flash初始化
 * Input          :  None
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_Storage_Init(void)
+void nRF51_Storage_Init(void)
 {
 
 
-}// End of void Duck_Storage_Init(void)
+}// End of void nRF51_Storage_Init(void)
 
 /*******************************************************************************
 *                           陆超@2017-03-09
-* Function Name  :  Duck_Storage_Callback
+* Function Name  :  nRF51_Storage_Callback
 * Description    :  flash操作回调
 * Input          :  u32  Err_Code   操作结果
 *                   u8   OP_Code    命令码(错误原因) 
@@ -47,7 +47,7 @@ void Duck_Storage_Init(void)
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_Storage_Callback(pstorage_handle_t *  handle, u8   OP_Code,
+void nRF51_Storage_Callback(pstorage_handle_t *  handle, u8   OP_Code,
                            u32  Err_Code, u8*  pData, u32  uiData_Len)
 {
     if (Err_Code != NRF_SUCCESS)
@@ -98,7 +98,7 @@ void Duck_Storage_Callback(pstorage_handle_t *  handle, u8   OP_Code,
     // 释放flash占用
     Flash_Used = 0;
     
-}// End of static void Duck_Storage_Callback
+}// End of static void nRF51_Storage_Callback
 
 /******************* (C) COPYRIGHT 2017 陆超 ************* END OF FILE ********/
 

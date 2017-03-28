@@ -64,7 +64,7 @@ extern  nrf_drv_wdt_channel_id  WDT_Channel;                            // ÉùÃ÷¿
 extern  u16                     BLE_Connect_Handle;                     // µ±Ç°Á¬½Ó´¦Àí×´Ì¬
 extern  ble_bas_t               Bat_Level_Service;                      // µçÁ¿·þÎñ
 extern  dm_application_instance_t   DM_App_Handle;                      // dm handle
-extern  ble_dfu_t               Duck_DFU_Services;                      // DFU service
+extern  ble_dfu_t               nRF51_DFU_Services;                     // DFU service
 
 //----------------------- flash -----------------------------------------------/
 extern  u8                      Flash_Used;                             // ÖÃÒ»Ê±flash±»Õ¼ÓÃ
