@@ -24,12 +24,12 @@
 #include "nordic_common.h"
 #include "softdevice_handler.h"
 
-#include "Duck_BLE_Init.h"
+#include "nRF51_BLE_Init.h"
 #include "Button_Port.h"
 #include "Button.h"
 #include "Temp_Humi.h"
 #include "GPIO.h"
-#include "Duck_BLE.h"
+#include "nRF51_BLE.h"
 #include "WDT.h"
 #include "Communal_Timer.h"
 #include "app_trace.h"
@@ -232,7 +232,7 @@ void Task_Init(void)
     WDT_Task_Init();
 
     // BLEÈÎÎñ
-    Duck_BLE_Task_Create();
+    nRF51_BLE_Task_Create();
 
 
 

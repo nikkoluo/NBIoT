@@ -1,5 +1,5 @@
 /******************** (C) COPYRIGHT 2017 陆超 **********************************
-* File Name          :  Duck_BLE_Private_Service.c
+* File Name          :  nRF51_BLE_Private_Service.c
 * Author             :  陆超
 * CPU Type           :  nRF51822
 * IDE                :  IAR 7.8
@@ -8,8 +8,8 @@
 * Description        :  私有服务应用程序
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
-#include "Duck_BLE_Private_Service.h"
-#include "Duck_BLE_Test_Ack.h"
+#include "nRF51_BLE_Private_Service.h"
+#include "nRF51_BLE_Test_Ack.h"
 #include <stdlib.h>
 #include <string.h>
 
@@ -18,92 +18,92 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void Duck_BLE_Private_Services_Init(void);                              // 私有服务初始化  
-void Duck_BLE_Receive_Data_Handler(u8 * p_data, u16 length);            // Duck接收数据处理
-u32 Duck_Temp_Characteristic_Add(BLE_Service_Typedef * pDuck);          // 增加温度服务
-u32 Duck_Message_Characteristic_Add(BLE_Service_Typedef * pDuck);       // 增加通讯服务
-u8 Duck_Temp_Humi_Encode(s16 sTemp, u16 usHumi, u8 * pBuffer);          // 温湿度数据打包
-void Duck_BLE_Private_Evt(BLE_Service_Typedef * pDuck, ble_evt_t * pBLE_Evt);   // Duck事件处理
-void Duck_BLE_ON_Write(BLE_Service_Typedef * pDuck, ble_evt_t * pBLE_Evt);      // Duck接收处理
-void Duck_BLE_ON_Disconnect(BLE_Service_Typedef * pDuck);               // 断开连接
-void Duck_BLE_ON_Connect(BLE_Service_Typedef * pDuck, ble_evt_t * pBLE_Evt);    // 连接
-u32 Duck_BLE_String_Send(BLE_Service_Typedef * pDuck, u16 usValue_Handle, u8 * pString, u16 usLen); // 发送数据
-void Temp_BLE_Service_Update(BLE_Service_Typedef * pDuck);              // 更新温度
+void nRF51_BLE_Private_Services_Init(void);                              // 私有服务初始化  
+void nRF51_BLE_Receive_Data_Handler(u8 * p_data, u16 length);            // nRF51接收数据处理
+u32 nRF51_Temp_Characteristic_Add(BLE_Service_Typedef * pnRF51);          // 增加温度服务
+u32 nRF51_Message_Characteristic_Add(BLE_Service_Typedef * pnRF51);       // 增加通讯服务
+u8 nRF51_Temp_Humi_Encode(s16 sTemp, u16 usHumi, u8 * pBuffer);          // 温湿度数据打包
+void nRF51_BLE_Private_Evt(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt);   // nRF51事件处理
+void nRF51_BLE_ON_Write(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt);      // nRF51接收处理
+void nRF51_BLE_ON_Disconnect(BLE_Service_Typedef * pnRF51);               // 断开连接
+void nRF51_BLE_ON_Connect(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt);    // 连接
+u32 nRF51_BLE_String_Send(BLE_Service_Typedef * pnRF51, u16 usValue_Handle, u8 * pString, u16 usLen); // 发送数据
+void Temp_BLE_Service_Update(BLE_Service_Typedef * pnRF51);              // 更新温度
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
 *                           陆超@2017-01-15
-* Function Name  :  Duck_BLE_Receive_Data_Handler
-* Description    :  Duck接收数据处理
+* Function Name  :  nRF51_BLE_Receive_Data_Handler
+* Description    :  nRF51接收数据处理
 * Input          :  u8* p_data          接收数据指针
 *                   u16 length          数据长度
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_BLE_Receive_Data_Handler(u8 * p_data, u16 length)
+void nRF51_BLE_Receive_Data_Handler(u8 * p_data, u16 length)
 {
 
     app_trace_log("    收到消息!\r\n");
     
-}// End of void Duck_BLE_Receive_Data_Handler(u8 * p_data, u16 length)
+}// End of void nRF51_BLE_Receive_Data_Handler(u8 * p_data, u16 length)
 
 /*******************************************************************************
 *                           陆超@2017-01-13
-* Function Name  :  Duck_BLE_Private_Services_Init
-* Description    :  Duck BLE 私有服务初始化    
+* Function Name  :  nRF51_BLE_Private_Services_Init
+* Description    :  nRF51 BLE 私有服务初始化    
 * Input          :  None
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_BLE_Private_Services_Init(void)
+void nRF51_BLE_Private_Services_Init(void)
 {
     u32             Err_Code;
-    ble_uuid128_t   Duck_Base_UUID = DUCK_BASE_UUID;
+    ble_uuid128_t   nRF51_Base_UUID = NRF51_BASE_UUID;
     ble_uuid_t      BLE_UUID;
 
 
     // 服务参数初始化
-    Duck_BLE_Service.Conn_Handle  = BLE_CONN_HANDLE_INVALID;
+    nRF51_BLE_Service.Conn_Handle  = BLE_CONN_HANDLE_INVALID;
 
     
 
     // 增加服务UUID
-    Err_Code = sd_ble_uuid_vs_add(&Duck_Base_UUID, &Duck_BLE_Service.UUID_Type);
+    Err_Code = sd_ble_uuid_vs_add(&nRF51_Base_UUID, &nRF51_BLE_Service.UUID_Type);
     APP_ERROR_CHECK(Err_Code);
 
     // 声明UUID类型和值 
-    BLE_UUID.type = Duck_BLE_Service.UUID_Type;
-    BLE_UUID.uuid = BLE_UUID_DUCK;
+    BLE_UUID.type = nRF51_BLE_Service.UUID_Type;
+    BLE_UUID.uuid = BLE_UUID_NRF51;
 
     // 增加一个服务
     Err_Code = sd_ble_gatts_service_add(BLE_GATTS_SRVC_TYPE_PRIMARY,
                                         &BLE_UUID,
-                                        &Duck_BLE_Service.Service_Handle);
+                                        &nRF51_BLE_Service.Service_Handle);
                                         
     APP_ERROR_CHECK(Err_Code);
     
 
     // 增加发送服务
-    Duck_BLE_Service.Temp_Humi_Listening_En = false;
-    Err_Code = Duck_Temp_Characteristic_Add(&Duck_BLE_Service);
+    nRF51_BLE_Service.Temp_Humi_Listening_En = false;
+    Err_Code = nRF51_Temp_Characteristic_Add(&nRF51_BLE_Service);
     APP_ERROR_CHECK(Err_Code);
 
-    Duck_BLE_Service.Message_Listening_En = false;
-    Err_Code = Duck_Message_Characteristic_Add(&Duck_BLE_Service);
+    nRF51_BLE_Service.Message_Listening_En = false;
+    Err_Code = nRF51_Message_Characteristic_Add(&nRF51_BLE_Service);
     APP_ERROR_CHECK(Err_Code);
     
-}// End of void Duck_BLE_Private_Services_Init(void)
+}// End of void nRF51_BLE_Private_Services_Init(void)
 
 
 /*******************************************************************************
 *                           陆超@2017-01-15
-* Function Name  :  Duck_Temp_Characteristic_Add
+* Function Name  :  nRF51_Temp_Characteristic_Add
 * Description    :  增加温度发送服务
-* Input          :  BLE_Service_Typedef * pDuck 服务参数
+* Input          :  BLE_Service_Typedef * pnRF51 服务参数
 * Output         :  None
 * Return         :  NRF_SUCCESS on success, otherwise an error code.
 *******************************************************************************/
-u32 Duck_Temp_Characteristic_Add(BLE_Service_Typedef * pDuck) 
+u32 nRF51_Temp_Characteristic_Add(BLE_Service_Typedef * pnRF51) 
 {
     // 增加所有权特征
     ble_gatts_char_md_t char_md;
@@ -111,7 +111,7 @@ u32 Duck_Temp_Characteristic_Add(BLE_Service_Typedef * pDuck)
     ble_gatts_attr_t    attr_char_value;
     ble_uuid_t          BLE_UUID;
     ble_gatts_attr_md_t attr_md;
-    u8 ucEncode[BLE_DUCK_MAX_DATA_LEN];
+    u8 ucEncode[BLE_NRF51_MAX_DATA_LEN];
     static char User_Desc[] = "Temp&Humi";
 
     // 客户端特征值配置描述符 关于notify
@@ -142,8 +142,8 @@ u32 Duck_Temp_Characteristic_Add(BLE_Service_Typedef * pDuck)
     char_md.p_sccd_md               = NULL;
 
     // 声明类型和特征字
-    BLE_UUID.type = pDuck->UUID_Type;
-    BLE_UUID.uuid = DUCK_TEMP_CHARACTERISTIC;
+    BLE_UUID.type = pnRF51->UUID_Type;
+    BLE_UUID.uuid = NRF51_TEMP_CHARACTERISTIC;
 
     memset(&attr_md, 0, sizeof(attr_md));
 
@@ -160,27 +160,27 @@ u32 Duck_Temp_Characteristic_Add(BLE_Service_Typedef * pDuck)
 
     attr_char_value.p_uuid    = &BLE_UUID;
     attr_char_value.p_attr_md = &attr_md;
-    attr_char_value.init_len  = Duck_Temp_Humi_Encode(Sensor.sTemp, Sensor.usHumi, ucEncode);
+    attr_char_value.init_len  = nRF51_Temp_Humi_Encode(Sensor.sTemp, Sensor.usHumi, ucEncode);
     attr_char_value.init_offs = 0;
-    attr_char_value.max_len   = BLE_DUCK_MAX_DATA_LEN;
+    attr_char_value.max_len   = BLE_NRF51_MAX_DATA_LEN;
     attr_char_value.p_value   = ucEncode;
 
-    return sd_ble_gatts_characteristic_add(pDuck->Service_Handle,
+    return sd_ble_gatts_characteristic_add(pnRF51->Service_Handle,
                                            &char_md,
                                            &attr_char_value,
-                                           &pDuck->Temp_Humi_Handle);
+                                           &pnRF51->Temp_Humi_Handle);
                                            
-}// End of u32 Duck_Temp_Characteristic_Add(BLE_Service_Typedef * pDuck) 
+}// End of u32 nRF51_Temp_Characteristic_Add(BLE_Service_Typedef * pnRF51) 
 
 /*******************************************************************************
 *                           陆超@2017-03-09
-* Function Name  :  Duck_Message_Characteristic_Add
+* Function Name  :  nRF51_Message_Characteristic_Add
 * Description    :  增加通讯服务
-* Input          :  BLE_Service_Typedef * pDuck 服务参数
+* Input          :  BLE_Service_Typedef * pnRF51 服务参数
 * Output         :  None
 * Return         :  NRF_SUCCESS on success, otherwise an error code.
 *******************************************************************************/
-u32 Duck_Message_Characteristic_Add(BLE_Service_Typedef * pDuck) 
+u32 nRF51_Message_Characteristic_Add(BLE_Service_Typedef * pnRF51) 
 {
     // 增加所有权特征
     ble_gatts_char_md_t char_md;
@@ -214,8 +214,8 @@ u32 Duck_Message_Characteristic_Add(BLE_Service_Typedef * pDuck)
     char_md.p_sccd_md               = NULL;
 
     // 声明类型和特征字
-    BLE_UUID.type = pDuck->UUID_Type;
-    BLE_UUID.uuid = DUCK_MESSAGE_CHARACTERISTIC;
+    BLE_UUID.type = pnRF51->UUID_Type;
+    BLE_UUID.uuid = NRF51_MESSAGE_CHARACTERISTIC;
 
     memset(&attr_md, 0, sizeof(attr_md));
 
@@ -233,25 +233,25 @@ u32 Duck_Message_Characteristic_Add(BLE_Service_Typedef * pDuck)
     attr_char_value.p_uuid    = &BLE_UUID;
     attr_char_value.p_attr_md = &attr_md;
     attr_char_value.init_offs = 0;
-    attr_char_value.max_len   = BLE_DUCK_MAX_DATA_LEN;
+    attr_char_value.max_len   = BLE_NRF51_MAX_DATA_LEN;
 
-    return sd_ble_gatts_characteristic_add(pDuck->Service_Handle,
+    return sd_ble_gatts_characteristic_add(pnRF51->Service_Handle,
                                            &char_md,
                                            &attr_char_value,
-                                           &pDuck->Message_Handle);
+                                           &pnRF51->Message_Handle);
                                            
-}// End of u32 Duck_Message_Characteristic_Add(BLE_Service_Typedef * pDuck) 
+}// End of u32 nRF51_Message_Characteristic_Add(BLE_Service_Typedef * pnRF51) 
 
 /*******************************************************************************
 *                           陆超@2017-01-15
-* Function Name  :  Duck_Temp_Humi_Encode
+* Function Name  :  nRF51_Temp_Humi_Encode
 * Description    :  打包温度数据
 * Input          :  s16 sData    温湿度度数据
 *                   u8 * pBuffer  缓存
 * Output         :  None
 * Return         :  NRF_SUCCESS on success, otherwise an error code.
 *******************************************************************************/
-u8 Duck_Temp_Humi_Encode(s16 sTemp, u16 usHumi, u8 * pBuffer)
+u8 nRF51_Temp_Humi_Encode(s16 sTemp, u16 usHumi, u8 * pBuffer)
 {
     u8 ucLen = 0;
 
@@ -261,22 +261,22 @@ u8 Duck_Temp_Humi_Encode(s16 sTemp, u16 usHumi, u8 * pBuffer)
     pBuffer[ucLen++] = 0;
     return ucLen;
     
-}// End of u8 Duck_Temp_Humi_Encode(s16 sTemp, u16 usHumi, u8 * pBuffer))
+}// End of u8 nRF51_Temp_Humi_Encode(s16 sTemp, u16 usHumi, u8 * pBuffer))
 
 
 
 /*******************************************************************************
 *                           陆超@2017-01-16
-* Function Name  :  Duck_BLE_Private_Evt
-* Description    :  Duck事件处理
-* Input          :  BLE_Service_Typedef * pDuck 服务参数
+* Function Name  :  nRF51_BLE_Private_Evt
+* Description    :  nRF51事件处理
+* Input          :  BLE_Service_Typedef * pnRF51 服务参数
 *                   ble_evt_t * pBLE_Evt  BLE事件
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_BLE_Private_Evt(BLE_Service_Typedef * pDuck, ble_evt_t * pBLE_Evt)
+void nRF51_BLE_Private_Evt(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt)
 {
-    if ((pDuck == NULL) || (pBLE_Evt == NULL))
+    if ((pnRF51 == NULL) || (pBLE_Evt == NULL))
     {
         return;
     }
@@ -285,19 +285,19 @@ void Duck_BLE_Private_Evt(BLE_Service_Typedef * pDuck, ble_evt_t * pBLE_Evt)
     {
         case BLE_GAP_EVT_CONNECTED:
 
-            Duck_BLE_ON_Connect(pDuck, pBLE_Evt);
+            nRF51_BLE_ON_Connect(pnRF51, pBLE_Evt);
             
             break;
 
         case BLE_GAP_EVT_DISCONNECTED:
         
-            Duck_BLE_ON_Disconnect(pDuck);
+            nRF51_BLE_ON_Disconnect(pnRF51);
             
             break;
 
         case BLE_GATTS_EVT_WRITE:
         
-            Duck_BLE_ON_Write(pDuck, pBLE_Evt);
+            nRF51_BLE_ON_Write(pnRF51, pBLE_Evt);
             
             break;
         
@@ -306,120 +306,120 @@ void Duck_BLE_Private_Evt(BLE_Service_Typedef * pDuck, ble_evt_t * pBLE_Evt)
             break;
     }
     
-}// End of void Duck_BLE_Private_Evt(BLE_Service_Typedef * pDuck, ble_evt_t * pBLE_Evt)
+}// End of void nRF51_BLE_Private_Evt(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt)
 
 /*******************************************************************************
 *                           陆超@2017-01-16
-* Function Name  :  Duck_BLE_ON_Write
+* Function Name  :  nRF51_BLE_ON_Write
 * Description    :  BLE_GATTS_EVT_WRITE         事件处理
-* Input          :  BLE_Service_Typedef * pDuck 服务参数
+* Input          :  BLE_Service_Typedef * pnRF51 服务参数
 *                   ble_evt_t * pBLE_Evt  BLE事件
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_BLE_ON_Write(BLE_Service_Typedef * pDuck, ble_evt_t * pBLE_Evt)
+void nRF51_BLE_ON_Write(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt)
 {
     ble_gatts_evt_write_t * p_evt_write = &pBLE_Evt->evt.gatts_evt.params.write;
 
     // 监听通道
-    if ((p_evt_write->handle == pDuck->Temp_Humi_Handle.cccd_handle))
+    if ((p_evt_write->handle == pnRF51->Temp_Humi_Handle.cccd_handle))
     {
         if (ble_srv_is_notification_enabled(p_evt_write->data) && (p_evt_write->len == 2))
         {
-            pDuck->Temp_Humi_Listening_En = true;
-            app_trace_log("    开始监听 Duck Temp!\r\n");
+            pnRF51->Temp_Humi_Listening_En = true;
+            app_trace_log("    开始监听 nRF51 Temp!\r\n");
 
         }
         else
         {
-            pDuck->Temp_Humi_Listening_En = false;
-            app_trace_log("    停止监听 Duck Temp!\r\n");
+            pnRF51->Temp_Humi_Listening_En = false;
+            app_trace_log("    停止监听 nRF51 Temp!\r\n");
         }
     }
-    else if ((p_evt_write->handle == pDuck->Message_Handle.cccd_handle))
+    else if ((p_evt_write->handle == pnRF51->Message_Handle.cccd_handle))
     {
         if (ble_srv_is_notification_enabled(p_evt_write->data) && (p_evt_write->len == 2))
         {
-            pDuck->Message_Listening_En = true;
-            app_trace_log("    开始监听 Duck Message!\r\n");
+            pnRF51->Message_Listening_En = true;
+            app_trace_log("    开始监听 nRF51 Message!\r\n");
 
         }
         else
         {
-            pDuck->Message_Listening_En = false;
-            app_trace_log("    停止监听 Duck Message!\r\n");
+            pnRF51->Message_Listening_En = false;
+            app_trace_log("    停止监听 nRF51 Message!\r\n");
         }    
     }
     // massage接收
-    else if (p_evt_write->handle == pDuck->Message_Handle.value_handle)
+    else if (p_evt_write->handle == pnRF51->Message_Handle.value_handle)
     {
-        Duck_BLE_PS_Ack_Handler(p_evt_write->data, p_evt_write->len);
+        nRF51_BLE_PS_Ack_Handler(p_evt_write->data, p_evt_write->len);
     }
 
     
 
-}// End of void Duck_BLE_ON_Write(BLE_Service_Typedef * pDuck, ble_evt_t * pBLE_Evt)
+}// End of void nRF51_BLE_ON_Write(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt)
 
 /*******************************************************************************
 *                           陆超@2017-01-16
-* Function Name  :  Duck_BLE_ON_Disconnect
+* Function Name  :  nRF51_BLE_ON_Disconnect
 * Description    :  断开连接
-* Input          :  BLE_Service_Typedef * pDuck 服务参数
+* Input          :  BLE_Service_Typedef * pnRF51 服务参数
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_BLE_ON_Disconnect(BLE_Service_Typedef * pDuck)
+void nRF51_BLE_ON_Disconnect(BLE_Service_Typedef * pnRF51)
 {
-    pDuck->Conn_Handle            = BLE_CONN_HANDLE_INVALID;
-    pDuck->Temp_Humi_Listening_En = false;
-    pDuck->Message_Listening_En   = false;
+    pnRF51->Conn_Handle            = BLE_CONN_HANDLE_INVALID;
+    pnRF51->Temp_Humi_Listening_En = false;
+    pnRF51->Message_Listening_En   = false;
 
-}// End of void void Duck_BLE_ON_Disconnect(BLE_Service_Typedef * pDuck)
+}// End of void void nRF51_BLE_ON_Disconnect(BLE_Service_Typedef * pnRF51)
 
 /*******************************************************************************
 *                           陆超@2017-01-16
-* Function Name  :  Duck_BLE_ON_Connect
+* Function Name  :  nRF51_BLE_ON_Connect
 * Description    :  连接
-* Input          :  BLE_Service_Typedef * pDuck 服务参数
+* Input          :  BLE_Service_Typedef * pnRF51 服务参数
 *                   ble_evt_t * pBLE_Evt  BLE事件
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_BLE_ON_Connect(BLE_Service_Typedef * pDuck, ble_evt_t * pBLE_Evt)
+void nRF51_BLE_ON_Connect(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt)
 {
-    pDuck->Conn_Handle = pBLE_Evt->evt.gap_evt.conn_handle;
+    pnRF51->Conn_Handle = pBLE_Evt->evt.gap_evt.conn_handle;
 
-}// End of void void Duck_BLE_ON_Connect(BLE_Service_Typedef * pDuck, ble_evt_t * pBLE_Evt)
+}// End of void void nRF51_BLE_ON_Connect(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt)
 
 /*******************************************************************************
 *                           陆超@2017-01-16
-* Function Name  :  Duck_BLE_String_Send
+* Function Name  :  nRF51_BLE_String_Send
 * Description    :  发送字符串
-* Input          :  BLE_Service_Typedef * pDuck 服务参数
+* Input          :  BLE_Service_Typedef * pnRF51 服务参数
 *                   u16 usValue_Handl           目的handle
 *                   u8 * pString                待发送内容
 *                   u16 usLen                   待发送长度
 * Output         :  None
 * Return         :  NRF_SUCCESS on success, otherwise an error code.
 *******************************************************************************/
-u32 Duck_BLE_String_Send(BLE_Service_Typedef * pDuck, u16 usValue_Handle, u8 * pString, u16 usLen)
+u32 nRF51_BLE_String_Send(BLE_Service_Typedef * pnRF51, u16 usValue_Handle, u8 * pString, u16 usLen)
 {
     ble_gatts_hvx_params_t hvx_params;
     u32 uiResult;
     u8 ucRetry = 3;
     static u8 i = 0;
 
-    if (pDuck == NULL)
+    if (pnRF51 == NULL)
     {
         return NRF_ERROR_NULL;
     }
 
-    if ((pDuck->Conn_Handle == BLE_CONN_HANDLE_INVALID))
+    if ((pnRF51->Conn_Handle == BLE_CONN_HANDLE_INVALID))
     {
         return NRF_ERROR_INVALID_STATE;
     }
 
-    if (usLen > BLE_DUCK_MAX_DATA_LEN)
+    if (usLen > BLE_NRF51_MAX_DATA_LEN)
     {
         return NRF_ERROR_INVALID_PARAM;
     }
@@ -435,7 +435,7 @@ u32 Duck_BLE_String_Send(BLE_Service_Typedef * pDuck, u16 usValue_Handle, u8 * p
         hvx_params.p_len  = &usLen;
         hvx_params.type   = BLE_GATT_HVX_NOTIFICATION;
     
-        uiResult = sd_ble_gatts_hvx(pDuck->Conn_Handle, &hvx_params);
+        uiResult = sd_ble_gatts_hvx(pnRF51->Conn_Handle, &hvx_params);
         if (uiResult != NRF_SUCCESS)
         {
             nrf_delay_ms(10);
@@ -455,39 +455,39 @@ u32 Duck_BLE_String_Send(BLE_Service_Typedef * pDuck, u16 usValue_Handle, u8 * p
     return uiResult;
     
     
-}// End of u32 Duck_BLE_String_Send(BLE_Service_Typedef * pDuck, u16 usValue_Handle, u8 * pString, u16 usLen)
+}// End of u32 nRF51_BLE_String_Send(BLE_Service_Typedef * pnRF51, u16 usValue_Handle, u8 * pString, u16 usLen)
 
 /*******************************************************************************
 *                           陆超@2017-01-16
 * Function Name  :  Temp_BLE_Service_Update
 * Description    :  温度刷新
-* Input          :  BLE_Service_Typedef * pDuck 服务参数
+* Input          :  BLE_Service_Typedef * pnRF51 服务参数
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Temp_BLE_Service_Update(BLE_Service_Typedef * pDuck)
+void Temp_BLE_Service_Update(BLE_Service_Typedef * pnRF51)
 {
     u32 Err_Code;
-    u8 ucEncode[BLE_DUCK_MAX_DATA_LEN];
+    u8 ucEncode[BLE_NRF51_MAX_DATA_LEN];
     u16 usLen;
     
     // 在联网状态
-    if (!pDuck->Temp_Humi_Listening_En)
+    if (!pnRF51->Temp_Humi_Listening_En)
     {
         return;
     }
 
     // 打包数据
-    usLen = Duck_Temp_Humi_Encode(Sensor.sTemp, Sensor.usHumi, ucEncode);
+    usLen = nRF51_Temp_Humi_Encode(Sensor.sTemp, Sensor.usHumi, ucEncode);
     
     // 更新电量数据
-    Err_Code = Duck_BLE_String_Send(pDuck, pDuck->Temp_Humi_Handle.value_handle, ucEncode, usLen);
+    Err_Code = nRF51_BLE_String_Send(pnRF51, pnRF51->Temp_Humi_Handle.value_handle, ucEncode, usLen);
     if ((Err_Code != NRF_SUCCESS))
     {
         APP_ERROR_HANDLER(Err_Code);
     }
     
-}// End of void Temp_BLE_Service_Update(BLE_Service_Typedef * pDuck)
+}// End of void Temp_BLE_Service_Update(BLE_Service_Typedef * pnRF51)
 
 /******************* (C) COPYRIGHT 2017 陆超 **************END OF FILE*********/
 

@@ -1,5 +1,5 @@
 /******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
-* File Name          :  Duck_BLE_DevInfo_Service.c
+* File Name          :  nRF51_BLE_DevInfo_Service.c
 * Author             :  Â½³¬
 * CPU Type           :  nRF51822
 * IDE                :  IAR 7.8
@@ -8,7 +8,7 @@
 * Description        :  À¶ÑÀDevInfo·þÎñÓ¦ÓÃ³ÌÐò
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
-#include "Duck_BLE_DevInfo_Service.h"
+#include "nRF51_BLE_DevInfo_Service.h"
 #include <stdlib.h>
 #include <string.h>
 #include "ble_dis.h"
@@ -17,7 +17,7 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void Duck_BLE_DevInfo_Services_Init(void);                              // ÏµÍ³ÐÅÏ¢·þÎñ³õÊ¼»¯
+void nRF51_BLE_DevInfo_Services_Init(void);                              // ÏµÍ³ÐÅÏ¢·þÎñ³õÊ¼»¯
 
 
 /* Private functions ---------------------------------------------------------*/
@@ -25,13 +25,13 @@ void Duck_BLE_DevInfo_Services_Init(void);                              // ÏµÍ³Ð
 
 /*******************************************************************************
 *                           Â½³¬@2017-01-12
-* Function Name  :  Duck_BLE_DevInfo_Services_Init
+* Function Name  :  nRF51_BLE_DevInfo_Services_Init
 * Description    :  DevInfo·þÎñ³õÊ¼»¯
 * Input          :  None
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_BLE_DevInfo_Services_Init(void)
+void nRF51_BLE_DevInfo_Services_Init(void)
 {
     u32             Err_Code;
 
@@ -61,7 +61,7 @@ void Duck_BLE_DevInfo_Services_Init(void)
     Err_Code = ble_dis_init(&BLE_Dis);
     APP_ERROR_CHECK(Err_Code);
     
-}// End of void Duck_BLE_DevInfo_Services_Init(void)
+}// End of void nRF51_BLE_DevInfo_Services_Init(void)
 
 
 

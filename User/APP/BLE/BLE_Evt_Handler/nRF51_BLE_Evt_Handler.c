@@ -1,5 +1,5 @@
 /******************** (C) COPYRIGHT 2017 陆超 **********************************
-* File Name          :  Duck_BLE_Evt_Handler.c
+* File Name          :  nRF51_BLE_Evt_Handler.c
 * Author             :  陆超
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
@@ -8,19 +8,19 @@
 * Description        :  BLE event 处理 任务
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
-#include "Duck_BLE_Evt_Handler.h"
+#include "nRF51_BLE_Evt_Handler.h"
 #include "nrf51.h"
 #include "nrf_delay.h"
 #include "app_gpiote.h"
 #include "softdevice_handler_appsh.h"
 #include "ble_hci.h"
 #include "ble_advertising.h"
-#include "Duck_BLE_Adv.h"
-#include "Duck_BLE_Private_Service.h"
+#include "nRF51_BLE_Adv.h"
+#include "nRF51_BLE_Private_Service.h"
 #include "pstorage.h"
 #include "device_manager.h"
 #include "ble_conn_params.h"
-#include "Duck_BLE_Adv_Port.h"
+#include "nRF51_BLE_Adv_Port.h"
 
 /* Private variables ---------------------------------------------------------*/
 #define APP_FEATURE_NOT_SUPPORTED       BLE_GATT_STATUS_ATTERR_APP_BEGIN + 2        /**< Reply when unsupported features are requested. */
@@ -28,8 +28,8 @@
 
 /* Private function prototypes -----------------------------------------------*/
 void ON_BLE_Event(ble_evt_t * p_ble_evt);                               // BLE事件处理
-void Duck_Sys_Evt_Handler(uint32_t sys_evt);                            // sys事件回调
-void Duck_BLE_Evt_Handler(ble_evt_t * p_ble_evt);                       // BLE事件回调
+void nRF51_Sys_Evt_Handler(uint32_t sys_evt);                            // sys事件回调
+void nRF51_BLE_Evt_Handler(ble_evt_t * p_ble_evt);                       // BLE事件回调
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
@@ -83,13 +83,13 @@ void ON_BLE_Event(ble_evt_t * p_ble_evt)
 
 /*******************************************************************************
 *                           陆超@2017-01-06
-* Function Name  :  Duck_Sys_Evt_Handler
+* Function Name  :  nRF51_Sys_Evt_Handler
 * Description    :  Sys事件回调
 * Input          :  None
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_Sys_Evt_Handler(uint32_t sys_evt)
+void nRF51_Sys_Evt_Handler(uint32_t sys_evt)
 {
     // 系统写flash事件回调
     pstorage_sys_event_handler(sys_evt);
@@ -97,17 +97,17 @@ void Duck_Sys_Evt_Handler(uint32_t sys_evt)
 //    // fds失败后再次广播
 //    ble_advertising_on_sys_evt(sys_evt);
     
-}// End of void Duck_Sys_Evt_Handler(uint32_t sys_evt)
+}// End of void nRF51_Sys_Evt_Handler(uint32_t sys_evt)
 
 /*******************************************************************************
 *                           陆超@2017-01-06
-* Function Name  :  Duck_BLE_Evt_Handler
+* Function Name  :  nRF51_BLE_Evt_Handler
 * Description    :  BLE事件回调
 * Input          :  None
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_BLE_Evt_Handler(ble_evt_t * p_ble_evt)
+void nRF51_BLE_Evt_Handler(ble_evt_t * p_ble_evt)
 {
 
     // 绑定事件
@@ -120,12 +120,12 @@ void Duck_BLE_Evt_Handler(ble_evt_t * p_ble_evt)
     // dfu事件
     ble_dfu_on_ble_evt(&nRF51_DFU_Services, p_ble_evt);
 
-    Duck_BLE_Private_Evt(&Duck_BLE_Service, p_ble_evt);
+    nRF51_BLE_Private_Evt(&nRF51_BLE_Service, p_ble_evt);
     
 
 
 
-}// End of void Duck_BLE_Evt_Handler(ble_evt_t * p_ble_evt)
+}// End of void nRF51_BLE_Evt_Handler(ble_evt_t * p_ble_evt)
 
 
 /******************* (C) COPYRIGHT 2017 陆超 **************END OF FILE*********/

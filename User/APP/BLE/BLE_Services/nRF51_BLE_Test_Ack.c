@@ -1,5 +1,5 @@
 /******************** (C) COPYRIGHT 2017 陆超 **********************************
-* File Name          :  Duck_BLE_Test_Ack.c
+* File Name          :  nRF51_BLE_Test_Ack.c
 * Author             :  陆超
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
@@ -8,8 +8,8 @@
 * Description        :  测试服务应答
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
-#include "Duck_BLE_Test_Ack.h"
-#include "Duck_BLE_Private_Service.h"
+#include "nRF51_BLE_Test_Ack.h"
+#include "nRF51_BLE_Private_Service.h"
 
 #include <stdlib.h>
 #include <string.h>
@@ -19,76 +19,76 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void Duck_BLE_PS_Ack_Handler(u8 * p_data, u16 usLen);                  // Duckps服务应答处理
-void Duck_BLE_App_Ack_Handler(u8 * p_data, u16 usLen);                 // Duck测试数据
-void Duck_App_Ack(u8 *ucCMD, u8* ucData, u16 usLen);                   // 应答
-void Duck_BLE_CMD_Table_Handler(u8 * p_data);
-u8 Duck_BLE_Test_LCD_Prepare(void);                                     // 准备测试显示数据
+void nRF51_BLE_PS_Ack_Handler(u8 * p_data, u16 usLen);                  // nRF51ps服务应答处理
+void nRF51_BLE_App_Ack_Handler(u8 * p_data, u16 usLen);                 // nRF51测试数据
+void nRF51_App_Ack(u8 *ucCMD, u8* ucData, u16 usLen);                   // 应答
+void nRF51_BLE_CMD_Table_Handler(u8 * p_data);
+u8 nRF51_BLE_Test_LCD_Prepare(void);                                     // 准备测试显示数据
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
 *                           陆超@2017-03-10
-* Function Name  :  Duck_BLE_PS_Ack_Handler
-* Description    :  Duck测试数据处理
+* Function Name  :  nRF51_BLE_PS_Ack_Handler
+* Description    :  nRF51测试数据处理
 * Input          :  u8* p_data          接收数据指针
 *                   u16 usLen           数据长度
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_BLE_PS_Ack_Handler(u8 * p_data, u16 usLen)
+void nRF51_BLE_PS_Ack_Handler(u8 * p_data, u16 usLen)
 {
 
     app_trace_log("    收到消息!\r\n");
 
-    // Duck测试命令
+    // nRF51测试命令
     if (p_data[0] == 'C' && p_data[1] == 'G')
     {
-        Duck_BLE_App_Ack_Handler(&p_data[2], usLen - 2);
+        nRF51_BLE_App_Ack_Handler(&p_data[2], usLen - 2);
     }
     else
     {
-        Duck_BLE_CMD_Table_Handler(p_data);   
+        nRF51_BLE_CMD_Table_Handler(p_data);   
     }
     
-}// End of void Duck_BLE_PS_Ack_Handler(u8 * p_data, u16 usLen)
+}// End of void nRF51_BLE_PS_Ack_Handler(u8 * p_data, u16 usLen)
 
 
 
 /*******************************************************************************
 *                           陆超@2017-03-10
-* Function Name  :  Duck_BLE_App_Ack_Handler
-* Description    :  Duck测试数据处理
+* Function Name  :  nRF51_BLE_App_Ack_Handler
+* Description    :  nRF51测试数据处理
 * Input          :  u8* p_data          接收数据指针
 *                   u16 usLen           数据长度
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_BLE_App_Ack_Handler(u8 * p_data, u16 usLen)
+void nRF51_BLE_App_Ack_Handler(u8 * p_data, u16 usLen)
 {
 
     
     
-}// End of void Duck_BLE_App_Ack_Handler(u8 * p_data, u16 usLen)
+}// End of void nRF51_BLE_App_Ack_Handler(u8 * p_data, u16 usLen)
 
 /*******************************************************************************
 *                           陆超@2017-03-13
-* Function Name  :  Duck_BLE_Test_LCD_Prepare
+* Function Name  :  nRF51_BLE_Test_LCD_Prepare
 * Description    :  准备测试显示数据
 * Input          :  None
 * Output         :  None
 * Return         :  1 成功 0 失败
 *******************************************************************************/
-u8 Duck_BLE_Test_LCD_Prepare(void)
+u8 nRF51_BLE_Test_LCD_Prepare(void)
 {
 
 
     return 1;
     
-}// End of u8 Duck_BLE_Test_LCD_Prepare(void)
+}// End of u8 nRF51_BLE_Test_LCD_Prepare(void)
 
 /*******************************************************************************
 *                           陆超@2017-03-08
-* Function Name  :  Duck_Test_Ack
+* Function Name  :  nRF51_Test_Ack
 * Description    :  测试命令应答
 * Input          :  u8 *ucCMD   待回复命令
 *                   u8* ucData  待回复数据
@@ -96,14 +96,14 @@ u8 Duck_BLE_Test_LCD_Prepare(void)
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_App_Ack(u8 *ucCMD, u8* ucData, u16 usLen)
+void nRF51_App_Ack(u8 *ucCMD, u8* ucData, u16 usLen)
 {
     u8 Buffer[32];
     u8 Buffer_Len = 0;
     u32 Err_Code;
 
     // 监听
-    if (Duck_BLE_Service.Message_Listening_En != 1)
+    if (nRF51_BLE_Service.Message_Listening_En != 1)
     {
         app_trace_log("    Message Service 未开启!\r\n");
         return;
@@ -124,7 +124,7 @@ void Duck_App_Ack(u8 *ucCMD, u8* ucData, u16 usLen)
     }
     Buffer_Len += usLen;
     app_trace_log("    ack!\r\n");
-    Err_Code = Duck_BLE_String_Send(&Duck_BLE_Service, Duck_BLE_Service.Message_Handle.value_handle, Buffer, Buffer_Len);
+    Err_Code = nRF51_BLE_String_Send(&nRF51_BLE_Service, nRF51_BLE_Service.Message_Handle.value_handle, Buffer, Buffer_Len);
     if ((Err_Code != NRF_SUCCESS))
     {
         APP_ERROR_HANDLER(Err_Code);
@@ -132,17 +132,17 @@ void Duck_App_Ack(u8 *ucCMD, u8* ucData, u16 usLen)
     
 //app_trace_log("    Message Service 回复\r\n");
 
-}// End of void Duck_App_Ack(u8 *ucCMD, u8* ucData, u16 usLen)
+}// End of void nRF51_App_Ack(u8 *ucCMD, u8* ucData, u16 usLen)
 
 /*******************************************************************************
 *                           陆超@2017-03-15
-* Function Name  :  Duck_BLE_CMD_Table_Handler
-* Description    :  Duck测试数据处理
+* Function Name  :  nRF51_BLE_CMD_Table_Handler
+* Description    :  nRF51测试数据处理
 * Input          :  u8* p_data          接收数据指针
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_BLE_CMD_Table_Handler(u8 * p_data)
+void nRF51_BLE_CMD_Table_Handler(u8 * p_data)
 {
     u32 Err_Code;
     const char CMD_Table_1[] = {0x77, 0x68, 0x6F, 0x20, 0x61, 0x72, 0x65, 0x20, 0x79, 0x6F, 0x75};
@@ -151,15 +151,15 @@ void Duck_BLE_CMD_Table_Handler(u8 * p_data)
 
     if (memcmp(p_data, CMD_Table_1, strlen(CMD_Table_1)) == 0)
     {
-        Err_Code = Duck_BLE_String_Send(&Duck_BLE_Service, Duck_BLE_Service.Message_Handle.value_handle, (u8 *)CMD_Table_2, strlen(CMD_Table_2));
-        Err_Code = Duck_BLE_String_Send(&Duck_BLE_Service, Duck_BLE_Service.Message_Handle.value_handle, (u8 *)CMD_Table_3, strlen(CMD_Table_3));
+        Err_Code = nRF51_BLE_String_Send(&nRF51_BLE_Service, nRF51_BLE_Service.Message_Handle.value_handle, (u8 *)CMD_Table_2, strlen(CMD_Table_2));
+        Err_Code = nRF51_BLE_String_Send(&nRF51_BLE_Service, nRF51_BLE_Service.Message_Handle.value_handle, (u8 *)CMD_Table_3, strlen(CMD_Table_3));
         if ((Err_Code != NRF_SUCCESS))
         {
             APP_ERROR_HANDLER(Err_Code);
         }    
     }
 
-}// End of void Duck_BLE_CMD_Table_Handler(u8 * p_data)
+}// End of void nRF51_BLE_CMD_Table_Handler(u8 * p_data)
 
 /******************* (C) COPYRIGHT 2017 陆超 **************END OF FILE*********/
 

@@ -1,5 +1,5 @@
 /******************** (C) COPYRIGHT 2017 陆超 **********************************
-* File Name          :  Duck_BLE_Adv.c
+* File Name          :  nRF51_BLE_Adv.c
 * Author             :  陆超
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
@@ -8,7 +8,7 @@
 * Description        :  蓝牙广播包处理
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
-#include "Duck_BLE_Adv.h"
+#include "nRF51_BLE_Adv.h"
 #include <stdlib.h>
 #include <string.h>
 #include "nrf_soc.h"
@@ -18,7 +18,7 @@
 
 /* Private function prototypes -----------------------------------------------*/
 void BLE_Advertising_on_ble_evt(ble_evt_t const * p_ble_evt);           // 广播事件处理
-void Duck_BLE_Bond_Adv_Handle(void *p_arg);                             // 绑定广播
+void nRF51_BLE_Bond_Adv_Handle(void *p_arg);                             // 绑定广播
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -68,17 +68,17 @@ void BLE_Advertising_on_ble_evt(ble_evt_t const * p_ble_evt)
 
 /*******************************************************************************
 *                           陆超@2017-02-22
-* Function Name  :  Duck_BLE_Bond_Adv_Handle
+* Function Name  :  nRF51_BLE_Bond_Adv_Handle
 * Description    :  绑定广播处理
 * Input          :  void *p_arg
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_BLE_Bond_Adv_Handle(void *p_arg)
+void nRF51_BLE_Bond_Adv_Handle(void *p_arg)
 {
 
 
-}// End of void Duck_BLE_Bond_Adv_Handle(void *p_arg)
+}// End of void nRF51_BLE_Bond_Adv_Handle(void *p_arg)
 
 
 /******************* (C) COPYRIGHT 2017 陆超 ************* END OF FILE ********/

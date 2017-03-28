@@ -1,14 +1,14 @@
 /******************** (C) COPYRIGHT 2016 ¬Ω≥¨ **********************************
-* File Name          :  Duck_BLE_Init.c
+* File Name          :  nRF51_BLE_Init.c
 * Author             :  ¬Ω≥¨
 * CPU Type           :  nRF51822
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  12/26/2016
-* Description        :  Duck_BLE≥ı ºªØ
+* Description        :  nRF51_BLE≥ı ºªØ
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
-#include "Duck_BLE_Init.h"
+#include "nRF51_BLE_Init.h"
 #include "nrf51.h"
 #include "nrf_delay.h"
 #include "app_gpiote.h"
@@ -16,25 +16,25 @@
 #include "ble_hci.h"
 #include "ble_gap.h"
 #include "ble_advertising.h"
-#include "Duck_BLE_Adv.h"
-#include "Duck_BLE_Evt_Handler.h"
-#include "Duck_BLE_DevInfo_Service.h"
-#include "Duck_BLE_Private_Service.h"
-#include "Duck_BLE_Peer.h"
+#include "nRF51_BLE_Adv.h"
+#include "nRF51_BLE_Evt_Handler.h"
+#include "nRF51_BLE_DevInfo_Service.h"
+#include "nRF51_BLE_Private_Service.h"
+#include "nRF51_BLE_Peer.h"
 #include "ble_conn_params.h"
 #include "pstorage.h"
 #include "nRF51_DFU.h"
 #include "nRF51_Storage.h"
-#include "Duck_BLE_Adv_Port.h"
+#include "nRF51_BLE_Adv_Port.h"
 
 /* Private variables ---------------------------------------------------------*/
 
 
 
 /* Private function prototypes -----------------------------------------------*/
-void Duck_BLE_Init(void);                                               // Duck_BLE≥ı ºªØ
-void Duck_BLE_Stack_Init(void);                                         // Duck_BLE’ª≥ı ºªØ
-void Duck_BLE_Tx_Power_Set(s32 iPower);                                 // …Ë÷√∑¢…‰π¶¬ 
+void nRF51_BLE_Init(void);                                               // nRF51_BLE≥ı ºªØ
+void nRF51_BLE_Stack_Init(void);                                         // nRF51_BLE’ª≥ı ºªØ
+void nRF51_BLE_Tx_Power_Set(s32 iPower);                                 // …Ë÷√∑¢…‰π¶¬ 
 
 void GAP_Parameters_Init(void);                                         // GAP≤Œ ˝…Ë÷√
 
@@ -49,13 +49,13 @@ void Connect_Parameters_Error_Handler(u32 Nrf_Error);                   // ¡¨Ω”≤
 
 /*******************************************************************************
 *                           ¬Ω≥¨@2016-12-26
-* Function Name  :  Duck_BLE_Init
-* Description    :  Duck_BLE≥ı ºªØ
+* Function Name  :  nRF51_BLE_Init
+* Description    :  nRF51_BLE≥ı ºªØ
 * Input          :  None
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_BLE_Init(void)
+void nRF51_BLE_Init(void)
 {
 #ifndef BLE_OPEN
 
@@ -66,10 +66,10 @@ void Duck_BLE_Init(void)
 #else
 
     // BLE∂—≥ı ºªØ
-    Duck_BLE_Stack_Init();
+    nRF51_BLE_Stack_Init();
 
     // œ»≥ı ºªØflash
-    Duck_BLE_Peer_Manager_Init(0);
+    nRF51_BLE_Peer_Manager_Init(0);
 
     // ¥¢¥Ê≥ı ºªØ
     nRF51_Storage_Init();
@@ -78,7 +78,7 @@ void Duck_BLE_Init(void)
     GAP_Parameters_Init();
 
     // …Ë÷√∑¢…‰π¶¬ 
-    Duck_BLE_Tx_Power_Set(0);
+    nRF51_BLE_Tx_Power_Set(0);
 
     // BLE∑˛ŒÒ≥ı ºªØ
     BLE_Services_Init();
@@ -90,18 +90,18 @@ void Duck_BLE_Init(void)
 
 #endif
 
-}// End of void Duck_BLE_Init(void)
+}// End of void nRF51_BLE_Init(void)
 
 
 /*******************************************************************************
 *                           ¬Ω≥¨@2016-12-26
-* Function Name  :  Duck_BLE_Stack_Init
-* Description    :  Duck_BLE’ª≥ı ºªØ
+* Function Name  :  nRF51_BLE_Stack_Init
+* Description    :  nRF51_BLE’ª≥ı ºªØ
 * Input          :  None
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_BLE_Stack_Init(void)
+void nRF51_BLE_Stack_Init(void)
 {
     u32 err_code;
 
@@ -127,16 +127,16 @@ void Duck_BLE_Stack_Init(void)
 
 
     // ◊¢≤·BLE ¬º˛ªÿµ˜
-    err_code = softdevice_ble_evt_handler_set(Duck_BLE_Evt_Handler);
+    err_code = softdevice_ble_evt_handler_set(nRF51_BLE_Evt_Handler);
     APP_ERROR_CHECK(err_code);
 
     // ◊¢≤·sys ¬º˛ªÿµ˜
-    err_code = softdevice_sys_evt_handler_set(Duck_Sys_Evt_Handler);
+    err_code = softdevice_sys_evt_handler_set(nRF51_Sys_Evt_Handler);
     APP_ERROR_CHECK(err_code);
 
 
     
-}// End of void Duck_BLE_Stack_Init(void)
+}// End of void nRF51_BLE_Stack_Init(void)
 
 /*******************************************************************************
 *                           ¬Ω≥¨@2017-01-06
@@ -203,14 +203,14 @@ void Connect_Parameters_Event_Handler(ble_conn_params_evt_t * p_evt)
 
 /*******************************************************************************
 *                           ¬Ω≥¨@2017-01-06
-* Function Name  :  Duck_BLE_Tx_Power_Set
+* Function Name  :  nRF51_BLE_Tx_Power_Set
 * Description    :  …Ë÷√∑¢…‰π¶¬ 
 * Input          :  s32 iPower ∑¢…‰π¶¬ 
 *                   -40, -30, -20, -16, -12, -8, -4, 0, 4  (dBm)
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
-void Duck_BLE_Tx_Power_Set(s32 iPower)
+void nRF51_BLE_Tx_Power_Set(s32 iPower)
 {
     u32  err_code;
     
@@ -218,7 +218,7 @@ void Duck_BLE_Tx_Power_Set(s32 iPower)
     err_code = sd_ble_gap_tx_power_set(0);
     APP_ERROR_CHECK(err_code);
     
-}// End of void Duck_BLE_Tx_Power_Set(s32 iPower)
+}// End of void nRF51_BLE_Tx_Power_Set(s32 iPower)
 
 /*******************************************************************************
 *                           ¬Ω≥¨@2017-01-06
@@ -277,10 +277,10 @@ void BLE_Services_Init(void)
 {
   
     // ÀΩ”–∑˛ŒÒ≥ı ºªØ
-    Duck_BLE_Private_Services_Init();
+    nRF51_BLE_Private_Services_Init();
 
     // …Ë±∏–≈œ¢≥ı ºªØ
-    Duck_BLE_DevInfo_Services_Init();
+    nRF51_BLE_DevInfo_Services_Init();
 
     // DFU∑˛ŒÒ
     nRF51_BLE_DFU_Services_Init();

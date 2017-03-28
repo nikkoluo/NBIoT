@@ -2321,68 +2321,68 @@
       <group>
         <name>BLE_Adv</name>
         <file>
-          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Adv\DUCK_BLE_Adv.c</name>
+          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Adv\nRF51_BLE_Adv.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Adv\Duck_BLE_Adv.h</name>
+          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Adv\nRF51_BLE_Adv.h</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Adv\DUCK_BLE_Adv_Port.c</name>
+          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Adv\nRF51_BLE_Adv_Port.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Adv\Duck_BLE_Adv_Port.h</name>
+          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Adv\nRF51_BLE_Adv_Port.h</name>
         </file>
       </group>
       <group>
         <name>BLE_Evt_Handler</name>
         <file>
-          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Evt_Handler\Duck_BLE_Evt_Handler.c</name>
+          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Evt_Handler\nRF51_BLE_Evt_Handler.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Evt_Handler\Duck_BLE_Evt_Handler.h</name>
+          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Evt_Handler\nRF51_BLE_Evt_Handler.h</name>
         </file>
       </group>
       <group>
         <name>BLE_Peer</name>
         <file>
-          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Peer\Duck_BLE_Peer.c</name>
+          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Peer\nRF51_BLE_Peer.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Peer\Duck_BLE_Peer.h</name>
+          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Peer\nRF51_BLE_Peer.h</name>
         </file>
       </group>
       <group>
         <name>BLE_Services</name>
         <file>
-          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Services\Duck_BLE_DevInfo_Service.c</name>
+          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Services\nRF51_BLE_DevInfo_Service.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Services\Duck_BLE_DevInfo_Service.h</name>
+          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Services\nRF51_BLE_DevInfo_Service.h</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Services\Duck_BLE_Private_Service.c</name>
+          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Services\nRF51_BLE_Private_Service.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Services\Duck_BLE_Private_Service.h</name>
+          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Services\nRF51_BLE_Private_Service.h</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Services\Duck_BLE_Test_Ack.c</name>
+          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Services\nRF51_BLE_Test_Ack.c</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Services\Duck_BLE_Test_Ack.h</name>
+          <name>$PROJ_DIR$\..\User\APP\BLE\BLE_Services\nRF51_BLE_Test_Ack.h</name>
         </file>
       </group>
       <file>
-        <name>$PROJ_DIR$\..\User\APP\BLE\Duck_BLE.c</name>
+        <name>$PROJ_DIR$\..\User\APP\BLE\nRF51_BLE.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$\..\User\APP\BLE\Duck_BLE.h</name>
+        <name>$PROJ_DIR$\..\User\APP\BLE\nRF51_BLE.h</name>
       </file>
       <file>
-        <name>$PROJ_DIR$\..\User\APP\BLE\Duck_BLE_Init.c</name>
+        <name>$PROJ_DIR$\..\User\APP\BLE\nRF51_BLE_Init.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$\..\User\APP\BLE\Duck_BLE_Init.h</name>
+        <name>$PROJ_DIR$\..\User\APP\BLE\nRF51_BLE_Init.h</name>
       </file>
     </group>
     <group>

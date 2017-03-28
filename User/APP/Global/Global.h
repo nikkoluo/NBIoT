@@ -57,7 +57,7 @@ extern  Button_Typedef          Button;                                 // °´¼ü½
 extern  Sensor_Typedef          Sensor;                                 // Sensor
 extern  Time_Base_Typedef       System_Time_Base;                       // ÏµÍ³Ê±¼ä»ù×¼
 extern  System_ERR_Typedef      System_Err;                             // ÏµÍ³´íÎó½á¹¹Ìå
-extern  BLE_Service_Typedef     Duck_BLE_Service;                       // Duck BLEË½ÓÐ·þÎñ
+extern  BLE_Service_Typedef     nRF51_BLE_Service;                      // nRF51 BLEË½ÓÐ·þÎñ
 extern  nrf_drv_wdt_channel_id  WDT_Channel;                            // ÉùÃ÷¿´ÃÅ¹·Í¨µÀ±äÁ¿
 
 //----------------------- BLE -------------------------------------------------/

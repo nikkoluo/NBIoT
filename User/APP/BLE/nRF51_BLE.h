@@ -1,22 +1,20 @@
-/******************** (C) COPYRIGHT 2017 闄嗚秴 **********************************
-* File Name          :  Duck_BLE_Adv.h
-* Author             :  闄嗚秴
+/******************** (C) COPYRIGHT 2017 陆超 **********************************
+* File Name          :  nRF51_BLE.h
+* Author             :  陆超
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
-* Date               :  01/06/2017
-* Description        :  钃濈墮骞挎挱鍖呭鐞嗗ご鏂囦欢
+* Date               :  01/11/2017
+* Description        :  nRF51_BLE header file
 *******************************************************************************/
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __DUCK_BLE_ADV_H
-#define __DUCK_BLE_ADV_H
+#ifndef __NRF51_BLE_H
+#define __NRF51_BLE_H
 
 /* Includes ------------------------------------------------------------------*/
 #include "Global.h"
-#include "ble_advdata.h"
-#include "ble_advertising.h"
-#include "Duck_BLE_Adv_Port.h"
+
 
 /* Private define ------------------------------------------------------------*/
 
@@ -27,13 +25,12 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void BLE_Advertising_on_ble_evt(ble_evt_t const * p_ble_evt);   // 骞挎挱浜嬩欢澶勭悊
-extern  void Duck_BLE_Bond_Adv_Handle(void *p_arg);                     // 缁戝畾骞挎挱
-
-#endif /* __DUCK_BLE_ADV_H */
-
-/******************* (C) COPYRIGHT 2017 闄嗚秴 ***** END OF FILE ****************/
+extern  void nRF51_BLE_Task_Create(void);                                // BLE任务创建
+extern  void nRF51_BLE_Int_Evt_Set(u16 usEvent_ID);                      // 特殊任务设置
 
 
 
+#endif /* __NRF51_BLE_H */
+
+/******************* (C) COPYRIGHT 2017 陆超 *****END OF FILE******************/
 

@@ -1,5 +1,5 @@
 /******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
-* File Name          :  Duck_BLE_Adv_Port.c
+* File Name          :  nRF51_BLE_Adv_Port.c
 * Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
@@ -8,11 +8,10 @@
 * Description        :  À¶ÑÀ¹ã²¥ÅäÖÃ
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
-#include "Duck_BLE_Adv_Port.h"
-#include "Duck_BLE_Adv.h"
+#include "nRF51_BLE_Adv_Port.h"
+#include "nRF51_BLE_Adv.h"
 #include "ble_srv_common.h"
-#include "Duck_BLE_Adv_MIOT.h"
-#include "Duck_BLE_Private_Service.h"
+#include "nRF51_BLE_Private_Service.h"
 #include "ble_advdata.h"
 #include <stdlib.h>
 #include <string.h>

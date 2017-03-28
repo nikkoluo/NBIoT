@@ -11,7 +11,7 @@
 #include "Temp_Humi.h"
 #include "nrf_gpio.h"
 #include "Temp_Humi_SHT30.h"
-#include "Duck_BLE_Private_Service.h"
+#include "nRF51_BLE_Private_Service.h"
 #include <stdlib.h>
 
 /* Private variables ---------------------------------------------------------*/
