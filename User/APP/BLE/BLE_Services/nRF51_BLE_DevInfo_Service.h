@@ -25,7 +25,7 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void nRF51_BLE_DevInfo_Services_Init(void);                      // nRF51信息服务初始化    
+extern  void nRF51_BLE_DevInfo_Services_Init(void);                     // nRF51信息服务初始化    
 
 
 #endif /* __NRF51_BLE_DEVINFO_SERVICE_H */

@@ -25,8 +25,8 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void nRF51_BLE_Init(void);                                       // nRF51_BLE初始化
-extern  void nRF51_BLE_Tx_Power_Set(s32 iPower);                         // 设置发射功率
+extern  void nRF51_BLE_Init(void);                                      // nRF51_BLE初始化
+extern  void nRF51_BLE_Tx_Power_Set(s32 iPower);                        // 设置发射功率
 
 
 #endif /* __NRF51_BLE_INIT_H */

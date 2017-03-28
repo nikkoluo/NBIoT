@@ -25,8 +25,8 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void nRF51_Sys_Evt_Handler(uint32_t sys_evt);                    // sys事件回调
-extern  void nRF51_BLE_Evt_Handler(ble_evt_t * p_ble_evt);               // BLE事件回调
+extern  void nRF51_Sys_Evt_Handler(uint32_t sys_evt);                   // sys事件回调
+extern  void nRF51_BLE_Evt_Handler(ble_evt_t * p_ble_evt);              // BLE事件回调
 
 
 

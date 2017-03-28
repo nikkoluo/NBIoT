@@ -32,9 +32,9 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void nRF51_BLE_Init(void);                                               // nRF51_BLE初始化
-void nRF51_BLE_Stack_Init(void);                                         // nRF51_BLE栈初始化
-void nRF51_BLE_Tx_Power_Set(s32 iPower);                                 // 设置发射功率
+void nRF51_BLE_Init(void);                                              // nRF51_BLE初始化
+void nRF51_BLE_Stack_Init(void);                                        // nRF51_BLE栈初始化
+void nRF51_BLE_Tx_Power_Set(s32 iPower);                                // 设置发射功率
 
 void GAP_Parameters_Init(void);                                         // GAP参数设置
 

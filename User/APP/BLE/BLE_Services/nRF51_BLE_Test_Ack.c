@@ -23,7 +23,7 @@ void nRF51_BLE_PS_Ack_Handler(u8 * p_data, u16 usLen);                  // nRF51
 void nRF51_BLE_App_Ack_Handler(u8 * p_data, u16 usLen);                 // nRF51测试数据
 void nRF51_App_Ack(u8 *ucCMD, u8* ucData, u16 usLen);                   // 应答
 void nRF51_BLE_CMD_Table_Handler(u8 * p_data);
-u8 nRF51_BLE_Test_LCD_Prepare(void);                                     // 准备测试显示数据
+u8 nRF51_BLE_Test_LCD_Prepare(void);                                    // 准备测试显示数据
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************

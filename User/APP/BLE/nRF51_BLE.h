@@ -25,8 +25,8 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void nRF51_BLE_Task_Create(void);                                // BLE任务创建
-extern  void nRF51_BLE_Int_Evt_Set(u16 usEvent_ID);                      // 特殊任务设置
+extern  void nRF51_BLE_Task_Create(void);                               // BLE任务创建
+extern  void nRF51_BLE_Int_Evt_Set(u16 usEvent_ID);                     // 特殊任务设置
 
 
 

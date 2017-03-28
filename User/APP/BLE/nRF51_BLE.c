@@ -22,13 +22,13 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void nRF51_BLE_Task_Create(void);                                        // BLE任务创建
-void nRF51_BLE_Task_Handle(void *p_arg);                                 // BLE任务
-void nRF51_BLE_Slave_Evt_Handle(void *p_arg);                            // 从任务  
-void nRF51_BLE_Master_Evt_Handle(void *p_arg);                           // 主任务
-void nRF51_BLE_Int_Evt_Handle(void *p_arg);                              // 特殊任务
-void nRF51_BLE_Int_Evt_Set(u16 usEvent_ID);                              // 特殊任务设置
-void nRF51_BLE_Cycle_Evt_Handle(void *p_arg);                            // 周期任务处理
+void nRF51_BLE_Task_Create(void);                                       // BLE任务创建
+void nRF51_BLE_Task_Handle(void *p_arg);                                // BLE任务
+void nRF51_BLE_Slave_Evt_Handle(void *p_arg);                           // 从任务  
+void nRF51_BLE_Master_Evt_Handle(void *p_arg);                          // 主任务
+void nRF51_BLE_Int_Evt_Handle(void *p_arg);                             // 特殊任务
+void nRF51_BLE_Int_Evt_Set(u16 usEvent_ID);                             // 特殊任务设置
+void nRF51_BLE_Cycle_Evt_Handle(void *p_arg);                           // 周期任务处理
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************

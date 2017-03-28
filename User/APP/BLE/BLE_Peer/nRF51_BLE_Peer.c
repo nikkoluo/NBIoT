@@ -21,7 +21,7 @@
 
 /* Private function prototypes -----------------------------------------------*/
 u32 nRF51_BLE_Peer_Manager_Evt_Handler(dm_handle_t const * p_handle, dm_event_t const  * p_event, ret_code_t event_result);
-void nRF51_BLE_Peer_Manager_Init(bool erase_bonds);                      // 绑定管理初始化
+void nRF51_BLE_Peer_Manager_Init(bool erase_bonds);                     // 绑定管理初始化
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************

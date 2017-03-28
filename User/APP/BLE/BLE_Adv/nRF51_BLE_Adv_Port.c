@@ -20,7 +20,6 @@
 
                                 
 /* Private function prototypes -----------------------------------------------*/
-
 void BLE_Adv_Start(u32 uiTimeout);                                      // 启动广播
 void BLE_Adv_Package(void);                                             // 广播数据打包
 

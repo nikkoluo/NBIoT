@@ -29,8 +29,8 @@
  
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void nRF51_BLE_PS_Ack_Handler(u8 * p_data, u16 usLen);           // nRF51测试数据处理
-extern  u8 nRF51_BLE_Test_LCD_Prepare(void);                             // 准备测试显示数据
+extern  void nRF51_BLE_PS_Ack_Handler(u8 * p_data, u16 usLen);          // nRF51测试数据处理
+extern  u8 nRF51_BLE_Test_LCD_Prepare(void);                            // 准备测试显示数据
 
 #endif /* __NRF51_BLE_TEST_ACK_H */
 

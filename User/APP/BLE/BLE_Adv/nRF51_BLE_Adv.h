@@ -28,7 +28,7 @@
 
 /* Private function prototypes -----------------------------------------------*/
 extern  void BLE_Advertising_on_ble_evt(ble_evt_t const * p_ble_evt);   // 广播事件处理
-extern  void nRF51_BLE_Bond_Adv_Handle(void *p_arg);                     // 绑定广播
+extern  void nRF51_BLE_Bond_Adv_Handle(void *p_arg);                    // 绑定广播
 
 #endif /* __NRF51_BLE_ADV_H */
 

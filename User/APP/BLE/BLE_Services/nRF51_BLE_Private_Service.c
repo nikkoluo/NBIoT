@@ -18,17 +18,17 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void nRF51_BLE_Private_Services_Init(void);                              // 私有服务初始化  
-void nRF51_BLE_Receive_Data_Handler(u8 * p_data, u16 length);            // nRF51接收数据处理
-u32 nRF51_Temp_Characteristic_Add(BLE_Service_Typedef * pnRF51);          // 增加温度服务
-u32 nRF51_Message_Characteristic_Add(BLE_Service_Typedef * pnRF51);       // 增加通讯服务
-u8 nRF51_Temp_Humi_Encode(s16 sTemp, u16 usHumi, u8 * pBuffer);          // 温湿度数据打包
+void nRF51_BLE_Private_Services_Init(void);                             // 私有服务初始化  
+void nRF51_BLE_Receive_Data_Handler(u8 * p_data, u16 length);           // nRF51接收数据处理
+u32 nRF51_Temp_Characteristic_Add(BLE_Service_Typedef * pnRF51);        // 增加温度服务
+u32 nRF51_Message_Characteristic_Add(BLE_Service_Typedef * pnRF51);     // 增加通讯服务
+u8 nRF51_Temp_Humi_Encode(s16 sTemp, u16 usHumi, u8 * pBuffer);         // 温湿度数据打包
 void nRF51_BLE_Private_Evt(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt);   // nRF51事件处理
 void nRF51_BLE_ON_Write(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt);      // nRF51接收处理
-void nRF51_BLE_ON_Disconnect(BLE_Service_Typedef * pnRF51);               // 断开连接
+void nRF51_BLE_ON_Disconnect(BLE_Service_Typedef * pnRF51);             // 断开连接
 void nRF51_BLE_ON_Connect(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt);    // 连接
 u32 nRF51_BLE_String_Send(BLE_Service_Typedef * pnRF51, u16 usValue_Handle, u8 * pString, u16 usLen); // 发送数据
-void Temp_BLE_Service_Update(BLE_Service_Typedef * pnRF51);              // 更新温度
+void Temp_BLE_Service_Update(BLE_Service_Typedef * pnRF51);             // 更新温度
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************

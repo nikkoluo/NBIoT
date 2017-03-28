@@ -17,7 +17,7 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void nRF51_BLE_DevInfo_Services_Init(void);                              // 系统信息服务初始化
+void nRF51_BLE_DevInfo_Services_Init(void);                             // 系统信息服务初始化
 
 
 /* Private functions ---------------------------------------------------------*/

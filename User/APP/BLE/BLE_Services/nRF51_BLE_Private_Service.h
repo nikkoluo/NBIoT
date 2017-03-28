@@ -32,9 +32,9 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void nRF51_BLE_Private_Services_Init(void);                      // 私有服务初始化    
+extern  void nRF51_BLE_Private_Services_Init(void);                     // 私有服务初始化    
 extern  void nRF51_BLE_Private_Evt(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt);   // nRF51事件处理
-extern  void Temp_BLE_Service_Update(BLE_Service_Typedef * pnRF51);      // 更新温度
+extern  void Temp_BLE_Service_Update(BLE_Service_Typedef * pnRF51);     // 更新温度
 extern  u32 nRF51_BLE_String_Send(BLE_Service_Typedef * pnRF51, u16 usValue_Handle, u8 * pString, u16 usLen); // 发送数据
 
 #endif /* __NRF51_BLE_PRIVATE_SERVICE_H */
