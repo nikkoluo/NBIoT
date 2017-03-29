@@ -173,7 +173,8 @@ typedef union
     struct
     {
         unsigned long   Temp_Humi               : 1;                    // ÎÂÊª¶È
-        unsigned long   Reserved                : 28;
+        unsigned long   tVOC                    : 1;                    // tVOC
+        unsigned long   Reserved                : 30;
     };
     
 }System_ERR_Typedef;

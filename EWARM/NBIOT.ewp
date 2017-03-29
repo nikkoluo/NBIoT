@@ -380,6 +380,7 @@
           <state>$PROJ_DIR$\..\User\APP\BLE\BLE_Adv</state>
           <state>$PROJ_DIR$\..\Library\toolchain</state>
           <state>$PROJ_DIR$\..\User\APP\Debug</state>
+          <state>$PROJ_DIR$\..\User\APP\tVOC</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -2226,6 +2227,15 @@
       </file>
       <file>
         <name>$PROJ_DIR$\..\User\APP\Temp_Humi\Temp_Humi_SHT30.h</name>
+      </file>
+    </group>
+    <group>
+      <name>tVOC</name>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\tVOC\tVOC.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\tVOC\tVOC.h</name>
       </file>
     </group>
     <group>

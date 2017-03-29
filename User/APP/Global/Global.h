@@ -44,6 +44,7 @@ extern  u8                      Root_Access;                            // ³¬¼¶È
 extern  u8                      Sys_Status;                             // ÏµÍ³×´Ì¬
 extern  u8                      Sys_Init;                               // ÖÃÒ»Íê³É³õÊ¼»¯ 
 extern  Task_Typedef            Button_Task;                            // °´¼üÈÎÎñ
+extern  Task_Typedef            tVOC_Task;                              // tVOCÈÎÎñ
 extern  Task_Typedef            Communal_Timer_Task;                    // ¹«ÓÃ¶¨Ê±Æ÷ÈÎÎñ
 extern  Task_Typedef            Battery_Task;                           // µç³ØÈÎÎñ
 extern  Task_Typedef            Temp_Humi_Task;                         // ÎÂÊª¶ÈÈÎÎñ

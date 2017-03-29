@@ -16,7 +16,7 @@ u8                      Root_Access;                                    // ³¬¼¶È
 u8                      Sys_Status;                                     // ÏµÍ³×´Ì¬
 u8                      Sys_Init;                                       // ÖÃÒ»Íê³É³õÊ¼»¯ 
 Task_Typedef            Button_Task;                                    // °´¼üÈÎÎñ
-Task_Typedef            LCD_Task;                                       // ÏÔÊ¾ÈÎÎñ
+Task_Typedef            tVOC_Task;                                      // tVOCÈÎÎñ
 Task_Typedef            Communal_Timer_Task;                            // ¹«ÓÃ¶¨Ê±Æ÷ÈÎÎñ
 Task_Typedef            Battery_Task;                                   // µç³ØÈÎÎñ
 Task_Typedef            Temp_Humi_Task;                                 // ÎÂÊª¶ÈÈÎÎñ

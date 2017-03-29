@@ -2554,6 +2554,15 @@
       </file>
     </group>
     <group>
+      <name>tVOC</name>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\tVOC\tVOC.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\tVOC\tVOC.h</name>
+      </file>
+    </group>
+    <group>
       <name>WDT</name>
       <file>
         <name>$PROJ_DIR$\..\User\APP\WDT\WDT.c</name>

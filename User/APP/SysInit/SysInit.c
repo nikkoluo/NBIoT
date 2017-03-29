@@ -18,6 +18,7 @@
 #include "app_button.h"
 #include "nrf_drv_clock.h"
 #include "Communal_IIC.h"
+#include "tVOC.h"
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -225,6 +226,9 @@ void Task_Init(void)
 
     // ÎÂÊª¶È¼ì²â
     Temp_Humi_Task_Create();
+
+    // tVOC
+    tVOC_Task_Create();
     
     // GPIO
     GPIO_Task_Create();
