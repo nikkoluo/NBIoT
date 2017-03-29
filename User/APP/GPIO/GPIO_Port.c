@@ -32,8 +32,6 @@ void GPIO_Set_Pin_Low(u8 ucPin);                                        // ¹Ü½ÅÖ
 * Function Name  :  GPIO_Port_Init
 * Description    :  GPIO¶Ë¿Ú³õÊ¼»¯
 * Input          :  P0.01   -->   GPIO_TEST_PIN
-* Input          :  P0.14   -->   HALL_EN_PIN
-* Input          :  P0.15  <--    HALL_OUT_PIN
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -42,13 +40,6 @@ void GPIO_Port_Init(void)
     // ÅäÖÃ¹Ü½ÅÎªÊä³ö
     nrf_gpio_cfg_output(GPIO_TEST_PIN);
 
-    // ÅäÖÃ¹Ü½ÅÎªÊä³ö
-    nrf_gpio_pin_clear(HALL_EN_PIN);
-    nrf_gpio_cfg_output(HALL_EN_PIN);
-    
-
-    // Êä³ö ÄÚ²¿²»ÉÏÀ­
-    nrf_gpio_cfg_input(HALL_OUT_PIN, NRF_GPIO_PIN_NOPULL);
        
 }// End of void  GPIO_Port_Init(void)
 

@@ -124,9 +124,6 @@
 #define     SHT30_SCL_PIN               12                              // 温湿度时钟
 #define     SHT30_SDA_PIN               13                              // 温湿度数据
 
-#define     HALL_EN_PIN                 14                              // 霍尔使能 管脚
-#define     HALL_OUT_PIN                15                              // 霍尔输出 管脚
-
 
 #define     BOUTTON_PIN                 17                              // 按键管脚
 
@@ -139,12 +136,6 @@
 #define     BUTTEN_EVENT_DELAY_MS       10                              // 按键事件延时时间
 
 //----------------------- Battery ---------------------------------------------/
-#define     BAT_PERCENT_FULL            100                             // 五段电分界线
-#define     BAT_PERCENT_FOUR            80                              // 四段电分界线
-#define     BAT_PERCENT_THREE           60                              // 三段电分界线
-#define     BAT_PERCENT_TWO             40                              // 二段电分界线
-#define     BAT_PERCENT_ONE             20                              // 一段电分界线
-#define     BAT_PERCENT_EMPTY           5                               // 小于5% 空电
 
 #define     BAT_ADC_CHANNEL             NRF_ADC_CONFIG_INPUT_4          // 电池ADC通道
 #define     BAT_ADC_BUFFER_SIZE         8                               // ADC缓存深度
