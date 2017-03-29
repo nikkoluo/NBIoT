@@ -2427,6 +2427,12 @@
         <name>$PROJ_DIR$\..\User\APP\Communal\Communal_Flash.h</name>
       </file>
       <file>
+        <name>$PROJ_DIR$\..\User\APP\Communal\Communal_IIC.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\Communal\Communal_IIC.h</name>
+      </file>
+      <file>
         <name>$PROJ_DIR$\..\User\APP\Communal\Communal_Timer.c</name>
       </file>
       <file>

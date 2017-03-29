@@ -17,6 +17,7 @@
 #include "app_timer_appsh.h"
 #include "app_button.h"
 #include "nrf_drv_clock.h"
+#include "Communal_IIC.h"
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -199,6 +200,9 @@ void Peripheral_Init(void)
       
     // IO中断事件初始化
     IO_Interrupt_Init();
+
+    // 通讯IIC初始化
+    Communal_IIC_Init();
 
 
     

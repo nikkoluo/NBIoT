@@ -40,6 +40,13 @@ static unsigned char SW_I2C_Clear_Bus(SW_I2C_Typedef *SW_I2C);          // Çå¿Õ×
 *******************************************************************************/
 unsigned char SW_I2C_Init(SW_I2C_Typedef *SW_I2C)
 {
+    // ·ÀÖ¹¶à´Î³õÊ¼»¯
+    if (SW_I2C->Inited)
+    {
+        return 1;
+    }
+
+    SW_I2C->Inited = 1;
 
     // ¹Ü½Å³õÊ¼»¯
     SW_I2C->Pin_Init();

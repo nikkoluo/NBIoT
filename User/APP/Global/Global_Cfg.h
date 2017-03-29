@@ -124,6 +124,9 @@
 #define     SHT30_SCL_PIN               12                              // 温湿度时钟
 #define     SHT30_SDA_PIN               13                              // 温湿度数据
 
+#define     COMMUNAL_IIC_SCL_PIN        14                              // 通用IIC时钟
+#define     COMMUNAL_IIC_SDA_PIN        15                              // 通用IIC数据
+
 
 #define     BOUTTON_PIN                 17                              // 按键管脚
 

@@ -36,6 +36,7 @@ typedef struct
     void                (*Set_SCL_Output)(void);                        // 设置时钟位输出管脚
     unsigned char       (*SDA_Read)(void);                              // 读SDA管脚
     unsigned char       (*SCL_Read)(void);                              // 读SCL管脚  
+    unsigned char       Inited;                                         // 置一表示已经初始化
     unsigned int        Wait_Scl_Free_Timeout;                          // 等待SCL被释放超时时间                             
     
 } SW_I2C_Typedef;
