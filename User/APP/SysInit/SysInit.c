@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2016 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2016 é™†è¶… **********************************
 * File Name          :  SysInit.c
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51822
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  12/23/2016
-* Description        :  ÏµÍ³³õÊ¼»¯
+* Description        :  ç³»ç»Ÿåˆå§‹åŒ–
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "SysInit.h"
@@ -41,57 +41,57 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void System_Init(void);                                                 // ÏµÍ³³õÊ¼»¯
-void Variable_Init(void);                                               // ±äÁ¿³õÊ¼»¯
-void Peripheral_Init(void);                                             // ÍâÉè³õÊ¼»¯
-void GPIO_Low_Power_Init(void);                                         // ÅäÖÃIOÎª×îµÍ¹¦ºÄÄ£Ê½
-void IO_Interrupt_Init(void);                                           // IOÖĞ¶ÏÊÂ¼ş³õÊ¼»¯
-void Task_Init(void);                                                   // ÈÎÎñ³õÊ¼»¯
+void System_Init(void);                                                 // ç³»ç»Ÿåˆå§‹åŒ–
+void Variable_Init(void);                                               // å˜é‡åˆå§‹åŒ–
+void Peripheral_Init(void);                                             // å¤–è®¾åˆå§‹åŒ–
+void GPIO_Low_Power_Init(void);                                         // é…ç½®IOä¸ºæœ€ä½åŠŸè€—æ¨¡å¼
+void IO_Interrupt_Init(void);                                           // IOä¸­æ–­äº‹ä»¶åˆå§‹åŒ–
+void Task_Init(void);                                                   // ä»»åŠ¡åˆå§‹åŒ–
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           Â½³¬@2015-04-18
+*                           é™†è¶…@2015-04-18
 * Function Name  :  HFCLK_Crystal_Oscillato_Start
-* Description    :  ¿ªÆôÍâ²¿¾§Õñ 16M
+* Description    :  å¼€å¯å¤–éƒ¨æ™¶æŒ¯ 16M
 * Input          :  None
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
 void HFCLK_Crystal_Oscillato_Start(void)
 {
-    // ¿ªÆôÍâ²¿Ê±ÖÓ
+    // å¼€å¯å¤–éƒ¨æ—¶é’Ÿ
     NRF_CLOCK->EVENTS_HFCLKSTARTED = 0;
     NRF_CLOCK->TASKS_HFCLKSTART    = 1;
 
-    // µÈ´ı¾§ÕñÆô¶¯
+    // ç­‰å¾…æ™¶æŒ¯å¯åŠ¨
     while (NRF_CLOCK->EVENTS_HFCLKSTARTED == 0);    
 
 }// End of void HFCLK_Crystal_Oscillato_Start(void)
 
 /*******************************************************************************
-*                           Â½³¬@2015-04-18
+*                           é™†è¶…@2015-04-18
 * Function Name  :  LFCLK_Crystal_Oscillato_Start
-* Description    :  ¿ªÆôÍâ²¿µÍËÙ¾§Õñ 32k
+* Description    :  å¼€å¯å¤–éƒ¨ä½é€Ÿæ™¶æŒ¯ 32k
 * Input          :  None
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
 void LFCLK_Crystal_Oscillato_Start(void)
 {
-    // Ñ¡ÔñÍâ²¿¾§ÕñÎªÊ±ÖÓÔ´
+    // é€‰æ‹©å¤–éƒ¨æ™¶æŒ¯ä¸ºæ—¶é’Ÿæº
 //    NRF_CLOCK->LFCLKSRC            = (CLOCK_LFCLKSRC_SRC_Xtal << CLOCK_LFCLKSRC_SRC_Pos);
     NRF_CLOCK->LFCLKSRC            = (CLOCK_LFCLKSRC_SRC_RC << CLOCK_LFCLKSRC_SRC_Pos);
     NRF_CLOCK->EVENTS_LFCLKSTARTED = 0;
     NRF_CLOCK->TASKS_LFCLKSTART    = 1;
 
-     // µÈ´ı¾§ÕñÆô¶¯
+     // ç­‰å¾…æ™¶æŒ¯å¯åŠ¨
     while (NRF_CLOCK->EVENTS_LFCLKSTARTED == 0);
 
 }// End of void LFCLK_Crystal_Oscillato_Start(void)
 /*******************************************************************************
-*                           Â½³¬@2016-12-23
+*                           é™†è¶…@2016-12-23
 * Function Name  :  System_Init
-* Description    :  ÏµÍ³³õÊ¼»¯
+* Description    :  ç³»ç»Ÿåˆå§‹åŒ–
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -100,18 +100,18 @@ void System_Init(void)
 {
 
     
-    // ±äÁ¿³õÊ¼»¯
+    // å˜é‡åˆå§‹åŒ–
     Variable_Init();
 
-    // ÍâÉè³õÊ¼»¯
+    // å¤–è®¾åˆå§‹åŒ–
     Peripheral_Init();
 
-    // ÈÎÎñ³õÊ¼»¯
+    // ä»»åŠ¡åˆå§‹åŒ–
     Task_Init();
     
     app_trace_log("System init!!!\r\n");
 
-    // Íê³É³õÊ¼»¯
+    // å®Œæˆåˆå§‹åŒ–
     Sys_Init = 1;
 
 
@@ -120,37 +120,37 @@ void System_Init(void)
 
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-23
+*                           é™†è¶…@2016-12-23
 * Function Name  :  Variable_Init
-* Description    :  ±äÁ¿³õÊ¼»¯
+* Description    :  å˜é‡åˆå§‹åŒ–
 * Input          :  None
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
 void Variable_Init(void)
 {
-    // Çå¿Õ´íÎó±êÖ¾Î»
+    // æ¸…ç©ºé”™è¯¯æ ‡å¿—ä½
     System_Err.ALL     = 0;
     
-    // Ä¬ÈÏÔÚ¿ÕÏĞÌ¬
+    // é»˜è®¤åœ¨ç©ºé—²æ€
     Sys_Status         = SYS_STATUS_IDLE;
 
-    // ³õÊ¼»¯Á¬½Ó×´Ì¬
+    // åˆå§‹åŒ–è¿æ¥çŠ¶æ€
     BLE_Connect_Handle = BLE_CONN_HANDLE_INVALID;
 
 
-    // Ä¬ÈÏÎ´±»Õ¼ÓÃ
+    // é»˜è®¤æœªè¢«å ç”¨
     Flash_Used = 0;
 
-    // Ä¬ÈÏÎ´³õÊ¼»¯
+    // é»˜è®¤æœªåˆå§‹åŒ–
     Sys_Init = 0;
 
 }// End of void Variable_Init(void)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-23
+*                           é™†è¶…@2016-12-23
 * Function Name  :  GPIO_Low_Power_Init
-* Description    :  ÅäÖÃIOÎª×îµÍ¹¦ºÄÄ£Ê½
+* Description    :  é…ç½®IOä¸ºæœ€ä½åŠŸè€—æ¨¡å¼
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -170,9 +170,9 @@ void GPIO_Low_Power_Init(void)
 }// End of void GPIO_Low_Power_Init(void)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-23
+*                           é™†è¶…@2016-12-23
 * Function Name  :  Peripheral_Init
-* Description    :  ÍâÉè³õÊ¼»¯
+* Description    :  å¤–è®¾åˆå§‹åŒ–
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -181,7 +181,7 @@ void Peripheral_Init(void)
 {
 
 
-    // ÅäÖÃIOÎª×îµÍ¹¦ºÄÄ£Ê½
+    // é…ç½®IOä¸ºæœ€ä½åŠŸè€—æ¨¡å¼
     GPIO_Low_Power_Init();
     
 #ifndef BLE_OPEN
@@ -196,13 +196,13 @@ void Peripheral_Init(void)
     
 #endif
 
-    // traceµ÷ÊÔ
+    // traceè°ƒè¯•
     app_trace_init();  
       
-    // IOÖĞ¶ÏÊÂ¼ş³õÊ¼»¯
+    // IOä¸­æ–­äº‹ä»¶åˆå§‹åŒ–
     IO_Interrupt_Init();
 
-    // Í¨Ñ¶IIC³õÊ¼»¯
+    // é€šè®¯IICåˆå§‹åŒ–
     Communal_IIC_Init();
 
 
@@ -210,9 +210,9 @@ void Peripheral_Init(void)
 }// End of void Peripheral_Init(void)
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-11
+*                           é™†è¶…@2017-01-11
 * Function Name  :  Task_Init
-* Description    :  ÈÎÎñ³õÊ¼»¯
+* Description    :  ä»»åŠ¡åˆå§‹åŒ–
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -221,10 +221,10 @@ void Task_Init(void)
 {
 
 
-    // ´´½¨´¥ÃşÈÎÎñ
+    // åˆ›å»ºè§¦æ‘¸ä»»åŠ¡
     Button_Task_Create();
 
-    // ÎÂÊª¶È¼ì²â
+    // æ¸©æ¹¿åº¦æ£€æµ‹
     Temp_Humi_Task_Create();
 
     // tVOC
@@ -233,13 +233,13 @@ void Task_Init(void)
     // GPIO
     GPIO_Task_Create();
 
-    // ¹«ÓÃ¶¨Ê±Æ÷ÈÎÎñ
+    // å…¬ç”¨å®šæ—¶å™¨ä»»åŠ¡
     Communal_Timer_Task_Create();
 
-    // ¿ª¿´ÃÅ¹·
+    // å¼€çœ‹é—¨ç‹—
     WDT_Task_Init();
 
-    // BLEÈÎÎñ
+    // BLEä»»åŠ¡
     nRF51_BLE_Task_Create();
 
 
@@ -248,9 +248,9 @@ void Task_Init(void)
 }// End of void Task_Init(void)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-28
+*                           é™†è¶…@2016-12-28
 * Function Name  :  IO_Interrupt_Init
-* Description    :  IOÖĞ¶ÏÊÂ¼ş³õÊ¼»¯
+* Description    :  IOä¸­æ–­äº‹ä»¶åˆå§‹åŒ–
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -259,7 +259,7 @@ void IO_Interrupt_Init(void)
 {
     u8 i = 0;
     
-    // GPOUT ÅäÖÃ¹Ü½Å ´¦Àí³ÌĞò ÓĞĞ§µçÆ½ºÍÉÏÏÂÀ­
+    // GPOUT é…ç½®ç®¡è„š å¤„ç†ç¨‹åº æœ‰æ•ˆç”µå¹³å’Œä¸Šä¸‹æ‹‰
 
     Button_Cfg[i].pin_no         = BOUTTON_PIN;
     Button_Cfg[i].button_handler = Button_Pin_Handler;
@@ -274,7 +274,7 @@ void IO_Interrupt_Init(void)
 
 
 
-/******************* (C) COPYRIGHT 2016 Â½³¬ **************END OF FILE*********/
+/******************* (C) COPYRIGHT 2016 é™†è¶… **************END OF FILE*********/
 
 
 

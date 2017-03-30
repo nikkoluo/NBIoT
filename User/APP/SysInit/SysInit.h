@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2016 ¬Ω≥¨ **********************************
+/******************** (C) COPYRIGHT 2016 ÈôÜË∂Ö **********************************
 * File Name          :  SysInit.h
-* Author             :  ¬Ω≥¨
+* Author             :  ÈôÜË∂Ö
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -26,11 +26,11 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void System_Init(void);                                         // œµÕ≥≥ı ºªØ
+extern  void System_Init(void);                                         // Á≥ªÁªüÂàùÂßãÂåñ
 
 
 
 #endif /* __SYSINIT_H */
 
-/******************* (C) COPYRIGHT 2016 ¬Ω≥¨ *****END OF FILE******************/
+/******************* (C) COPYRIGHT 2016 ÈôÜË∂Ö *****END OF FILE******************/
 

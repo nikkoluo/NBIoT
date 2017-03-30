@@ -2232,27 +2232,6 @@
     </group>
     <group>
       <name>tVOC</name>
-      <group>
-        <name>SGPC10</name>
-        <file>
-          <name>$PROJ_DIR$\..\User\APP\tVOC\SGPC10\sensirion_common.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\User\APP\tVOC\SGPC10\sensirion_common.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\User\APP\tVOC\SGPC10\sgpc1x.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\User\APP\tVOC\SGPC10\sgpc1x.h</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\User\APP\tVOC\SGPC10\sgpc1x_featureset.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\User\APP\tVOC\SGPC10\sgpc1x_featureset.h</name>
-        </file>
-      </group>
       <file>
         <name>$PROJ_DIR$\..\User\APP\tVOC\tVOC.c</name>
       </file>
