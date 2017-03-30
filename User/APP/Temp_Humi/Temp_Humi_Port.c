@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2016 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2016 é™†è¶… **********************************
 * File Name          :  Temp_Humi_Port.c
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  12/28/2016
-* Description        :  ÎÂÊª¶ÈÇı¶¯³ÌĞò
+* Description        :  æ¸©æ¹¿åº¦é©±åŠ¨ç¨‹åº
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "Temp_Humi_Port.h"
@@ -17,31 +17,31 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void Temp_Humi_Delay(void);                                             // ÑÓÊ±
-void Temp_Humi_Delay_us(void);                                          // usÑÓÊ±
-void Temp_Humi_Pin_Init(void);                                          // ¹Ü½Å³õÊ¼»¯
-void Temp_Humi_SDA_High(void);                                          // À­¸ßÊı¾İÏß
-void Temp_Humi_SDA_Low(void);                                           // À­µÍÊı¾İÏß
-void Temp_Humi_SCL_High(void);                                          // À­¸ßÊ±ÖÓ
-void Temp_Humi_SCL_Low(void);                                           // À­µÍÊ±ÖÓ
-void Temp_Humi_Set_SDA_Input(void);                                     // ÉèÖÃSDAÎªÊäÈëÄ£Ê½
-void Temp_Humi_Set_SDA_Output(void);                                    // ÉèÖÃSDAÎªÊä³öÄ£Ê½
-void Temp_Humi_Set_SCL_Output(void);                                    // ÉèÖÃSCLÎªÊä³öÄ£Ê½
-u8   Temp_Humi_SDA_Read(void);                                          // ¶ÁÈ¡SDAµçÆ½
-u8   Temp_Humi_SCL_Read(void);                                          // ¶ÁÈ¡SCLµçÆ½
+void Temp_Humi_Delay(void);                                             // å»¶æ—¶
+void Temp_Humi_Delay_us(void);                                          // uså»¶æ—¶
+void Temp_Humi_Pin_Init(void);                                          // ç®¡è„šåˆå§‹åŒ–
+void Temp_Humi_SDA_High(void);                                          // æ‹‰é«˜æ•°æ®çº¿
+void Temp_Humi_SDA_Low(void);                                           // æ‹‰ä½æ•°æ®çº¿
+void Temp_Humi_SCL_High(void);                                          // æ‹‰é«˜æ—¶é’Ÿ
+void Temp_Humi_SCL_Low(void);                                           // æ‹‰ä½æ—¶é’Ÿ
+void Temp_Humi_Set_SDA_Input(void);                                     // è®¾ç½®SDAä¸ºè¾“å…¥æ¨¡å¼
+void Temp_Humi_Set_SDA_Output(void);                                    // è®¾ç½®SDAä¸ºè¾“å‡ºæ¨¡å¼
+void Temp_Humi_Set_SCL_Output(void);                                    // è®¾ç½®SCLä¸ºè¾“å‡ºæ¨¡å¼
+u8   Temp_Humi_SDA_Read(void);                                          // è¯»å–SDAç”µå¹³
+u8   Temp_Humi_SCL_Read(void);                                          // è¯»å–SCLç”µå¹³
 
-void Temp_Humi_Variable_Init(void);                                     // Temp_Humi±äÁ¿³õÊ¼»¯
-u8   Temp_Humi_Port_Init(void);                                         // Temp_Humi¶Ë¿Ú³õÊ¼»¯    
-u8 Temp_Humi_Read_Register(u16 usRead_Addr, u8* pBuffer, u16 usRead_Len);// ¶Á¼Ä´æÆ÷
-u8 Temp_Humi_Write_Register(u16 usWrite_Addr, u8* pBuffer, u16 usWrite_Len);// Ğ´¼Ä´æÆ÷
+void Temp_Humi_Variable_Init(void);                                     // Temp_Humiå˜é‡åˆå§‹åŒ–
+u8   Temp_Humi_Port_Init(void);                                         // Temp_Humiç«¯å£åˆå§‹åŒ–    
+u8 Temp_Humi_Read_Register(u16 usRead_Addr, u8* pBuffer, u16 usRead_Len);// è¯»å¯„å­˜å™¨
+u8 Temp_Humi_Write_Register(u16 usWrite_Addr, u8* pBuffer, u16 usWrite_Len);// å†™å¯„å­˜å™¨
 /* Private functions ---------------------------------------------------------*/
 
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           Â½³¬@2016-12-28
+*                           é™†è¶…@2016-12-28
 * Function Name  :  Temp_Humi_Delay
-* Description    :  Temp_HumiÑÓÊ±
+* Description    :  Temp_Humiå»¶æ—¶
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -53,9 +53,9 @@ void Temp_Humi_Delay(void)
 }// End of void Temp_Humi_Delay(void)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-28
+*                           é™†è¶…@2016-12-28
 * Function Name  :  Temp_Humi_Delay_us
-* Description    :  Temp_Humi usÑÓÊ±
+* Description    :  Temp_Humi uså»¶æ—¶
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -67,18 +67,18 @@ void Temp_Humi_Delay_us(void)
 }// End of void Temp_Humi_Delay_us(void)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-28
+*                           é™†è¶…@2016-12-28
 * Function Name  :  Temp_Humi_Pin_Init
-* Description    :  ¹Ü½Å³õÊ¼»¯                   
+* Description    :  ç®¡è„šåˆå§‹åŒ–                   
 * Input          :  P0.12   -->   SHT30_SCL_PIN
 *                   P0.13   -->   SHT30_SDA_PIN
 * Output         :  None
-* Return         :  1³É¹¦ 0Ê§°Ü
+* Return         :  1æˆåŠŸ 0å¤±è´¥
 *******************************************************************************/
 void Temp_Humi_Pin_Init(void)
 {
     
-    // ÉèÖÃ¹Ü½ÅÎª¿ªÂ©Ä£Ê½
+    // è®¾ç½®ç®¡è„šä¸ºå¼€æ¼æ¨¡å¼
     NRF_GPIO->PIN_CNF[SHT30_SCL_PIN]  =  (GPIO_PIN_CNF_SENSE_Disabled  << GPIO_PIN_CNF_SENSE_Pos) \
                                         | (GPIO_PIN_CNF_DRIVE_S0D1     << GPIO_PIN_CNF_DRIVE_Pos) \
                                         | (GPIO_PIN_CNF_PULL_Pullup    << GPIO_PIN_CNF_PULL_Pos)  \
@@ -94,9 +94,9 @@ void Temp_Humi_Pin_Init(void)
 }// End of u8  Temp_Humi_Pin_Init(void)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-28
+*                           é™†è¶…@2016-12-28
 * Function Name  :  Temp_Humi_SDA_High
-* Description    :  Temp_HumiÀ­¸ßSDA
+* Description    :  Temp_Humiæ‹‰é«˜SDA
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -108,9 +108,9 @@ void Temp_Humi_SDA_High(void)
 }// End of void Temp_Humi_SDA_High(void)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-28
+*                           é™†è¶…@2016-12-28
 * Function Name  :  Temp_Humi_SDA_Low
-* Description    :  Temp_HumiÀ­µÍSDA
+* Description    :  Temp_Humiæ‹‰ä½SDA
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -122,9 +122,9 @@ void Temp_Humi_SDA_Low(void)
 }// End of void Temp_Humi_SDA_Low(void)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-28
+*                           é™†è¶…@2016-12-28
 * Function Name  :  Temp_Humi_SCL_High
-* Description    :  Temp_HumiÀ­¸ßSCL
+* Description    :  Temp_Humiæ‹‰é«˜SCL
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -136,9 +136,9 @@ void Temp_Humi_SCL_High(void)
 }// End of void Temp_Humi_SCL_High(void)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-28
+*                           é™†è¶…@2016-12-28
 * Function Name  :  Temp_Humi_SCL_Low
-* Description    :  Temp_HumiÀ­µÍSCL
+* Description    :  Temp_Humiæ‹‰ä½SCL
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -151,9 +151,9 @@ void Temp_Humi_SCL_Low(void)
 
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-28
+*                           é™†è¶…@2016-12-28
 * Function Name  :  Temp_Humi_Set_SDA_Input
-* Description    :  ÉèÖÃSDA¹Ü½ÅÎªÊäÈëÄ£Ê½
+* Description    :  è®¾ç½®SDAç®¡è„šä¸ºè¾“å…¥æ¨¡å¼
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -165,9 +165,9 @@ void Temp_Humi_Set_SDA_Input(void)
 }// End of void Temp_Humi_Set_SDA_Input(void)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-28
+*                           é™†è¶…@2016-12-28
 * Function Name  :  Temp_Humi_Set_SDA_Output
-* Description    :  ÉèÖÃSDA¹Ü½ÅÎªÊä³öÄ£Ê½
+* Description    :  è®¾ç½®SDAç®¡è„šä¸ºè¾“å‡ºæ¨¡å¼
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -179,9 +179,9 @@ void Temp_Humi_Set_SDA_Output(void)
 }// End of void Temp_Humi_Set_SDA_Output(void)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-28
+*                           é™†è¶…@2016-12-28
 * Function Name  :  Temp_Humi_Set_SCL_Output
-* Description    :  ÉèÖÃSCL¹Ü½ÅÎªÊä³öÄ£Ê½
+* Description    :  è®¾ç½®SCLç®¡è„šä¸ºè¾“å‡ºæ¨¡å¼
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -193,12 +193,12 @@ void Temp_Humi_Set_SCL_Output(void)
 }// End of void Temp_Humi_Set_SCL_Output(void)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-28
+*                           é™†è¶…@2016-12-28
 * Function Name  :  Temp_Humi_SDA_Read
-* Description    :  ¶ÁÈ¡SDA¹Ü½ÅµçÆ½
+* Description    :  è¯»å–SDAç®¡è„šç”µå¹³
 * Input          :  None
 * Output         :  None
-* Return         :  ¸ßµçÆ½·µ»Ø1 µÍµçÆ½·µ»Ø0
+* Return         :  é«˜ç”µå¹³è¿”å›1 ä½ç”µå¹³è¿”å›0
 *******************************************************************************/
 u8 Temp_Humi_SDA_Read(void)
 {
@@ -207,12 +207,12 @@ u8 Temp_Humi_SDA_Read(void)
 }// End of u8 Temp_Humi_SDA_Read(void)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-28
+*                           é™†è¶…@2016-12-28
 * Function Name  :  Temp_Humi_SCL_Read
-* Description    :  ¶ÁÈ¡SCL¹Ü½ÅµçÆ½
+* Description    :  è¯»å–SCLç®¡è„šç”µå¹³
 * Input          :  None
 * Output         :  None
-* Return         :  ¸ßµçÆ½·µ»Ø1 µÍµçÆ½·µ»Ø0
+* Return         :  é«˜ç”µå¹³è¿”å›1 ä½ç”µå¹³è¿”å›0
 *******************************************************************************/
 u8 Temp_Humi_SCL_Read(void)
 {
@@ -221,12 +221,12 @@ u8 Temp_Humi_SCL_Read(void)
 }// End of u8 Temp_Humi_SCL_Read(void)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-23
+*                           é™†è¶…@2016-12-23
 * Function Name  :  Temp_Humi_Port_Init
-* Description    :  Temp_Humi¶Ë¿Ú³õÊ¼»¯
+* Description    :  Temp_Humiç«¯å£åˆå§‹åŒ–
 * Input          :  None
 * Output         :  None
-* Return         :  1³É¹¦ 0Ê§°Ü
+* Return         :  1æˆåŠŸ 0å¤±è´¥
 *******************************************************************************/
 u8 Temp_Humi_Port_Init(void)
 {
@@ -252,9 +252,9 @@ u8 Temp_Humi_Port_Init(void)
 }// End of u8  Temp_Humi_Port_Init(void)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-28
+*                           é™†è¶…@2016-12-28
 * Function Name  :  Temp_Humi_Variable_Init
-* Description    :  ÎÂÊª¶È±äÁ¿³õÊ¼»¯
+* Description    :  æ¸©æ¹¿åº¦å˜é‡åˆå§‹åŒ–
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -269,14 +269,14 @@ void Temp_Humi_Variable_Init(void)
 
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-28
+*                           é™†è¶…@2016-12-28
 * Function Name  :  Temp_Humi_Read_Register
-* Description    :  ¶Á¼Ä´æÆ÷
-* Input          :  u16 usRead_Addr Òª¶ÁÈ¡µÄµØÖ·
-*                   u8* pBuffer     »º´æÖ¸Õë
-*                   u16 usRead_Len  ¶ÁÈ¡³¤¶È
+* Description    :  è¯»å¯„å­˜å™¨
+* Input          :  u16 usRead_Addr è¦è¯»å–çš„åœ°å€
+*                   u8* pBuffer     ç¼“å­˜æŒ‡é’ˆ
+*                   u16 usRead_Len  è¯»å–é•¿åº¦
 * Output         :  None
-* Return         :  1³É¹¦ 0Ê§°Ü
+* Return         :  1æˆåŠŸ 0å¤±è´¥
 *******************************************************************************/
 u8 Temp_Humi_Read_Register(u16 usRead_Addr, u8* pBuffer, u16 usRead_Len)
 {
@@ -298,14 +298,14 @@ u8 Temp_Humi_Read_Register(u16 usRead_Addr, u8* pBuffer, u16 usRead_Len)
 }// End of u8 Temp_Humi_Read_Buffer(u16 usRead_Addr, u8* pBuffer, u16 usRead_Len)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-28
+*                           é™†è¶…@2016-12-28
 * Function Name  :  Temp_Humi_Write_Register
-* Description    :  Ğ´Ğ¾Æ¬¼Ä´æÆ÷
-* Input          :  u16 usWrite_Addr    ÒªĞ´ÈëµÄµØÖ·
-*                   u8* pBuffer         »º´æÖ¸Õë
-*                   u16 usWrite_Len     Ğ´Èë³¤¶È 
+* Description    :  å†™èŠ¯ç‰‡å¯„å­˜å™¨
+* Input          :  u16 usWrite_Addr    è¦å†™å…¥çš„åœ°å€
+*                   u8* pBuffer         ç¼“å­˜æŒ‡é’ˆ
+*                   u16 usWrite_Len     å†™å…¥é•¿åº¦ 
 * Output         :  None
-* Return         :  1³É¹¦ 0Ê§°Ü
+* Return         :  1æˆåŠŸ 0å¤±è´¥
 *******************************************************************************/
 u8 Temp_Humi_Write_Register(u16 usWrite_Addr, u8* pBuffer, u16 usWrite_Len)
 {
@@ -315,16 +315,16 @@ u8 Temp_Humi_Write_Register(u16 usWrite_Addr, u8* pBuffer, u16 usWrite_Len)
     ucWrite_Addr[0] = (usWrite_Addr >> 8) & 0xFF;
     ucWrite_Addr[1] = (usWrite_Addr >> 0) & 0xFF;
     
-    // ·¢ËÍĞ´ÃüÁî
+    // å‘é€å†™å‘½ä»¤
     Transfer_Succeeded &= SW_I2C_Transfer(&Temp_Humi_I2C, SHT3x_WRITE_ADDR, ucWrite_Addr, 2, SW_I2C_DONT_SEND_STOP);
     
-    // ³¤¶È±£»¤
+    // é•¿åº¦ä¿æŠ¤
     if (usWrite_Len == 0)
     {
         return 0;
     }
 
-    // ·¢ËÍÊı¾İ
+    // å‘é€æ•°æ®
     while (usWrite_Len-- && Transfer_Succeeded)
     {
         Transfer_Succeeded &= SW_IIC_Write_Byte(&Temp_Humi_I2C, *pBuffer);
@@ -332,7 +332,7 @@ u8 Temp_Humi_Write_Register(u16 usWrite_Addr, u8* pBuffer, u16 usWrite_Len)
     }
 
 
-    // ·¢ËÍÍ£Ö¹Î»
+    // å‘é€åœæ­¢ä½
     Transfer_Succeeded &= SW_I2C_Stop_Condition(&Temp_Humi_I2C);
 
     nrf_delay_us(100);
@@ -341,5 +341,5 @@ u8 Temp_Humi_Write_Register(u16 usWrite_Addr, u8* pBuffer, u16 usWrite_Len)
     
 }// End of u8 Temp_Humi_Write_Register(u16 usWrite_Addr, u8* pBuffer, u16 usWrite_Len)
 
-/******************* (C) COPYRIGHT 2016 Â½³¬ ************* END OF FILE ********/
+/******************* (C) COPYRIGHT 2016 é™†è¶… ************* END OF FILE ********/
 

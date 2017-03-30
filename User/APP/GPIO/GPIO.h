@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2017 陆超 **********************************
+/******************** (C) COPYRIGHT 2017 闄嗚秴 **********************************
 * File Name          :  GPIO.h
-* Author             :  陆超
+* Author             :  闄嗚秴
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -25,13 +25,13 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void GPIO_Timer_Handle(void *p_arg);                            // GPIO任务
-extern  void GPIO_Task_Create(void);                                    // 创建GPIO任务
-extern  void GPIO_TEST_High(void);                                      // Test Pin拉高
-extern  void GPIO_TEST_Low(void);                                       // Test Pin拉低                      
-extern  void GPIO_TEST_Toggle(void);                                    // Test Pin翻转
+extern  void GPIO_Timer_Handle(void *p_arg);                            // GPIO浠诲姟
+extern  void GPIO_Task_Create(void);                                    // 鍒涘缓GPIO浠诲姟
+extern  void GPIO_TEST_High(void);                                      // Test Pin鎷夐珮
+extern  void GPIO_TEST_Low(void);                                       // Test Pin鎷変綆                      
+extern  void GPIO_TEST_Toggle(void);                                    // Test Pin缈昏浆
 
 #endif /* __GPIO_H */
 
-/******************* (C) COPYRIGHT 2017 陆超 *****END OF FILE******************/
+/******************* (C) COPYRIGHT 2017 闄嗚秴 *****END OF FILE******************/
 

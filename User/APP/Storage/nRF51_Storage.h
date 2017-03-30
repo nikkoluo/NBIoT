@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 ¬Ω≥¨ **********************************
+/******************** (C) COPYRIGHT 2017 ÈôÜË∂Ö **********************************
 * File Name          :  nRF51_Storage.h
-* Author             :  ¬Ω≥¨
+* Author             :  ÈôÜË∂Ö
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  03/07/2017
-* Description        :  nRF51_StorageÕ∑Œƒº˛
+* Description        :  nRF51_StorageÂ§¥Êñá‰ª∂
 *******************************************************************************/
 
 /* Define to prevent recursive inclusion -------------------------------------*/
@@ -26,13 +26,13 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void nRF51_Storage_Init(void);                                   // nRF51_Storage≥ı ºªØ
+extern  void nRF51_Storage_Init(void);                                   // nRF51_StorageÂàùÂßãÂåñ
 extern  void nRF51_Storage_Callback(pstorage_handle_t *  handle, u8   OP_Code,
-                                   u32  Err_Code, u8*  pData, u32  uiData_Len); // ≤Ÿ◊˜flashªÿµ˜
+                                   u32  Err_Code, u8*  pData, u32  uiData_Len); // Êìç‰ΩúflashÂõûË∞É
                            
 #endif /* __NRF51_STORAGE_H */
 
-/******************* (C) COPYRIGHT 2017 ¬Ω≥¨ ***** END OF FILE ****************/
+/******************* (C) COPYRIGHT 2017 ÈôÜË∂Ö ***** END OF FILE ****************/
 
 
 

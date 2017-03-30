@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2016 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2016 é™†è¶… **********************************
 * File Name          :  Temp_Humi.c
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  12/28/2016
-* Description        :  ÎÂÊª¶ÈÓ¦ÓÃ³ÌĞò
+* Description        :  æ¸©æ¹¿åº¦åº”ç”¨ç¨‹åº
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "Temp_Humi.h"
@@ -17,17 +17,17 @@
 /* Private variables ---------------------------------------------------------*/
         
 /* Private function prototypes -----------------------------------------------*/
-void Temp_Humi_Task_Handle(void *p_arg);                                // Temp_HumiÈÎÎñ
-void Temp_Humi_Task_Create(void);                                       // ´´½¨Temp_HumiÈÎÎñ
-u32 Temp_Humi_Chip_Init(void);                                          // Ğ¾Æ¬³õÊ¼»¯
-void Temp_Humi_Update(float fTemp, float fHumi);                        // ¸üĞÂÎÂÊª¶ÈÊı¾İ
-void Temp_Humi_Get(void);                                               // »ñÈ¡ÎÂÊª¶È
+void Temp_Humi_Task_Handle(void *p_arg);                                // Temp_Humiä»»åŠ¡
+void Temp_Humi_Task_Create(void);                                       // åˆ›å»ºTemp_Humiä»»åŠ¡
+u32 Temp_Humi_Chip_Init(void);                                          // èŠ¯ç‰‡åˆå§‹åŒ–
+void Temp_Humi_Update(float fTemp, float fHumi);                        // æ›´æ–°æ¸©æ¹¿åº¦æ•°æ®
+void Temp_Humi_Get(void);                                               // è·å–æ¸©æ¹¿åº¦
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           Â½³¬@2016-12-28
+*                           é™†è¶…@2016-12-28
 * Function Name  :  Temp_Humi_Task_Create
-* Description    :  ´´½¨Temp_HumiÈÎÎñ
+* Description    :  åˆ›å»ºTemp_Humiä»»åŠ¡
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -36,11 +36,11 @@ void Temp_Humi_Task_Create(void)
 {
     u32 err_code = NRF_SUCCESS;
 
-    // ³õÊ¼»¯±äÁ¿ºÍIO
+    // åˆå§‹åŒ–å˜é‡å’ŒIO
     Temp_Humi_Variable_Init();
     Temp_Humi_Port_Init();
     
-    // ÅäÖÃ²ÎÊı ÖÜÆÚÄ£Ê½ÔËĞĞ
+    // é…ç½®å‚æ•° å‘¨æœŸæ¨¡å¼è¿è¡Œ
     Temp_Humi_Task.Run_Mode        = APP_TIMER_MODE_REPEATED;
     Temp_Humi_Task.Timeout_handler = Temp_Humi_Task_Handle;
     Temp_Humi_Task.Period          = TASK_TEMP_HUMI_PERIOD;
@@ -48,12 +48,12 @@ void Temp_Humi_Task_Create(void)
     err_code |= app_timer_create(&Temp_Humi_Task.p_ID,
                                  Temp_Humi_Task.Run_Mode,
                                  Temp_Humi_Task.Timeout_handler);
-    // Ğ¾Æ¬³õÊ¼»¯
+    // èŠ¯ç‰‡åˆå§‹åŒ–
     err_code |= Temp_Humi_Chip_Init();
 
     if (err_code != NRF_SUCCESS)
     {
-        app_trace_log("ÎÂÊª¶ÈĞ¾Æ¬³õÊ¼»¯Ê§°Ü!\r\n");    
+        app_trace_log("æ¸©æ¹¿åº¦èŠ¯ç‰‡åˆå§‹åŒ–å¤±è´¥!\r\n");    
     }
     else
     {
@@ -68,12 +68,12 @@ void Temp_Humi_Task_Create(void)
 }// End of void Temp_Humi_Task_Create(void)
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-03
+*                           é™†è¶…@2017-01-03
 * Function Name  :  Temp_Humi_Chip_Init
-* Description    :  Ğ¾Æ¬³õÊ¼»¯
+* Description    :  èŠ¯ç‰‡åˆå§‹åŒ–
 * Input          :  None
 * Output         :  None
-* Return         :  NRF_SUCCESS ³É¹¦ 1Ê§°Ü
+* Return         :  NRF_SUCCESS æˆåŠŸ 1å¤±è´¥
 *******************************************************************************/
 u32 Temp_Humi_Chip_Init(void)
 {
@@ -83,7 +83,7 @@ u32 Temp_Humi_Chip_Init(void)
     float Temp;
     float Humi;
 
-    // Ä¬ÈÏ´«¸ĞÆ÷error
+    // é»˜è®¤ä¼ æ„Ÿå™¨error
     System_Err.Temp_Humi = 1;
 
     if (SHT3x_Soft_Reset() == 1)
@@ -96,7 +96,7 @@ u32 Temp_Humi_Chip_Init(void)
             app_trace_log("SHT3x_SN = 0x%02X%02X%02X%02X\r\n", ucSN[0], ucSN[1], ucSN[2], ucSN[3]);
 
 
-            // Ê×´Î¶ÁÈ¡ÎÂÊª¶È
+            // é¦–æ¬¡è¯»å–æ¸©æ¹¿åº¦
             SHT3x_Get_Temp_Humi(&Temp, &Humi);
             Temp_Humi_Update(Temp, Humi);
         }
@@ -107,9 +107,9 @@ u32 Temp_Humi_Chip_Init(void)
 }// End of u32 Temp_Humi_Chip_Init(void)
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-08
+*                           é™†è¶…@2017-03-08
 * Function Name  :  Temp_Humi_Get
-* Description    :  »ñÈ¡ÎÂÊª¶È
+* Description    :  è·å–æ¸©æ¹¿åº¦
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -123,13 +123,13 @@ void Temp_Humi_Get(void)
 
     if(SHT3x_Get_Temp_Humi(&Temp, &Humi))
     {
-        // Çå¿Õ³ö´í´ÎÊı
+        // æ¸…ç©ºå‡ºé”™æ¬¡æ•°
         ucError_Times = 0;
 
-        // ¸üĞÂÎÂÊª¶ÈÊı¾İ
+        // æ›´æ–°æ¸©æ¹¿åº¦æ•°æ®
         Temp_Humi_Update(Temp, Humi);
 
-        // Çå¿Õ´íÎó±êÖ¾Î»
+        // æ¸…ç©ºé”™è¯¯æ ‡å¿—ä½
         System_Err.Temp_Humi = 0;
         
     }
@@ -141,10 +141,10 @@ void Temp_Humi_Get(void)
         {
             ucError_Times        = 0;
 
-            // ÖÃÎ»´íÎó±êÖ¾Î»
+            // ç½®ä½é”™è¯¯æ ‡å¿—ä½
             System_Err.Temp_Humi = 1;
 
-            // ±¨´í ²¢¹ã²¥´íÎóÊı¾İ
+            // æŠ¥é”™ å¹¶å¹¿æ’­é”™è¯¯æ•°æ®
             app_trace_log("SHT30 Sensor Error!\r\n");
 
         }
@@ -154,9 +154,9 @@ void Temp_Humi_Get(void)
 }// End of void Temp_Humi_Get(void)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-28
+*                           é™†è¶…@2016-12-28
 * Function Name  :  Temp_Humi_Task_Handle
-* Description    :  Temp_HumiÈÎÎñ
+* Description    :  Temp_Humiä»»åŠ¡
 * Input          :  void *p_arg
 * Output         :  None
 * Return         :  None
@@ -169,11 +169,11 @@ void Temp_Humi_Task_Handle(void *p_arg)
 }// End of void Temp_Humi_Task_Handle(void *p_arg)
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-12
+*                           é™†è¶…@2017-01-12
 * Function Name  :  Temp_Humi_Update
-* Description    :  ¸üĞÂÎÂÊª¶ÈÊı¾İ
-* Input          :  float fTemp  ÎÂ¶È
-*                   float fHumi  Êª¶È 
+* Description    :  æ›´æ–°æ¸©æ¹¿åº¦æ•°æ®
+* Input          :  float fTemp  æ¸©åº¦
+*                   float fHumi  æ¹¿åº¦ 
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -183,11 +183,11 @@ void Temp_Humi_Update(float fTemp, float fHumi)
     short sTemp_Now = -99;
     u16   usHumi_Now;
 
-    // ±£´æfloatÊı¾İ
+    // ä¿å­˜floatæ•°æ®
     Sensor.fTemp = fTemp;
     Sensor.fHumi = fHumi;
     
-    // ËÄÉáÎåÈë ¾«È·µ½1Î»Ğ¡Êı
+    // å››èˆäº”å…¥ ç²¾ç¡®åˆ°1ä½å°æ•°
     fTemp     += 0.05;
     fTemp     *= 10;
     sTemp_Now  = (s16)fTemp;
@@ -197,7 +197,7 @@ void Temp_Humi_Update(float fTemp, float fHumi)
     usHumi_Now = (s16)fHumi;
 
 
-    // ÓĞÊı¾İË¢ĞÂ
+    // æœ‰æ•°æ®åˆ·æ–°
     if((sTemp_Now != Sensor.sTemp) || (usHumi_Now != Sensor.usHumi))
     {
         Sensor.sTemp               = sTemp_Now;
@@ -206,7 +206,7 @@ void Temp_Humi_Update(float fTemp, float fHumi)
     }
     else
     {
-        app_trace_log("                                             ÎÂÊª¶ÈÊı¾İÎŞ±ä»¯!\r\n");    
+        app_trace_log("                                             æ¸©æ¹¿åº¦æ•°æ®æ— å˜åŒ–!\r\n");    
     }
    
    
@@ -214,7 +214,7 @@ void Temp_Humi_Update(float fTemp, float fHumi)
 
 
 
-/******************* (C) COPYRIGHT 2016 Â½³¬ ************* END OF FILE ********/
+/******************* (C) COPYRIGHT 2016 é™†è¶… ************* END OF FILE ********/
 
 
 

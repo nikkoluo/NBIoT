@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2017 ¬Ω≥¨ **********************************
+/******************** (C) COPYRIGHT 2017 ÈôÜË∂Ö **********************************
 * File Name          :  tVOC.h
-* Author             :  ¬Ω≥¨
+* Author             :  ÈôÜË∂Ö
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -25,11 +25,11 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void tVOC_Timer_Handle(void *p_arg);                           // tVOC»ŒŒÒ
-extern  void tVOC_Task_Create(void);                                   // ¥¥Ω®tVOC»ŒŒÒ
-extern  void tVOC_Get(void);                                           // ªÒ»°Œ¬ ™∂»
+extern  void tVOC_Timer_Handle(void *p_arg);                           // tVOC‰ªªÂä°
+extern  void tVOC_Task_Create(void);                                   // ÂàõÂª∫tVOC‰ªªÂä°
+extern  void tVOC_Get(void);                                           // Ëé∑ÂèñÊ∏©ÊπøÂ∫¶
 
 #endif /* __TVOC_H */
 
-/******************* (C) COPYRIGHT 2017 ¬Ω≥¨ **** END OF FILE *****************/
+/******************* (C) COPYRIGHT 2017 ÈôÜË∂Ö **** END OF FILE *****************/
 

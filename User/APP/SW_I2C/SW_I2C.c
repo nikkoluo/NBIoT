@@ -1,46 +1,46 @@
-/******************** (C) COPYRIGHT 2016 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2016 é™†è¶… **********************************
 * File Name          :  SW_I2C.c
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  12/26/2016
-* Description        :  ÈíI2C
+* Description        :  è½¯I2C
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "SW_I2C.h"
 
 /* Private define ------------------------------------------------------------*/
-#define     SW_I2C_ACK                  0x00                            // ÓĞÓ¦´ğ
-#define     SW_I2C_NACK                 0x01                            // ÎŞÓ¦´ğ
+#define     SW_I2C_ACK                  0x00                            // æœ‰åº”ç­”
+#define     SW_I2C_NACK                 0x01                            // æ— åº”ç­”
 
 /* Private variables ---------------------------------------------------------*/
 
 
 /* Private function prototypes -----------------------------------------------*/
-unsigned char SW_I2C_Init(SW_I2C_Typedef *SW_I2C);                              // ¹Ü½Å³õÊ¼»¯
-unsigned char SW_IIC_Write_Byte(SW_I2C_Typedef *SW_I2C, unsigned char ucData);  // IICĞ´×Ö½Ú
-unsigned char SW_IIC_Read_Byte(SW_I2C_Typedef *SW_I2C, unsigned char *Data_Byte, unsigned char Need_Ack);   // IIC¶Á×Ö½Ú
-unsigned char SW_I2C_Start_Condition(SW_I2C_Typedef *SW_I2C);           // ²úÉúÆğÊ¼ĞÅºÅ
-unsigned char SW_I2C_Stop_Condition(SW_I2C_Typedef *SW_I2C);            // ²úÉúÍ£Ö¹ĞÅºÅ
-unsigned char SW_I2C_Transfer(SW_I2C_Typedef *SW_I2C, unsigned char Chip_Addr, unsigned char *Data, unsigned short Data_Len, unsigned char Stop_Condition); // ·¢ËÍÊı¾İ
+unsigned char SW_I2C_Init(SW_I2C_Typedef *SW_I2C);                              // ç®¡è„šåˆå§‹åŒ–
+unsigned char SW_IIC_Write_Byte(SW_I2C_Typedef *SW_I2C, unsigned char ucData);  // IICå†™å­—èŠ‚
+unsigned char SW_IIC_Read_Byte(SW_I2C_Typedef *SW_I2C, unsigned char *Data_Byte, unsigned char Need_Ack);   // IICè¯»å­—èŠ‚
+unsigned char SW_I2C_Start_Condition(SW_I2C_Typedef *SW_I2C);           // äº§ç”Ÿèµ·å§‹ä¿¡å·
+unsigned char SW_I2C_Stop_Condition(SW_I2C_Typedef *SW_I2C);            // äº§ç”Ÿåœæ­¢ä¿¡å·
+unsigned char SW_I2C_Transfer(SW_I2C_Typedef *SW_I2C, unsigned char Chip_Addr, unsigned char *Data, unsigned short Data_Len, unsigned char Stop_Condition); // å‘é€æ•°æ®
 
-static unsigned char SW_I2C_Wait_SCL_Turn_High(SW_I2C_Typedef *SW_I2C); // µÈ´ıSCL±»´Ó»úÊÍ·Å
-static unsigned char SW_I2C_Clear_Bus(SW_I2C_Typedef *SW_I2C);          // Çå¿Õ×ÜÏß
+static unsigned char SW_I2C_Wait_SCL_Turn_High(SW_I2C_Typedef *SW_I2C); // ç­‰å¾…SCLè¢«ä»æœºé‡Šæ”¾
+static unsigned char SW_I2C_Clear_Bus(SW_I2C_Typedef *SW_I2C);          // æ¸…ç©ºæ€»çº¿
 
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           Â½³¬@2016-12-26
+*                           é™†è¶…@2016-12-26
 * Function Name  :  SW_I2C_Init
-* Description    :  I2C¶Ë¿Ú³õÊ¼»¯ 
-* Input          :  SW_I2C_Typedef *SW_I2C  I2C²ÎÊı
+* Description    :  I2Cç«¯å£åˆå§‹åŒ– 
+* Input          :  SW_I2C_Typedef *SW_I2C  I2Cå‚æ•°
 * Output         :  None
-* Return         :  1³É¹¦ 0Ê§°Ü
+* Return         :  1æˆåŠŸ 0å¤±è´¥
 *******************************************************************************/
 unsigned char SW_I2C_Init(SW_I2C_Typedef *SW_I2C)
 {
-    // ·ÀÖ¹¶à´Î³õÊ¼»¯
+    // é˜²æ­¢å¤šæ¬¡åˆå§‹åŒ–
     if (SW_I2C->Inited)
     {
         return 1;
@@ -48,7 +48,7 @@ unsigned char SW_I2C_Init(SW_I2C_Typedef *SW_I2C)
 
     SW_I2C->Inited = 1;
 
-    // ¹Ü½Å³õÊ¼»¯
+    // ç®¡è„šåˆå§‹åŒ–
     SW_I2C->Pin_Init();
     
     return SW_I2C_Clear_Bus(SW_I2C);
@@ -56,13 +56,13 @@ unsigned char SW_I2C_Init(SW_I2C_Typedef *SW_I2C)
 }// End of unsigned char SW_I2C_Init(SW_I2C_Typedef *SW_I2C)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-26
+*                           é™†è¶…@2016-12-26
 * Function Name  :  SW_I2C_Wait_SCL_Turn_High
-* Description    :  µÈ´ıSCL±»´Ó»úÊÍ·Å
-* Input          :  SW_I2C_Typedef *SW_I2C  ²Ù×÷½á¹¹ÌåÖ¸Õë
-*                   unsigned char ucData    Òª·¢ËÍµÄÊı¾İ       
+* Description    :  ç­‰å¾…SCLè¢«ä»æœºé‡Šæ”¾
+* Input          :  SW_I2C_Typedef *SW_I2C  æ“ä½œç»“æ„ä½“æŒ‡é’ˆ
+*                   unsigned char ucData    è¦å‘é€çš„æ•°æ®       
 * Output         :  None
-* Return         :  ³É¹¦·µ»Ø1 Ê§°Ü·µ»Ø0
+* Return         :  æˆåŠŸè¿”å›1 å¤±è´¥è¿”å›0
 *******************************************************************************/
 static unsigned char SW_I2C_Wait_SCL_Turn_High(SW_I2C_Typedef *SW_I2C)
 {
@@ -70,15 +70,15 @@ static unsigned char SW_I2C_Wait_SCL_Turn_High(SW_I2C_Typedef *SW_I2C)
     unsigned int volatile Timeout_Counter = SW_I2C->Wait_Scl_Free_Timeout;
 
 
-    // ÊÍ·ÅSCL
+    // é‡Šæ”¾SCL
     SW_I2C->SCL_High();
 
-    // µÈ´ıÊ±ÖÓÎª¸ß
+    // ç­‰å¾…æ—¶é’Ÿä¸ºé«˜
     while (SW_I2C->SCL_Read() == 0)
     {
         if (Timeout_Counter == 0)
         {
-            // ³¬Ê±
+            // è¶…æ—¶
             return 0;
         }
         else
@@ -93,27 +93,27 @@ static unsigned char SW_I2C_Wait_SCL_Turn_High(SW_I2C_Typedef *SW_I2C)
 }// End of static unsigned char SW_I2C_Wait_SCL_Turn_High(SW_I2C_Typedef *SW_I2C)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-26
+*                           é™†è¶…@2016-12-26
 * Function Name  :  SW_IIC_Write_Byte
-* Description    :  IICĞ´Êı¾İ
-* Input          :  SW_I2C_Typedef *SW_I2C  ²Ù×÷½á¹¹ÌåÖ¸Õë
-*                   unsigned char ucData    Òª·¢ËÍµÄÊı¾İ       
+* Description    :  IICå†™æ•°æ®
+* Input          :  SW_I2C_Typedef *SW_I2C  æ“ä½œç»“æ„ä½“æŒ‡é’ˆ
+*                   unsigned char ucData    è¦å‘é€çš„æ•°æ®       
 * Output         :  None
-* Return         :  ³É¹¦·µ»Ø1 Ê§°Ü·µ»Ø0
+* Return         :  æˆåŠŸè¿”å›1 å¤±è´¥è¿”å›0
 *******************************************************************************/
 unsigned char SW_IIC_Write_Byte(SW_I2C_Typedef *SW_I2C, unsigned char ucData)
 {
     unsigned char Transfer_Succeeded = 1;
     unsigned char i;
     
-    // ÉèÖÃSDAÎªÊä³öÄ£Ê½
+    // è®¾ç½®SDAä¸ºè¾“å‡ºæ¨¡å¼
     SW_I2C->Set_SDA_Output();
 
-    // À­µÍÊ±ÖÓ
+    // æ‹‰ä½æ—¶é’Ÿ
     SW_I2C->SCL_Low();
     SW_I2C->Dealy();
 
-    // ÏÈ·¢ËÍ¸ß×Ö½Ú
+    // å…ˆå‘é€é«˜å­—èŠ‚
     for (i = 0x80; i > 0; i >>= 1)
     {
         if (ucData & i)
@@ -125,43 +125,43 @@ unsigned char SW_IIC_Write_Byte(SW_I2C_Typedef *SW_I2C, unsigned char ucData)
             SW_I2C->SDA_Low();
         }
 
-        // µÈ´ıSclÊÍ·Å
+        // ç­‰å¾…Sclé‡Šæ”¾
         if (SW_I2C_Wait_SCL_Turn_High(SW_I2C) == 0)
         {
-            // ³¬Ê±
+            // è¶…æ—¶
             Transfer_Succeeded = 0; 
             break;
         }
 
-        // À­µÍÊ±ÖÓ
+        // æ‹‰ä½æ—¶é’Ÿ
         SW_I2C->SCL_Low();
         SW_I2C->Dealy();
     }
 
-    // ÉèÖÃÎªÊäÈëÄ£Ê½
+    // è®¾ç½®ä¸ºè¾“å…¥æ¨¡å¼
     SW_I2C->Set_SDA_Input();
     SW_I2C->Dealy();
 
-    // µÈ´ıÊ±ÖÓ¿ÕÏĞ
+    // ç­‰å¾…æ—¶é’Ÿç©ºé—²
     Transfer_Succeeded &= SW_I2C_Wait_SCL_Turn_High(SW_I2C);
 
-    // ¶ÁÈ¡ACK
+    // è¯»å–ACK
     if (SW_I2C->SDA_Read() & SW_I2C_NACK)
     {
-        // ÎŞÓ¦´ğ
+        // æ— åº”ç­”
         Transfer_Succeeded = 0x00;    
     }
     else
     {
-        // ÓĞÓ¦´ğ
+        // æœ‰åº”ç­”
         Transfer_Succeeded &= 0x01;    
     }
 
-    // ²úÉú×îºóÊ±ÖÓ
+    // äº§ç”Ÿæœ€åæ—¶é’Ÿ
     SW_I2C->SCL_Low();
     SW_I2C->Dealy();
 
-    // »¹Ô­ÎªÊäÈëÄ£Ê½
+    // è¿˜åŸä¸ºè¾“å…¥æ¨¡å¼
     SW_I2C->Set_SDA_Output();
 
     return Transfer_Succeeded;
@@ -170,14 +170,14 @@ unsigned char SW_IIC_Write_Byte(SW_I2C_Typedef *SW_I2C, unsigned char ucData)
 
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-26
+*                           é™†è¶…@2016-12-26
 * Function Name  :  SW_IIC_Read_Byte
-* Description    :  IIC¶ÁÈ¡Ò»¸ö×Ö½ÚÊı¾İ
-* Input          :  SW_I2C_Typedef *SW_I2C      ²Ù×÷½á¹¹ÌåÖ¸Õë
-*                   unsigned char *Data_Byte    ¶ÁÈ¡Êı¾İ»º´æ
-*                   unsigned char Need_Ack      ÖÃÒ»ÊÇ·¢ËÍACK
+* Description    :  IICè¯»å–ä¸€ä¸ªå­—èŠ‚æ•°æ®
+* Input          :  SW_I2C_Typedef *SW_I2C      æ“ä½œç»“æ„ä½“æŒ‡é’ˆ
+*                   unsigned char *Data_Byte    è¯»å–æ•°æ®ç¼“å­˜
+*                   unsigned char Need_Ack      ç½®ä¸€æ˜¯å‘é€ACK
 * Output         :  None
-* Return         :  ³É¹¦·µ»Ø1 Ê§°Ü·µ»Ø0
+* Return         :  æˆåŠŸè¿”å›1 å¤±è´¥è¿”å›0
 *******************************************************************************/
 unsigned char SW_IIC_Read_Byte(SW_I2C_Typedef *SW_I2C, unsigned char *Data_Byte, unsigned char Send_Ack)
 {
@@ -185,13 +185,13 @@ unsigned char SW_IIC_Read_Byte(SW_I2C_Typedef *SW_I2C, unsigned char *Data_Byte,
     unsigned char Transfer_Succeeded = 1;
     unsigned char i;
 
-    // ÉèÖÃSDAÎªÊäÈëÄ£Ê½²¢À­¸ß
+    // è®¾ç½®SDAä¸ºè¾“å…¥æ¨¡å¼å¹¶æ‹‰é«˜
     SW_I2C->Set_SDA_Input();
 
-    // ¸ßÎ»ÔÚÇ°
+    // é«˜ä½åœ¨å‰
     for (i = 0x80; i > 0; i >>= 1)
     {
-        // µÈ´ıIICÊÍ·Å
+        // ç­‰å¾…IICé‡Šæ”¾
         if (SW_I2C_Wait_SCL_Turn_High(SW_I2C) == 0)
         {
             Transfer_Succeeded = 0;
@@ -207,13 +207,13 @@ unsigned char SW_IIC_Read_Byte(SW_I2C_Typedef *SW_I2C, unsigned char *Data_Byte,
         SW_I2C->Dealy();
     }
 
-    // »Ö¸´SDAÎªÊä³öÄ£Ê½
+    // æ¢å¤SDAä¸ºè¾“å‡ºæ¨¡å¼
     SW_I2C->Set_SDA_Output();
 
-    // ¼ÇÂ¼Êı¾İ
+    // è®°å½•æ•°æ®
     *Data_Byte = Byte_Read;
     
-    // ·¢ËÍACK
+    // å‘é€ACK
     if (Send_Ack == SW_I2C_SEND_ACK)
     {
         SW_I2C->SDA_Low();
@@ -223,17 +223,17 @@ unsigned char SW_IIC_Read_Byte(SW_I2C_Typedef *SW_I2C, unsigned char *Data_Byte,
         SW_I2C->SDA_High();
     }
 
-    // ÑÓÊ±
+    // å»¶æ—¶
     SW_I2C->Dealy();
 
-    // µÈ´ı´Ó»úÏìÓ¦
+    // ç­‰å¾…ä»æœºå“åº”
     if (SW_I2C_Wait_SCL_Turn_High(SW_I2C) == 0)
     {
-        // ³¬Ê±
+        // è¶…æ—¶
         Transfer_Succeeded = 0; 
     }
 
-    // Íê³É×îºóÊ±ÖÓ
+    // å®Œæˆæœ€åæ—¶é’Ÿ
     SW_I2C->SCL_Low();
     SW_I2C->Dealy();
 
@@ -242,19 +242,19 @@ unsigned char SW_IIC_Read_Byte(SW_I2C_Typedef *SW_I2C, unsigned char *Data_Byte,
 }// End of unsigned char SW_IIC_Read_Byte(SW_I2C_Typedef *SW_I2C, unsigned char *Data_Byte, unsigned char Need_Ack)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-26
+*                           é™†è¶…@2016-12-26
 * Function Name  :  SW_I2C_Clear_Bus
-* Description    :  Çå¿Õ×ÜÏß
-* Input          :  SW_I2C_Typedef *SW_I2C  ²Ù×÷Ö¸Õë
+* Description    :  æ¸…ç©ºæ€»çº¿
+* Input          :  SW_I2C_Typedef *SW_I2C  æ“ä½œæŒ‡é’ˆ
 * Output         :  None
-* Return         :  ³É¹¦·µ»Ø1 Ê§°Ü·µ»Ø0
+* Return         :  æˆåŠŸè¿”å›1 å¤±è´¥è¿”å›0
 *******************************************************************************/
 static unsigned char SW_I2C_Clear_Bus(SW_I2C_Typedef *SW_I2C)
 {
     unsigned char  Bus_Clear;
     unsigned char  i;
 
-    // ÊÍ·Å×ÜÏß
+    // é‡Šæ”¾æ€»çº¿
     SW_I2C->SDA_High();
     SW_I2C->SCL_High();
     SW_I2C->Dealy();
@@ -291,28 +291,28 @@ static unsigned char SW_I2C_Clear_Bus(SW_I2C_Typedef *SW_I2C)
 }// End of static unsigned char SW_I2C_Clear_Bus(SW_I2C_Typedef *SW_I2C)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-26
+*                           é™†è¶…@2016-12-26
 * Function Name  :  SW_I2C_Start_Condition
-* Description    :  ²úÉúI2CÆğÊ¼ĞÅºÅ
-* Input          :  SW_I2C_Typedef *SW_I2C  ²Ù×÷Ö¸Õë
+* Description    :  äº§ç”ŸI2Cèµ·å§‹ä¿¡å·
+* Input          :  SW_I2C_Typedef *SW_I2C  æ“ä½œæŒ‡é’ˆ
 * Output         :  None
-* Return         :  ³É¹¦·µ»Ø1 Ê§°Ü·µ»Ø0
+* Return         :  æˆåŠŸè¿”å›1 å¤±è´¥è¿”å›0
 *******************************************************************************/
 unsigned char SW_I2C_Start_Condition(SW_I2C_Typedef *SW_I2C)
 {
 
 
-    // À­¸ßSDA SCL
+    // æ‹‰é«˜SDA SCL
     SW_I2C->SDA_High();
     SW_I2C->Dealy();
 
-    // µÈ´ıSCL±ä¸ß
+    // ç­‰å¾…SCLå˜é«˜
     if (SW_I2C_Wait_SCL_Turn_High(SW_I2C) == 0)
     {
         return 0;
     }
 
-    // À­µÍÊı¾İºÍÊ±ÖÓ²úÉúÆğÊ¼Ìõ¼ş
+    // æ‹‰ä½æ•°æ®å’Œæ—¶é’Ÿäº§ç”Ÿèµ·å§‹æ¡ä»¶
     SW_I2C->SDA_Low();
     SW_I2C->Dealy();
     SW_I2C->SCL_Low();
@@ -324,17 +324,17 @@ unsigned char SW_I2C_Start_Condition(SW_I2C_Typedef *SW_I2C)
 
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-26
+*                           é™†è¶…@2016-12-26
 * Function Name  :  SW_I2C_Stop_Condition
-* Description    :  ²úÉúI2CÍ£Ö¹ĞÅºÅ
-* Input          :  SW_I2C_Typedef *SW_I2C  ²Ù×÷Ö¸Õë
+* Description    :  äº§ç”ŸI2Cåœæ­¢ä¿¡å·
+* Input          :  SW_I2C_Typedef *SW_I2C  æ“ä½œæŒ‡é’ˆ
 * Output         :  None
-* Return         :  ³É¹¦·µ»Ø1 Ê§°Ü·µ»Ø0
+* Return         :  æˆåŠŸè¿”å›1 å¤±è´¥è¿”å›0
 *******************************************************************************/
 unsigned char SW_I2C_Stop_Condition(SW_I2C_Typedef *SW_I2C)
 {
 
-    // ÏÈµÍºó¸ß²úÉúÍ£Ö¹ĞÅºÅ
+    // å…ˆä½åé«˜äº§ç”Ÿåœæ­¢ä¿¡å·
     SW_I2C->SDA_Low();
     SW_I2C->Dealy();
     if (SW_I2C_Wait_SCL_Turn_High(SW_I2C) == 0)
@@ -350,16 +350,16 @@ unsigned char SW_I2C_Stop_Condition(SW_I2C_Typedef *SW_I2C)
 }// End of unsigned char SW_I2C_Stop_Condition(SW_I2C_Typedef *SW_I2C)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-26
+*                           é™†è¶…@2016-12-26
 * Function Name  :  SW_I2C_Transfer
-* Description    :  I2C·¢ËÍÊı¾İ
-* Input          :  SW_I2C_Typedef *SW_I2C  ²Ù×÷Ö¸Õë
-*                   unsigned char Chip_Addr Ğ¾Æ¬µØÖ·
-*                   unsigned char  *Data    Êı¾İÖ¸Õë
-*                   unsigned short Data_Len Êı¾İ³¤¶È
-*                   unsigned char Stop_Condition    ÖÃÒ»Ê±·¢ËÍÍ£Ö¹ĞÅºÅ
+* Description    :  I2Cå‘é€æ•°æ®
+* Input          :  SW_I2C_Typedef *SW_I2C  æ“ä½œæŒ‡é’ˆ
+*                   unsigned char Chip_Addr èŠ¯ç‰‡åœ°å€
+*                   unsigned char  *Data    æ•°æ®æŒ‡é’ˆ
+*                   unsigned short Data_Len æ•°æ®é•¿åº¦
+*                   unsigned char Stop_Condition    ç½®ä¸€æ—¶å‘é€åœæ­¢ä¿¡å·
 * Output         :  None
-* Return         :  ³É¹¦·µ»Ø1 Ê§°Ü·µ»Ø0
+* Return         :  æˆåŠŸè¿”å›1 å¤±è´¥è¿”å›0
 *******************************************************************************/
 unsigned char SW_I2C_Transfer(SW_I2C_Typedef *SW_I2C, unsigned char Chip_Addr, unsigned char *Data, unsigned short Data_Len, unsigned char Stop_Condition)
 {
@@ -368,7 +368,7 @@ unsigned char SW_I2C_Transfer(SW_I2C_Typedef *SW_I2C, unsigned char Chip_Addr, u
     Transfer_Succeeded &= SW_I2C_Start_Condition(SW_I2C);
     Transfer_Succeeded &= SW_IIC_Write_Byte(SW_I2C, Chip_Addr);
 
-    // ³¤¶È±£»¤
+    // é•¿åº¦ä¿æŠ¤
     if (Data_Len == 0)
     {
         return 0;
@@ -378,7 +378,7 @@ unsigned char SW_I2C_Transfer(SW_I2C_Typedef *SW_I2C, unsigned char Chip_Addr, u
         /* Transfer direction is from Slave to Master */
         while (Data_Len-- && Transfer_Succeeded)
         {
-            // ×îºóÒ»¸ö×Ö½Ú·¢ËÍNO ACK
+            // æœ€åä¸€ä¸ªå­—èŠ‚å‘é€NO ACK
             if (Data_Len == 0)
             {
                 Transfer_Succeeded &= SW_IIC_Read_Byte(SW_I2C, Data, SW_I2C_DONT_SEND_ACK);
@@ -392,7 +392,7 @@ unsigned char SW_I2C_Transfer(SW_I2C_Typedef *SW_I2C, unsigned char Chip_Addr, u
     }
     else
     {
-        // ·¢ËÍÊı¾İ
+        // å‘é€æ•°æ®
         while (Data_Len-- && Transfer_Succeeded)
         {
             Transfer_Succeeded &= SW_IIC_Write_Byte(SW_I2C, *Data);
@@ -400,7 +400,7 @@ unsigned char SW_I2C_Transfer(SW_I2C_Typedef *SW_I2C, unsigned char Chip_Addr, u
         }
     }
 
-    // ÓĞÍ£Ö¹ĞÅºÅ»òÕß·¢ËÍÊ§°Ü
+    // æœ‰åœæ­¢ä¿¡å·æˆ–è€…å‘é€å¤±è´¥
     if (Stop_Condition || (Transfer_Succeeded == 0))
     {
         Transfer_Succeeded &= SW_I2C_Stop_Condition(SW_I2C);
@@ -410,7 +410,7 @@ unsigned char SW_I2C_Transfer(SW_I2C_Typedef *SW_I2C, unsigned char Chip_Addr, u
     
 }// End of unsigned char SW_I2C_Transfer(SW_I2C_Typedef *SW_I2C, unsigned char Chip_Addr, unsigned char *Data, unsigned short Data_Len, unsigned char Stop_Condition)
 
-/******************* (C) COPYRIGHT 2016 Â½³¬ **************END OF FILE*********/
+/******************* (C) COPYRIGHT 2016 é™†è¶… **************END OF FILE*********/
 
 
 

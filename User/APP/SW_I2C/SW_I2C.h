@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2016 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2016 é™†è¶… **********************************
 * File Name          :  SW_I2C.h
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -16,28 +16,28 @@
 
 
 /* Private define ------------------------------------------------------------*/
-#define     SW_I2C_SEND_ACK             0x01                            // ·¢ËÍÓ¦´ğ
-#define     SW_I2C_DONT_SEND_ACK        0x00                            // ²»·¢ËÍÓ¦´ğ
-#define     SW_I2C_NEED_SEND_STOP       1                               // ĞèÒª·¢ËÍÍ£Ö¹Î»
-#define     SW_I2C_DONT_SEND_STOP       0                               // ÎŞĞè·¢ËÍÍ£Ö¹Î»
+#define     SW_I2C_SEND_ACK             0x01                            // å‘é€åº”ç­”
+#define     SW_I2C_DONT_SEND_ACK        0x00                            // ä¸å‘é€åº”ç­”
+#define     SW_I2C_NEED_SEND_STOP       1                               // éœ€è¦å‘é€åœæ­¢ä½
+#define     SW_I2C_DONT_SEND_STOP       0                               // æ— éœ€å‘é€åœæ­¢ä½
 
 /* Private typedef -----------------------------------------------------------*/
 typedef struct
 {
-    void                (*Dealy)(void);                                 // ÑÓÊ±
-    void                (*Dealy_us)(void);                              // usÑÓÊ±
-    void                (*Pin_Init)(void);                              // ¹Ü½Å³õÊ¼»¯
-    void                (*SDA_High)(void);                              // À­¸ßSDA
-    void                (*SDA_Low)(void);                               // À­µÍSDA
-    void                (*SCL_High)(void);                              // À­¸ßSCL
-    void                (*SCL_Low)(void);                               // À­µÍSCL                
-    void                (*Set_SDA_Input)(void);                         // ÉèÖÃÊı¾İÎ»ÊäÈë¹Ü½Å
-    void                (*Set_SDA_Output)(void);                        // ÉèÖÃÊı¾İÎ»Êä³ö¹Ü½Å
-    void                (*Set_SCL_Output)(void);                        // ÉèÖÃÊ±ÖÓÎ»Êä³ö¹Ü½Å
-    unsigned char       (*SDA_Read)(void);                              // ¶ÁSDA¹Ü½Å
-    unsigned char       (*SCL_Read)(void);                              // ¶ÁSCL¹Ü½Å  
-    unsigned char       Inited;                                         // ÖÃÒ»±íÊ¾ÒÑ¾­³õÊ¼»¯
-    unsigned int        Wait_Scl_Free_Timeout;                          // µÈ´ıSCL±»ÊÍ·Å³¬Ê±Ê±¼ä                             
+    void                (*Dealy)(void);                                 // å»¶æ—¶
+    void                (*Dealy_us)(void);                              // uså»¶æ—¶
+    void                (*Pin_Init)(void);                              // ç®¡è„šåˆå§‹åŒ–
+    void                (*SDA_High)(void);                              // æ‹‰é«˜SDA
+    void                (*SDA_Low)(void);                               // æ‹‰ä½SDA
+    void                (*SCL_High)(void);                              // æ‹‰é«˜SCL
+    void                (*SCL_Low)(void);                               // æ‹‰ä½SCL                
+    void                (*Set_SDA_Input)(void);                         // è®¾ç½®æ•°æ®ä½è¾“å…¥ç®¡è„š
+    void                (*Set_SDA_Output)(void);                        // è®¾ç½®æ•°æ®ä½è¾“å‡ºç®¡è„š
+    void                (*Set_SCL_Output)(void);                        // è®¾ç½®æ—¶é’Ÿä½è¾“å‡ºç®¡è„š
+    unsigned char       (*SDA_Read)(void);                              // è¯»SDAç®¡è„š
+    unsigned char       (*SCL_Read)(void);                              // è¯»SCLç®¡è„š  
+    unsigned char       Inited;                                         // ç½®ä¸€è¡¨ç¤ºå·²ç»åˆå§‹åŒ–
+    unsigned int        Wait_Scl_Free_Timeout;                          // ç­‰å¾…SCLè¢«é‡Šæ”¾è¶…æ—¶æ—¶é—´                             
     
 } SW_I2C_Typedef;
 
@@ -45,14 +45,14 @@ typedef struct
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  unsigned char SW_I2C_Init(SW_I2C_Typedef *SW_I2C);                              // ¹Ü½Å³õÊ¼»¯
-extern  unsigned char SW_IIC_Write_Byte(SW_I2C_Typedef *SW_I2C, unsigned char ucData);  // IICĞ´×Ö½Ú
-extern  unsigned char SW_IIC_Read_Byte(SW_I2C_Typedef *SW_I2C, unsigned char *Data_Byte, unsigned char Need_Ack);   // IIC¶Á×Ö½Ú
-extern  unsigned char SW_I2C_Start_Condition(SW_I2C_Typedef *SW_I2C);           // ²úÉúÆğÊ¼ĞÅºÅ
-extern  unsigned char SW_I2C_Stop_Condition(SW_I2C_Typedef *SW_I2C);            // ²úÉúÍ£Ö¹ĞÅºÅ
-extern  unsigned char SW_I2C_Transfer(SW_I2C_Typedef *SW_I2C, unsigned char Chip_Addr, unsigned char *Data, unsigned short Data_Len, unsigned char Stop_Condition); // ·¢ËÍÊı¾İ
+extern  unsigned char SW_I2C_Init(SW_I2C_Typedef *SW_I2C);                              // ç®¡è„šåˆå§‹åŒ–
+extern  unsigned char SW_IIC_Write_Byte(SW_I2C_Typedef *SW_I2C, unsigned char ucData);  // IICå†™å­—èŠ‚
+extern  unsigned char SW_IIC_Read_Byte(SW_I2C_Typedef *SW_I2C, unsigned char *Data_Byte, unsigned char Need_Ack);   // IICè¯»å­—èŠ‚
+extern  unsigned char SW_I2C_Start_Condition(SW_I2C_Typedef *SW_I2C);           // äº§ç”Ÿèµ·å§‹ä¿¡å·
+extern  unsigned char SW_I2C_Stop_Condition(SW_I2C_Typedef *SW_I2C);            // äº§ç”Ÿåœæ­¢ä¿¡å·
+extern  unsigned char SW_I2C_Transfer(SW_I2C_Typedef *SW_I2C, unsigned char Chip_Addr, unsigned char *Data, unsigned short Data_Len, unsigned char Stop_Condition); // å‘é€æ•°æ®
 
 #endif /* __SW_I2C_H */
 
-/******************* (C) COPYRIGHT 2016 Â½³¬ *****END OF FILE******************/
+/******************* (C) COPYRIGHT 2016 é™†è¶… *****END OF FILE******************/
 

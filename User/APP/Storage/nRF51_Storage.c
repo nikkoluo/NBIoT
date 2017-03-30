@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
 * File Name          :  nRF51_Storage.c
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  03/07/2017
-* Description        :  macµØÖ·´¦Àí
+* Description        :  macåœ°å€å¤„ç†
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "nRF51_Storage.h"
@@ -17,15 +17,15 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* Private function prototypes -----------------------------------------------*/
-void nRF51_Storage_Init(void);                                          // nRF51_Storage³õÊ¼»¯
+void nRF51_Storage_Init(void);                                          // nRF51_Storageåˆå§‹åŒ–
 void nRF51_Storage_Callback(pstorage_handle_t *  handle, u8   OP_Code,
-                           u32  Err_Code, u8*  pData, u32  uiData_Len); // ²Ù×÷flash»Øµ÷
+                           u32  Err_Code, u8*  pData, u32  uiData_Len); // æ“ä½œflashå›è°ƒ
                                                
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           Â½³¬@2017-03-09
+*                           é™†è¶…@2017-03-09
 * Function Name  :  nRF51_Storage_Init
-* Description    :  MAC flash³õÊ¼»¯
+* Description    :  MAC flashåˆå§‹åŒ–
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -37,13 +37,13 @@ void nRF51_Storage_Init(void)
 }// End of void nRF51_Storage_Init(void)
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-09
+*                           é™†è¶…@2017-03-09
 * Function Name  :  nRF51_Storage_Callback
-* Description    :  flash²Ù×÷»Øµ÷
-* Input          :  u32  Err_Code   ²Ù×÷½á¹û
-*                   u8   OP_Code    ÃüÁîÂë(´íÎóÔ­Òò) 
-*                   u8*  pData      ÒªĞ´ÈëµÄÖµ
-*                   u32  Data_Len   Êı¾İ³¤¶È
+* Description    :  flashæ“ä½œå›è°ƒ
+* Input          :  u32  Err_Code   æ“ä½œç»“æœ
+*                   u8   OP_Code    å‘½ä»¤ç (é”™è¯¯åŸå› ) 
+*                   u8*  pData      è¦å†™å…¥çš„å€¼
+*                   u32  Data_Len   æ•°æ®é•¿åº¦
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -55,7 +55,7 @@ void nRF51_Storage_Callback(pstorage_handle_t *  handle, u8   OP_Code,
         // Load operation failed.
         app_trace_log("[E]: flash operation error, opcode:%d Err_Code:%d\r\n", OP_Code, Err_Code);
 
-        // ÊÍ·ÅflashÕ¼ÓÃ
+        // é‡Šæ”¾flashå ç”¨
         Flash_Used = 0;
 
         return ;
@@ -68,7 +68,7 @@ void nRF51_Storage_Callback(pstorage_handle_t *  handle, u8   OP_Code,
     {
         case PSTORAGE_LOAD_OP_CODE:
         {
-//            app_trace_log("MACµØÖ·¶ÁÈ¡³É¹¦!\r\n");
+//            app_trace_log("MACåœ°å€è¯»å–æˆåŠŸ!\r\n");
            
         }break;
 
@@ -80,7 +80,7 @@ void nRF51_Storage_Callback(pstorage_handle_t *  handle, u8   OP_Code,
 
         case PSTORAGE_UPDATE_OP_CODE:
         {
-//            app_trace_log("MACµØÖ·±£´æ³É¹¦!\r\n");
+//            app_trace_log("MACåœ°å€ä¿å­˜æˆåŠŸ!\r\n");
                
         }break;
 
@@ -95,12 +95,12 @@ void nRF51_Storage_Callback(pstorage_handle_t *  handle, u8   OP_Code,
             
     }
 
-    // ÊÍ·ÅflashÕ¼ÓÃ
+    // é‡Šæ”¾flashå ç”¨
     Flash_Used = 0;
     
 }// End of static void nRF51_Storage_Callback
 
-/******************* (C) COPYRIGHT 2017 Â½³¬ ************* END OF FILE ********/
+/******************* (C) COPYRIGHT 2017 é™†è¶… ************* END OF FILE ********/
 
 
 

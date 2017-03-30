@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2016 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2016 é™†è¶… **********************************
 * File Name          :  Temp_Humi.h
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -25,11 +25,11 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void Temp_Humi_Timer_Handle(void *p_arg);                           // Temp_HumiÈÎÎñ
-extern  void Temp_Humi_Task_Create(void);                                   // ´´½¨Temp_HumiÈÎÎñ
-extern  void Temp_Humi_Get(void);                                           // »ñÈ¡ÎÂÊª¶È
+extern  void Temp_Humi_Timer_Handle(void *p_arg);                           // Temp_Humiä»»åŠ¡
+extern  void Temp_Humi_Task_Create(void);                                   // åˆ›å»ºTemp_Humiä»»åŠ¡
+extern  void Temp_Humi_Get(void);                                           // è·å–æ¸©æ¹¿åº¦
 
 #endif /* __TEMP_HUMI_H */
 
-/******************* (C) COPYRIGHT 2016 Â½³¬ **** END OF FILE *****************/
+/******************* (C) COPYRIGHT 2016 é™†è¶… **** END OF FILE *****************/
 

@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
 * File Name          :  WDT.c
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  01/24/2017
-* Description        :  ¶¨Ê±Æ÷
+* Description        :  å®šæ—¶å™¨
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "WDT.h"
@@ -18,16 +18,16 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void WDT_Task_Init(void);                                               // ¿´ÃÅ¹·³õÊ¼»¯
-void WDT_Event_Handler(void);                                           // ¿´ÃÅ¹·ÖĞ¶Ï´¦Àí
-void WDT_Timeout_Handler(void *p_arg);                                  // WDT³¬Ê±ÈÎÎñ
-void WDT_Feed(void);                                                    // Î¹¹·
+void WDT_Task_Init(void);                                               // çœ‹é—¨ç‹—åˆå§‹åŒ–
+void WDT_Event_Handler(void);                                           // çœ‹é—¨ç‹—ä¸­æ–­å¤„ç†
+void WDT_Timeout_Handler(void *p_arg);                                  // WDTè¶…æ—¶ä»»åŠ¡
+void WDT_Feed(void);                                                    // å–‚ç‹—
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           Â½³¬@2017-01-24
+*                           é™†è¶…@2017-01-24
 * Function Name  :  WDT_Event_Handler
-* Description    :  ¿´ÃÅ¹·ÖĞ¶Ï´¦Àí
+* Description    :  çœ‹é—¨ç‹—ä¸­æ–­å¤„ç†
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -38,9 +38,9 @@ void WDT_Event_Handler(void)
 }// End of void WDT_Event_Handler(void)
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-24
+*                           é™†è¶…@2017-01-24
 * Function Name  :  WDT_Timeout_Handler
-* Description    :  WDT³¬Ê±ÈÎÎñ
+* Description    :  WDTè¶…æ—¶ä»»åŠ¡
 * Input          :  void *p_arg
 * Output         :  None
 * Return         :  None
@@ -59,9 +59,9 @@ void WDT_Timeout_Handler(void *p_arg)
 }// End of void WDT_Timeout_Handler(void *p_arg)
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-24
+*                           é™†è¶…@2017-01-24
 * Function Name  :  WDT_Task_Init
-* Description    :  ¿´ÃÅ¹·³õÊ¼»¯
+* Description    :  çœ‹é—¨ç‹—åˆå§‹åŒ–
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -76,7 +76,7 @@ void WDT_Task_Init(void)
 
     nrf_drv_wdt_config_t WDT_Cfg;
 
-    // ¶¨ÒåË¯Ãß¼ÆÊı ³¬Ê±Ê±¼ä ÖĞ¶ÏÓÅÏÈ¼¶
+    // å®šä¹‰ç¡çœ è®¡æ•° è¶…æ—¶æ—¶é—´ ä¸­æ–­ä¼˜å…ˆçº§
     WDT_Cfg.behaviour          = NRF_WDT_BEHAVIOUR_RUN_SLEEP;
     WDT_Cfg.reload_value       = 50000; 
     WDT_Cfg.interrupt_priority = APP_IRQ_PRIORITY_LOW;
@@ -90,7 +90,7 @@ void WDT_Task_Init(void)
   
 #endif
 
-    // ÅäÖÃ²ÎÊı µ¥´ÎÔËĞĞÄ£Ê½
+    // é…ç½®å‚æ•° å•æ¬¡è¿è¡Œæ¨¡å¼
     WDT_Task.Run_Mode        = APP_TIMER_MODE_REPEATED;
     WDT_Task.Period          = 10000; 
     WDT_Task.Timeout_handler = WDT_Timeout_Handler;
@@ -105,9 +105,9 @@ void WDT_Task_Init(void)
 }// End of void WDT_Task_Init(void)
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-24
+*                           é™†è¶…@2017-01-24
 * Function Name  :  WDT_Feed
-* Description    :  Î¹¹·
+* Description    :  å–‚ç‹—
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -125,7 +125,7 @@ void WDT_Feed(void)
 
 }// End of void WDT_Feed(void)
 
-/******************* (C) COPYRIGHT 2017 Â½³¬ ************* END OF FILE ********/
+/******************* (C) COPYRIGHT 2017 é™†è¶… ************* END OF FILE ********/
 
 
 

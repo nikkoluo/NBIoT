@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
 * File Name          :  GPIO_Port.h
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -29,11 +29,11 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void GPIO_Variable_Init(void);                                  // ÎÂÊª¶È±äÁ¿³õÊ¼»¯
-extern  void GPIO_Port_Init(void);                                      // ¹Ü½Å³õÊ¼»¯
-extern  void GPIO_Set_Pin_High(u8 ucPin);                               // ¹Ü½ÅÖÃ¸ß
-extern  void GPIO_Set_Pin_Low(u8 ucPin);                                // ¹Ü½ÅÖÃµÍ   
+extern  void GPIO_Variable_Init(void);                                  // æ¸©æ¹¿åº¦å˜é‡åˆå§‹åŒ–
+extern  void GPIO_Port_Init(void);                                      // ç®¡è„šåˆå§‹åŒ–
+extern  void GPIO_Set_Pin_High(u8 ucPin);                               // ç®¡è„šç½®é«˜
+extern  void GPIO_Set_Pin_Low(u8 ucPin);                                // ç®¡è„šç½®ä½   
 
 #endif /* __GPIO_PORT_H */
 
-/******************* (C) COPYRIGHT 2017 Â½³¬ *****END OF FILE******************/
+/******************* (C) COPYRIGHT 2017 é™†è¶… *****END OF FILE******************/

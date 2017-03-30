@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2015 陆超 **********************************
+/******************** (C) COPYRIGHT 2015 闄嗚秴 **********************************
 * File Name          :  Task.h
-* Author             :  陆超
+* Author             :  闄嗚秴
 * CPU Type           :  nRF51822
 * IDE                :  IAR 7.4
 * Version            :  V1.0
@@ -26,11 +26,11 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  u32 Task_Timer_Start(Task_Typedef *Task, void * p_context);     // 任务启动
-extern  u32 Task_Timer_Stop(Task_Typedef *Task);                        // 任务停止
+extern  u32 Task_Timer_Start(Task_Typedef *Task, void * p_context);     // 浠诲姟鍚姩
+extern  u32 Task_Timer_Stop(Task_Typedef *Task);                        // 浠诲姟鍋滄
 
 
 #endif /* __TASK_H */
 
-/******************* (C) COPYRIGHT 2015 陆超 *****END OF FILE******************/
+/******************* (C) COPYRIGHT 2015 闄嗚秴 *****END OF FILE******************/
 

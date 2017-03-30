@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2016 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2016 é™†è¶… **********************************
 * File Name          :  Task.c
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  12/28/2016
-* Description        :  ¶¨Ê±Æ÷
+* Description        :  å®šæ—¶å™¨
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "Task.h"
@@ -18,19 +18,19 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-u32 Task_Timer_Start(Task_Typedef *Task, void * p_context);             // ÈÎÎñÆô¶¯
-u32 Task_Timer_Stop(Task_Typedef *Task);                                // ÈÎÎñÍ£Ö¹
+u32 Task_Timer_Start(Task_Typedef *Task, void * p_context);             // ä»»åŠ¡å¯åŠ¨
+u32 Task_Timer_Stop(Task_Typedef *Task);                                // ä»»åŠ¡åœæ­¢
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           Â½³¬@2016-12-28
+*                           é™†è¶…@2016-12-28
 * Function Name  :  Task_Timer_Start
-* Description    :  ÈÎÎñÆô¶¯
-* Input          :  Task_Typedef *Task  Ïà¹ØÈÎÎñ²ÎÊý
-*                   u32 Period                  ÖÜÆÚ
-*                   void * p_context            Æô¶¯Ê±´«µÝ¸öÈÎÎñµÄ²ÎÊý
+* Description    :  ä»»åŠ¡å¯åŠ¨
+* Input          :  Task_Typedef *Task  ç›¸å…³ä»»åŠ¡å‚æ•°
+*                   u32 Period                  å‘¨æœŸ
+*                   void * p_context            å¯åŠ¨æ—¶ä¼ é€’ä¸ªä»»åŠ¡çš„å‚æ•°
 * Output         :  None
-* Return         :  Æô¶¯³É¹¦»òÕßÊ§°ÜµÄÔ­Òò
+* Return         :  å¯åŠ¨æˆåŠŸæˆ–è€…å¤±è´¥çš„åŽŸå› 
 *******************************************************************************/
 u32 Task_Timer_Start(Task_Typedef *Task, void * p_context)
 {
@@ -45,19 +45,19 @@ u32 Task_Timer_Start(Task_Typedef *Task, void * p_context)
 }// End of void Task_Timer_Start(Task_Typedef *Task, void * p_context)
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-28
+*                           é™†è¶…@2016-12-28
 * Function Name  :  Task_Timer_Stop
-* Description    :  ÈÎÎñÍ£Ö¹
-* Input          :  Task_Typedef *Task  Ïà¹ØÈÎÎñ²ÎÊý
+* Description    :  ä»»åŠ¡åœæ­¢
+* Input          :  Task_Typedef *Task  ç›¸å…³ä»»åŠ¡å‚æ•°
 * Output         :  None
-* Return         :  Í£Ö¹³É¹¦»òÕßÊ§°ÜµÄÔ­Òò
+* Return         :  åœæ­¢æˆåŠŸæˆ–è€…å¤±è´¥çš„åŽŸå› 
 *******************************************************************************/
 u32 Task_Timer_Stop(Task_Typedef *Task)
 {
     u32 Err_Code;
 
 
-    // Í£Ö¹¶¨Ê±Æ÷ Çå¿Õ±äÁ¿
+    // åœæ­¢å®šæ—¶å™¨ æ¸…ç©ºå˜é‡
     Err_Code = app_timer_stop(Task->p_ID);
 
 
@@ -66,7 +66,7 @@ u32 Task_Timer_Stop(Task_Typedef *Task)
 }// End of void Task_Timer_Stop(Task_Typedef *Task)
 
 
-/******************* (C) COPYRIGHT 2016 Â½³¬ **************END OF FILE*********/
+/******************* (C) COPYRIGHT 2016 é™†è¶… **************END OF FILE*********/
 
 
 
