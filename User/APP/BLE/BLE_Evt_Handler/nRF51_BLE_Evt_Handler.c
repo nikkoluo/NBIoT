@@ -128,7 +128,7 @@ void nRF51_BLE_Evt_Handler(ble_evt_t * p_ble_evt)
 }// End of void nRF51_BLE_Evt_Handler(ble_evt_t * p_ble_evt)
 
 
-/******************* (C) COPYRIGHT 2017 Â½³¬ **************END OF FILE*********/
+/******************* (C) COPYRIGHT 2017 Â½³¬ ************* END OF FILE ********/
 
 
 

@@ -381,6 +381,7 @@
           <state>$PROJ_DIR$\..\Library\toolchain</state>
           <state>$PROJ_DIR$\..\User\APP\Debug</state>
           <state>$PROJ_DIR$\..\User\APP\tVOC</state>
+          <state>$PROJ_DIR$\..\User\APP\tVOC\SGPC10</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -2231,11 +2232,38 @@
     </group>
     <group>
       <name>tVOC</name>
+      <group>
+        <name>SGPC10</name>
+        <file>
+          <name>$PROJ_DIR$\..\User\APP\tVOC\SGPC10\sensirion_common.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\User\APP\tVOC\SGPC10\sensirion_common.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\User\APP\tVOC\SGPC10\sgpc1x.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\User\APP\tVOC\SGPC10\sgpc1x.h</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\User\APP\tVOC\SGPC10\sgpc1x_featureset.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\User\APP\tVOC\SGPC10\sgpc1x_featureset.h</name>
+        </file>
+      </group>
       <file>
         <name>$PROJ_DIR$\..\User\APP\tVOC\tVOC.c</name>
       </file>
       <file>
         <name>$PROJ_DIR$\..\User\APP\tVOC\tVOC.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\tVOC\tVOC_SGPC.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\tVOC\tVOC_SGPC.h</name>
       </file>
     </group>
     <group>

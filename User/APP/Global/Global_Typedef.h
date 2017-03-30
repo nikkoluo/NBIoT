@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2016 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2016 ??? **********************************
 * File Name          :  Global_Typedef.h
-* Author             :  Â½³¬
+* Author             :  ???
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -21,6 +21,7 @@
 
 
 /* Private typedef -----------------------------------------------------------*/
+typedef int64_t  s64;
 typedef int32_t  s32;
 typedef int16_t s16;
 typedef int8_t  s8;
@@ -60,4 +61,4 @@ typedef __I uint8_t vuc8;   /*!< Read Only */
 
 #endif /* __GLOBAL_TYPEDEF_H */
 
-/******************* (C) COPYRIGHT 2016 Â½³¬ ********END OF FILE***************/
+/******************* (C) COPYRIGHT 2016 ??? ********END OF FILE***************/
