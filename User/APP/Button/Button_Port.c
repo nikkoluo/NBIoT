@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2016 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2016 é™†è¶… **********************************
 * File Name          :  Button_Port.c
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  12/28/2016
-* Description        :  °´¼üÇı¶¯³ÌĞò
+* Description        :  æŒ‰é”®é©±åŠ¨ç¨‹åº
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "Button_Port.h"
@@ -18,15 +18,15 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void Button_Variable_Init(void);                                        // °´¼üÆÁ±äÁ¿³õÊ¼»¯
-void Button_Pin_Handler(u8 ucPin_No, u8 ucAction);                      // °´¼ü¹Ü½Å´¦Àí
+void Button_Variable_Init(void);                                        // æŒ‰é”®å±å˜é‡åˆå§‹åŒ–
+void Button_Pin_Handler(u8 ucPin_No, u8 ucAction);                      // æŒ‰é”®ç®¡è„šå¤„ç†
 
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           Â½³¬@2014-09-04
+*                           é™†è¶…@2014-09-04
 * Function Name  :  Button_Variable_Init
-* Description    :  °´¼ü±äÁ¿³õÊ¼»¯
+* Description    :  æŒ‰é”®å˜é‡åˆå§‹åŒ–
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -42,28 +42,28 @@ void Button_Variable_Init(void)
 
 
 /*******************************************************************************
-*                           Â½³¬@2016-05-10
+*                           é™†è¶…@2016-05-10
 * Function Name  :  Button_Pin_Handler
-* Description    :  °´¼ü¹Ü½Å´¦Àí
-* Input          :  u8 ucPin_No     ¹Ü½ÅºÅ
-*                   u8 ucAction     ĞĞÎª
+* Description    :  æŒ‰é”®ç®¡è„šå¤„ç†
+* Input          :  u8 ucPin_No     ç®¡è„šå·
+*                   u8 ucAction     è¡Œä¸º
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
 void Button_Pin_Handler(u8 ucPin_No, u8 ucAction)
 {
-    // ´¥·¢
+    // è§¦å‘
     if(ucAction == APP_BUTTON_PUSH)
     {
-//        app_trace_log("Key1°´ÏÂ!\r\n");
+//        app_trace_log("Key1æŒ‰ä¸‹!\r\n");
 
         Button_Push_ISR();
     }
-    // ÊÍ·Å
+    // é‡Šæ”¾
     else
     {
-        // ÏÂ½µÑØ´¦Àí
-//        app_trace_log("Key1ÊÍ·Å!\r\n");
+        // ä¸‹é™æ²¿å¤„ç†
+//        app_trace_log("Key1é‡Šæ”¾!\r\n");
 
         Button_Free_ISR();
 
@@ -73,5 +73,5 @@ void Button_Pin_Handler(u8 ucPin_No, u8 ucAction)
 
 
 
-/******************* (C) COPYRIGHT 2016 Â½³¬ **************END OF FILE*********/
+/******************* (C) COPYRIGHT 2016 é™†è¶… **************END OF FILE*********/
 

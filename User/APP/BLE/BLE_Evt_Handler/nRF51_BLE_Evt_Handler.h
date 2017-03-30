@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2017 陆超 **********************************
+/******************** (C) COPYRIGHT 2017 闄嗚秴 **********************************
 * File Name          :  nRF51_BLE_Evt_Handler.h
-* Author             :  陆超
+* Author             :  闄嗚秴
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -25,12 +25,12 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void nRF51_Sys_Evt_Handler(uint32_t sys_evt);                   // sys事件回调
-extern  void nRF51_BLE_Evt_Handler(ble_evt_t * p_ble_evt);              // BLE事件回调
+extern  void nRF51_Sys_Evt_Handler(uint32_t sys_evt);                   // sys浜嬩欢鍥炶皟
+extern  void nRF51_BLE_Evt_Handler(ble_evt_t * p_ble_evt);              // BLE浜嬩欢鍥炶皟
 
 
 
 #endif /* __NRF51_BLE_EVT_HANDLER_H */
 
-/******************* (C) COPYRIGHT 2017 陆超 *****END OF FILE******************/
+/******************* (C) COPYRIGHT 2017 闄嗚秴 *****END OF FILE******************/
 

@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2016 ¬Ω≥¨ **********************************
+/******************** (C) COPYRIGHT 2016 ÈôÜË∂Ö **********************************
 * File Name          :  Button_Single.h
-* Author             :  ¬Ω≥¨
+* Author             :  ÈôÜË∂Ö
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -25,10 +25,10 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void Single_Button_Handler(void);                               // µ•ª˜¥¶¿Ì
+extern  void Single_Button_Handler(void);                               // ÂçïÂáªÂ§ÑÁêÜ
             
 
 #endif /* __BUTTON_SINGLE_H */
 
-/******************* (C) COPYRIGHT 2016 ¬Ω≥¨ *****END OF FILE******************/
+/******************* (C) COPYRIGHT 2016 ÈôÜË∂Ö *****END OF FILE******************/
 

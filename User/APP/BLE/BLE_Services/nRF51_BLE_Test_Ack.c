@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
 * File Name          :  nRF51_BLE_Test_Ack.c
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  03/10/2017
-* Description        :  ²âÊÔ·şÎñÓ¦´ğ
+* Description        :  æµ‹è¯•æœåŠ¡åº”ç­”
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "nRF51_BLE_Test_Ack.h"
@@ -19,28 +19,28 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void nRF51_BLE_PS_Ack_Handler(u8 * p_data, u16 usLen);                  // nRF51ps·şÎñÓ¦´ğ´¦Àí
-void nRF51_BLE_App_Ack_Handler(u8 * p_data, u16 usLen);                 // nRF51²âÊÔÊı¾İ
-void nRF51_App_Ack(u8 *ucCMD, u8* ucData, u16 usLen);                   // Ó¦´ğ
+void nRF51_BLE_PS_Ack_Handler(u8 * p_data, u16 usLen);                  // nRF51psæœåŠ¡åº”ç­”å¤„ç†
+void nRF51_BLE_App_Ack_Handler(u8 * p_data, u16 usLen);                 // nRF51æµ‹è¯•æ•°æ®
+void nRF51_App_Ack(u8 *ucCMD, u8* ucData, u16 usLen);                   // åº”ç­”
 void nRF51_BLE_CMD_Table_Handler(u8 * p_data);
-u8 nRF51_BLE_Test_LCD_Prepare(void);                                    // ×¼±¸²âÊÔÏÔÊ¾Êı¾İ
+u8 nRF51_BLE_Test_LCD_Prepare(void);                                    // å‡†å¤‡æµ‹è¯•æ˜¾ç¤ºæ•°æ®
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           Â½³¬@2017-03-10
+*                           é™†è¶…@2017-03-10
 * Function Name  :  nRF51_BLE_PS_Ack_Handler
-* Description    :  nRF51²âÊÔÊı¾İ´¦Àí
-* Input          :  u8* p_data          ½ÓÊÕÊı¾İÖ¸Õë
-*                   u16 usLen           Êı¾İ³¤¶È
+* Description    :  nRF51æµ‹è¯•æ•°æ®å¤„ç†
+* Input          :  u8* p_data          æ¥æ”¶æ•°æ®æŒ‡é’ˆ
+*                   u16 usLen           æ•°æ®é•¿åº¦
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
 void nRF51_BLE_PS_Ack_Handler(u8 * p_data, u16 usLen)
 {
 
-    app_trace_log("    ÊÕµ½ÏûÏ¢!\r\n");
+    app_trace_log("    æ”¶åˆ°æ¶ˆæ¯!\r\n");
 
-    // nRF51²âÊÔÃüÁî
+    // nRF51æµ‹è¯•å‘½ä»¤
     if (p_data[0] == 'C' && p_data[1] == 'G')
     {
         nRF51_BLE_App_Ack_Handler(&p_data[2], usLen - 2);
@@ -55,11 +55,11 @@ void nRF51_BLE_PS_Ack_Handler(u8 * p_data, u16 usLen)
 
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-10
+*                           é™†è¶…@2017-03-10
 * Function Name  :  nRF51_BLE_App_Ack_Handler
-* Description    :  nRF51²âÊÔÊı¾İ´¦Àí
-* Input          :  u8* p_data          ½ÓÊÕÊı¾İÖ¸Õë
-*                   u16 usLen           Êı¾İ³¤¶È
+* Description    :  nRF51æµ‹è¯•æ•°æ®å¤„ç†
+* Input          :  u8* p_data          æ¥æ”¶æ•°æ®æŒ‡é’ˆ
+*                   u16 usLen           æ•°æ®é•¿åº¦
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -71,12 +71,12 @@ void nRF51_BLE_App_Ack_Handler(u8 * p_data, u16 usLen)
 }// End of void nRF51_BLE_App_Ack_Handler(u8 * p_data, u16 usLen)
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-13
+*                           é™†è¶…@2017-03-13
 * Function Name  :  nRF51_BLE_Test_LCD_Prepare
-* Description    :  ×¼±¸²âÊÔÏÔÊ¾Êı¾İ
+* Description    :  å‡†å¤‡æµ‹è¯•æ˜¾ç¤ºæ•°æ®
 * Input          :  None
 * Output         :  None
-* Return         :  1 ³É¹¦ 0 Ê§°Ü
+* Return         :  1 æˆåŠŸ 0 å¤±è´¥
 *******************************************************************************/
 u8 nRF51_BLE_Test_LCD_Prepare(void)
 {
@@ -87,12 +87,12 @@ u8 nRF51_BLE_Test_LCD_Prepare(void)
 }// End of u8 nRF51_BLE_Test_LCD_Prepare(void)
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-08
+*                           é™†è¶…@2017-03-08
 * Function Name  :  nRF51_Test_Ack
-* Description    :  ²âÊÔÃüÁîÓ¦´ğ
-* Input          :  u8 *ucCMD   ´ı»Ø¸´ÃüÁî
-*                   u8* ucData  ´ı»Ø¸´Êı¾İ
-*                   u16 usLen   Êı¾İ³¤¶È
+* Description    :  æµ‹è¯•å‘½ä»¤åº”ç­”
+* Input          :  u8 *ucCMD   å¾…å›å¤å‘½ä»¤
+*                   u8* ucData  å¾…å›å¤æ•°æ®
+*                   u16 usLen   æ•°æ®é•¿åº¦
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -102,22 +102,22 @@ void nRF51_App_Ack(u8 *ucCMD, u8* ucData, u16 usLen)
     u8 Buffer_Len = 0;
     u32 Err_Code;
 
-    // ¼àÌı
+    // ç›‘å¬
     if (nRF51_BLE_Service.Message_Listening_En != 1)
     {
-        app_trace_log("    Message Service Î´¿ªÆô!\r\n");
+        app_trace_log("    Message Service æœªå¼€å¯!\r\n");
         return;
     }
 
-    // °üÍ·
+    // åŒ…å¤´
     Buffer[Buffer_Len++] = 'C';
     Buffer[Buffer_Len++] = 'G';
 
-    // 2×Ö½ÚÃüÁîÂë
+    // 2å­—èŠ‚å‘½ä»¤ç 
     memcpy(&Buffer[Buffer_Len], ucCMD, 2);
     Buffer_Len += 2;
 
-    // Êı¾İÊµÌå
+    // æ•°æ®å®ä½“
     if (usLen)
     {
         memcpy(&Buffer[Buffer_Len], ucData, usLen);
@@ -130,15 +130,15 @@ void nRF51_App_Ack(u8 *ucCMD, u8* ucData, u16 usLen)
         APP_ERROR_HANDLER(Err_Code);
     }
     
-//app_trace_log("    Message Service »Ø¸´\r\n");
+//app_trace_log("    Message Service å›å¤\r\n");
 
 }// End of void nRF51_App_Ack(u8 *ucCMD, u8* ucData, u16 usLen)
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-15
+*                           é™†è¶…@2017-03-15
 * Function Name  :  nRF51_BLE_CMD_Table_Handler
-* Description    :  nRF51²âÊÔÊı¾İ´¦Àí
-* Input          :  u8* p_data          ½ÓÊÕÊı¾İÖ¸Õë
+* Description    :  nRF51æµ‹è¯•æ•°æ®å¤„ç†
+* Input          :  u8* p_data          æ¥æ”¶æ•°æ®æŒ‡é’ˆ
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -161,7 +161,7 @@ void nRF51_BLE_CMD_Table_Handler(u8 * p_data)
 
 }// End of void nRF51_BLE_CMD_Table_Handler(u8 * p_data)
 
-/******************* (C) COPYRIGHT 2017 Â½³¬ **************END OF FILE*********/
+/******************* (C) COPYRIGHT 2017 é™†è¶… **************END OF FILE*********/
 
 
 

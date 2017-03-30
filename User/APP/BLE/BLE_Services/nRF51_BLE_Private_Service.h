@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
 * File Name          :  nRF51_BLE_Private_Service.h
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51822
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  01/13/2017
-* Description        :  Ë½ÓĞ·şÎñ header file
+* Description        :  ç§æœ‰æœåŠ¡ header file
 *******************************************************************************/
 
 /* Define to prevent recursive inclusion -------------------------------------*/
@@ -17,11 +17,11 @@
 
 
 /* Private define ------------------------------------------------------------*/
-#define     BLE_NRF51_MAX_DATA_LEN       20                              // ×î´ó·¢ËÍ×Ö½Ú
+#define     BLE_NRF51_MAX_DATA_LEN       20                              // æœ€å¤§å‘é€å­—èŠ‚
 
-#define     BLE_UUID_NRF51               0x0000                          // Amber·şÎñUUID
-#define     NRF51_TEMP_CHARACTERISTIC    0xAA55                          // ÎÂ¶ÈUUID
-#define     NRF51_MESSAGE_CHARACTERISTIC 0xBB55                          // ÏûÏ¢UUID
+#define     BLE_UUID_NRF51               0x0000                          // AmberæœåŠ¡UUID
+#define     NRF51_TEMP_CHARACTERISTIC    0xAA55                          // æ¸©åº¦UUID
+#define     NRF51_MESSAGE_CHARACTERISTIC 0xBB55                          // æ¶ˆæ¯UUID
 
 #define     NRF51_BASE_UUID              {0x6D, 0x66, 0x70, 0x44, 0x73, 0x66, 0x62, 0x75, 0x66, 0x45, 0x76, 0x64, 0x00, 0x00, 0x6C, 0x22}
 
@@ -32,12 +32,12 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void nRF51_BLE_Private_Services_Init(void);                     // Ë½ÓĞ·şÎñ³õÊ¼»¯    
-extern  void nRF51_BLE_Private_Evt(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt);   // nRF51ÊÂ¼ş´¦Àí
-extern  void Temp_BLE_Service_Update(BLE_Service_Typedef * pnRF51);     // ¸üĞÂÎÂ¶È
-extern  u32 nRF51_BLE_String_Send(BLE_Service_Typedef * pnRF51, u16 usValue_Handle, u8 * pString, u16 usLen); // ·¢ËÍÊı¾İ
+extern  void nRF51_BLE_Private_Services_Init(void);                     // ç§æœ‰æœåŠ¡åˆå§‹åŒ–    
+extern  void nRF51_BLE_Private_Evt(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt);   // nRF51äº‹ä»¶å¤„ç†
+extern  void Temp_BLE_Service_Update(BLE_Service_Typedef * pnRF51);     // æ›´æ–°æ¸©åº¦
+extern  u32 nRF51_BLE_String_Send(BLE_Service_Typedef * pnRF51, u16 usValue_Handle, u8 * pString, u16 usLen); // å‘é€æ•°æ®
 
 #endif /* __NRF51_BLE_PRIVATE_SERVICE_H */
 
-/******************* (C) COPYRIGHT 2017 Â½³¬ **** END OF FILE *****************/
+/******************* (C) COPYRIGHT 2017 é™†è¶… **** END OF FILE *****************/
 

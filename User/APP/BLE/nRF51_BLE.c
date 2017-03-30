@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
 * File Name          :  nRF51_BLE.c
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  01/11/2017
-* Description        :  nRF51_BLE ÈÎÎñ
+* Description        :  nRF51_BLE ä»»åŠ¡
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "nRF51_BLE.h"
@@ -22,19 +22,19 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void nRF51_BLE_Task_Create(void);                                       // BLEÈÎÎñ´´½¨
-void nRF51_BLE_Task_Handle(void *p_arg);                                // BLEÈÎÎñ
-void nRF51_BLE_Slave_Evt_Handle(void *p_arg);                           // ´ÓÈÎÎñ  
-void nRF51_BLE_Master_Evt_Handle(void *p_arg);                          // Ö÷ÈÎÎñ
-void nRF51_BLE_Int_Evt_Handle(void *p_arg);                             // ÌØÊâÈÎÎñ
-void nRF51_BLE_Int_Evt_Set(u16 usEvent_ID);                             // ÌØÊâÈÎÎñÉèÖÃ
-void nRF51_BLE_Cycle_Evt_Handle(void *p_arg);                           // ÖÜÆÚÈÎÎñ´¦Àí
+void nRF51_BLE_Task_Create(void);                                       // BLEä»»åŠ¡åˆ›å»º
+void nRF51_BLE_Task_Handle(void *p_arg);                                // BLEä»»åŠ¡
+void nRF51_BLE_Slave_Evt_Handle(void *p_arg);                           // ä»ä»»åŠ¡  
+void nRF51_BLE_Master_Evt_Handle(void *p_arg);                          // ä¸»ä»»åŠ¡
+void nRF51_BLE_Int_Evt_Handle(void *p_arg);                             // ç‰¹æ®Šä»»åŠ¡
+void nRF51_BLE_Int_Evt_Set(u16 usEvent_ID);                             // ç‰¹æ®Šä»»åŠ¡è®¾ç½®
+void nRF51_BLE_Cycle_Evt_Handle(void *p_arg);                           // å‘¨æœŸä»»åŠ¡å¤„ç†
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           Â½³¬@2017-01-11
+*                           é™†è¶…@2017-01-11
 * Function Name  :  nRF51_BLE_Task_Create
-* Description    :  ´´½¨BLEÈÎÎñ
+* Description    :  åˆ›å»ºBLEä»»åŠ¡
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -43,10 +43,10 @@ void nRF51_BLE_Task_Create(void)
 {
     u32 err_code = NRF_SUCCESS;
 
-    // ³õÊ¼»¯BLE
+    // åˆå§‹åŒ–BLE
     nRF51_BLE_Init();
     
-    // ÅäÖÃ²ÎÊı ÖÜÆÚÄ£Ê½ÔËĞĞ
+    // é…ç½®å‚æ•° å‘¨æœŸæ¨¡å¼è¿è¡Œ
     BLE_Task.Run_Mode        = APP_TIMER_MODE_REPEATED;
     BLE_Task.Timeout_handler = nRF51_BLE_Task_Handle;
     BLE_Task.Period          = TASK_BLE_PERIOD;
@@ -55,7 +55,7 @@ void nRF51_BLE_Task_Create(void)
                                  BLE_Task.Run_Mode,
                                  BLE_Task.Timeout_handler);
 
-    // ¿ªÊ¼ÈÎÎñ
+    // å¼€å§‹ä»»åŠ¡
     err_code |= Task_Timer_Start(&BLE_Task, NULL);
     if (err_code != NRF_SUCCESS)
     {
@@ -69,9 +69,9 @@ void nRF51_BLE_Task_Create(void)
 
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-11
+*                           é™†è¶…@2017-01-11
 * Function Name  :  nRF51_BLE_Task_Handle
-* Description    :  BLEÈÎÎñ
+* Description    :  BLEä»»åŠ¡
 * Input          :  void *p_arg
 * Output         :  None
 * Return         :  None
@@ -83,9 +83,9 @@ void nRF51_BLE_Task_Handle(void *p_arg)
 }// End of void nRF51_BLE_Task_Handle(void *p_arg)
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-02
+*                           é™†è¶…@2017-03-02
 * Function Name  :  nRF51_BLE_Int_Evt_Handle
-* Description    :  ÌØÊâÈÎÎñ´¦Àí
+* Description    :  ç‰¹æ®Šä»»åŠ¡å¤„ç†
 * Input          :  void *p_arg
 * Output         :  None
 * Return         :  None
@@ -97,9 +97,9 @@ void nRF51_BLE_Int_Evt_Handle(void *p_arg)
 }// End of void nRF51_BLE_Int_Evt_Handle(void *p_arg)
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-02
+*                           é™†è¶…@2017-03-02
 * Function Name  :  nRF51_BLE_Int_Evt_Set
-* Description    :  ÌØÊâÈÎÎñÉèÖÃ
+* Description    :  ç‰¹æ®Šä»»åŠ¡è®¾ç½®
 * Input          :  u16 usEvent_ID
 * Output         :  None
 * Return         :  None
@@ -111,9 +111,9 @@ void nRF51_BLE_Int_Evt_Set(u16 usEvent_ID)
 }// End of void nRF51_BLE_Int_Evt_Set(u16 usEvent_ID)
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-02
+*                           é™†è¶…@2017-03-02
 * Function Name  :  nRF51_BLE_Cycle_Evt_Handle
-* Description    :  ÖÜÆÚĞÔÈÎÎñ´¦Àí
+* Description    :  å‘¨æœŸæ€§ä»»åŠ¡å¤„ç†
 * Input          :  void *p_arg
 * Output         :  None
 * Return         :  None
@@ -124,9 +124,9 @@ void nRF51_BLE_Cycle_Evt_Handle(void *p_arg)
 }// End of void nRF51_BLE_Cycle_Evt_Handle(void *p_arg)
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-13
+*                           é™†è¶…@2017-01-13
 * Function Name  :  nRF51_BLE_Master_Evt_Handle
-* Description    :  Ö÷ÈÎÎñ´¦Àí
+* Description    :  ä¸»ä»»åŠ¡å¤„ç†
 * Input          :  void *p_arg
 * Output         :  None
 * Return         :  None
@@ -142,9 +142,9 @@ void nRF51_BLE_Master_Evt_Handle(void *p_arg)
 
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-13
+*                           é™†è¶…@2017-01-13
 * Function Name  :  nRF51_BLE_Slave_Evt_Handle
-* Description    :  ´ÓÈÎÎñ´¦Àí
+* Description    :  ä»ä»»åŠ¡å¤„ç†
 * Input          :  void *p_arg
 * Output         :  None
 * Return         :  None
@@ -155,7 +155,7 @@ void nRF51_BLE_Slave_Evt_Handle(void *p_arg)
     
 }// End of void nRF51_BLE_Slave_Evt_Handle(void *p_arg)
 
-/******************* (C) COPYRIGHT 2017 Â½³¬ **************END OF FILE*********/
+/******************* (C) COPYRIGHT 2017 é™†è¶… **************END OF FILE*********/
 
 
 

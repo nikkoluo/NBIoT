@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2016 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2016 é™†è¶… **********************************
 * File Name          :  Button.h
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -17,11 +17,11 @@
 
 
 /* Private define ------------------------------------------------------------*/
-#define     CLICK_MIN_DURATION          25                              // µ¥»÷×îĞ¡³ÖĞøÊ±¼äms
-#define     CLICK_MAX_DURATION          800                             // µ¥»÷×î´ó³ÖĞøÊ±¼äms
-#define     DOUBLE_HIT_INTERVAL         200                             // µ¥»÷Ê¶±ğ¼ä¸ô Á½´Îµ¥»÷ÔÚ¼ä¸ôÄÚÔòÊÓÎªÁ¬»÷
-#define     LONG_CLICK_MIN_DURATION     1500                            // ³¤°´×îĞ¡³ÖĞøÊ±¼äms
-#define     RESET_CLICK_MIN_DURATION    10000                           // ÖØÆôÏµÍ³
+#define     CLICK_MIN_DURATION          25                              // å•å‡»æœ€å°æŒç»­æ—¶é—´ms
+#define     CLICK_MAX_DURATION          800                             // å•å‡»æœ€å¤§æŒç»­æ—¶é—´ms
+#define     DOUBLE_HIT_INTERVAL         200                             // å•å‡»è¯†åˆ«é—´éš” ä¸¤æ¬¡å•å‡»åœ¨é—´éš”å†…åˆ™è§†ä¸ºè¿å‡»
+#define     LONG_CLICK_MIN_DURATION     1500                            // é•¿æŒ‰æœ€å°æŒç»­æ—¶é—´ms
+#define     RESET_CLICK_MIN_DURATION    10000                           // é‡å¯ç³»ç»Ÿ
 
 /* Private typedef -----------------------------------------------------------*/
 
@@ -29,12 +29,12 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void Button_Timer_Handle(void *p_arg);                          // ButtonÈÎÎñ
-extern  void Button_Task_Create(void);                                  // ´´½¨ButtonÈÎÎñ
-extern  void Button_Free_ISR(void);                                     // ButtonÊÍ·ÅÖĞ¶Ï´¦Àí
-extern  void Button_Push_ISR(void);                                     // ButtonÏÂ½µÑØÖĞ¶Ï´¦Àí
+extern  void Button_Timer_Handle(void *p_arg);                          // Buttonä»»åŠ¡
+extern  void Button_Task_Create(void);                                  // åˆ›å»ºButtonä»»åŠ¡
+extern  void Button_Free_ISR(void);                                     // Buttoné‡Šæ”¾ä¸­æ–­å¤„ç†
+extern  void Button_Push_ISR(void);                                     // Buttonä¸‹é™æ²¿ä¸­æ–­å¤„ç†
 
 #endif /* __BUTTON_H */
 
-/******************* (C) COPYRIGHT 2016 Â½³¬ *****END OF FILE******************/
+/******************* (C) COPYRIGHT 2016 é™†è¶… *****END OF FILE******************/
 

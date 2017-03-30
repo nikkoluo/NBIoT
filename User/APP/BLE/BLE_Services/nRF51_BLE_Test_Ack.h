@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
 * File Name          :  nRF51_BLE_Test_Ack.h
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51822
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  03/10/2017
-* Description        :  ²âÊÔÓ¦´ğ header file
+* Description        :  æµ‹è¯•åº”ç­” header file
 *******************************************************************************/
 
 /* Define to prevent recursive inclusion -------------------------------------*/
@@ -17,11 +17,11 @@
 
 
 /* Private define ------------------------------------------------------------*/
-#define     PS_CMD_LCD_TEST             0x0001                          // ¶ÎÂëÆÁ²âÊÔÃüÁî
-#define     PS_CMD_HALL_TEST            0x0002                          // »ô¶û²âÊÔÃüÁî
-#define     PS_CMD_GET_TOKEN            0x0003                          // »ñÈ¡token²âÊÔÃüÁî
-#define     PS_CMD_SET_TOKEN            0x0004                          // ÉèÖÃtoken²âÊÔÃüÁî
-#define     PS_CMD_REBOOT               0x0005                          // ÖØÆô
+#define     PS_CMD_LCD_TEST             0x0001                          // æ®µç å±æµ‹è¯•å‘½ä»¤
+#define     PS_CMD_HALL_TEST            0x0002                          // éœå°”æµ‹è¯•å‘½ä»¤
+#define     PS_CMD_GET_TOKEN            0x0003                          // è·å–tokenæµ‹è¯•å‘½ä»¤
+#define     PS_CMD_SET_TOKEN            0x0004                          // è®¾ç½®tokenæµ‹è¯•å‘½ä»¤
+#define     PS_CMD_REBOOT               0x0005                          // é‡å¯
 
 /* Private typedef -----------------------------------------------------------*/
 
@@ -29,10 +29,10 @@
  
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void nRF51_BLE_PS_Ack_Handler(u8 * p_data, u16 usLen);          // nRF51²âÊÔÊı¾İ´¦Àí
-extern  u8 nRF51_BLE_Test_LCD_Prepare(void);                            // ×¼±¸²âÊÔÏÔÊ¾Êı¾İ
+extern  void nRF51_BLE_PS_Ack_Handler(u8 * p_data, u16 usLen);          // nRF51æµ‹è¯•æ•°æ®å¤„ç†
+extern  u8 nRF51_BLE_Test_LCD_Prepare(void);                            // å‡†å¤‡æµ‹è¯•æ˜¾ç¤ºæ•°æ®
 
 #endif /* __NRF51_BLE_TEST_ACK_H */
 
-/******************* (C) COPYRIGHT 2017 Â½³¬ **** END OF FILE *****************/
+/******************* (C) COPYRIGHT 2017 é™†è¶… **** END OF FILE *****************/
 

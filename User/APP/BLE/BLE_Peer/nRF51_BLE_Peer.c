@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
 * File Name          :  nRF51_BLE_Peer.c
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  01/06/2017
-* Description        :  nRF51_BLE °ó¶¨
+* Description        :  nRF51_BLE ç»‘å®š
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "nRF51_BLE_Peer.h"
@@ -21,13 +21,13 @@
 
 /* Private function prototypes -----------------------------------------------*/
 u32 nRF51_BLE_Peer_Manager_Evt_Handler(dm_handle_t const * p_handle, dm_event_t const  * p_event, ret_code_t event_result);
-void nRF51_BLE_Peer_Manager_Init(bool erase_bonds);                     // °ó¶¨¹ÜÀí³õÊ¼»¯
+void nRF51_BLE_Peer_Manager_Init(bool erase_bonds);                     // ç»‘å®šç®¡ç†åˆå§‹åŒ–
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           Â½³¬@2017-02-14
+*                           é™†è¶…@2017-02-14
 * Function Name  :  nRF51_BLE_Peer_Manager_Init
-* Description    :  °ó¶¨³õÊ¼»¯
+* Description    :  ç»‘å®šåˆå§‹åŒ–
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -62,9 +62,9 @@ void nRF51_BLE_Peer_Manager_Init(bool erase_bonds)
 }// End of void nRF51_BLE_Peer_Manager_Init(bool erase_bonds)
 
 /*******************************************************************************
-*                           Â½³¬@2017-02-14
+*                           é™†è¶…@2017-02-14
 * Function Name  :  nRF51_BLE_Peer_Manager_Evt_Handler
-* Description    :  °ó¶¨»Øµ÷
+* Description    :  ç»‘å®šå›è°ƒ
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -83,7 +83,7 @@ u32 nRF51_BLE_Peer_Manager_Evt_Handler(dm_handle_t const * p_handle, dm_event_t 
     return NRF_SUCCESS;
 }
 
-/******************* (C) COPYRIGHT 2017 Â½³¬ **************END OF FILE*********/
+/******************* (C) COPYRIGHT 2017 é™†è¶… **************END OF FILE*********/
 
 
 

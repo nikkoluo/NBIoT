@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
 * File Name          :  nRF51_BLE_Private_Service.c
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51822
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  01/13/2017
-* Description        :  Ë½ÓÐ·þÎñÓ¦ÓÃ³ÌÐò
+* Description        :  ç§æœ‰æœåŠ¡åº”ç”¨ç¨‹åº
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "nRF51_BLE_Private_Service.h"
@@ -18,39 +18,39 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void nRF51_BLE_Private_Services_Init(void);                             // Ë½ÓÐ·þÎñ³õÊ¼»¯  
-void nRF51_BLE_Receive_Data_Handler(u8 * p_data, u16 length);           // nRF51½ÓÊÕÊý¾Ý´¦Àí
-u32 nRF51_Temp_Characteristic_Add(BLE_Service_Typedef * pnRF51);        // Ôö¼ÓÎÂ¶È·þÎñ
-u32 nRF51_Message_Characteristic_Add(BLE_Service_Typedef * pnRF51);     // Ôö¼ÓÍ¨Ñ¶·þÎñ
-u8 nRF51_Temp_Humi_Encode(s16 sTemp, u16 usHumi, u8 * pBuffer);         // ÎÂÊª¶ÈÊý¾Ý´ò°ü
-void nRF51_BLE_Private_Evt(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt);   // nRF51ÊÂ¼þ´¦Àí
-void nRF51_BLE_ON_Write(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt);      // nRF51½ÓÊÕ´¦Àí
-void nRF51_BLE_ON_Disconnect(BLE_Service_Typedef * pnRF51);             // ¶Ï¿ªÁ¬½Ó
-void nRF51_BLE_ON_Connect(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt);    // Á¬½Ó
-u32 nRF51_BLE_String_Send(BLE_Service_Typedef * pnRF51, u16 usValue_Handle, u8 * pString, u16 usLen); // ·¢ËÍÊý¾Ý
-void Temp_BLE_Service_Update(BLE_Service_Typedef * pnRF51);             // ¸üÐÂÎÂ¶È
+void nRF51_BLE_Private_Services_Init(void);                             // ç§æœ‰æœåŠ¡åˆå§‹åŒ–  
+void nRF51_BLE_Receive_Data_Handler(u8 * p_data, u16 length);           // nRF51æŽ¥æ”¶æ•°æ®å¤„ç†
+u32 nRF51_Temp_Characteristic_Add(BLE_Service_Typedef * pnRF51);        // å¢žåŠ æ¸©åº¦æœåŠ¡
+u32 nRF51_Message_Characteristic_Add(BLE_Service_Typedef * pnRF51);     // å¢žåŠ é€šè®¯æœåŠ¡
+u8 nRF51_Temp_Humi_Encode(s16 sTemp, u16 usHumi, u8 * pBuffer);         // æ¸©æ¹¿åº¦æ•°æ®æ‰“åŒ…
+void nRF51_BLE_Private_Evt(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt);   // nRF51äº‹ä»¶å¤„ç†
+void nRF51_BLE_ON_Write(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt);      // nRF51æŽ¥æ”¶å¤„ç†
+void nRF51_BLE_ON_Disconnect(BLE_Service_Typedef * pnRF51);             // æ–­å¼€è¿žæŽ¥
+void nRF51_BLE_ON_Connect(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt);    // è¿žæŽ¥
+u32 nRF51_BLE_String_Send(BLE_Service_Typedef * pnRF51, u16 usValue_Handle, u8 * pString, u16 usLen); // å‘é€æ•°æ®
+void Temp_BLE_Service_Update(BLE_Service_Typedef * pnRF51);             // æ›´æ–°æ¸©åº¦
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           Â½³¬@2017-01-15
+*                           é™†è¶…@2017-01-15
 * Function Name  :  nRF51_BLE_Receive_Data_Handler
-* Description    :  nRF51½ÓÊÕÊý¾Ý´¦Àí
-* Input          :  u8* p_data          ½ÓÊÕÊý¾ÝÖ¸Õë
-*                   u16 length          Êý¾Ý³¤¶È
+* Description    :  nRF51æŽ¥æ”¶æ•°æ®å¤„ç†
+* Input          :  u8* p_data          æŽ¥æ”¶æ•°æ®æŒ‡é’ˆ
+*                   u16 length          æ•°æ®é•¿åº¦
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
 void nRF51_BLE_Receive_Data_Handler(u8 * p_data, u16 length)
 {
 
-    app_trace_log("    ÊÕµ½ÏûÏ¢!\r\n");
+    app_trace_log("    æ”¶åˆ°æ¶ˆæ¯!\r\n");
     
 }// End of void nRF51_BLE_Receive_Data_Handler(u8 * p_data, u16 length)
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-13
+*                           é™†è¶…@2017-01-13
 * Function Name  :  nRF51_BLE_Private_Services_Init
-* Description    :  nRF51 BLE Ë½ÓÐ·þÎñ³õÊ¼»¯    
+* Description    :  nRF51 BLE ç§æœ‰æœåŠ¡åˆå§‹åŒ–    
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -62,20 +62,20 @@ void nRF51_BLE_Private_Services_Init(void)
     ble_uuid_t      BLE_UUID;
 
 
-    // ·þÎñ²ÎÊý³õÊ¼»¯
+    // æœåŠ¡å‚æ•°åˆå§‹åŒ–
     nRF51_BLE_Service.Conn_Handle  = BLE_CONN_HANDLE_INVALID;
 
     
 
-    // Ôö¼Ó·þÎñUUID
+    // å¢žåŠ æœåŠ¡UUID
     Err_Code = sd_ble_uuid_vs_add(&nRF51_Base_UUID, &nRF51_BLE_Service.UUID_Type);
     APP_ERROR_CHECK(Err_Code);
 
-    // ÉùÃ÷UUIDÀàÐÍºÍÖµ 
+    // å£°æ˜ŽUUIDç±»åž‹å’Œå€¼ 
     BLE_UUID.type = nRF51_BLE_Service.UUID_Type;
     BLE_UUID.uuid = BLE_UUID_NRF51;
 
-    // Ôö¼ÓÒ»¸ö·þÎñ
+    // å¢žåŠ ä¸€ä¸ªæœåŠ¡
     Err_Code = sd_ble_gatts_service_add(BLE_GATTS_SRVC_TYPE_PRIMARY,
                                         &BLE_UUID,
                                         &nRF51_BLE_Service.Service_Handle);
@@ -83,7 +83,7 @@ void nRF51_BLE_Private_Services_Init(void)
     APP_ERROR_CHECK(Err_Code);
     
 
-    // Ôö¼Ó·¢ËÍ·þÎñ
+    // å¢žåŠ å‘é€æœåŠ¡
     nRF51_BLE_Service.Temp_Humi_Listening_En = false;
     Err_Code = nRF51_Temp_Characteristic_Add(&nRF51_BLE_Service);
     APP_ERROR_CHECK(Err_Code);
@@ -96,16 +96,16 @@ void nRF51_BLE_Private_Services_Init(void)
 
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-15
+*                           é™†è¶…@2017-01-15
 * Function Name  :  nRF51_Temp_Characteristic_Add
-* Description    :  Ôö¼ÓÎÂ¶È·¢ËÍ·þÎñ
-* Input          :  BLE_Service_Typedef * pnRF51 ·þÎñ²ÎÊý
+* Description    :  å¢žåŠ æ¸©åº¦å‘é€æœåŠ¡
+* Input          :  BLE_Service_Typedef * pnRF51 æœåŠ¡å‚æ•°
 * Output         :  None
 * Return         :  NRF_SUCCESS on success, otherwise an error code.
 *******************************************************************************/
 u32 nRF51_Temp_Characteristic_Add(BLE_Service_Typedef * pnRF51) 
 {
-    // Ôö¼ÓËùÓÐÈ¨ÌØÕ÷
+    // å¢žåŠ æ‰€æœ‰æƒç‰¹å¾
     ble_gatts_char_md_t char_md;
     ble_gatts_char_pf_t accel_pf;
     ble_gatts_attr_t    attr_char_value;
@@ -114,7 +114,7 @@ u32 nRF51_Temp_Characteristic_Add(BLE_Service_Typedef * pnRF51)
     u8 ucEncode[BLE_NRF51_MAX_DATA_LEN];
     static char User_Desc[] = "Temp&Humi";
 
-    // ¿Í»§¶ËÌØÕ÷ÖµÅäÖÃÃèÊö·û ¹ØÓÚnotify
+    // å®¢æˆ·ç«¯ç‰¹å¾å€¼é…ç½®æè¿°ç¬¦ å…³äºŽnotify
     ble_gatts_attr_md_t cccd_md;
     
     memset(&cccd_md, 0, sizeof(cccd_md));
@@ -123,31 +123,31 @@ u32 nRF51_Temp_Characteristic_Add(BLE_Service_Typedef * pnRF51)
     cccd_md.vloc = BLE_GATTS_VLOC_STACK;
      
     
-    // ÉèÖÃÄÚÈÝ¸ñÊ½
+    // è®¾ç½®å†…å®¹æ ¼å¼
     memset(&accel_pf, 0, sizeof(accel_pf));
     accel_pf.format    = BLE_GATT_CPF_FORMAT_UTF8S;
 
     memset(&char_md, 0, sizeof(char_md));
 
 
-    char_md.char_props.notify       = 1;                            // ¼àÌýÈ¨ÏÞ
-    char_md.char_props.read         = 0;                            // ¶ÁÈ¨ÏÞ
-    char_md.char_props.write        = 0;                            // Ð´È¨ÏÞ
-    char_md.p_char_user_desc        = (u8 *) User_Desc;             // ¹¦ÄÜÃèÊö·û
+    char_md.char_props.notify       = 1;                            // ç›‘å¬æƒé™
+    char_md.char_props.read         = 0;                            // è¯»æƒé™
+    char_md.char_props.write        = 0;                            // å†™æƒé™
+    char_md.p_char_user_desc        = (u8 *) User_Desc;             // åŠŸèƒ½æè¿°ç¬¦
     char_md.char_user_desc_size     = strlen(User_Desc);
     char_md.char_user_desc_max_size = strlen(User_Desc);
-    char_md.p_char_pf               = &accel_pf;                    // ¸ñÊ½
+    char_md.p_char_pf               = &accel_pf;                    // æ ¼å¼
     char_md.p_user_desc_md          = NULL;
-    char_md.p_cccd_md               = &cccd_md;                         // ¿Í»§¶ËÅäÖÃÌØÕ÷ÃèÊö·ûÈ¨ÏÞ 0x2902 ²é¿´NotifyÍ¨Öª
+    char_md.p_cccd_md               = &cccd_md;                         // å®¢æˆ·ç«¯é…ç½®ç‰¹å¾æè¿°ç¬¦æƒé™ 0x2902 æŸ¥çœ‹Notifyé€šçŸ¥
     char_md.p_sccd_md               = NULL;
 
-    // ÉùÃ÷ÀàÐÍºÍÌØÕ÷×Ö
+    // å£°æ˜Žç±»åž‹å’Œç‰¹å¾å­—
     BLE_UUID.type = pnRF51->UUID_Type;
     BLE_UUID.uuid = NRF51_TEMP_CHARACTERISTIC;
 
     memset(&attr_md, 0, sizeof(attr_md));
 
-    // Ã»ÓÐ¶ÁÐ´È¨ÏÞ
+    // æ²¡æœ‰è¯»å†™æƒé™
     BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS(&attr_md.read_perm);
     BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS(&attr_md.write_perm);
 
@@ -173,16 +173,16 @@ u32 nRF51_Temp_Characteristic_Add(BLE_Service_Typedef * pnRF51)
 }// End of u32 nRF51_Temp_Characteristic_Add(BLE_Service_Typedef * pnRF51) 
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-09
+*                           é™†è¶…@2017-03-09
 * Function Name  :  nRF51_Message_Characteristic_Add
-* Description    :  Ôö¼ÓÍ¨Ñ¶·þÎñ
-* Input          :  BLE_Service_Typedef * pnRF51 ·þÎñ²ÎÊý
+* Description    :  å¢žåŠ é€šè®¯æœåŠ¡
+* Input          :  BLE_Service_Typedef * pnRF51 æœåŠ¡å‚æ•°
 * Output         :  None
 * Return         :  NRF_SUCCESS on success, otherwise an error code.
 *******************************************************************************/
 u32 nRF51_Message_Characteristic_Add(BLE_Service_Typedef * pnRF51) 
 {
-    // Ôö¼ÓËùÓÐÈ¨ÌØÕ÷
+    // å¢žåŠ æ‰€æœ‰æƒç‰¹å¾
     ble_gatts_char_md_t char_md;
 //    ble_gatts_char_pf_t accel_pf;
     ble_gatts_attr_t    attr_char_value;
@@ -196,30 +196,30 @@ u32 nRF51_Message_Characteristic_Add(BLE_Service_Typedef * pnRF51)
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.write_perm);
     cccd_md.vloc = BLE_GATTS_VLOC_STACK;
      
-    // ÉèÖÃÄÚÈÝ¸ñÊ½
+    // è®¾ç½®å†…å®¹æ ¼å¼
 //    memset(&accel_pf, 0, sizeof(accel_pf));
 //    accel_pf.format    = BLE_GATT_CPF_FORMAT_UTF8S;
 
     memset(&char_md, 0, sizeof(char_md));
 
-    char_md.char_props.notify       = 1;                            // ¼àÌýÈ¨ÏÞ
-    char_md.char_props.read         = 0;                            // ¶ÁÈ¨ÏÞ
-    char_md.char_props.write        = 1;                            // Ð´È¨ÏÞ
-    char_md.p_char_user_desc        = (u8 *) User_Desc;             // ¹¦ÄÜÃèÊö·û
+    char_md.char_props.notify       = 1;                            // ç›‘å¬æƒé™
+    char_md.char_props.read         = 0;                            // è¯»æƒé™
+    char_md.char_props.write        = 1;                            // å†™æƒé™
+    char_md.p_char_user_desc        = (u8 *) User_Desc;             // åŠŸèƒ½æè¿°ç¬¦
     char_md.char_user_desc_size     = strlen(User_Desc);
     char_md.char_user_desc_max_size = strlen(User_Desc);
-    char_md.p_char_pf               = NULL;                         // ¸ñÊ½
+    char_md.p_char_pf               = NULL;                         // æ ¼å¼
     char_md.p_user_desc_md          = NULL;
-    char_md.p_cccd_md               = &cccd_md;                     // ¿Í»§¶ËÅäÖÃÌØÕ÷ÃèÊö·ûÈ¨ÏÞ 0x2902 ²é¿´NotifyÍ¨Öª
+    char_md.p_cccd_md               = &cccd_md;                     // å®¢æˆ·ç«¯é…ç½®ç‰¹å¾æè¿°ç¬¦æƒé™ 0x2902 æŸ¥çœ‹Notifyé€šçŸ¥
     char_md.p_sccd_md               = NULL;
 
-    // ÉùÃ÷ÀàÐÍºÍÌØÕ÷×Ö
+    // å£°æ˜Žç±»åž‹å’Œç‰¹å¾å­—
     BLE_UUID.type = pnRF51->UUID_Type;
     BLE_UUID.uuid = NRF51_MESSAGE_CHARACTERISTIC;
 
     memset(&attr_md, 0, sizeof(attr_md));
 
-    // Ö»Ð´²»¶Á
+    // åªå†™ä¸è¯»
     BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS(&attr_md.read_perm);
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&attr_md.write_perm);
 
@@ -243,11 +243,11 @@ u32 nRF51_Message_Characteristic_Add(BLE_Service_Typedef * pnRF51)
 }// End of u32 nRF51_Message_Characteristic_Add(BLE_Service_Typedef * pnRF51) 
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-15
+*                           é™†è¶…@2017-01-15
 * Function Name  :  nRF51_Temp_Humi_Encode
-* Description    :  ´ò°üÎÂ¶ÈÊý¾Ý
-* Input          :  s16 sData    ÎÂÊª¶È¶ÈÊý¾Ý
-*                   u8 * pBuffer  »º´æ
+* Description    :  æ‰“åŒ…æ¸©åº¦æ•°æ®
+* Input          :  s16 sData    æ¸©æ¹¿åº¦åº¦æ•°æ®
+*                   u8 * pBuffer  ç¼“å­˜
 * Output         :  None
 * Return         :  NRF_SUCCESS on success, otherwise an error code.
 *******************************************************************************/
@@ -255,7 +255,7 @@ u8 nRF51_Temp_Humi_Encode(s16 sTemp, u16 usHumi, u8 * pBuffer)
 {
     u8 ucLen = 0;
 
-    // 16½øÖÆ×ªASCII
+    // 16è¿›åˆ¶è½¬ASCII
     ucLen            = sprintf((char*)pBuffer, "T=%d.%d H=%d.%d", sTemp/10 , sTemp % 10, usHumi / 10, usHumi % 10);
     
     pBuffer[ucLen++] = 0;
@@ -266,11 +266,11 @@ u8 nRF51_Temp_Humi_Encode(s16 sTemp, u16 usHumi, u8 * pBuffer)
 
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-16
+*                           é™†è¶…@2017-01-16
 * Function Name  :  nRF51_BLE_Private_Evt
-* Description    :  nRF51ÊÂ¼þ´¦Àí
-* Input          :  BLE_Service_Typedef * pnRF51 ·þÎñ²ÎÊý
-*                   ble_evt_t * pBLE_Evt  BLEÊÂ¼þ
+* Description    :  nRF51äº‹ä»¶å¤„ç†
+* Input          :  BLE_Service_Typedef * pnRF51 æœåŠ¡å‚æ•°
+*                   ble_evt_t * pBLE_Evt  BLEäº‹ä»¶
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -309,11 +309,11 @@ void nRF51_BLE_Private_Evt(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt)
 }// End of void nRF51_BLE_Private_Evt(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt)
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-16
+*                           é™†è¶…@2017-01-16
 * Function Name  :  nRF51_BLE_ON_Write
-* Description    :  BLE_GATTS_EVT_WRITE         ÊÂ¼þ´¦Àí
-* Input          :  BLE_Service_Typedef * pnRF51 ·þÎñ²ÎÊý
-*                   ble_evt_t * pBLE_Evt  BLEÊÂ¼þ
+* Description    :  BLE_GATTS_EVT_WRITE         äº‹ä»¶å¤„ç†
+* Input          :  BLE_Service_Typedef * pnRF51 æœåŠ¡å‚æ•°
+*                   ble_evt_t * pBLE_Evt  BLEäº‹ä»¶
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -321,19 +321,19 @@ void nRF51_BLE_ON_Write(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt)
 {
     ble_gatts_evt_write_t * p_evt_write = &pBLE_Evt->evt.gatts_evt.params.write;
 
-    // ¼àÌýÍ¨µÀ
+    // ç›‘å¬é€šé“
     if ((p_evt_write->handle == pnRF51->Temp_Humi_Handle.cccd_handle))
     {
         if (ble_srv_is_notification_enabled(p_evt_write->data) && (p_evt_write->len == 2))
         {
             pnRF51->Temp_Humi_Listening_En = true;
-            app_trace_log("    ¿ªÊ¼¼àÌý nRF51 Temp!\r\n");
+            app_trace_log("    å¼€å§‹ç›‘å¬ nRF51 Temp!\r\n");
 
         }
         else
         {
             pnRF51->Temp_Humi_Listening_En = false;
-            app_trace_log("    Í£Ö¹¼àÌý nRF51 Temp!\r\n");
+            app_trace_log("    åœæ­¢ç›‘å¬ nRF51 Temp!\r\n");
         }
     }
     else if ((p_evt_write->handle == pnRF51->Message_Handle.cccd_handle))
@@ -341,16 +341,16 @@ void nRF51_BLE_ON_Write(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt)
         if (ble_srv_is_notification_enabled(p_evt_write->data) && (p_evt_write->len == 2))
         {
             pnRF51->Message_Listening_En = true;
-            app_trace_log("    ¿ªÊ¼¼àÌý nRF51 Message!\r\n");
+            app_trace_log("    å¼€å§‹ç›‘å¬ nRF51 Message!\r\n");
 
         }
         else
         {
             pnRF51->Message_Listening_En = false;
-            app_trace_log("    Í£Ö¹¼àÌý nRF51 Message!\r\n");
+            app_trace_log("    åœæ­¢ç›‘å¬ nRF51 Message!\r\n");
         }    
     }
-    // massage½ÓÊÕ
+    // massageæŽ¥æ”¶
     else if (p_evt_write->handle == pnRF51->Message_Handle.value_handle)
     {
         nRF51_BLE_PS_Ack_Handler(p_evt_write->data, p_evt_write->len);
@@ -361,10 +361,10 @@ void nRF51_BLE_ON_Write(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt)
 }// End of void nRF51_BLE_ON_Write(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt)
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-16
+*                           é™†è¶…@2017-01-16
 * Function Name  :  nRF51_BLE_ON_Disconnect
-* Description    :  ¶Ï¿ªÁ¬½Ó
-* Input          :  BLE_Service_Typedef * pnRF51 ·þÎñ²ÎÊý
+* Description    :  æ–­å¼€è¿žæŽ¥
+* Input          :  BLE_Service_Typedef * pnRF51 æœåŠ¡å‚æ•°
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -377,11 +377,11 @@ void nRF51_BLE_ON_Disconnect(BLE_Service_Typedef * pnRF51)
 }// End of void void nRF51_BLE_ON_Disconnect(BLE_Service_Typedef * pnRF51)
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-16
+*                           é™†è¶…@2017-01-16
 * Function Name  :  nRF51_BLE_ON_Connect
-* Description    :  Á¬½Ó
-* Input          :  BLE_Service_Typedef * pnRF51 ·þÎñ²ÎÊý
-*                   ble_evt_t * pBLE_Evt  BLEÊÂ¼þ
+* Description    :  è¿žæŽ¥
+* Input          :  BLE_Service_Typedef * pnRF51 æœåŠ¡å‚æ•°
+*                   ble_evt_t * pBLE_Evt  BLEäº‹ä»¶
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -392,13 +392,13 @@ void nRF51_BLE_ON_Connect(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt)
 }// End of void void nRF51_BLE_ON_Connect(BLE_Service_Typedef * pnRF51, ble_evt_t * pBLE_Evt)
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-16
+*                           é™†è¶…@2017-01-16
 * Function Name  :  nRF51_BLE_String_Send
-* Description    :  ·¢ËÍ×Ö·û´®
-* Input          :  BLE_Service_Typedef * pnRF51 ·þÎñ²ÎÊý
-*                   u16 usValue_Handl           Ä¿µÄhandle
-*                   u8 * pString                ´ý·¢ËÍÄÚÈÝ
-*                   u16 usLen                   ´ý·¢ËÍ³¤¶È
+* Description    :  å‘é€å­—ç¬¦ä¸²
+* Input          :  BLE_Service_Typedef * pnRF51 æœåŠ¡å‚æ•°
+*                   u16 usValue_Handl           ç›®çš„handle
+*                   u8 * pString                å¾…å‘é€å†…å®¹
+*                   u16 usLen                   å¾…å‘é€é•¿åº¦
 * Output         :  None
 * Return         :  NRF_SUCCESS on success, otherwise an error code.
 *******************************************************************************/
@@ -458,10 +458,10 @@ u32 nRF51_BLE_String_Send(BLE_Service_Typedef * pnRF51, u16 usValue_Handle, u8 *
 }// End of u32 nRF51_BLE_String_Send(BLE_Service_Typedef * pnRF51, u16 usValue_Handle, u8 * pString, u16 usLen)
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-16
+*                           é™†è¶…@2017-01-16
 * Function Name  :  Temp_BLE_Service_Update
-* Description    :  ÎÂ¶ÈË¢ÐÂ
-* Input          :  BLE_Service_Typedef * pnRF51 ·þÎñ²ÎÊý
+* Description    :  æ¸©åº¦åˆ·æ–°
+* Input          :  BLE_Service_Typedef * pnRF51 æœåŠ¡å‚æ•°
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -471,16 +471,16 @@ void Temp_BLE_Service_Update(BLE_Service_Typedef * pnRF51)
     u8 ucEncode[BLE_NRF51_MAX_DATA_LEN];
     u16 usLen;
     
-    // ÔÚÁªÍø×´Ì¬
+    // åœ¨è”ç½‘çŠ¶æ€
     if (!pnRF51->Temp_Humi_Listening_En)
     {
         return;
     }
 
-    // ´ò°üÊý¾Ý
+    // æ‰“åŒ…æ•°æ®
     usLen = nRF51_Temp_Humi_Encode(Sensor.sTemp, Sensor.usHumi, ucEncode);
     
-    // ¸üÐÂµçÁ¿Êý¾Ý
+    // æ›´æ–°ç”µé‡æ•°æ®
     Err_Code = nRF51_BLE_String_Send(pnRF51, pnRF51->Temp_Humi_Handle.value_handle, ucEncode, usLen);
     if ((Err_Code != NRF_SUCCESS))
     {
@@ -489,7 +489,7 @@ void Temp_BLE_Service_Update(BLE_Service_Typedef * pnRF51)
     
 }// End of void Temp_BLE_Service_Update(BLE_Service_Typedef * pnRF51)
 
-/******************* (C) COPYRIGHT 2017 Â½³¬ **************END OF FILE*********/
+/******************* (C) COPYRIGHT 2017 é™†è¶… **************END OF FILE*********/
 
 
 

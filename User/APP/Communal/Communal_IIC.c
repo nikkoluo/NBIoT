@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
 * File Name          :  Communal_IIC.c
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  12/28/2017
-* Description        :  ÎÂÊª¶ÈÇý¶¯³ÌÐò
+* Description        :  æ¸©æ¹¿åº¦é©±åŠ¨ç¨‹åº
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "Communal_IIC.h"
@@ -17,30 +17,30 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void Communal_IIC_Delay(void);                                          // ÑÓÊ±
-void Communal_IIC_Delay_us(void);                                       // usÑÓÊ±
-void Communal_IIC_Pin_Init(void);                                       // ¹Ü½Å³õÊ¼»¯
-void Communal_IIC_SDA_High(void);                                       // À­¸ßÊý¾ÝÏß
-void Communal_IIC_SDA_Low(void);                                        // À­µÍÊý¾ÝÏß
-void Communal_IIC_SCL_High(void);                                       // À­¸ßÊ±ÖÓ
-void Communal_IIC_SCL_Low(void);                                        // À­µÍÊ±ÖÓ
-void Communal_IIC_Set_SDA_Input(void);                                  // ÉèÖÃSDAÎªÊäÈëÄ£Ê½
-void Communal_IIC_Set_SDA_Output(void);                                 // ÉèÖÃSDAÎªÊä³öÄ£Ê½
-void Communal_IIC_Set_SCL_Output(void);                                 // ÉèÖÃSCLÎªÊä³öÄ£Ê½
-u8   Communal_IIC_SDA_Read(void);                                       // ¶ÁÈ¡SDAµçÆ½
-u8   Communal_IIC_SCL_Read(void);                                       // ¶ÁÈ¡SCLµçÆ½
+void Communal_IIC_Delay(void);                                          // å»¶æ—¶
+void Communal_IIC_Delay_us(void);                                       // uså»¶æ—¶
+void Communal_IIC_Pin_Init(void);                                       // ç®¡è„šåˆå§‹åŒ–
+void Communal_IIC_SDA_High(void);                                       // æ‹‰é«˜æ•°æ®çº¿
+void Communal_IIC_SDA_Low(void);                                        // æ‹‰ä½Žæ•°æ®çº¿
+void Communal_IIC_SCL_High(void);                                       // æ‹‰é«˜æ—¶é’Ÿ
+void Communal_IIC_SCL_Low(void);                                        // æ‹‰ä½Žæ—¶é’Ÿ
+void Communal_IIC_Set_SDA_Input(void);                                  // è®¾ç½®SDAä¸ºè¾“å…¥æ¨¡å¼
+void Communal_IIC_Set_SDA_Output(void);                                 // è®¾ç½®SDAä¸ºè¾“å‡ºæ¨¡å¼
+void Communal_IIC_Set_SCL_Output(void);                                 // è®¾ç½®SCLä¸ºè¾“å‡ºæ¨¡å¼
+u8   Communal_IIC_SDA_Read(void);                                       // è¯»å–SDAç”µå¹³
+u8   Communal_IIC_SCL_Read(void);                                       // è¯»å–SCLç”µå¹³
 
-void Communal_IIC_Variable_Init(void);                                  // Communal_IIC±äÁ¿³õÊ¼»¯
-u8   Communal_IIC_Init(void);                                           // Communal_IIC¶Ë¿Ú³õÊ¼»¯    
+void Communal_IIC_Variable_Init(void);                                  // Communal_IICå˜é‡åˆå§‹åŒ–
+u8   Communal_IIC_Init(void);                                           // Communal_IICç«¯å£åˆå§‹åŒ–    
 
 /* Private functions ---------------------------------------------------------*/
 
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           Â½³¬@2017-03-29
+*                           é™†è¶…@2017-03-29
 * Function Name  :  Communal_IIC_Delay
-* Description    :  Communal_IICÑÓÊ±
+* Description    :  Communal_IICå»¶æ—¶
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -52,9 +52,9 @@ void Communal_IIC_Delay(void)
 }// End of void Communal_IIC_Delay(void)
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-29
+*                           é™†è¶…@2017-03-29
 * Function Name  :  Communal_IIC_Delay_us
-* Description    :  Communal_IIC usÑÓÊ±
+* Description    :  Communal_IIC uså»¶æ—¶
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -66,18 +66,18 @@ void Communal_IIC_Delay_us(void)
 }// End of void Communal_IIC_Delay_us(void)
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-29
+*                           é™†è¶…@2017-03-29
 * Function Name  :  Communal_IIC_Pin_Init
-* Description    :  ¹Ü½Å³õÊ¼»¯                   
+* Description    :  ç®¡è„šåˆå§‹åŒ–                   
 * Input          :  P0.14   -->   COMMUNAL_IIC_SCL_PIN
 *                   P0.15   -->   COMMUNAL_IIC_SDA_PIN
 * Output         :  None
-* Return         :  1³É¹¦ 0Ê§°Ü
+* Return         :  1æˆåŠŸ 0å¤±è´¥
 *******************************************************************************/
 void Communal_IIC_Pin_Init(void)
 {
     
-    // ÉèÖÃ¹Ü½ÅÎª¿ªÂ©Ä£Ê½
+    // è®¾ç½®ç®¡è„šä¸ºå¼€æ¼æ¨¡å¼
     NRF_GPIO->PIN_CNF[COMMUNAL_IIC_SCL_PIN]  =  (GPIO_PIN_CNF_SENSE_Disabled  << GPIO_PIN_CNF_SENSE_Pos) \
                                                 | (GPIO_PIN_CNF_DRIVE_S0D1     << GPIO_PIN_CNF_DRIVE_Pos) \
                                                 | (GPIO_PIN_CNF_PULL_Pullup    << GPIO_PIN_CNF_PULL_Pos)  \
@@ -93,9 +93,9 @@ void Communal_IIC_Pin_Init(void)
 }// End of u8  Communal_IIC_Pin_Init(void)
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-29
+*                           é™†è¶…@2017-03-29
 * Function Name  :  Communal_IIC_SDA_High
-* Description    :  Communal_IICÀ­¸ßSDA
+* Description    :  Communal_IICæ‹‰é«˜SDA
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -107,9 +107,9 @@ void Communal_IIC_SDA_High(void)
 }// End of void Communal_IIC_SDA_High(void)
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-29
+*                           é™†è¶…@2017-03-29
 * Function Name  :  Communal_IIC_SDA_Low
-* Description    :  Communal_IICÀ­µÍSDA
+* Description    :  Communal_IICæ‹‰ä½ŽSDA
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -121,9 +121,9 @@ void Communal_IIC_SDA_Low(void)
 }// End of void Communal_IIC_SDA_Low(void)
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-29
+*                           é™†è¶…@2017-03-29
 * Function Name  :  Communal_IIC_SCL_High
-* Description    :  Communal_IICÀ­¸ßSCL
+* Description    :  Communal_IICæ‹‰é«˜SCL
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -135,9 +135,9 @@ void Communal_IIC_SCL_High(void)
 }// End of void Communal_IIC_SCL_High(void)
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-29
+*                           é™†è¶…@2017-03-29
 * Function Name  :  Communal_IIC_SCL_Low
-* Description    :  Communal_IICÀ­µÍSCL
+* Description    :  Communal_IICæ‹‰ä½ŽSCL
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -150,9 +150,9 @@ void Communal_IIC_SCL_Low(void)
 
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-29
+*                           é™†è¶…@2017-03-29
 * Function Name  :  Communal_IIC_Set_SDA_Input
-* Description    :  ÉèÖÃSDA¹Ü½ÅÎªÊäÈëÄ£Ê½
+* Description    :  è®¾ç½®SDAç®¡è„šä¸ºè¾“å…¥æ¨¡å¼
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -164,9 +164,9 @@ void Communal_IIC_Set_SDA_Input(void)
 }// End of void Communal_IIC_Set_SDA_Input(void)
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-29
+*                           é™†è¶…@2017-03-29
 * Function Name  :  Communal_IIC_Set_SDA_Output
-* Description    :  ÉèÖÃSDA¹Ü½ÅÎªÊä³öÄ£Ê½
+* Description    :  è®¾ç½®SDAç®¡è„šä¸ºè¾“å‡ºæ¨¡å¼
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -178,9 +178,9 @@ void Communal_IIC_Set_SDA_Output(void)
 }// End of void Communal_IIC_Set_SDA_Output(void)
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-29
+*                           é™†è¶…@2017-03-29
 * Function Name  :  Communal_IIC_Set_SCL_Output
-* Description    :  ÉèÖÃSCL¹Ü½ÅÎªÊä³öÄ£Ê½
+* Description    :  è®¾ç½®SCLç®¡è„šä¸ºè¾“å‡ºæ¨¡å¼
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -192,12 +192,12 @@ void Communal_IIC_Set_SCL_Output(void)
 }// End of void Communal_IIC_Set_SCL_Output(void)
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-29
+*                           é™†è¶…@2017-03-29
 * Function Name  :  Communal_IIC_SDA_Read
-* Description    :  ¶ÁÈ¡SDA¹Ü½ÅµçÆ½
+* Description    :  è¯»å–SDAç®¡è„šç”µå¹³
 * Input          :  None
 * Output         :  None
-* Return         :  ¸ßµçÆ½·µ»Ø1 µÍµçÆ½·µ»Ø0
+* Return         :  é«˜ç”µå¹³è¿”å›ž1 ä½Žç”µå¹³è¿”å›ž0
 *******************************************************************************/
 u8 Communal_IIC_SDA_Read(void)
 {
@@ -206,12 +206,12 @@ u8 Communal_IIC_SDA_Read(void)
 }// End of u8 Communal_IIC_SDA_Read(void)
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-29
+*                           é™†è¶…@2017-03-29
 * Function Name  :  Communal_IIC_SCL_Read
-* Description    :  ¶ÁÈ¡SCL¹Ü½ÅµçÆ½
+* Description    :  è¯»å–SCLç®¡è„šç”µå¹³
 * Input          :  None
 * Output         :  None
-* Return         :  ¸ßµçÆ½·µ»Ø1 µÍµçÆ½·µ»Ø0
+* Return         :  é«˜ç”µå¹³è¿”å›ž1 ä½Žç”µå¹³è¿”å›ž0
 *******************************************************************************/
 u8 Communal_IIC_SCL_Read(void)
 {
@@ -220,18 +220,18 @@ u8 Communal_IIC_SCL_Read(void)
 }// End of u8 Communal_IIC_SCL_Read(void)
 
 /*******************************************************************************
-*                           Â½³¬@2017-12-23
+*                           é™†è¶…@2017-12-23
 * Function Name  :  Communal_IIC_Init
-* Description    :  Communal_IIC¶Ë¿Ú³õÊ¼»¯
+* Description    :  Communal_IICç«¯å£åˆå§‹åŒ–
 * Input          :  None
 * Output         :  None
-* Return         :  1³É¹¦ 0Ê§°Ü
+* Return         :  1æˆåŠŸ 0å¤±è´¥
 *******************************************************************************/
 u8 Communal_IIC_Init(void)
 {
     u8 Transfer_Succeeded; 
 
-    // ±äÁ¿³õÊ¼»¯
+    // å˜é‡åˆå§‹åŒ–
     Communal_IIC_Variable_Init();
     
     Communal_IIC.Dealy                 = Communal_IIC_Delay;
@@ -254,20 +254,20 @@ u8 Communal_IIC_Init(void)
 }// End of u8  Communal_IIC_Init(void)
 
 /*******************************************************************************
-*                           Â½³¬@2017-03-29
+*                           é™†è¶…@2017-03-29
 * Function Name  :  Communal_IIC_Variable_Init
-* Description    :  ÎÂÊª¶È±äÁ¿³õÊ¼»¯
+* Description    :  æ¸©æ¹¿åº¦å˜é‡åˆå§‹åŒ–
 * Input          :  None
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
 void Communal_IIC_Variable_Init(void)
 {
-    // Ä¬ÈÏÎ´³õÊ¼»¯
+    // é»˜è®¤æœªåˆå§‹åŒ–
     Communal_IIC.Inited = 0;
     
 }// End of void Communal_IIC_Variable_Init(void)
 
 
-/******************* (C) COPYRIGHT 2017 Â½³¬ ************* END OF FILE ********/
+/******************* (C) COPYRIGHT 2017 é™†è¶… ************* END OF FILE ********/
 

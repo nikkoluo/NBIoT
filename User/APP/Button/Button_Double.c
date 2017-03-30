@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
 * File Name          :  Button_Double.c
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  01/19/2016
-* Description        :  Ë«»÷Ó¦ÓÃ³ÌĞò
+* Description        :  åŒå‡»åº”ç”¨ç¨‹åº
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "Button_Double.h"
@@ -15,29 +15,29 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void Double_Button_Handler(void);                                       // Ë«»÷´¦Àí
+void Double_Button_Handler(void);                                       // åŒå‡»å¤„ç†
 
 
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           Â½³¬@2017-01-19
+*                           é™†è¶…@2017-01-19
 * Function Name  :  Double_Button_Handler
-* Description    :  ´¦ÀíË«»÷ÊÂ¼ş
+* Description    :  å¤„ç†åŒå‡»äº‹ä»¶
 * Input          :  None
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
 void Double_Button_Handler(void)
 {
-    app_trace_log("Ë«»÷ÈÎÎñ!\r\n");
+    app_trace_log("åŒå‡»ä»»åŠ¡!\r\n");
 
-    // ¶¯Ì¬ÇĞ»»
+    // åŠ¨æ€åˆ‡æ¢
 //    LCD_Temp_Humi_Change_Dynamic();
    
 }// End of void Double_Button_Handler(void)
 
-/******************* (C) COPYRIGHT 2017 Â½³¬ **************END OF FILE*********/
+/******************* (C) COPYRIGHT 2017 é™†è¶… **************END OF FILE*********/
 
 
 

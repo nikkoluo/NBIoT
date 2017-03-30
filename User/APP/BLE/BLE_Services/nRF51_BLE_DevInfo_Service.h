@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
 * File Name          :  nRF51_BLE_DevInfo_Service.h
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51822
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  01/12/2017
-* Description        :  À¶ÑÀDevInfo·şÎñ header file
+* Description        :  è“ç‰™DevInfoæœåŠ¡ header file
 *******************************************************************************/
 
 /* Define to prevent recursive inclusion -------------------------------------*/
@@ -25,10 +25,10 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void nRF51_BLE_DevInfo_Services_Init(void);                     // nRF51ĞÅÏ¢·şÎñ³õÊ¼»¯    
+extern  void nRF51_BLE_DevInfo_Services_Init(void);                     // nRF51ä¿¡æ¯æœåŠ¡åˆå§‹åŒ–    
 
 
 #endif /* __NRF51_BLE_DEVINFO_SERVICE_H */
 
-/******************* (C) COPYRIGHT 2017 Â½³¬ **** END OF FILE *****************/
+/******************* (C) COPYRIGHT 2017 é™†è¶… **** END OF FILE *****************/
 

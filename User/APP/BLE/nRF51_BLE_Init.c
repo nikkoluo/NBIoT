@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2016 Â½³¬ **********************************
+/******************** (C) COPYRIGHT 2016 é™†è¶… **********************************
 * File Name          :  nRF51_BLE_Init.c
-* Author             :  Â½³¬
+* Author             :  é™†è¶…
 * CPU Type           :  nRF51822
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  12/26/2016
-* Description        :  nRF51_BLE³õÊ¼»¯
+* Description        :  nRF51_BLEåˆå§‹åŒ–
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "nRF51_BLE_Init.h"
@@ -32,25 +32,25 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void nRF51_BLE_Init(void);                                              // nRF51_BLE³õÊ¼»¯
-void nRF51_BLE_Stack_Init(void);                                        // nRF51_BLEÕ»³õÊ¼»¯
-void nRF51_BLE_Tx_Power_Set(s32 iPower);                                // ÉèÖÃ·¢Éä¹¦ÂÊ
+void nRF51_BLE_Init(void);                                              // nRF51_BLEåˆå§‹åŒ–
+void nRF51_BLE_Stack_Init(void);                                        // nRF51_BLEæ ˆåˆå§‹åŒ–
+void nRF51_BLE_Tx_Power_Set(s32 iPower);                                // è®¾ç½®å‘å°„åŠŸç‡
 
-void GAP_Parameters_Init(void);                                         // GAP²ÎÊıÉèÖÃ
+void GAP_Parameters_Init(void);                                         // GAPå‚æ•°è®¾ç½®
 
-void BLE_Services_Init(void);                                           // BLE·şÎñ³õÊ¼»¯
+void BLE_Services_Init(void);                                           // BLEæœåŠ¡åˆå§‹åŒ–
 
 
-void Connect_Parameters_Init(void);                                     // Á¬½Ó²ÎÊı³õÊ¼»¯
-void Connect_Parameters_Event_Handler(ble_conn_params_evt_t * p_evt);   // Á¬½Ó²ÎÊı´¦ÀíÊÂ¼ş
-void Connect_Parameters_Error_Handler(u32 Nrf_Error);                   // Á¬½Ó²ÎÊı´íÎó´¦Àí
+void Connect_Parameters_Init(void);                                     // è¿æ¥å‚æ•°åˆå§‹åŒ–
+void Connect_Parameters_Event_Handler(ble_conn_params_evt_t * p_evt);   // è¿æ¥å‚æ•°å¤„ç†äº‹ä»¶
+void Connect_Parameters_Error_Handler(u32 Nrf_Error);                   // è¿æ¥å‚æ•°é”™è¯¯å¤„ç†
 
 /* Private functions ---------------------------------------------------------*/
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-26
+*                           é™†è¶…@2016-12-26
 * Function Name  :  nRF51_BLE_Init
-* Description    :  nRF51_BLE³õÊ¼»¯
+* Description    :  nRF51_BLEåˆå§‹åŒ–
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -65,25 +65,25 @@ void nRF51_BLE_Init(void)
 
 #else
 
-    // BLE¶Ñ³õÊ¼»¯
+    // BLEå †åˆå§‹åŒ–
     nRF51_BLE_Stack_Init();
 
-    // ÏÈ³õÊ¼»¯flash
+    // å…ˆåˆå§‹åŒ–flash
     nRF51_BLE_Peer_Manager_Init(0);
 
-    // ´¢´æ³õÊ¼»¯
+    // å‚¨å­˜åˆå§‹åŒ–
     nRF51_Storage_Init();
 
-    // Í¨ÓÃ·ÃÎÊÅäÖÃ³õÊ¼»¯
+    // é€šç”¨è®¿é—®é…ç½®åˆå§‹åŒ–
     GAP_Parameters_Init();
 
-    // ÉèÖÃ·¢Éä¹¦ÂÊ
+    // è®¾ç½®å‘å°„åŠŸç‡
     nRF51_BLE_Tx_Power_Set(0);
 
-    // BLE·şÎñ³õÊ¼»¯
+    // BLEæœåŠ¡åˆå§‹åŒ–
     BLE_Services_Init();
 
-    // Á¬½Ó²ÎÊı³õÊ¼»¯
+    // è¿æ¥å‚æ•°åˆå§‹åŒ–
     Connect_Parameters_Init();
 
     BLE_Adv_Start(0);
@@ -94,9 +94,9 @@ void nRF51_BLE_Init(void)
 
 
 /*******************************************************************************
-*                           Â½³¬@2016-12-26
+*                           é™†è¶…@2016-12-26
 * Function Name  :  nRF51_BLE_Stack_Init
-* Description    :  nRF51_BLEÕ»³õÊ¼»¯
+* Description    :  nRF51_BLEæ ˆåˆå§‹åŒ–
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -126,11 +126,11 @@ void nRF51_BLE_Stack_Init(void)
     APP_ERROR_CHECK(err_code);
 
 
-    // ×¢²áBLEÊÂ¼ş»Øµ÷
+    // æ³¨å†ŒBLEäº‹ä»¶å›è°ƒ
     err_code = softdevice_ble_evt_handler_set(nRF51_BLE_Evt_Handler);
     APP_ERROR_CHECK(err_code);
 
-    // ×¢²ásysÊÂ¼ş»Øµ÷
+    // æ³¨å†Œsysäº‹ä»¶å›è°ƒ
     err_code = softdevice_sys_evt_handler_set(nRF51_Sys_Evt_Handler);
     APP_ERROR_CHECK(err_code);
 
@@ -139,9 +139,9 @@ void nRF51_BLE_Stack_Init(void)
 }// End of void nRF51_BLE_Stack_Init(void)
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-06
+*                           é™†è¶…@2017-01-06
 * Function Name  :  Connect_Parameters_Init
-* Description    :  Á¬½Ó²ÎÊı³õÊ¼»¯
+* Description    :  è¿æ¥å‚æ•°åˆå§‹åŒ–
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -154,8 +154,8 @@ void Connect_Parameters_Init(void)
     memset(&CP_Init, 0, sizeof(CP_Init));
 
     CP_Init.p_conn_params                  = NULL;
-    CP_Init.first_conn_params_update_delay = DUCK_FIRST_CONN_PARAMS_UPDATE_DELAY;  // Ê×´ÎË¢ĞÂÊ±¼ä
-    CP_Init.next_conn_params_update_delay  = DUCK_NEXT_CONN_PARAMS_UPDATE_DELAY;   // Á½Ö¡¼ä¸ô 4.0¹æ·¶ÊÇ30s
+    CP_Init.first_conn_params_update_delay = DUCK_FIRST_CONN_PARAMS_UPDATE_DELAY;  // é¦–æ¬¡åˆ·æ–°æ—¶é—´
+    CP_Init.next_conn_params_update_delay  = DUCK_NEXT_CONN_PARAMS_UPDATE_DELAY;   // ä¸¤å¸§é—´éš” 4.0è§„èŒƒæ˜¯30s
     CP_Init.max_conn_params_update_count   = DUCK_MAX_CONN_PARAMS_UPDATE_COUNT;
     CP_Init.start_on_notify_cccd_handle    = BLE_GATT_HANDLE_INVALID;
     CP_Init.disconnect_on_fail             = false;
@@ -168,10 +168,10 @@ void Connect_Parameters_Init(void)
 }// End of void Connect_Parameters_Init(void)
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-06
+*                           é™†è¶…@2017-01-06
 * Function Name  :  Connect_Parameters_Error_Handler
-* Description    :  Á¬½Ó²ÎÊı´íÎó´¦Àí
-* Input          :  u32 Nrf_Error  ´íÎó±àºÅ
+* Description    :  è¿æ¥å‚æ•°é”™è¯¯å¤„ç†
+* Input          :  u32 Nrf_Error  é”™è¯¯ç¼–å·
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -182,10 +182,10 @@ void Connect_Parameters_Error_Handler(u32 Nrf_Error)
 }// End of void Connect_Parameters_Error_Handler(u32 Nrf_Error)
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-06
+*                           é™†è¶…@2017-01-06
 * Function Name  :  Connect_Parameters_Event_Handler
-* Description    :  Á¬½Ó²ÎÊıÊÂ¼ş´¦Àí
-* Input          :  ble_conn_params_evt_t * p_evt   ´ı´¦ÀíÊÂ¼ş
+* Description    :  è¿æ¥å‚æ•°äº‹ä»¶å¤„ç†
+* Input          :  ble_conn_params_evt_t * p_evt   å¾…å¤„ç†äº‹ä»¶
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -202,10 +202,10 @@ void Connect_Parameters_Event_Handler(ble_conn_params_evt_t * p_evt)
 }// End of void Connect_Parameters_Event_Handler(ble_conn_params_evt_t * p_evt)
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-06
+*                           é™†è¶…@2017-01-06
 * Function Name  :  nRF51_BLE_Tx_Power_Set
-* Description    :  ÉèÖÃ·¢Éä¹¦ÂÊ
-* Input          :  s32 iPower ·¢Éä¹¦ÂÊ
+* Description    :  è®¾ç½®å‘å°„åŠŸç‡
+* Input          :  s32 iPower å‘å°„åŠŸç‡
 *                   -40, -30, -20, -16, -12, -8, -4, 0, 4  (dBm)
 * Output         :  None
 * Return         :  None
@@ -214,16 +214,16 @@ void nRF51_BLE_Tx_Power_Set(s32 iPower)
 {
     u32  err_code;
     
-    // ÉèÖÃ·¢Éä¹¦ÂÊ
+    // è®¾ç½®å‘å°„åŠŸç‡
     err_code = sd_ble_gap_tx_power_set(0);
     APP_ERROR_CHECK(err_code);
     
 }// End of void nRF51_BLE_Tx_Power_Set(s32 iPower)
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-06
+*                           é™†è¶…@2017-01-06
 * Function Name  :  GAP_Parameters_Init
-* Description    :  GAPĞ­Òé³õÊ¼»¯ GAP(Generic Access Profile)
+* Description    :  GAPåè®®åˆå§‹åŒ– GAP(Generic Access Profile)
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -234,16 +234,16 @@ void GAP_Parameters_Init(void)
     ble_gap_conn_params_t   gap_conn_params;
     ble_gap_conn_sec_mode_t sec_mode;
 
-    // ÅäÖÃ¼ÓÃÜÄ£Ê½Îª²»¼ÓÃÜ
+    // é…ç½®åŠ å¯†æ¨¡å¼ä¸ºä¸åŠ å¯†
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&sec_mode);
 
-    // ÅäÖÃÉè±¸Ãû³Æ
+    // é…ç½®è®¾å¤‡åç§°
     err_code = sd_ble_gap_device_name_set(&sec_mode,
                                           (const uint8_t *) BLE_DEVICE_NAME,
                                           strlen(BLE_DEVICE_NAME));
     APP_ERROR_CHECK(err_code);
 
-    // ²úÆ·ÃèÊö
+    // äº§å“æè¿°
     err_code = sd_ble_gap_appearance_set(BLE_APPEARANCE_GENERIC_THERMOMETER);
     APP_ERROR_CHECK(err_code);
 
@@ -254,7 +254,7 @@ void GAP_Parameters_Init(void)
     gap_conn_params.slave_latency     = SLAVE_LATENCY;
     gap_conn_params.conn_sup_timeout  = CONN_SUP_TIMEOUT;
 
-    // ÉèÖÃPPCP(Peripheral Preferred Connection Parameters)
+    // è®¾ç½®PPCP(Peripheral Preferred Connection Parameters)
     err_code = sd_ble_gap_ppcp_set(&gap_conn_params);
     APP_ERROR_CHECK(err_code);
 
@@ -266,9 +266,9 @@ void GAP_Parameters_Init(void)
 
 
 /*******************************************************************************
-*                           Â½³¬@2017-01-06
+*                           é™†è¶…@2017-01-06
 * Function Name  :  BLE_Services_Init
-* Description    :  BLE·şÎñ³õÊ¼»¯
+* Description    :  BLEæœåŠ¡åˆå§‹åŒ–
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -276,13 +276,13 @@ void GAP_Parameters_Init(void)
 void BLE_Services_Init(void)
 {
   
-    // Ë½ÓĞ·şÎñ³õÊ¼»¯
+    // ç§æœ‰æœåŠ¡åˆå§‹åŒ–
     nRF51_BLE_Private_Services_Init();
 
-    // Éè±¸ĞÅÏ¢³õÊ¼»¯
+    // è®¾å¤‡ä¿¡æ¯åˆå§‹åŒ–
     nRF51_BLE_DevInfo_Services_Init();
 
-    // DFU·şÎñ
+    // DFUæœåŠ¡
     nRF51_BLE_DFU_Services_Init();
 
 
@@ -291,7 +291,7 @@ void BLE_Services_Init(void)
 
 
 
-/******************* (C) COPYRIGHT 2016 Â½³¬ **************END OF FILE*********/
+/******************* (C) COPYRIGHT 2016 é™†è¶… **************END OF FILE*********/
 
 
 
