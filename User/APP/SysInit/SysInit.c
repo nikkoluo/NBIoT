@@ -46,7 +46,7 @@ void Variable_Init(void);                                               // 变�
 void Peripheral_Init(void);                                             // 外设初始化
 void GPIO_Low_Power_Init(void);                                         // 配置IO为最低功耗模式
 void IO_Interrupt_Init(void);                                           // IO中断事件初始化
-void Task_Init(void);                                                   // 任务初始化
+void Task_Init(void);                                                 	// 任务初始化
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
@@ -246,7 +246,7 @@ void Task_Init(void)
 
 
 }// End of void Task_Init(void)
-
+																				
 /*******************************************************************************
 *                           陆超@2016-12-28
 * Function Name  :  IO_Interrupt_Init

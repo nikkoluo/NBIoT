@@ -34,7 +34,7 @@ typedef struct
     unsigned int        ms;                                             // 时间基准
     unsigned int        Last_Tick;                                      // 上次Tick
     
-} Time_Base_Typedef;                                                // 时间基准结构体
+} Time_Base_Typedef;                                                	// 时间基准结构体
 
 typedef struct
 {
@@ -45,7 +45,7 @@ typedef struct
     unsigned short      Time_Left;                                      // 剩余时间 s
     
     
-} Bond_Typedef;                                                     // 时间基准结构体
+} Bond_Typedef;                                                     	// 时间基准结构体
 
 typedef struct
 {
@@ -55,7 +55,7 @@ typedef struct
     unsigned short      Timestamp;                                      // 时间戳
     
     
-} Hall_Typedef;                                                     // 时间基准结构体
+} Hall_Typedef;                                                     	// 时间基准结构体
 
 typedef struct
 {
@@ -77,7 +77,7 @@ typedef struct
     
     
     
-} Sensor_Typedef;                                                // 传感器结构体
+} Sensor_Typedef;                                                		// 传感器结构体
 
 typedef struct
 {
@@ -87,14 +87,14 @@ typedef struct
     app_timer_id_t      p_ID;
     app_timer_timeout_handler_t Timeout_handler;                        // 超时运行程序
 
-} Task_Typedef;                                                      // 任务结构体
+} Task_Typedef;                                                      	// 任务结构体
 
 typedef struct
 {
     nrf_adc_config_t    Channel_Config;                                 // 通道配置
     unsigned int        Vol_mv;                                         // 电压 mv   
 
-} ADC_Typedef;                                                        // 任务结构体
+} ADC_Typedef;                                                        	// 任务结构体
 
 typedef struct
 {
@@ -193,7 +193,7 @@ typedef struct
     ble_gatts_char_handles_t Temp_Humi_Handle;                          // SoftDevice提供温湿度度处理
     ble_gatts_char_handles_t Message_Handle;                            // SoftDevice提供温湿度度处理
     
-}BLE_Service_Typedef;                                               // BLE Service 结构体
+}BLE_Service_Typedef;                                              		// BLE Service 结构体
 
 typedef struct 
 {
@@ -219,7 +219,7 @@ typedef struct
         }Need_Update_Bit;
     };
     
-}LCD_Typedef;                                                        // LCD 结构体
+}LCD_Typedef;                                                     		// LCD 结构体
 
 typedef struct
 {
@@ -232,12 +232,6 @@ typedef struct
     
 }UART_Typedef;
 
-typedef struct
-{
-    unsigned char       LCD_Mode;                                       // LCD模式
-
-    
-}Test_Typedef;
 
 
 /* Private variables ---------------------------------------------------------*/
