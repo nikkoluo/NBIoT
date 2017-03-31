@@ -51,7 +51,6 @@ extern  Task_Typedef            Temp_Humi_Task;                         // 温�
 extern  Task_Typedef            BLE_Task;                               // BLE任务
 extern  Task_Typedef            WDT_Task;                               // WDT任务
 extern  Task_Typedef            Debug_Rx_Task;                          // 调试口接收任务
-extern  Test_Typedef            Test;                                   // 测试
 extern  Bond_Typedef            Sys_Bond;                               // 绑定
 extern  UART_Typedef            Debug_UART;                             // 调试串口
 extern  Button_Typedef          Button;                                 // 按键结构体

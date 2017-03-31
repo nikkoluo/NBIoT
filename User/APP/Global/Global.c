@@ -23,7 +23,6 @@ Task_Typedef            Temp_Humi_Task;                                 // 温�
 Task_Typedef            BLE_Task;                                       // BLE任务
 Task_Typedef            WDT_Task;                                       // WDT任务
 Task_Typedef            Debug_Rx_Task;                                  // 调试口接收任务
-Test_Typedef            Test;                                           // 测试
 Bond_Typedef            Sys_Bond;                                       // 绑定
 UART_Typedef            Debug_UART;                                     // 调试串口
 Button_Typedef          Button;                                         // 按键结构体
