@@ -2497,6 +2497,21 @@
       </file>
     </group>
     <group>
+      <name>LCD</name>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\LCD\LCD.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\LCD\LCD.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\LCD\LCD_Port.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\LCD\LCD_Port.h</name>
+      </file>
+    </group>
+    <group>
       <name>Storage</name>
       <file>
         <name>$PROJ_DIR$\..\User\APP\Storage\nRF51_Storage.c</name>

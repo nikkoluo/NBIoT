@@ -382,6 +382,7 @@
           <state>$PROJ_DIR$\..\User\APP\Debug</state>
           <state>$PROJ_DIR$\..\User\APP\tVOC</state>
           <state>$PROJ_DIR$\..\User\APP\tVOC\SGPC10</state>
+          <state>$PROJ_DIR$\..\User\APP\LCD</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -2171,6 +2172,21 @@
       </file>
       <file>
         <name>$PROJ_DIR$\..\User\APP\GPIO\GPIO_Port.h</name>
+      </file>
+    </group>
+    <group>
+      <name>LCD</name>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\LCD\LCD.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\LCD\LCD.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\LCD\LCD_Port.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\LCD\LCD_Port.h</name>
       </file>
     </group>
     <group>

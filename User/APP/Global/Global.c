@@ -16,6 +16,7 @@ u8                      Root_Access;                                    // 超�
 u8                      Sys_Status;                                     // 系统状态
 u8                      Sys_Init;                                       // 置一完成初始化 
 Task_Typedef            Button_Task;                                    // 按键任务
+Task_Typedef            LCD_Task;                                       // LCD任务
 Task_Typedef            tVOC_Task;                                      // tVOC任务
 Task_Typedef            Communal_Timer_Task;                            // 公用定时器任务
 Task_Typedef            Battery_Task;                                   // 电池任务
