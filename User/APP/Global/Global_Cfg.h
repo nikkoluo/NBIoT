@@ -121,18 +121,29 @@
 #define     BAT_ADC_PIN                 3                               // 电池ADC 管脚
 
 
+#define     UART_TX_PIN                 9                               // 串口
+#define     UART_RX_PIN                 11
+
+
 #define     SHT30_SCL_PIN               12                              // 温湿度时钟
 #define     SHT30_SDA_PIN               13                              // 温湿度数据
 
 #define     COMMUNAL_IIC_SCL_PIN        14                              // 通用IIC时钟
 #define     COMMUNAL_IIC_SDA_PIN        15                              // 通用IIC数据
 
+#define     OLED_SDA_PIN               	25                              // OLED SDA 管脚
+#define     OLED_SCL_PIN                24                              // OLED SCL 管脚
+#define     OLED_RST_PIN               	23                              // OLED RST 管脚
+#define     OLED_DC_PIN               	22                              // OLED DC 管脚 数据命令选择管脚
+
+
+
+
+
 
 #define     BOUTTON_PIN                 17                              // 按键管脚
 
 
-#define     UART_TX_PIN                 9                               // 串口
-#define     UART_RX_PIN                 11
 
 
 #define     MAX_INTERRUPT_PIN_NUM       1                               // 中断管脚数据

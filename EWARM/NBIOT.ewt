@@ -2510,6 +2510,12 @@
       <file>
         <name>$PROJ_DIR$\..\User\APP\LCD\LCD_Port.h</name>
       </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\LCD\OLED.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\LCD\OLED.h</name>
+      </file>
     </group>
     <group>
       <name>Storage</name>
