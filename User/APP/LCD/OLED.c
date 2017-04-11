@@ -1,31 +1,26 @@
-/*OLED底层驱动
-*@采用列行式，分辨率为128*64
-*存放格式如下.
-*[0]0 1 2 3 ... 127	
-*[1]0 1 2 3 ... 127	
-*[2]0 1 2 3 ... 127	
-*[3]0 1 2 3 ... 127	
-*[4]0 1 2 3 ... 127	
-*[5]0 1 2 3 ... 127	
-*[6]0 1 2 3 ... 127	
-*[7]0 1 2 3 ... 127 
-*/
-
+/******************** (C) COPYRIGHT 2017 陆超 **********************************
+* File Name 		 :	GPIO_Port.c
+* Author			 :	陆超
+* CPU Type			 :	nRF51802
+* IDE				 :	IAR 7.8
+* Version			 :	V1.0
+* Date				 :	04/11/2017
+* Description		 :	OLED驱动程序
+*						采用列行式，分辨率为128*64
+*						存放格式如下.
+*						[0]0 1 2 3 ... 127	
+*						[1]0 1 2 3 ... 127	
+*						[2]0 1 2 3 ... 127	
+*						[3]0 1 2 3 ... 127	
+*						[4]0 1 2 3 ... 127	
+*						[5]0 1 2 3 ... 127	
+*						[6]0 1 2 3 ... 127	
+*						[7]0 1 2 3 ... 127
+*******************************************************************************/
+/* Includes ------------------------------------------------------------------*/
 #include "OLED.h"
 
-
-
-#define XLevelL		0x00
-#define XLevelH		0x10
-#define XLevel		((XLevelH&0x0F)*16+XLevelL)
-#define Max_Column	128
-#define Max_Row		  64
-#define	Brightness	0xCF 
-
-
-#define X_WIDTH 128
-#define Y_WIDTH 64
-//======================================
+/* Private variables ---------------------------------------------------------*/
 const u8 F6x8[] =
 {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00 ,   // sp
@@ -120,7 +115,7 @@ const u8 F6x8[] =
     0x00, 0x1C, 0xA0, 0xA0, 0xA0, 0x7C ,   // y
     0x00, 0x44, 0x64, 0x54, 0x4C, 0x44 ,   // z
     0x14, 0x14, 0x14, 0x14, 0x14, 0x14     // horiz lines
-};
+};																		// 6 * 8 数字
 
 //======================================================
 // 128X64I液晶底层驱动[8X16]字体库
@@ -227,12 +222,12 @@ const u8 F8X16[]=
 	0x00,0x06,0x01,0x01,0x02,0x02,0x04,0x04,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,//~94
 
 };
-/* 生成实心菱形图标的16*16点阵*/
-const u8 nonside[] =
-{
-	0x00,0x00,0x80,0xC0,0xE0,0xF0,0xF8,0xFC,0xF8,0xF0,0xE0,0xC0,0x80,0x00,0x00,0x00,
-	0x00,0x00,0x00,0x01,0x03,0x07,0x0F,0x1F,0x0F,0x07,0x03,0x01,0x00,0x00,0x00,0x00,//◆0,
-};
+
+
+/* Private functions ---------------------------------------------------------*/
+void OLED_Port_Init(void);												// 端口初始化
+void OLED_Write_Data(u8 ucData);										// OLED写数据
+void OLED_Write_Cmd(u8 ucCmd);                                          // OLED写命令
 
 /*******************************************************************************
 *                           陆超@2017-04-09
@@ -253,46 +248,74 @@ void OLED_Port_Init(void)
        
 }// End of void OLED_Port_Init(void)
 
+/*******************************************************************************
+*                           陆超@2017-04-10
+* Function Name  :  OLED_Write_Data
+* Description    :  OLED写数据
+* Input          :  u8 ucData 要写入的数据
+* Output         :  None
+* Return         :  None
+*******************************************************************************/
+void OLED_Write_Data(u8 ucData)
+{
+	u8 i = 8;
 
-void OLED_WrDat(u8 data)
-{
-	u8 i=8;
-	//OLED_CS=0;;
 	OLED_DC_SET();
-  OLED_SCL_CLR();
-  //asm("nop");    
-  while(i--)
-  {
-    if(data&0x80){OLED_SDA_SET();}
-    else{OLED_SDA_CLR();}
-    OLED_SCL_SET(); 
-    //asm("nop");;
-		//asm("nop");            
-    OLED_SCL_CLR();    
-    data<<=1;    
-  }
-	//OLED_CS=1;
-}
-void OLED_WrCmd(u8 cmd)
+	OLED_SCL_CLR();
+
+	while(i--)
+	{
+		if(ucData & 0x80)
+		{
+			OLED_SDA_SET();
+		}
+		else
+		{
+			OLED_SDA_CLR();
+		}
+
+		OLED_SCL_SET(); 
+		          
+		OLED_SCL_CLR();    
+		ucData <<= 1;    
+	}
+	
+}// End of void OLED_Write_Data(u8 ucData)
+
+/*******************************************************************************
+*                           陆超@2017-04-10
+* Function Name  :  OLED_Write_Cmd
+* Description    :  OLED写命令
+* Input          :  u8 ucCmd 要写入的命令
+* Output         :  None
+* Return         :  None
+*******************************************************************************/
+void OLED_Write_Cmd(u8 ucCmd)
 {
 	u8 i=8;
-	
-	//OLED_CS=0;;
+
+
 	OLED_DC_CLR();
-  OLED_SCL_CLR();
-  //asm("nop");   
-  while(i--)
-  {
-    if(cmd&0x80){OLED_SDA_SET();}
-    else{OLED_SDA_CLR();}
-    OLED_SCL_SET();
-    //asm("nop");;
-		//asm("nop");             
-    OLED_SCL_CLR();    
-    cmd<<=1;;   
-  } 	
-	//OLED_CS=1;
-}
+	OLED_SCL_CLR();
+
+	while(i--)
+	{
+		if(ucCmd & 0x80)
+		{
+			OLED_SDA_SET();
+		}
+		else
+		{
+			OLED_SDA_CLR();
+		}
+
+		OLED_SCL_SET();
+
+		OLED_SCL_CLR();    
+		ucCmd <<= 1;;   
+	} 	
+	
+}// End of void OLED_Write_Cmd(u8 ucCmd)
 
 /*设置起始地址
 *Y轴是按8格递进的，y轴0~63，只能按8格的倍数显示，
@@ -300,21 +323,25 @@ void OLED_WrCmd(u8 cmd)
 */
 void OLED_Set_Pos(u8 x, u8 y)
 { 
-  OLED_WrCmd(0xb0+(y>>3));
-  OLED_WrCmd(((x&0xf0)>>4)|0x10);
-  OLED_WrCmd((x&0x0f)|0x01); 
+	// 设置地址y 0~7
+	OLED_Write_Cmd(0xB0 + (y >> 3));
+
+	// 设置地址x低字节和高字节
+	OLED_Write_Cmd(( x & 0x0F));
+	OLED_Write_Cmd(((x & 0xF0) >> 4) | 0x10);
+   
 } 
-void OLED_Fill(u8 bmp_data)
+void OLED_Fill(u8 bmp_ucData)
 {
 	u8 y,x;
 	
 	for(y=0;y<8;y++)
 	{
-		OLED_WrCmd(0xb0+y);
-		OLED_WrCmd(0x01);
-		OLED_WrCmd(0x10);
+		OLED_Write_Cmd(0xb0+y);
+		OLED_Write_Cmd(0x01);
+		OLED_Write_Cmd(0x10);
 		for(x=0;x<X_WIDTH;x++)
-			OLED_WrDat(bmp_data);
+			OLED_Write_Data(bmp_ucData);
 	}
 }
 void OLED_CLS(void)
@@ -322,11 +349,11 @@ void OLED_CLS(void)
 	u8 y,x;	
 	for(y=0;y<8;y++)
 	{
-		OLED_WrCmd(0xb0+y);
-		OLED_WrCmd(0x01);
-		OLED_WrCmd(0x10); 
+		OLED_Write_Cmd(0xb0+y);
+		OLED_Write_Cmd(0x01);
+		OLED_Write_Cmd(0x10); 
 		for(x=0;x<X_WIDTH;x++)
-			OLED_WrDat(0);
+			OLED_Write_Data(0);
 	}
 }
 //清除一行0-63
@@ -334,12 +361,12 @@ void OLED_CLS_y(char y)
 {
 	u8 x;	
 	
-	OLED_WrCmd(0xb0+(y>>3));
-	OLED_WrCmd(0x01);
-	OLED_WrCmd(0x10); 
+	OLED_Write_Cmd(0xb0+(y>>3));
+	OLED_Write_Cmd(0x01);
+	OLED_Write_Cmd(0x10); 
 	for(x=0;x<X_WIDTH;x++)
 	{
-		OLED_WrDat(0);
+		OLED_Write_Data(0);
 	}
 	
 }
@@ -349,12 +376,12 @@ void OLED_CLS_line_area(u8 start_x,u8 start_y,u8 width)
 {
 	u8 x;	
 	
-	OLED_WrCmd(0xb0+(start_y>>3));
-	OLED_WrCmd(0x01);
-	OLED_WrCmd(0x10); 
+	OLED_Write_Cmd(0xb0+(start_y>>3));
+	OLED_Write_Cmd(0x01);
+	OLED_Write_Cmd(0x10); 
 	for(x=start_x;x<width;x++)
 	{
-		OLED_WrDat(0);
+		OLED_Write_Data(0);
 	}
 	
 }
@@ -377,40 +404,40 @@ void OLED_Init(void)
   //DDRA=0XFF;
   
 	OLED_SCL_SET();
-	//OLED_CS=1;	//预制SLK和SS为高电平   	
+		//预制SLK和SS为高电平   	
 	
 	OLED_RST_CLR();
 	OLED_DLY_ms(50);
 	OLED_RST_SET();
 
-  OLED_WrCmd(0xae);//--turn off oled panel
-  OLED_WrCmd(0x00);//---set low column address
-  OLED_WrCmd(0x10);//---set high column address
-  OLED_WrCmd(0x40);//--set start line address  Set Mapping RAM Display Start Line (0x00~0x3F)
-  OLED_WrCmd(0x81);//--set contrast control register
-  OLED_WrCmd(0xcf); // Set SEG Output Current Brightness
-  OLED_WrCmd(0xa1);//--Set SEG/Column Mapping     0xa0左右反置 0xa1正常
-  OLED_WrCmd(0xc8);//Set COM/Row Scan Direction   0xc0上下反置 0xc8正常
-  OLED_WrCmd(0xa6);//--set normal display
-  OLED_WrCmd(0xa8);//--set multiplex ratio(1 to 64)
-  OLED_WrCmd(0x3f);//--1/64 duty
-  OLED_WrCmd(0xd3);//-set display offset	Shift Mapping RAM Counter (0x00~0x3F)
-  OLED_WrCmd(0x00);//-not offset
-  OLED_WrCmd(0xd5);//--set display clock divide ratio/oscillator frequency
-  OLED_WrCmd(0x80);//--set divide ratio, Set Clock as 100 Frames/Sec
-  OLED_WrCmd(0xd9);//--set pre-charge period
-  OLED_WrCmd(0xf1);//Set Pre-Charge as 15 Clocks & Discharge as 1 Clock
-  OLED_WrCmd(0xda);//--set com pins hardware configuration
-  OLED_WrCmd(0x12);
-  OLED_WrCmd(0xdb);//--set vcomh
-  OLED_WrCmd(0x40);//Set VCOM Deselect Level
-  OLED_WrCmd(0x20);//-Set Page Addressing Mode (0x00/0x01/0x02)
-  OLED_WrCmd(0x02);//
-  OLED_WrCmd(0x8d);//--set Charge Pump enable/disable
-  OLED_WrCmd(0x14);//--set(0x10) disable
-  OLED_WrCmd(0xa4);// Disable Entire Display On (0xa4/0xa5)
-  OLED_WrCmd(0xa6);// Disable Inverse Display On (0xa6/a7) 
-  OLED_WrCmd(0xaf);//--turn on oled panel
+  OLED_Write_Cmd(0xae);//--turn off oled panel
+  OLED_Write_Cmd(0x00);//---set low column address
+  OLED_Write_Cmd(0x10);//---set high column address
+  OLED_Write_Cmd(0x40);//--set start line address  Set Mapping RAM Display Start Line (0x00~0x3F)
+  OLED_Write_Cmd(0x81);//--set contrast control register
+  OLED_Write_Cmd(0xcf); // Set SEG Output Current Brightness
+  OLED_Write_Cmd(0xa1);//--Set SEG/Column Mapping     0xa0左右反置 0xa1正常
+  OLED_Write_Cmd(0xc8);//Set COM/Row Scan Direction   0xc0上下反置 0xc8正常
+  OLED_Write_Cmd(0xa6);//--set normal display
+  OLED_Write_Cmd(0xa8);//--set multiplex ratio(1 to 64)
+  OLED_Write_Cmd(0x3f);//--1/64 duty
+  OLED_Write_Cmd(0xd3);//-set display offset	Shift Mapping RAM Counter (0x00~0x3F)
+  OLED_Write_Cmd(0x00);//-not offset
+  OLED_Write_Cmd(0xd5);//--set display clock divide ratio/oscillator frequency
+  OLED_Write_Cmd(0x80);//--set divide ratio, Set Clock as 100 Frames/Sec
+  OLED_Write_Cmd(0xd9);//--set pre-charge period
+  OLED_Write_Cmd(0xf1);//Set Pre-Charge as 15 Clocks & Discharge as 1 Clock
+  OLED_Write_Cmd(0xda);//--set com pins hardware configuration
+  OLED_Write_Cmd(0x12);
+  OLED_Write_Cmd(0xdb);//--set vcomh
+  OLED_Write_Cmd(0x40);//Set VCOM Deselect Level
+  OLED_Write_Cmd(0x20);//-Set Page Addressing Mode (0x00/0x01/0x02)
+  OLED_Write_Cmd(0x00);//
+  OLED_Write_Cmd(0x8d);//--set Charge Pump enable/disable
+  OLED_Write_Cmd(0x14);//--set(0x10) disable
+  OLED_Write_Cmd(0xa4);// Disable Entire Display On (0xa4/0xa5)
+  OLED_Write_Cmd(0xa6);// Disable Inverse Display On (0xa6/a7) 
+  OLED_Write_Cmd(0xaf);//--turn on oled panel
   OLED_Fill(0x00);  //初始清屏
   OLED_Set_Pos(0,0);  
 	
@@ -423,27 +450,27 @@ void OLED_Init(void)
 //==============================================================
 void OLED_PutPixel(u8 x,u8 y)
 {
-	u8 data1;  //data1当前点的数据 
+	u8 ucData1;  //ucData1当前点的数据 
 	 
     //OLED_Set_Pos(x,y); 
-	data1 = 0x01<<(y%8); 	
-	OLED_WrCmd(0xb0+(y>>3));
-	OLED_WrCmd(((x&0xf0)>>4)|0x10);
-	OLED_WrCmd((x&0x0f)|0x00);
-	OLED_WrDat(data1); 	 	
+	ucData1 = 0x01<<(y%8); 	
+	OLED_Write_Cmd(0xb0+(y>>3));
+	OLED_Write_Cmd(((x&0xf0)>>4)|0x10);
+	OLED_Write_Cmd((x&0x0f)|0x00);
+	OLED_Write_Data(ucData1); 	 	
 }
 //==============================================================
-//函数名： void OLED_Put_Column(u8 x,u8 y,u8 data)
+//函数名： void OLED_Put_Column(u8 x,u8 y,u8 ucData)
 //功能描述：操作一列显示，一列全显示0XFF,清除一列0X00;
 //参数：真实坐标值(x,y),x的范围0～127，y的范围0～64
 //返回：无
 //==============================================================
-void OLED_Put_Column(u8 x,u8 y,u8 data)
+void OLED_Put_Column(u8 x,u8 y,u8 ucData)
 {	
-	OLED_WrCmd(0xb0+(y>>3));
-	OLED_WrCmd(((x&0xf0)>>4)|0x10);
-	OLED_WrCmd((x&0x0f)|0x00);
-	OLED_WrDat(data); 	 	
+	OLED_Write_Cmd(0xb0+(y>>3));
+	OLED_Write_Cmd(((x&0xf0)>>4)|0x10);
+	OLED_Write_Cmd((x&0x0f)|0x00);
+	OLED_Write_Data(ucData); 	 	
 }
 
 
@@ -462,13 +489,13 @@ void OLED_Rectangle(u8 x1,u8 y1,u8 x2,u8 y2,u8 gif)
 	OLED_Set_Pos(x1,y1>>3);
 	for(n=x1;n<=x2;n++)
 	{
-		OLED_WrDat(0x01<<(y1%8)); 			
+		OLED_Write_Data(0x01<<(y1%8)); 			
 		if(gif == 1) 	OLED_DLY_ms(50);
 	}  
 	OLED_Set_Pos(x1,y2>>3);
   for(n=x1;n<=x2;n++)
 	{
-		OLED_WrDat(0x01<<(y2%8)); 			
+		OLED_Write_Data(0x01<<(y2%8)); 			
 		if(gif == 1) 	OLED_DLY_ms(5);
 	}
 	
@@ -494,7 +521,7 @@ void OLED_P6x8Str(u8 x,u8 y,u8 *ch,const u8 *F6x8)
 		OLED_Set_Pos(x,y);    
 		for(i=0;i<6;i++) 
 		{
-			OLED_WrDat(*(F6x8+c*6+i));
+			OLED_Write_Data(*(F6x8+c*6+i));
 		}
 		x+=6;
 		j++;
@@ -521,12 +548,12 @@ void OLED_P8x16Str(u8 x,u8 y,u8 *ch,const u8 *F8x16)
     OLED_Set_Pos(x,y); 
   	for(i=0;i<8;i++) 
   	{
-  	  	OLED_WrDat(*(F8x16+c*16+i));
+  	  	OLED_Write_Data(*(F8x16+c*16+i));
   	}
   	OLED_Set_Pos(x,y+8);    
   	for(i=0;i<8;i++)  
   	{
-  	  	OLED_WrDat(*(F8x16+c*16+i+8));  
+  	  	OLED_Write_Data(*(F8x16+c*16+i+8));  
   	}
   	x+=8;
   	j++;
@@ -565,13 +592,13 @@ void OLED_P14x16Str(u8 x,u8 y,u8 ch[],const u8 *F14x16_Idx,const u8 *F14x16)
 	  		OLED_Set_Pos(x , y);
 	  		for(wm = 0;wm < 14;wm++)               
 	  		{
-	  			OLED_WrDat(*(F14x16+adder));	
+	  			OLED_Write_Data(*(F14x16+adder));	
 	  			adder += 1;
 	  		}      
 	  		OLED_Set_Pos(x,y + 1); 
 	  		for(wm = 0;wm < 14;wm++)          
 	  		{
-	  			OLED_WrDat(*(F14x16+adder));
+	  			OLED_Write_Data(*(F14x16+adder));
 	  			adder += 1;
 	  		}   		
 	  	}
@@ -581,12 +608,12 @@ void OLED_P14x16Str(u8 x,u8 y,u8 ch[],const u8 *F14x16_Idx,const u8 *F14x16)
 	      	OLED_Set_Pos(x,y);
 	  		for(wm = 0;wm < 16;wm++)
 	  		{
-	  			OLED_WrDat(0);
+	  			OLED_Write_Data(0);
 	  		}
 	  		OLED_Set_Pos(x,y + 1);
 	  		for(wm = 0;wm < 16;wm++)
 	  		{   		
-	  			OLED_WrDat(0);	
+	  			OLED_Write_Data(0);	
 	  		}
 	  	}
 	  	x += 14;
@@ -622,13 +649,13 @@ void OLED_P16x16Str(u8 x,u8 y,u8 *ch,const u8 *F16x16_Idx,const u8 *F16x16)
   		OLED_Set_Pos(x , y);
   		for(wm = 0;wm < 16;wm++)               
   		{
-  			OLED_WrDat(*(F16x16+adder));	
+  			OLED_Write_Data(*(F16x16+adder));	
   			adder += 1;
   		}      
   		OLED_Set_Pos(x,y + 8); 
   		for(wm = 0;wm < 16;wm++)          
   		{
-  			OLED_WrDat(*(F16x16+adder));
+  			OLED_Write_Data(*(F16x16+adder));
   			adder += 1;
   		}   		
   	}
@@ -638,12 +665,12 @@ void OLED_P16x16Str(u8 x,u8 y,u8 *ch,const u8 *F16x16_Idx,const u8 *F16x16)
       	OLED_Set_Pos(x,y);
   		for(wm = 0;wm < 16;wm++)
   		{
-  			OLED_WrDat(0);
+  			OLED_Write_Data(0);
   		}
   		OLED_Set_Pos(x,y + 1);
   		for(wm = 0;wm < 16;wm++)
   		{   		
-  			OLED_WrDat(0);	
+  			OLED_Write_Data(0);	
   		}
   	}
   	x += 16;
@@ -707,13 +734,13 @@ void Draw_BMP(u8 x,u8 y,const u8 *bmp)
   	OLED_Set_Pos(x , y);
 	for(wm = 0;wm < 16;wm++)               
 	{
-		OLED_WrDat(*(bmp+adder));	
+		OLED_Write_Data(*(bmp+adder));	
 		adder += 1;
 	}      
 	OLED_Set_Pos(x,y + 8); 
 	for(wm = 0;wm < 16;wm++)          
 	{
-		OLED_WrDat(*(bmp+adder));
+		OLED_Write_Data(*(bmp+adder));
 		adder += 1;
 	} 
 

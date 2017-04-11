@@ -39,6 +39,19 @@
 #define 	TYPE6X8						3
 
 
+
+#define 	XLevelL						0x00
+#define 	XLevelH						0x10
+#define 	XLevel						((XLevelH & 0x0F) * 16 + XLevelL)
+#define 	Max_Column					128
+#define 	Max_Row		  				64
+#define		Brightness					0xCF 
+
+
+#define 	X_WIDTH 					128
+#define 	Y_WIDTH 					64
+
+
 /* Private typedef -----------------------------------------------------------*/
 
 
@@ -47,20 +60,7 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-
-extern void OLCD_Init(void);
-extern void OLCD_CLS(void);
-extern void OLCD_CLS_y(char y);
-extern void OLCD_CLS_line_area(u8 start_x,u8 start_y,u8 width);
-extern void OLCD_P6x8Str(u8 x,u8 y,u8 *ch,const u8 *F6x8);
-extern void OLCD_P8x16Str(u8 x,u8 y,u8 *ch,const u8 *F8x16);
-extern void OLCD_P14x16Str(u8 x,u8 y,u8 ch[],const u8 *F14x16_Idx,const u8 *F14x16);
-extern void OLCD_P16x16Str(u8 x,u8 y,u8 *ch,const u8 *F16x16_Idx,const u8 *F16x16);
-extern void OLCD_PutPixel(u8 x,u8 y);
-extern void OLCD_Print(u8 x, u8 y, u8 *ch,u8 char_size, u8 ascii_size);
-extern void OLCD_Rectangle(u8 x1,u8 y1,u8 x2,u8 y2,u8 gif);
-extern void Draw_BMP(u8 x,u8 y,const u8 *bmp); 
-extern void OLCD_Fill(u8 dat);
+extern  void OLED_Port_Init(void);										// 端口初始化
 #endif /* _OLED_H */
 
 /******************* (C) COPYRIGHT 2017 陆超 *****END OF FILE******************/
