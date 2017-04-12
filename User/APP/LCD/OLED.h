@@ -61,6 +61,8 @@
 
 /* Private function prototypes -----------------------------------------------*/
 extern  void OLED_Port_Init(void);										// 端口初始化
+extern  void OLED_Set_Pos(u8 x, u8 y);									// 设置坐标
+
 #endif /* _OLED_H */
 
 /******************* (C) COPYRIGHT 2017 陆超 *****END OF FILE******************/
