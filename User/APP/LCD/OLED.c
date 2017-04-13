@@ -228,6 +228,9 @@ const u8 F8X16[]=
 void OLED_Port_Init(void);												// 端口初始化
 void OLED_Write_Data(u8 ucData);										// OLED写数据
 void OLED_Write_Cmd(u8 ucCmd);                                          // OLED写命令
+void OLED_Set_Pos(u8 x, u8 y);											// 设置坐标
+void OLED_Fill(u8 *pData);												// 数据填充
+
 
 /*******************************************************************************
 *                           陆超@2017-04-09
@@ -317,42 +320,53 @@ void OLED_Write_Cmd(u8 ucCmd)
 	
 }// End of void OLED_Write_Cmd(u8 ucCmd)
 
-/*设置起始地址
-*Y轴是按8格递进的，y轴0~63，只能按8格的倍数显示，
-*因为列行式只能按8个字节进行
-*/
 /*******************************************************************************
-*							陆超@2017-04-10
-* Function Name  :	OLED_Write_Cmd
-* Description	 :	OLED写命令
-* Input 		 :	u8 ucCmd 要写入的命令
+*							陆超@2017-04-12
+* Function Name  :	OLED_Set_Pos
+* Description	 :	OLED设置位置
+* Input 		 :	u8 x x坐标 0~128
+*					u8 y y坐标 0~63 必须是8的倍数
 * Output		 :	None
 * Return		 :	None
 *******************************************************************************/
-
 void OLED_Set_Pos(u8 x, u8 y)
 { 
 	// 设置地址y 0~7
-	OLED_Write_Cmd(0xB0 + (y >> 3));
+	OLED_Write_Cmd(OLED_CMD_Y_ADDR + (y >> 3));
 
 	// 设置地址x低字节和高字节
 	OLED_Write_Cmd(( x & 0x0F));
 	OLED_Write_Cmd(((x & 0xF0) >> 4) | 0x10);
-   
-} 
-void OLED_Fill(u8 bmp_ucData)
-{
-	u8 y,x;
 	
-	for(y=0;y<8;y++)
+}// End of void OLED_Set_Pos(u8 x, u8 y) 
+
+/*******************************************************************************
+*							陆超@2017-04-13
+* Function Name  :	OLED_Fill
+* Description	 :	OLED数据填充
+* Input 		 :	u8 *pData	待填充数据
+* Return		 :	None
+*******************************************************************************/
+void OLED_Fill(u8 *pData)
+{
+	u8 x, y;
+	
+	for(y = 0; y < 8; y++)
 	{
-		OLED_Write_Cmd(0xb0+y);
-		OLED_Write_Cmd(0x01);
+		// 设置Y地址
+		OLED_Write_Cmd(OLED_CMD_Y_ADDR + y);
+
+		// 设置X地址
+		OLED_Write_Cmd(0x00);
 		OLED_Write_Cmd(0x10);
-		for(x=0;x<X_WIDTH;x++)
-			OLED_Write_Data(bmp_ucData);
+		for(x= 0; x < X_WIDTH; x++)
+		{
+			OLED_Write_Data(*pData++);
+		}
 	}
-}
+	
+}// End of void OLED_Fill(u8 *pData)
+
 void OLED_CLS(void)
 {
 	u8 y,x;	

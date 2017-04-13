@@ -21,17 +21,20 @@
 
 
 /* Private define ------------------------------------------------------------*/				   
-#define 	OLCD_SCL_CLR()				GPIO_Set_Pin_Low(OLED_SCL_PIN)	// SCL管脚
-#define 	OLCD_SCL_SET()				GPIO_Set_Pin_High(OLED_SCL_PIN)
+#define 	OLED_SCL_CLR()				GPIO_Set_Pin_Low(OLED_SCL_PIN)	// SCL管脚
+#define 	OLED_SCL_SET()				GPIO_Set_Pin_High(OLED_SCL_PIN)
 
-#define 	OLCD_SDA_CLR()				GPIO_Set_Pin_Low(OLED_SDA_PIN)
-#define 	OLCD_SDA_SET()				GPIO_Set_Pin_High(OLED_SDA_PIN)
+#define 	OLED_SDA_CLR()				GPIO_Set_Pin_Low(OLED_SDA_PIN)
+#define 	OLED_SDA_SET()				GPIO_Set_Pin_High(OLED_SDA_PIN)
 
-#define 	OLCD_RST_CLR()				GPIO_Set_Pin_Low(OLED_RST_PIN)
-#define 	OLCD_RST_SET()				GPIO_Set_Pin_High(OLED_RST_PIN)
+#define 	OLED_RST_CLR()				GPIO_Set_Pin_Low(OLED_RST_PIN)
+#define 	OLED_RST_SET()				GPIO_Set_Pin_High(OLED_RST_PIN)
 
-#define 	OLCD_DC_CLR()				GPIO_Set_Pin_Low(OLED_DC_PIN)
-#define 	OLCD_DC_SET()				GPIO_Set_Pin_High(OLED_DC_PIN)
+#define 	OLED_DC_CLR()				GPIO_Set_Pin_Low(OLED_DC_PIN)
+#define 	OLED_DC_SET()				GPIO_Set_Pin_High(OLED_DC_PIN)
+
+#define 	OLED_CMD_Y_ADDR				0xB0							// Y轴地址
+
 
 //汉字大小，英文数字大小
 #define 	TYPE8X16					1
