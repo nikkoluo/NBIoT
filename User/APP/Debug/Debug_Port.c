@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
 * File Name          :  Debug_Port.c
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51822
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  02/17/2017
-* Description        :  Debugé©±åŠ¨ç¨‹åº
+* Description        :  DebugÇı¶¯³ÌĞò
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "Debug_Port.h"
@@ -17,16 +17,16 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void Debug_Variable_Init(void);                                         // Debugå˜é‡åˆå§‹åŒ–
-void Debug_Port_Init(void);                                             // Debugç«¯å£åˆå§‹åŒ–  
-void Debug_Uart_Event_Handle(app_uart_evt_t * Event_Ptr);               // ä¸²å£Handleå¤„ç†
+void Debug_Variable_Init(void);                                         // Debug±äÁ¿³õÊ¼»¯
+void Debug_Port_Init(void);                                             // Debug¶Ë¿Ú³õÊ¼»¯  
+void Debug_Uart_Event_Handle(app_uart_evt_t * Event_Ptr);               // ´®¿ÚHandle´¦Àí
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           é™†è¶…@2017-02-17
+*                           Â½³¬@2017-02-17
 * Function Name  :  Debug_Uart_Event_Handle
-* Description    :  ä¸²å£Handleå¤„ç†
-* Input          :  app_uart_evt_t * Event_Ptr  å¾…å¤„ç†çš„äº‹ä»¶æŒ‡é’ˆ
+* Description    :  ´®¿ÚHandle´¦Àí
+* Input          :  app_uart_evt_t * Event_Ptr  ´ı´¦ÀíµÄÊÂ¼şÖ¸Õë
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -34,7 +34,7 @@ void Debug_Uart_Event_Handle(app_uart_evt_t * Event_Ptr)
 {
     u8 ucTemp;
     
-    // åˆ¤æ–­äº‹ä»¶ç±»å‹
+    // ÅĞ¶ÏÊÂ¼şÀàĞÍ
     switch (Event_Ptr->evt_type)
     {
         case APP_UART_DATA_READY:
@@ -42,16 +42,16 @@ void Debug_Uart_Event_Handle(app_uart_evt_t * Event_Ptr)
 
             while (app_uart_get(&ucTemp) != NRF_ERROR_NOT_FOUND)
             {
-                // éç­‰å¾…å¤„ç†çŠ¶æ€
+                // ·ÇµÈ´ı´¦Àí×´Ì¬
                 if (Debug_UART.Rx_State != UART_RX_STATE_PENDING)
                 {
-                    // æ¥æ”¶æ€
+                    // ½ÓÊÕÌ¬
                     Debug_UART.Rx_State = UART_RX_STATE_BUSY;
 
-                    // éæº¢å‡º
+                    // ·ÇÒç³ö
                     if (Debug_UART.Rx_Len < 128)
                     {
-                        // é¦–æ¬¡æ¥æ”¶ å¯åŠ¨å®šæ—¶å™¨
+                        // Ê×´Î½ÓÊÕ Æô¶¯¶¨Ê±Æ÷
                         if(Debug_UART.Rx_Len == 0)
                         {
                             Task_Timer_Start(&Debug_Rx_Task, NULL);
@@ -60,7 +60,7 @@ void Debug_Uart_Event_Handle(app_uart_evt_t * Event_Ptr)
                         Debug_UART.Rx_Data[Debug_UART.Rx_Len++] = ucTemp;
                     }
 
-                    // åˆ·æ–°æ¥æ”¶è¶…æ—¶
+                    // Ë¢ĞÂ½ÓÊÕ³¬Ê±
                     Debug_UART.Rx_Timeout = 2;
                 }
 
@@ -71,7 +71,7 @@ void Debug_Uart_Event_Handle(app_uart_evt_t * Event_Ptr)
 
         case APP_UART_COMMUNICATION_ERROR:
         {
-            // æš‚æ—¶æ’é™¤æ¥æ”¶é”™è¯¯
+            // ÔİÊ±ÅÅ³ı½ÓÊÕ´íÎó
             if (Event_Ptr->data.error_communication & 0x03)
             {
                 APP_ERROR_HANDLER(Event_Ptr->data.error_communication);
@@ -97,9 +97,9 @@ void Debug_Uart_Event_Handle(app_uart_evt_t * Event_Ptr)
 
 
 /*******************************************************************************
-*                           é™†è¶…@2017-02-17
+*                           Â½³¬@2017-02-17
 * Function Name  :  Debug_Variable_Init
-* Description    :  Debugå˜é‡åˆå§‹åŒ–
+* Description    :  Debug±äÁ¿³õÊ¼»¯
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -115,9 +115,9 @@ void Debug_Variable_Init(void)
 }// End of void Debug_Variable_Init(void)
 
 /*******************************************************************************
-*                           é™†è¶…@2017-02-17
+*                           Â½³¬@2017-02-17
 * Function Name  :  Debug_Port_Init
-* Description    :  Debugç«¯å£åˆå§‹åŒ– 
+* Description    :  Debug¶Ë¿Ú³õÊ¼»¯ 
 *                   P.25   <--   DEBUG_RX_PIN
 *                   P.24    -->  DEBUG_TX_PIN
 * Input          :  None
@@ -139,11 +139,11 @@ void Debug_Port_Init(void)
         UART_BAUDRATE_BAUDRATE_Baud115200
     };
 
-    APP_UART_FIFO_INIT( &Debug_UART_Params,                 // ä¸²å£å‚æ•°
-                        UART_RX_BUF_SIZE,                   // æ¥æ”¶ç¼“å­˜å¤§å°
-                        UART_TX_BUF_SIZE,                   // å‘é€ç¼“å­˜å¤§å°
-                        Debug_Uart_Event_Handle,            // å›è°ƒå¤„ç†ä¸­æ–­
-                        APP_IRQ_PRIORITY_LOW,               // ä¸­æ–­ä¼˜å…ˆçº§
+    APP_UART_FIFO_INIT( &Debug_UART_Params,                 // ´®¿Ú²ÎÊı
+                        UART_RX_BUF_SIZE,                   // ½ÓÊÕ»º´æ´óĞ¡
+                        UART_TX_BUF_SIZE,                   // ·¢ËÍ»º´æ´óĞ¡
+                        Debug_Uart_Event_Handle,            // »Øµ÷´¦ÀíÖĞ¶Ï
+                        APP_IRQ_PRIORITY_LOW,               // ÖĞ¶ÏÓÅÏÈ¼¶
                         err_code);
                         
     APP_ERROR_CHECK(err_code);
@@ -153,5 +153,5 @@ void Debug_Port_Init(void)
 
 
 
-/******************* (C) COPYRIGHT 2017 é™†è¶… ************* END OF FILE ********/
+/******************* (C) COPYRIGHT 2017 Â½³¬ ************* END OF FILE ********/
 

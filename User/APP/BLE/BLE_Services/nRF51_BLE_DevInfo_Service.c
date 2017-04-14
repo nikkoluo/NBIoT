@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
 * File Name          :  nRF51_BLE_DevInfo_Service.c
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51822
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  01/12/2017
-* Description        :  è“ç‰™DevInfoæœåŠ¡åº”ç”¨ç¨‹åº
+* Description        :  À¶ÑÀDevInfo·şÎñÓ¦ÓÃ³ÌĞò
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "nRF51_BLE_DevInfo_Service.h"
@@ -17,16 +17,16 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void nRF51_BLE_DevInfo_Services_Init(void);                             // ç³»ç»Ÿä¿¡æ¯æœåŠ¡åˆå§‹åŒ–
+void nRF51_BLE_DevInfo_Services_Init(void);                             // ÏµÍ³ĞÅÏ¢·şÎñ³õÊ¼»¯
 
 
 /* Private functions ---------------------------------------------------------*/
 
 
 /*******************************************************************************
-*                           é™†è¶…@2017-01-12
+*                           Â½³¬@2017-01-12
 * Function Name  :  nRF51_BLE_DevInfo_Services_Init
-* Description    :  DevInfoæœåŠ¡åˆå§‹åŒ–
+* Description    :  DevInfo·şÎñ³õÊ¼»¯
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -35,25 +35,25 @@ void nRF51_BLE_DevInfo_Services_Init(void)
 {
     u32             Err_Code;
 
-    // BLEè®¾å¤‡ä¿¡æ¯
+    // BLEÉè±¸ĞÅÏ¢
     ble_dis_init_t  BLE_Dis; 
     
-    // æ¸…ç©ºå˜é‡
+    // Çå¿Õ±äÁ¿
     memset(&BLE_Dis, 0, sizeof(BLE_Dis));
 
-    // åˆå§‹åŒ–æ¨¡å—ä¿¡æ¯
+    // ³õÊ¼»¯Ä£¿éĞÅÏ¢
     ble_srv_ascii_to_utf8(&BLE_Dis.manufact_name_str,   BLE_MANUFACTURER_NAME);
     ble_srv_ascii_to_utf8(&BLE_Dis.fw_rev_str,          BLE_FW_REV_STR);
     ble_srv_ascii_to_utf8(&BLE_Dis.model_num_str,       BLE_MODULE_NUM);
 
     
     
-    // é…ç½®ç¡¬ä»¶ç‰ˆæœ¬
+    // ÅäÖÃÓ²¼ş°æ±¾
     ble_srv_ascii_to_utf8(&BLE_Dis.hw_rev_str,          DEFAULT_HARDWARE_VERSION);    
 
 
     
-    // è®¾ç½®è¯»å†™æƒé™
+    // ÉèÖÃ¶ÁĞ´È¨ÏŞ
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&BLE_Dis.dis_attr_md.read_perm);
     BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS(&BLE_Dis.dis_attr_md.write_perm);
 
@@ -65,7 +65,7 @@ void nRF51_BLE_DevInfo_Services_Init(void)
 
 
 
-/******************* (C) COPYRIGHT 2017 é™†è¶… **************END OF FILE*********/
+/******************* (C) COPYRIGHT 2017 Â½³¬ **************END OF FILE*********/
 
 
 

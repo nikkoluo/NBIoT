@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
 * File Name          :  LCD_Port.h
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -28,10 +28,10 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void LCD_Variable_Init(void);                                   // LCDå˜é‡åˆå§‹åŒ–
-extern  u8 LCD_Port_Init(void);                                         // ç®¡è„šåˆå§‹åŒ–
+extern  void LCD_Variable_Init(void);                                   // LCD±äÁ¿³õÊ¼»¯
+extern  u8 LCD_Port_Init(void);                                         // ¹Ü½Å³õÊ¼»¯
 
 
 #endif /* __LCD_PORT_H */
 
-/******************* (C) COPYRIGHT 2017 é™†è¶… **** END OF FILE *****************/
+/******************* (C) COPYRIGHT 2017 Â½³¬ **** END OF FILE *****************/

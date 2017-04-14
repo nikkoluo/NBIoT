@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2017 ÈôÜË∂Ö **********************************
+/******************** (C) COPYRIGHT 2017 ¬Ω≥¨ **********************************
 * File Name          :  Communal_IIC.h
-* Author             :  ÈôÜË∂Ö
+* Author             :  ¬Ω≥¨
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -17,7 +17,7 @@
 
 
 /* Private define ------------------------------------------------------------*/
-#define     COMMUNAL_IIC_MAX_LPPOS      (5 * 1000)                      // Ë∂ÖÊó∂Âë®Êúü
+#define     COMMUNAL_IIC_MAX_LPPOS      (5 * 1000)                      // ≥¨ ±÷‹∆⁄
 
 
 
@@ -30,9 +30,9 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  u8 Communal_IIC_Init(void);                                     // ÁÆ°ËÑöÂàùÂßãÂåñ
+extern  u8 Communal_IIC_Init(void);                                     // π‹Ω≈≥ı ºªØ
 
 
 #endif /* __COMMUNAL_IIC_H */
 
-/******************* (C) COPYRIGHT 2017 ÈôÜË∂Ö **** END OF FILE *****************/
+/******************* (C) COPYRIGHT 2017 ¬Ω≥¨ **** END OF FILE *****************/

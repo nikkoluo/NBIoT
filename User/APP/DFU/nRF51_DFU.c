@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
 * File Name          :  nRF51_DFU.c
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  02/28/2017
-* Description        :  nRF51_DFU ä»»åŠ¡
+* Description        :  nRF51_DFU ÈÎÎñ
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "nRF51_DFU.h"
@@ -20,16 +20,16 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void nRF51_DFU_Advertising_Stop(void);                                  // åœæ­¢å¹¿æ’­
-void nRF51_DFU_Reset_Prepare(void);                                     // é‡å¯å‰å‡†å¤‡
-void DFU_App_Context_Load(dm_handle_t const * p_handle);                // ç»‘å®šæ¨¡å¼ä¸‹att tableåˆ‡æ¢
-void nRF51_BLE_DFU_Services_Init(void);                                 // DFUæœåŠ¡åˆå§‹åŒ–
+void nRF51_DFU_Advertising_Stop(void);                                  // Í£Ö¹¹ã²¥
+void nRF51_DFU_Reset_Prepare(void);                                     // ÖØÆôÇ°×¼±¸
+void DFU_App_Context_Load(dm_handle_t const * p_handle);                // °ó¶¨Ä£Ê½ÏÂatt tableÇĞ»»
+void nRF51_BLE_DFU_Services_Init(void);                                 // DFU·şÎñ³õÊ¼»¯
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           é™†è¶…@2017-02-28
+*                           Â½³¬@2017-02-28
 * Function Name  :  nRF51_DFU_Advertising_Stop
-* Description    :  åœæ­¢å¹¿æ’­
+* Description    :  Í£Ö¹¹ã²¥
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -44,9 +44,9 @@ void nRF51_DFU_Advertising_Stop(void)
 }// End of void nRF51_DFU_Advertising_Stop(void)
 
 /*******************************************************************************
-*                           é™†è¶…@2017-02-28
+*                           Â½³¬@2017-02-28
 * Function Name  :  DFU_App_Context_Load
-* Description    :  ç»‘å®šæ¨¡å¼ä¸‹att tableåˆ‡æ¢
+* Description    :  °ó¶¨Ä£Ê½ÏÂatt tableÇĞ»»
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -94,9 +94,9 @@ void DFU_App_Context_Load(dm_handle_t const * p_handle)
 
 
 /*******************************************************************************
-*                           é™†è¶…@2017-02-28
+*                           Â½³¬@2017-02-28
 * Function Name  :  nRF51_DFU_Reset_Prepare
-* Description    :  é‡å¯å‰å‡†å¤‡  è¢«nRF51_DFU_app_handler.c è°ƒç”¨
+* Description    :  ÖØÆôÇ°×¼±¸  ±»nRF51_DFU_app_handler.c µ÷ÓÃ
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -105,7 +105,7 @@ void nRF51_DFU_Reset_Prepare(void)
 {
     uint32_t err_code;
 
-    // æœ‰è¿æ¥
+    // ÓĞÁ¬½Ó
     if (BLE_Connect_Handle != BLE_CONN_HANDLE_INVALID)
     {
         // Disconnect from peer.
@@ -115,7 +115,7 @@ void nRF51_DFU_Reset_Prepare(void)
     }
     else
     {
-        // åœæ­¢å¹¿æ’­
+        // Í£Ö¹¹ã²¥
         nRF51_DFU_Advertising_Stop();
     }
 
@@ -127,9 +127,9 @@ void nRF51_DFU_Reset_Prepare(void)
 }// End of void nRF51_DFU_Reset_Prepare(void)
 
 /*******************************************************************************
-*                           é™†è¶…@2017-02-28
+*                           Â½³¬@2017-02-28
 * Function Name  :  nRF51_BLE_DFU_Services_Init
-* Description    :  nRF51 BLE DFUæœåŠ¡åˆå§‹åŒ–    
+* Description    :  nRF51 BLE DFU·şÎñ³õÊ¼»¯    
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -156,7 +156,7 @@ void nRF51_BLE_DFU_Services_Init(void)
 
 }// End of void nRF51_BLE_DFU_Services_Init(void)
 
-/******************* (C) COPYRIGHT 2017 é™†è¶… **************END OF FILE*********/
+/******************* (C) COPYRIGHT 2017 Â½³¬ **************END OF FILE*********/
 
 
 

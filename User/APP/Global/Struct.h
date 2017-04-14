@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2016 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2016 Â½³¬ **********************************
 * File Name          :  Struct.h
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  12/25/2016
-* Description        :  ç»“æ„ä½“å®šä¹‰
+* Description        :  ½á¹¹Ìå¶¨Òå
 *******************************************************************************/
 
 /* Define to prevent recursive inclusion -------------------------------------*/
@@ -31,108 +31,108 @@
 typedef struct
 {
 
-    unsigned int        ms;                                             // æ—¶é—´åŸºå‡†
-    unsigned int        Last_Tick;                                      // ä¸Šæ¬¡Tick
+    unsigned int        ms;                                             // Ê±¼ä»ù×¼
+    unsigned int        Last_Tick;                                      // ÉÏ´ÎTick
     
-} Time_Base_Typedef;                                                	// æ—¶é—´åŸºå‡†ç»“æ„ä½“
+} Time_Base_Typedef;                                                	// Ê±¼ä»ù×¼½á¹¹Ìå
 
 typedef struct
 {
 
-    unsigned char       Adv_En;                                         // ç½®ä¸€ä½¿èƒ½ç»‘å®šå¹¿æ’­
-    unsigned char       Blink_Interval;                                 // é—ªçƒé—´éš”
-    unsigned short      Count;                                          // ç»‘å®šè®¡æ•°
-    unsigned short      Time_Left;                                      // å‰©ä½™æ—¶é—´ s
+    unsigned char       Adv_En;                                         // ÖÃÒ»Ê¹ÄÜ°ó¶¨¹ã²¥
+    unsigned char       Blink_Interval;                                 // ÉÁË¸¼ä¸ô
+    unsigned short      Count;                                          // °ó¶¨¼ÆÊı
+    unsigned short      Time_Left;                                      // Ê£ÓàÊ±¼ä s
     
     
-} Bond_Typedef;                                                     	// æ—¶é—´åŸºå‡†ç»“æ„ä½“
+} Bond_Typedef;                                                     	// Ê±¼ä»ù×¼½á¹¹Ìå
 
 typedef struct
 {
 
-    unsigned char       Magnet_Near;                                    // ç½®ä¸€ä½¿é è¿‘ç£é“
-    unsigned char       Magnet_Last;                                    // ä¸Šæ¬¡çŠ¶æ€
-    unsigned short      Timestamp;                                      // æ—¶é—´æˆ³
+    unsigned char       Magnet_Near;                                    // ÖÃÒ»Ê¹¿¿½ü´ÅÌú
+    unsigned char       Magnet_Last;                                    // ÉÏ´Î×´Ì¬
+    unsigned short      Timestamp;                                      // Ê±¼ä´Á
     
     
-} Hall_Typedef;                                                     	// æ—¶é—´åŸºå‡†ç»“æ„ä½“
+} Hall_Typedef;                                                     	// Ê±¼ä»ù×¼½á¹¹Ìå
 
 typedef struct
 {
-    unsigned char       Status;                                         // çŠ¶æ€
-    unsigned char       Long;                                           // é•¿æŒ‰
-    unsigned int        Push_Timestamp;                                 // æŒ‰ä¸‹æ—¶é—´æˆ³
-    unsigned int        Free_Timestamp;                                 // é‡Šæ”¾æ—¶æ—¶é—´æˆ³
+    unsigned char       Status;                                         // ×´Ì¬
+    unsigned char       Long;                                           // ³¤°´
+    unsigned int        Push_Timestamp;                                 // °´ÏÂÊ±¼ä´Á
+    unsigned int        Free_Timestamp;                                 // ÊÍ·ÅÊ±Ê±¼ä´Á
 
 } Button_Typedef;   
 
 typedef struct
 {
-    float               fTemp;                                          // æ¸©åº¦
-    float               fHumi;                                          // æ¹¿åº¦
-    short               sTemp;                                          // æ¸©åº¦æ•´å‹ * 0.1
-    unsigned short      usHumi;                                         // æ¹¿åº¦æ•´å‹ * 0.1
-    unsigned short      Bat_Val_mv;                                     // ç”µæ± ç”µå‹ mv
-    unsigned char       Bat_Percent;                                    // ç”µé‡ç™¾åˆ†æ¯”
+    float               fTemp;                                          // ÎÂ¶È
+    float               fHumi;                                          // Êª¶È
+    short               sTemp;                                          // ÎÂ¶ÈÕûĞÍ * 0.1
+    unsigned short      usHumi;                                         // Êª¶ÈÕûĞÍ * 0.1
+    unsigned short      Bat_Val_mv;                                     // µç³ØµçÑ¹ mv
+    unsigned char       Bat_Percent;                                    // µçÁ¿°Ù·Ö±È
     
     
     
-} Sensor_Typedef;                                                		// ä¼ æ„Ÿå™¨ç»“æ„ä½“
+} Sensor_Typedef;                                                		// ´«¸ĞÆ÷½á¹¹Ìå
 
 typedef struct
 {
-    unsigned char       Running;                                        // ç½®ä¸€æ—¶è¡¨ç¤ºæ­£åœ¨è¿è¡Œ
-    app_timer_mode_t    Run_Mode;                                       // è¿è¡Œæ¨¡å¼ï¼Œå•æ¬¡æˆ–è€…å‘¨æœŸ
-    unsigned int        Period;                                         // è¿è¡Œå‘¨æœŸ(ms) æœ€å¤§512000
+    unsigned char       Running;                                        // ÖÃÒ»Ê±±íÊ¾ÕıÔÚÔËĞĞ
+    app_timer_mode_t    Run_Mode;                                       // ÔËĞĞÄ£Ê½£¬µ¥´Î»òÕßÖÜÆÚ
+    unsigned int        Period;                                         // ÔËĞĞÖÜÆÚ(ms) ×î´ó512000
     app_timer_id_t      p_ID;
-    app_timer_timeout_handler_t Timeout_handler;                        // è¶…æ—¶è¿è¡Œç¨‹åº
+    app_timer_timeout_handler_t Timeout_handler;                        // ³¬Ê±ÔËĞĞ³ÌĞò
 
-} Task_Typedef;                                                      	// ä»»åŠ¡ç»“æ„ä½“
+} Task_Typedef;                                                      	// ÈÎÎñ½á¹¹Ìå
 
 typedef struct
 {
-    nrf_adc_config_t    Channel_Config;                                 // é€šé“é…ç½®
-    unsigned int        Vol_mv;                                         // ç”µå‹ mv   
+    nrf_adc_config_t    Channel_Config;                                 // Í¨µÀÅäÖÃ
+    unsigned int        Vol_mv;                                         // µçÑ¹ mv   
 
-} ADC_Typedef;                                                        	// ä»»åŠ¡ç»“æ„ä½“
+} ADC_Typedef;                                                        	// ÈÎÎñ½á¹¹Ìå
 
 typedef struct
 {
     
-    unsigned char       Frame_Counter;                                  // å¸§è®¡æ•°
-    unsigned char       MAC[MAC_FLASH_SIZE];                            // MACåœ°å€
-    unsigned char       Token[TOKEN_FLASH_SIZE];                        // MACåœ°å€
-    unsigned char       MACToken[MAC_FLASH_SIZE + TOKEN_FLASH_SIZE];    // MACåœ°å€
-    unsigned char       Int_Event;                                      // ç‰¹æ®ŠEvEntäº‹ä»¶
-    unsigned char       Int_Event_ID;                                   // ç‰¹æ®ŠEvEntäº‹ä»¶ID
-    unsigned short      Timestamp_Hall;                                 // éœå°”æ—¶é—´æˆ³
-    unsigned short      Timestamp_Bat;                                  // ç”µé‡æ—¶é—´æˆ³
+    unsigned char       Frame_Counter;                                  // Ö¡¼ÆÊı
+    unsigned char       MAC[MAC_FLASH_SIZE];                            // MACµØÖ·
+    unsigned char       Token[TOKEN_FLASH_SIZE];                        // MACµØÖ·
+    unsigned char       MACToken[MAC_FLASH_SIZE + TOKEN_FLASH_SIZE];    // MACµØÖ·
+    unsigned char       Int_Event;                                      // ÌØÊâEvEntÊÂ¼ş
+    unsigned char       Int_Event_ID;                                   // ÌØÊâEvEntÊÂ¼şID
+    unsigned short      Timestamp_Hall;                                 // »ô¶ûÊ±¼ä´Á
+    unsigned short      Timestamp_Bat;                                  // µçÁ¿Ê±¼ä´Á
     
-    unsigned short      Event_ID;                                       // äº‹ä»¶ID
-    unsigned short      Current_Event_ID;                               // å½“å‰äº‹ä»¶ID
-    short               Temp_Val;                                       // æ¸©æ¹¿åº¦ 0.1æ‘„æ°åº¦
-    unsigned char       Humi_Val;                                       // æ¹¿åº¦å€¼
-    unsigned char       Temp_Humi_Refresh;                              // ç½®ä¸€æ—¶åˆ·æ–°æ•°æ®
-    unsigned char       Bat_Percent;                                    // ç”µé‡ 0~100%
-    unsigned char       Need_Update;                                    // ç½®ä¸€æ—¶éœ€è¦æ›´æ–°æ•°æ®
+    unsigned short      Event_ID;                                       // ÊÂ¼şID
+    unsigned short      Current_Event_ID;                               // µ±Ç°ÊÂ¼şID
+    short               Temp_Val;                                       // ÎÂÊª¶È 0.1ÉãÊÏ¶È
+    unsigned char       Humi_Val;                                       // Êª¶ÈÖµ
+    unsigned char       Temp_Humi_Refresh;                              // ÖÃÒ»Ê±Ë¢ĞÂÊı¾İ
+    unsigned char       Bat_Percent;                                    // µçÁ¿ 0~100%
+    unsigned char       Need_Update;                                    // ÖÃÒ»Ê±ĞèÒª¸üĞÂÊı¾İ
 
     union
     {
         unsigned short  Frame_Control;
         struct
         {
-            unsigned short  Factory_New             : 1;                // 1 æœªç»‘å®š è¿˜åœ¨å‡ºå‚è®¾ç½®        0 å·²ç»è·Ÿç»‘å®šè¿‡ç”¨æˆ·æˆ–ä¸éœ€è¦ç»‘å®š
-            unsigned short  Connected               : 1;                // 1 å·²ç»“è¿æ¥                   0 æœªè¿æ¥
-            unsigned short  Central                 : 1;                // 1 å½“å‰æ˜¯Central              0 å½“å‰æ˜¯Peripheral å¦‚æœCennected ä¸º1åˆ™æ­¤bitæ— æ•ˆ
-            unsigned short  Encrypted               : 1;                // 1 å·²ç»åŠ å¯†                   0 å½“å‰æœªåŠ å¯†
-            unsigned short  MAC_Include             : 1;                // 1 Frame_ControlååŒ…å«macåœ°å€ 0 ä¸åŒ…å«MACåœ°å€
-            unsigned short  Capability_Include      : 1;                // 1 åŒ…å«Capabilityæ•°æ®         0 ä¸åŒ…å«Capabilityæ•°æ®
-            unsigned short  Event_Include           : 1;                // 1 åŒ…å«Eventæ•°æ®              0 ä¸åŒ…å«Eventæ•°æ®
-            unsigned short  Private_Include         : 1;                // 1 åŒ…å«å‚å•†ç§æœ‰æ•°æ®           0 ä¸åŒ…å«å‚å•†ç§æœ‰æ•°æ®
-            unsigned short  Subheading_Include      : 1;                // 1 åŒ…å«å‰¯æ ‡é¢˜                 0 ä¸åŒ…å«å‰¯æ ‡é¢˜
-            unsigned short  Band_Confirm            : 1;                // 1 ç»‘å®šç¡®è®¤åŒ…                 0 éç»‘å®šç¡®è®¤åŒ…  
-            unsigned short  Reserved                : 2;                // é¢„ç•™
-            unsigned short  Version                 : 4;                // åè®®ç‰ˆæœ¬å·
+            unsigned short  Factory_New             : 1;                // 1 Î´°ó¶¨ »¹ÔÚ³ö³§ÉèÖÃ        0 ÒÑ¾­¸ú°ó¶¨¹ıÓÃ»§»ò²»ĞèÒª°ó¶¨
+            unsigned short  Connected               : 1;                // 1 ÒÑ½áÁ¬½Ó                   0 Î´Á¬½Ó
+            unsigned short  Central                 : 1;                // 1 µ±Ç°ÊÇCentral              0 µ±Ç°ÊÇPeripheral Èç¹ûCennected Îª1Ôò´ËbitÎŞĞ§
+            unsigned short  Encrypted               : 1;                // 1 ÒÑ¾­¼ÓÃÜ                   0 µ±Ç°Î´¼ÓÃÜ
+            unsigned short  MAC_Include             : 1;                // 1 Frame_Controlºó°üº¬macµØÖ· 0 ²»°üº¬MACµØÖ·
+            unsigned short  Capability_Include      : 1;                // 1 °üº¬CapabilityÊı¾İ         0 ²»°üº¬CapabilityÊı¾İ
+            unsigned short  Event_Include           : 1;                // 1 °üº¬EventÊı¾İ              0 ²»°üº¬EventÊı¾İ
+            unsigned short  Private_Include         : 1;                // 1 °üº¬³§ÉÌË½ÓĞÊı¾İ           0 ²»°üº¬³§ÉÌË½ÓĞÊı¾İ
+            unsigned short  Subheading_Include      : 1;                // 1 °üº¬¸±±êÌâ                 0 ²»°üº¬¸±±êÌâ
+            unsigned short  Band_Confirm            : 1;                // 1 °ó¶¨È·ÈÏ°ü                 0 ·Ç°ó¶¨È·ÈÏ°ü  
+            unsigned short  Reserved                : 2;                // Ô¤Áô
+            unsigned short  Version                 : 4;                // Ğ­Òé°æ±¾ºÅ
      
         }Frame_Control_Bit;
     };
@@ -142,11 +142,11 @@ typedef struct
         unsigned char   Capability;
         struct
         {
-            unsigned char   Connectable             : 1;                // 1 è®¾å¤‡æœ‰è¿æ¥èƒ½åŠ›             0 è®¾å¤‡æ²¡æœ‰è¿æ¥èƒ½åŠ› 
-            unsigned char   Be_Central              : 1;                // 1 è®¾å¤‡æœ‰åšç½‘å…³èƒ½åŠ›           0 è®¾å¤‡æ²¡æœ‰åšç½‘å…³èƒ½åŠ›
-            unsigned char   Encrypt_Ability         : 1;                // 1 è®¾å¤‡æœ‰åŠ å¯†èƒ½åŠ›             0 è®¾å¤‡æ²¡æœ‰åŠ å¯†èƒ½åŠ›
-            unsigned char   Bond_Ability            : 2;                // 0x00 æ— éœ€ç»‘å®š 0x01 ä½¿ç”¨MIOTå‰ç»‘å®š 0x10 ä½¿ç”¨MIOTåç»‘å®š 0x11 é¢„ç•™
-            unsigned char   Reserved                : 3;                // é¢„ç•™
+            unsigned char   Connectable             : 1;                // 1 Éè±¸ÓĞÁ¬½ÓÄÜÁ¦             0 Éè±¸Ã»ÓĞÁ¬½ÓÄÜÁ¦ 
+            unsigned char   Be_Central              : 1;                // 1 Éè±¸ÓĞ×öÍø¹ØÄÜÁ¦           0 Éè±¸Ã»ÓĞ×öÍø¹ØÄÜÁ¦
+            unsigned char   Encrypt_Ability         : 1;                // 1 Éè±¸ÓĞ¼ÓÃÜÄÜÁ¦             0 Éè±¸Ã»ÓĞ¼ÓÃÜÄÜÁ¦
+            unsigned char   Bond_Ability            : 2;                // 0x00 ÎŞĞè°ó¶¨ 0x01 Ê¹ÓÃMIOTÇ°°ó¶¨ 0x10 Ê¹ÓÃMIOTºó°ó¶¨ 0x11 Ô¤Áô
+            unsigned char   Reserved                : 3;                // Ô¤Áô
 
             
         }Capability_Bit;
@@ -154,12 +154,12 @@ typedef struct
 
     union
     {
-        unsigned char   Adv_En;                                         // 0 ä¸å…è®¸å¹¿æ’­
+        unsigned char   Adv_En;                                         // 0 ²»ÔÊĞí¹ã²¥
         struct
         {
-            unsigned char   Temp_Humi               : 1;                // å…è®¸æ¸©åº¦å¹¿æ’­
-            unsigned char   Bat_Percent             : 1;                // å…è®¸ç”µé‡å¹¿æ’­
-            unsigned char   Reserved                : 6;                // é¢„ç•™
+            unsigned char   Temp_Humi               : 1;                // ÔÊĞíÎÂ¶È¹ã²¥
+            unsigned char   Bat_Percent             : 1;                // ÔÊĞíµçÁ¿¹ã²¥
+            unsigned char   Reserved                : 6;                // Ô¤Áô
 
             
         }Adv_En_Bit;
@@ -169,10 +169,10 @@ typedef struct
 
 typedef union
 {
-    unsigned long       ALL;                                            // å…¨å±€çŠ¶æ€
+    unsigned long       ALL;                                            // È«¾Ö×´Ì¬
     struct
     {
-        unsigned long   Temp_Humi               : 1;                    // æ¸©æ¹¿åº¦
+        unsigned long   Temp_Humi               : 1;                    // ÎÂÊª¶È
         unsigned long   tVOC                    : 1;                    // tVOC
         unsigned long   Reserved                : 30;
     };
@@ -184,50 +184,50 @@ typedef void (*DUCK_BLE_Data_Handler_t) (unsigned char * pData, unsigned short u
 
 typedef struct 
 {
-    unsigned char       Temp_Humi_Listening_En;                         // ç½®ä¸€æ—¶ä½¿èƒ½é€šçŸ¥
-    unsigned char       Message_Listening_En;                           // ç½®ä¸€æ—¶ä½¿èƒ½é€šçŸ¥
-    unsigned char       UUID_Type;                                      // UUIDç±»å‹ 16Bitæˆ–è€…128Bit
-    unsigned short      Service_Handle;                                 // SoftDeviceæä¾›çš„æœåŠ¡å¤„ç†
-    unsigned short      Conn_Handle;                                    // SoftDeviceæä¾›çš„å½“å‰è¿æ¥å¤„ç†
+    unsigned char       Temp_Humi_Listening_En;                         // ÖÃÒ»Ê±Ê¹ÄÜÍ¨Öª
+    unsigned char       Message_Listening_En;                           // ÖÃÒ»Ê±Ê¹ÄÜÍ¨Öª
+    unsigned char       UUID_Type;                                      // UUIDÀàĞÍ 16Bit»òÕß128Bit
+    unsigned short      Service_Handle;                                 // SoftDeviceÌá¹©µÄ·şÎñ´¦Àí
+    unsigned short      Conn_Handle;                                    // SoftDeviceÌá¹©µÄµ±Ç°Á¬½Ó´¦Àí
     
-    ble_gatts_char_handles_t Temp_Humi_Handle;                          // SoftDeviceæä¾›æ¸©æ¹¿åº¦åº¦å¤„ç†
-    ble_gatts_char_handles_t Message_Handle;                            // SoftDeviceæä¾›æ¸©æ¹¿åº¦åº¦å¤„ç†
+    ble_gatts_char_handles_t Temp_Humi_Handle;                          // SoftDeviceÌá¹©ÎÂÊª¶È¶È´¦Àí
+    ble_gatts_char_handles_t Message_Handle;                            // SoftDeviceÌá¹©ÎÂÊª¶È¶È´¦Àí
     
-}BLE_Service_Typedef;                                              		// BLE Service ç»“æ„ä½“
+}BLE_Service_Typedef;                                              		// BLE Service ½á¹¹Ìå
 
 typedef struct 
 {
-    unsigned char       Buffer[LCD_BUFFER_SIZE];                        // LCDç¼“å­˜ 
-    unsigned char       Main_Temp;                                      // ç½®ä¸€æ—¶ä¸»æ˜¾ç¤ºæ¸©åº¦
-    unsigned char       BT_LOGO_Show;                                   // ç½®ä¸€æ—¶æ˜¾ç¤ºè“ç‰™logo
-    unsigned char       Bat_Empty_Show;                                 // ç½®ä¸€æ—¶æ˜¾ç¤ºç”µæ± ç©ºæ¡†logo
-    unsigned char       Is_LCD_On;                                      // ç½®ä¸€æ—¶å±å¹•å¼€
-    short               Current_Show_Temp;                              // å½“å‰æ˜¾ç¤ºæ¸©åº¦
-    short               Current_Show_Humi;                              // å½“å‰æ˜¾ç¤ºæ¹¿åº¦
+    unsigned char       Buffer[LCD_BUFFER_SIZE];                        // LCD»º´æ 
+    unsigned char       Main_Temp;                                      // ÖÃÒ»Ê±Ö÷ÏÔÊ¾ÎÂ¶È
+    unsigned char       BT_LOGO_Show;                                   // ÖÃÒ»Ê±ÏÔÊ¾À¶ÑÀlogo
+    unsigned char       Bat_Empty_Show;                                 // ÖÃÒ»Ê±ÏÔÊ¾µç³Ø¿Õ¿òlogo
+    unsigned char       Is_LCD_On;                                      // ÖÃÒ»Ê±ÆÁÄ»¿ª
+    short               Current_Show_Temp;                              // µ±Ç°ÏÔÊ¾ÎÂ¶È
+    short               Current_Show_Humi;                              // µ±Ç°ÏÔÊ¾Êª¶È
     
     union
     {
-        unsigned char   Need_Update;                                    // æ˜¯å¦éœ€è¦åˆ·æ–°
+        unsigned char   Need_Update;                                    // ÊÇ·ñĞèÒªË¢ĞÂ
         struct
         {
-            unsigned char   Temp_Humi               : 1;                // æ¸©åº¦éœ€è¦åˆ·æ–°
-            unsigned char   Bat_Percent             : 1;                // ç”µé‡éœ€è¦åˆ·æ–°
-            unsigned char   BT_LOGO                 : 1;                // è“ç‰™LOGOéœ€è¦åˆ·æ–°
-            unsigned char   Reserved                : 5;                // é¢„ç•™
+            unsigned char   Temp_Humi               : 1;                // ÎÂ¶ÈĞèÒªË¢ĞÂ
+            unsigned char   Bat_Percent             : 1;                // µçÁ¿ĞèÒªË¢ĞÂ
+            unsigned char   BT_LOGO                 : 1;                // À¶ÑÀLOGOĞèÒªË¢ĞÂ
+            unsigned char   Reserved                : 5;                // Ô¤Áô
 
             
         }Need_Update_Bit;
     };
     
-}LCD_Typedef;                                                     		// LCD ç»“æ„ä½“
+}LCD_Typedef;                                                     		// LCD ½á¹¹Ìå
 
 typedef struct
 {
-    unsigned char       Rx_Data[128];                                   // æ¥æ”¶ç¼“å­˜
-    unsigned char       Rx_State;                                       // çŠ¶æ€
-    unsigned char       Rx_Timeout;                                     // æ¥æ”¶è¶…æ—¶
-    unsigned short      Rx_Len;                                         // æ¥æ”¶é•¿åº¦
-    unsigned short      Tx_Len;                                         // æ¥æ”¶é•¿åº¦
+    unsigned char       Rx_Data[128];                                   // ½ÓÊÕ»º´æ
+    unsigned char       Rx_State;                                       // ×´Ì¬
+    unsigned char       Rx_Timeout;                                     // ½ÓÊÕ³¬Ê±
+    unsigned short      Rx_Len;                                         // ½ÓÊÕ³¤¶È
+    unsigned short      Tx_Len;                                         // ½ÓÊÕ³¤¶È
 
     
 }UART_Typedef;
@@ -241,4 +241,4 @@ typedef struct
 
 #endif /* __STRUCT_H */
 
-/******************* (C) COPYRIGHT 2016 é™†è¶… *****END OF FILE******************/
+/******************* (C) COPYRIGHT 2016 Â½³¬ *****END OF FILE******************/

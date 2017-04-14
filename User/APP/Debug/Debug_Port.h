@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
 * File Name          :  Debug_Port.h
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51822
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -25,9 +25,9 @@
     #define UART_RX_BUF_SIZE 16                                         //  UART RX buffer size
 #endif
 
-#define		UART_RX_STATE_IDLE		    0x00 							// æ¥å£ç©ºé—²
-#define		UART_RX_STATE_BUSY			0x01 							// æ¥æ”¶ä¸­
-#define		UART_RX_STATE_PENDING		0x02 							// å¾…å¤„ç†
+#define		UART_RX_STATE_IDLE		    0x00 							// ½Ó¿Ú¿ÕÏĞ
+#define		UART_RX_STATE_BUSY			0x01 							// ½ÓÊÕÖĞ
+#define		UART_RX_STATE_PENDING		0x02 							// ´ı´¦Àí
 
 /* Private typedef -----------------------------------------------------------*/
 
@@ -36,10 +36,10 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void Debug_Port_Init(void);                                     // Debugç«¯å£åˆå§‹åŒ–  
-extern  void Debug_Variable_Init(void);                                 // Debugå˜é‡åˆå§‹åŒ–
+extern  void Debug_Port_Init(void);                                     // Debug¶Ë¿Ú³õÊ¼»¯  
+extern  void Debug_Variable_Init(void);                                 // Debug±äÁ¿³õÊ¼»¯
 
 
 #endif /* __DEBUG_PORT_H */
 
-/******************* (C) COPYRIGHT 2017 é™†è¶… *****END OF FILE******************/
+/******************* (C) COPYRIGHT 2017 Â½³¬ *****END OF FILE******************/

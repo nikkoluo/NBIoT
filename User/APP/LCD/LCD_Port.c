@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
 * File Name          :  LCD_Port.c
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  04/09/2017
-* Description        :  æ¸©æ¹¿åº¦é©±åŠ¨ç¨‹åº
+* Description        :  ÎÂÊª¶ÈÇı¶¯³ÌĞò
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "LCD_Port.h"
@@ -18,8 +18,8 @@
 
 /* Private function prototypes -----------------------------------------------*/
 
-void LCD_Variable_Init(void);                                           // LCDå˜é‡åˆå§‹åŒ–
-u8   LCD_Port_Init(void);                                               // LCDç«¯å£åˆå§‹åŒ–    
+void LCD_Variable_Init(void);                                           // LCD±äÁ¿³õÊ¼»¯
+u8   LCD_Port_Init(void);                                               // LCD¶Ë¿Ú³õÊ¼»¯    
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -27,12 +27,12 @@ u8   LCD_Port_Init(void);                                               // LCDç«
 
 
 /*******************************************************************************
-*                           é™†è¶…@2017-04-09
+*                           Â½³¬@2017-04-09
 * Function Name  :  LCD_Port_Init
-* Description    :  LCDç«¯å£åˆå§‹åŒ–
+* Description    :  LCD¶Ë¿Ú³õÊ¼»¯
 * Input          :  None
 * Output         :  None
-* Return         :  1æˆåŠŸ 0å¤±è´¥
+* Return         :  1³É¹¦ 0Ê§°Ü
 *******************************************************************************/
 u8 LCD_Port_Init(void)
 {
@@ -43,9 +43,9 @@ u8 LCD_Port_Init(void)
 }// End of u8  LCD_Port_Init(void)
 
 /*******************************************************************************
-*                           é™†è¶…@2017-04-09
+*                           Â½³¬@2017-04-09
 * Function Name  :  LCD_Variable_Init
-* Description    :  æ¸©æ¹¿åº¦å˜é‡åˆå§‹åŒ–
+* Description    :  ÎÂÊª¶È±äÁ¿³õÊ¼»¯
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -58,5 +58,5 @@ void LCD_Variable_Init(void)
 
 
 
-/******************* (C) COPYRIGHT 2017 é™†è¶… ************* END OF FILE ********/
+/******************* (C) COPYRIGHT 2017 Â½³¬ ************* END OF FILE ********/
 

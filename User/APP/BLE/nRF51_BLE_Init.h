@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2016 ÈôÜË∂Ö **********************************
+/******************** (C) COPYRIGHT 2016 ¬Ω≥¨ **********************************
 * File Name          :  nRF51_BLE_Init.h
-* Author             :  ÈôÜË∂Ö
+* Author             :  ¬Ω≥¨
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -25,11 +25,11 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void nRF51_BLE_Init(void);                                      // nRF51_BLEÂàùÂßãÂåñ
-extern  void nRF51_BLE_Tx_Power_Set(s32 iPower);                        // ËÆæÁΩÆÂèëÂ∞ÑÂäüÁéá
+extern  void nRF51_BLE_Init(void);                                      // nRF51_BLE≥ı ºªØ
+extern  void nRF51_BLE_Tx_Power_Set(s32 iPower);                        // …Ë÷√∑¢…‰π¶¬ 
 
 
 #endif /* __NRF51_BLE_INIT_H */
 
-/******************* (C) COPYRIGHT 2016 ÈôÜË∂Ö *****END OF FILE******************/
+/******************* (C) COPYRIGHT 2016 ¬Ω≥¨ *****END OF FILE******************/
 

@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
 * File Name          :  OLED.h
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -21,7 +21,7 @@
 
 
 /* Private define ------------------------------------------------------------*/				   
-#define 	OLED_SCL_CLR()				GPIO_Set_Pin_Low(OLED_SCL_PIN)	// SCLç®¡è„š
+#define 	OLED_SCL_CLR()				GPIO_Set_Pin_Low(OLED_SCL_PIN)	// SCL¹Ü½Å
 #define 	OLED_SCL_SET()				GPIO_Set_Pin_High(OLED_SCL_PIN)
 
 #define 	OLED_SDA_CLR()				GPIO_Set_Pin_Low(OLED_SDA_PIN)
@@ -33,10 +33,10 @@
 #define 	OLED_DC_CLR()				GPIO_Set_Pin_Low(OLED_DC_PIN)
 #define 	OLED_DC_SET()				GPIO_Set_Pin_High(OLED_DC_PIN)
 
-#define 	OLED_CMD_Y_ADDR				0xB0							// Yè½´åœ°å€
+#define 	OLED_CMD_Y_ADDR				0xB0							// YÖáµØÖ·
 
 
-//æ±‰å­—å¤§å°ï¼Œè‹±æ–‡æ•°å­—å¤§å°
+//ºº×Ö´óĞ¡£¬Ó¢ÎÄÊı×Ö´óĞ¡
 #define 	TYPE8X16					1
 #define 	TYPE16X16					2
 #define 	TYPE6X8						3
@@ -63,11 +63,11 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void OLED_Port_Init(void);										// ç«¯å£åˆå§‹åŒ–
-extern  void OLED_Set_Pos(u8 x, u8 y);									// è®¾ç½®åæ ‡
+extern  void OLED_Port_Init(void);										// ¶Ë¿Ú³õÊ¼»¯
+extern  void OLED_Set_Pos(u8 x, u8 y);									// ÉèÖÃ×ø±ê
 
 #endif /* _OLED_H */
 
-/******************* (C) COPYRIGHT 2017 é™†è¶… *****END OF FILE******************/
+/******************* (C) COPYRIGHT 2017 Â½³¬ *****END OF FILE******************/
 
 

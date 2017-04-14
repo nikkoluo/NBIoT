@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2017 ÈôÜË∂Ö **********************************
+/******************** (C) COPYRIGHT 2017 ¬Ω≥¨ **********************************
 * File Name          :  nRF51_DFU.h
-* Author             :  ÈôÜË∂Ö
+* Author             :  ¬Ω≥¨
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -30,12 +30,12 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern void nRF51_BLE_DFU_Services_Init(void);                           // DFUÊúçÂä°ÂàùÂßãÂåñ
+extern void nRF51_BLE_DFU_Services_Init(void);                           // DFU∑˛ŒÒ≥ı ºªØ
 
 
 
 #endif /* __NRF51_DFU_H */
 
 
-/******************* (C) COPYRIGHT 2017 ÈôÜË∂Ö **** END OF FILE *****************/
+/******************* (C) COPYRIGHT 2017 ¬Ω≥¨ **** END OF FILE *****************/
 

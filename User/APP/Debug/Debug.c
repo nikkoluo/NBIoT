@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
 * File Name          :  Debug.c
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  02/23/2017
-* Description        :  Debugåº”ç”¨ç¨‹åº
+* Description        :  DebugÓ¦ÓÃ³ÌĞò
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "Debug.h"
@@ -16,36 +16,36 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void Debug_Task_Create(void);                                           // åˆ›å»ºè°ƒè¯•ä»»åŠ¡
-void Debug_Rx_Handle(void *p_arg);                                      // è°ƒè¯•å£æ¥æ”¶ä»»åŠ¡å¤„ç†
-void Receive_Data_Handler(u8* ucData, u16 usLen);                       // æ¥æ”¶æ•°æ®å¤„ç†
-void Debug_Send(u8 *ucData, u8 ucLen);                                  // ä¸²å£æ•°æ®å‘é€
-void Debug_Send_Wait_Empty(void);                                       // ç­‰ç©º
+void Debug_Task_Create(void);                                           // ´´½¨µ÷ÊÔÈÎÎñ
+void Debug_Rx_Handle(void *p_arg);                                      // µ÷ÊÔ¿Ú½ÓÊÕÈÎÎñ´¦Àí
+void Receive_Data_Handler(u8* ucData, u16 usLen);                       // ½ÓÊÕÊı¾İ´¦Àí
+void Debug_Send(u8 *ucData, u8 ucLen);                                  // ´®¿ÚÊı¾İ·¢ËÍ
+void Debug_Send_Wait_Empty(void);                                       // µÈ¿Õ
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           é™†è¶…@2017-02-23
+*                           Â½³¬@2017-02-23
 * Function Name  :  Debug_Rx_Handle
-* Description    :  è°ƒè¯•å£æ¥æ”¶ä»»åŠ¡
+* Description    :  µ÷ÊÔ¿Ú½ÓÊÕÈÎÎñ
 * Input          :  void *p_arg
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
 void Debug_Rx_Handle(void *p_arg)
 {
-	// æ˜¯å¦è°ƒè¯•å£æ¥æ”¶è¶…æ—¶
+	// ÊÇ·ñµ÷ÊÔ¿Ú½ÓÊÕ³¬Ê±
 	if (Debug_UART.Rx_Timeout)
 	{
 		Debug_UART.Rx_Timeout--;
 
-		// æ˜¯å¦åˆ°è¶…æ—¶æ—¶é—´ä¸”æ¥æ”¶ç¼“å­˜ä¸ºç©º
+		// ÊÇ·ñµ½³¬Ê±Ê±¼äÇÒ½ÓÊÕ»º´æÎª¿Õ
 		if (Debug_UART.Rx_Timeout == 0)
 		{	
-			// ä¸å…è®¸ç»§ç»­æ¥æ”¶
+			// ²»ÔÊĞí¼ÌĞø½ÓÊÕ
 			Debug_UART.Rx_State = UART_RX_STATE_PENDING;
 			Task_Timer_Stop(&Debug_Rx_Task);
 
-			// å¤„ç†æ¥æ”¶æ•°æ®
+			// ´¦Àí½ÓÊÕÊı¾İ
             Receive_Data_Handler(Debug_UART.Rx_Data, Debug_UART.Rx_Len);
 
             Debug_UART.Rx_Len   = 0;
@@ -57,11 +57,11 @@ void Debug_Rx_Handle(void *p_arg)
 }// End of void Debug_Rx_Handle(void *p_arg)
 
 /*******************************************************************************
-*                           é™†è¶…@2017-03-02
+*                           Â½³¬@2017-03-02
 * Function Name  :  Debug_Send
-* Description    :  è°ƒè¯•å£å‘é€æ•°æ®
-* Input          :  u8 *ucData  å¾…å‘é€å†…å®¹
-*                   u8 ucLen    é•¿åº¦
+* Description    :  µ÷ÊÔ¿Ú·¢ËÍÊı¾İ
+* Input          :  u8 *ucData  ´ı·¢ËÍÄÚÈİ
+*                   u8 ucLen    ³¤¶È
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -78,9 +78,9 @@ void Debug_Send(u8 *ucData, u8 ucLen)
 }// End of void Debug_Send(u8 *ucData, u8 ucLen)
 
 /*******************************************************************************
-*                           é™†è¶…@2017-03-02
+*                           Â½³¬@2017-03-02
 * Function Name  :  Debug_Send_Wait_Empty
-* Description    :  ç­‰ä¸²å£å‘ç©º
+* Description    :  µÈ´®¿Ú·¢¿Õ
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -90,7 +90,7 @@ void Debug_Send_Wait_Empty(void)
     u32 uiTimestamp;
     uiTimestamp = System_ms_Base_Update();
 
-    // 100mså»¶æ—¶
+    // 100msÑÓÊ±
     while (System_ms_Base_Timeout(uiTimestamp, 100) == 0)
     {
         Power_Manage();
@@ -100,11 +100,11 @@ void Debug_Send_Wait_Empty(void)
 
 
 /*******************************************************************************
-*                           é™†è¶…@2017-02-23
+*                           Â½³¬@2017-02-23
 * Function Name  :  Receive_Data_Handler
-* Description    :  æ¥æ”¶æ•°æ®å¤„ç†
-* Input          :  u8* ucData  å¾…å¤„ç†æ•°æ®
-*                   u16 usLen   æ•°æ®é•¿åº¦
+* Description    :  ½ÓÊÕÊı¾İ´¦Àí
+* Input          :  u8* ucData  ´ı´¦ÀíÊı¾İ
+*                   u16 usLen   Êı¾İ³¤¶È
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -115,11 +115,11 @@ void Receive_Data_Handler(u8* ucData, u16 usLen)
     
 #ifndef SYS_TEST 
 
-    app_trace_log("æ¥æ”¶: %s\r\n", ucData);
+    app_trace_log("½ÓÊÕ: %s\r\n", ucData);
     
 #endif
 
-    // æœªå®Œæˆåˆå§‹åŒ–ä¸æ¥æ”¶
+    // Î´Íê³É³õÊ¼»¯²»½ÓÊÕ
     if (Sys_Init != 1)
     {
         return;
@@ -129,9 +129,9 @@ void Receive_Data_Handler(u8* ucData, u16 usLen)
 
 
 /*******************************************************************************
-*                           é™†è¶…@2017-02-23
+*                           Â½³¬@2017-02-23
 * Function Name  :  Debug_Task_Create
-* Description    :  åˆ›å»ºè°ƒè¯•ä»»åŠ¡
+* Description    :  ´´½¨µ÷ÊÔÈÎÎñ
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -140,11 +140,11 @@ void Debug_Task_Create(void)
 {
     u32 err_code = NRF_SUCCESS;
 
-    // å˜é‡ç«¯å£åˆå§‹åŒ–
+    // ±äÁ¿¶Ë¿Ú³õÊ¼»¯
     Debug_Variable_Init();
     Debug_Port_Init();
     
-    // é…ç½®å‚æ•° å•æ¬¡è¿è¡Œæ¨¡å¼
+    // ÅäÖÃ²ÎÊı µ¥´ÎÔËĞĞÄ£Ê½
     Debug_Rx_Task.Run_Mode        = APP_TIMER_MODE_REPEATED;
     Debug_Rx_Task.Period          = 5; 
     Debug_Rx_Task.Timeout_handler = Debug_Rx_Handle;
@@ -166,7 +166,7 @@ void Debug_Task_Create(void)
 
 
 
-/******************* (C) COPYRIGHT 2017 é™†è¶… ************* END OF FILE ********/
+/******************* (C) COPYRIGHT 2017 Â½³¬ ************* END OF FILE ********/
 
 
 

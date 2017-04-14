@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2016 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2016 Â½³¬ **********************************
 * File Name          :  Button_Long.c
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  12/28/2016
-* Description        :  é•¿æŒ‰åº”ç”¨ç¨‹åº
+* Description        :  ³¤°´Ó¦ÓÃ³ÌĞò
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "Button_Long.h"
@@ -16,14 +16,14 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void Long_Button_Handler(void);                                         // é•¿æŒ‰å¤„ç†
+void Long_Button_Handler(void);                                         // ³¤°´´¦Àí
 
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           é™†è¶…@2016-12-28
+*                           Â½³¬@2016-12-28
 * Function Name  :  Long_Button_Handler
-* Description    :  å¤„ç†å•å‡»äº‹ä»¶
+* Description    :  ´¦Àíµ¥»÷ÊÂ¼ş
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -31,16 +31,16 @@ void Long_Button_Handler(void);                                         // é•¿æŒ
 void Long_Button_Handler(void)
 {
     
-    app_trace_log("é•¿æŒ‰ä»»åŠ¡\r\n");
+    app_trace_log("³¤°´ÈÎÎñ\r\n");
 
-//    // äº®ç­åˆ‡æ¢
+//    // ÁÁÃğÇĞ»»
 //    LCD_Temp_Humi_Change_On_Off();
 
 
 }// End of void Long_Button_Handler(void)
 
 
-/******************* (C) COPYRIGHT 2016 é™†è¶… **************END OF FILE*********/
+/******************* (C) COPYRIGHT 2016 Â½³¬ **************END OF FILE*********/
 
 
 

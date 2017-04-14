@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2015 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2015 Â½³¬ **********************************
 * File Name          :  Debug.h
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -25,12 +25,12 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void Debug_Task_Create(void);                                   // åˆ›å»ºè°ƒè¯•ä»»åŠ¡
-extern  void Receive_Data_Handler(u8* ucData, u16 usLen);               // æ¥æ”¶æ•°æ®å¤„ç†
-extern  void Debug_Send(u8 *ucData, u8 ucLen);                          // ä¸²å£æ•°æ®å‘é€
-extern  void Debug_Send_Wait_Empty(void);                               // ç­‰ç©º
+extern  void Debug_Task_Create(void);                                   // ´´½¨µ÷ÊÔÈÎÎñ
+extern  void Receive_Data_Handler(u8* ucData, u16 usLen);               // ½ÓÊÕÊı¾İ´¦Àí
+extern  void Debug_Send(u8 *ucData, u8 ucLen);                          // ´®¿ÚÊı¾İ·¢ËÍ
+extern  void Debug_Send_Wait_Empty(void);                               // µÈ¿Õ
 
 #endif /* __DEBUG_H */
 
-/******************* (C) COPYRIGHT 2017 é™†è¶… *****END OF FILE******************/
+/******************* (C) COPYRIGHT 2017 Â½³¬ *****END OF FILE******************/
 

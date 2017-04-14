@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
 * File Name          :  Communal_Flash.c
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  02/12/2017
-* Description        :  å…¬ç”¨ç¨‹åº
+* Description        :  ¹«ÓÃ³ÌĞò
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "Communal_Flash.h"
@@ -17,25 +17,25 @@
 u32 Communal_Flash_Load(uint8_t           * p_dest,
                         pstorage_handle_t * p_src,
                         pstorage_size_t     size,
-                        pstorage_size_t     offset);                    // è¯»å–
+                        pstorage_size_t     offset);                    // ¶ÁÈ¡
 
                         
 u32 Communal_Flash_Update(pstorage_handle_t * p_dest,
                           uint8_t           * p_src,
                           pstorage_size_t     size,
-                          pstorage_size_t     offset);                  // å†™å…¥
+                          pstorage_size_t     offset);                  // Ğ´Èë
                           
-u32 Communal_Flash_Clear(pstorage_handle_t * p_dest, pstorage_size_t size); // åˆ é™¤
+u32 Communal_Flash_Clear(pstorage_handle_t * p_dest, pstorage_size_t size); // É¾³ı
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           é™†è¶…@2017-03-08
+*                           Â½³¬@2017-03-08
 * Function Name  :  Communal_Flash_Load
-* Description    :  flashè¯»æ“ä½œ
-* Input          :  uint8_t           * p_dest è¯»å–ç¼“å­˜
-*                   pstorage_handle_t * p_src  åœ°å€
-*                   pstorage_size_t     size   é•¿åº¦
-*                   pstorage_size_t     offset åç§»
+* Description    :  flash¶Á²Ù×÷
+* Input          :  uint8_t           * p_dest ¶ÁÈ¡»º´æ
+*                   pstorage_handle_t * p_src  µØÖ·
+*                   pstorage_size_t     size   ³¤¶È
+*                   pstorage_size_t     offset Æ«ÒÆ
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -46,19 +46,19 @@ u32 Communal_Flash_Load(uint8_t           * p_dest,
 {
     u32 Err_Code;
     
-    // ç­‰å¾…è¢«é‡Šæ”¾
+    // µÈ´ı±»ÊÍ·Å
     while(Flash_Used)
     {
         Power_Manage();
     }
 
-    // å ç”¨flash
+    // Õ¼ÓÃflash
     Flash_Used = 1;
     Err_Code = pstorage_load(p_dest, p_src, size, offset);
 
     if (Err_Code == NRF_SUCCESS)
     {
-        // ç­‰å¾…è¢«é‡Šæ”¾
+        // µÈ´ı±»ÊÍ·Å
         while(Flash_Used)
         {
             Power_Manage();
@@ -66,7 +66,7 @@ u32 Communal_Flash_Load(uint8_t           * p_dest,
     }
     else
     {
-        // æ¸…ç©ºå ç”¨
+        // Çå¿ÕÕ¼ÓÃ
         Flash_Used = 0;
     }
 
@@ -75,13 +75,13 @@ u32 Communal_Flash_Load(uint8_t           * p_dest,
 }// End of u32 Communal_Flash_Load
 
 /*******************************************************************************
-*                           é™†è¶…@2017-03-08
+*                           Â½³¬@2017-03-08
 * Function Name  :  Communal_Flash_Update
-* Description    :  flashå†™æ“ä½œ
-* Input          :  pstorage_handle_t * p_dest åœ°å€
-*                   uint8_t           * p_src  å¾…å†™å…¥æ•°æ®
-*                   pstorage_size_t     size   é•¿åº¦
-*                   pstorage_size_t     offset åç§»
+* Description    :  flashĞ´²Ù×÷
+* Input          :  pstorage_handle_t * p_dest µØÖ·
+*                   uint8_t           * p_src  ´ıĞ´ÈëÊı¾İ
+*                   pstorage_size_t     size   ³¤¶È
+*                   pstorage_size_t     offset Æ«ÒÆ
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -92,19 +92,19 @@ u32 Communal_Flash_Update(pstorage_handle_t * p_dest,
 {
     u32 Err_Code;
     
-    // ç­‰å¾…è¢«é‡Šæ”¾
+    // µÈ´ı±»ÊÍ·Å
     while(Flash_Used)
     {
         Power_Manage();
     }
 
-    // å ç”¨flash
+    // Õ¼ÓÃflash
     Flash_Used = 1;
     Err_Code = pstorage_update(p_dest, p_src, size, offset);
 
     if (Err_Code == NRF_SUCCESS)
     {
-        // ç­‰å¾…è¢«é‡Šæ”¾
+        // µÈ´ı±»ÊÍ·Å
         while(Flash_Used)
         {
             Power_Manage();
@@ -112,7 +112,7 @@ u32 Communal_Flash_Update(pstorage_handle_t * p_dest,
     }
     else
     {
-        // æ¸…ç©ºå ç”¨
+        // Çå¿ÕÕ¼ÓÃ
         Flash_Used = 0;
     }
 
@@ -121,11 +121,11 @@ u32 Communal_Flash_Update(pstorage_handle_t * p_dest,
 }// End of u32 Communal_Flash_Update
 
 /*******************************************************************************
-*                           é™†è¶…@2017-03-08
+*                           Â½³¬@2017-03-08
 * Function Name  :  Communal_Flash_Clear
-* Description    :  flashåˆ é™¤
-* Input          :  pstorage_handle_t * p_dest å¾…åˆ é™¤åœ°å€
-*                   pstorage_size_t     size   é•¿åº¦
+* Description    :  flashÉ¾³ı
+* Input          :  pstorage_handle_t * p_dest ´ıÉ¾³ıµØÖ·
+*                   pstorage_size_t     size   ³¤¶È
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -133,19 +133,19 @@ u32 Communal_Flash_Clear(pstorage_handle_t * p_dest, pstorage_size_t size)
 {
     u32 Err_Code;
     
-    // ç­‰å¾…è¢«é‡Šæ”¾
+    // µÈ´ı±»ÊÍ·Å
     while(Flash_Used)
     {
         Power_Manage();
     }
 
-    // å ç”¨flash
+    // Õ¼ÓÃflash
     Flash_Used = 1;
     Err_Code = pstorage_clear(p_dest, size);
 
     if (Err_Code == NRF_SUCCESS)
     {
-        // ç­‰å¾…è¢«é‡Šæ”¾
+        // µÈ´ı±»ÊÍ·Å
         while(Flash_Used)
         {
             Power_Manage();
@@ -153,7 +153,7 @@ u32 Communal_Flash_Clear(pstorage_handle_t * p_dest, pstorage_size_t size)
     }
     else
     {
-        // æ¸…ç©ºå ç”¨
+        // Çå¿ÕÕ¼ÓÃ
         Flash_Used = 0;
     }
 
@@ -161,7 +161,7 @@ u32 Communal_Flash_Clear(pstorage_handle_t * p_dest, pstorage_size_t size)
     
 }// End of u32 Communal_Flash_Clear(pstorage_handle_t * p_dest, pstorage_size_t size)
 
-/******************* (C) COPYRIGHT 2017 é™†è¶… **************END OF FILE*********/
+/******************* (C) COPYRIGHT 2017 Â½³¬ **************END OF FILE*********/
 
 
 

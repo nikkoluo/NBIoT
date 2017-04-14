@@ -1,12 +1,12 @@
-/******************** (C) COPYRIGHT 2016 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2016 Â½³¬ **********************************
 * File Name          :  Global_Cfg.h
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  12/23/2016
 * Description        :  Global header file
-* Description        :  å…¨å±€å®šä¹‰
+* Description        :  È«¾Ö¶¨Òå
 *******************************************************************************/
 
 /* Define to prevent recursive inclusion -------------------------------------*/
@@ -20,47 +20,47 @@
 //----------------------- System ----------------------------------------------/
 #define     DEBUG
 #ifdef      DEBUG
-#define     ENABLE_DEBUG_LOG_SUPPORT                                    // ä½¿èƒ½ç³»ç»Ÿè°ƒè¯•
+#define     ENABLE_DEBUG_LOG_SUPPORT                                    // Ê¹ÄÜÏµÍ³µ÷ÊÔ
 #endif
-#define     SYS_WDT                                                     // ä½¿èƒ½çœ‹é—¨ç‹—
-#define     BLE_OPEN                                                    // ä½¿èƒ½BLE
+#define     SYS_WDT                                                     // Ê¹ÄÜ¿´ÃÅ¹·
+#define     BLE_OPEN                                                    // Ê¹ÄÜBLE
 
 
 
-#define     SYS_STATUS_IDLE             0x00                            // é»˜è®¤çŠ¶æ€
-#define     SYS_STATUS_ADV              0x01                            // å¹¿æ’­æ€
-#define     SYS_STATUS_CONNECT          0x02                            // è¿žæŽ¥æ€
+#define     SYS_STATUS_IDLE             0x00                            // Ä¬ÈÏ×´Ì¬
+#define     SYS_STATUS_ADV              0x01                            // ¹ã²¥Ì¬
+#define     SYS_STATUS_CONNECT          0x02                            // Á¬½ÓÌ¬
 
 
 
-#define     APP_TIMER_DIV               0                               // APPå®šæ—¶å™¨åˆ†é¢‘
-#define     SYS_MAX_TIMERS              2 + 10                          // æœ€å¤šå®šæ—¶å™¨ä¸ªæ•°   GPIOEå ç”¨ä¸€ä¸ª  m_conn_params_timer_id å ç”¨ä¸€ä¸ª   
-#define     SYS_MAX_OP_QUEUE_SIZE       12                              // æœ€å¤šæ“ä½œé˜Ÿåˆ—æ•°
-#define     MAX_EVENT_QUEUE_SIZE        (2 * SYS_MAX_OP_QUEUE_SIZE)     // æœ€å¤§å¾…å¤„ç†äº‹ä»¶é˜Ÿåˆ—å¤§å°
+#define     APP_TIMER_DIV               0                               // APP¶¨Ê±Æ÷·ÖÆµ
+#define     SYS_MAX_TIMERS              2 + 10                          // ×î¶à¶¨Ê±Æ÷¸öÊý   GPIOEÕ¼ÓÃÒ»¸ö  m_conn_params_timer_id Õ¼ÓÃÒ»¸ö   
+#define     SYS_MAX_OP_QUEUE_SIZE       12                              // ×î¶à²Ù×÷¶ÓÁÐÊý
+#define     MAX_EVENT_QUEUE_SIZE        (2 * SYS_MAX_OP_QUEUE_SIZE)     // ×î´ó´ý´¦ÀíÊÂ¼þ¶ÓÁÐ´óÐ¡
 
 
-#define     TICK_TO_MS                  33                              // tickæ•°è½¬æˆms
+#define     TICK_TO_MS                  33                              // tickÊý×ª³Éms
 
 //----------------------- Task ------------------------------------------------/
-#define     TASK_BATTERY_PERIOD         (10 * 1000)                     // ç”µé‡æ£€æµ‹ä»»åŠ¡å‘¨æœŸ
-#define     TASK_TEMP_HUMI_PERIOD       (1 * 1000)                      // æ¸©æ¹¿åº¦æ£€æµ‹ä»»åŠ¡å‘¨æœŸ
-#define     TASK_BLE_PERIOD             (1 * 1000)                      // BLEä»»åŠ¡å‘¨æœŸ
-#define     TASK_LCD_PERIOD             (1 * 100)                       // LCDä»»åŠ¡å‘¨æœŸ
-#define     TASK_COMMUNAL_TIMER_PERIOD  (1 * 100)                       // å…¬ç”¨å®šæ—¶å™¨ä»»åŠ¡å‘¨æœŸ
-#define     TASK_COMMUNAL_TIMER_FREQ    (1000 / TASK_COMMUNAL_TIMER_PERIOD) // å…¬ç”¨å®šæ—¶å™¨ä»»åŠ¡é¢‘çŽ‡
-#define     TASK_MAGNET_CHECK_PERIOD    (1 * TASK_COMMUNAL_TIMER_FREQ)  // ç£é“æ£€æµ‹å‘¨æœŸ
+#define     TASK_BATTERY_PERIOD         (10 * 1000)                     // µçÁ¿¼ì²âÈÎÎñÖÜÆÚ
+#define     TASK_TEMP_HUMI_PERIOD       (1 * 1000)                      // ÎÂÊª¶È¼ì²âÈÎÎñÖÜÆÚ
+#define     TASK_BLE_PERIOD             (1 * 1000)                      // BLEÈÎÎñÖÜÆÚ
+#define     TASK_LCD_PERIOD             (1 * 100)                       // LCDÈÎÎñÖÜÆÚ
+#define     TASK_COMMUNAL_TIMER_PERIOD  (1 * 100)                       // ¹«ÓÃ¶¨Ê±Æ÷ÈÎÎñÖÜÆÚ
+#define     TASK_COMMUNAL_TIMER_FREQ    (1000 / TASK_COMMUNAL_TIMER_PERIOD) // ¹«ÓÃ¶¨Ê±Æ÷ÈÎÎñÆµÂÊ
+#define     TASK_MAGNET_CHECK_PERIOD    (1 * TASK_COMMUNAL_TIMER_FREQ)  // ´ÅÌú¼ì²âÖÜÆÚ
 
 //----------------------- BLE -------------------------------------------------/
-#define     CENTRAL_LINK_COUNT          0                               // è¿žæŽ¥çš„ä¸»æœºæ•°é‡    
-#define     PERIPHERAL_LINK_COUNT       1                               // è¿žæŽ¥çš„ä»Žæœºæ•°é‡
-#define     BLE_DEVICE_NAME             "NBIOT"                         // BLEè®¾å¤‡åç§°
+#define     CENTRAL_LINK_COUNT          0                               // Á¬½ÓµÄÖ÷»úÊýÁ¿    
+#define     PERIPHERAL_LINK_COUNT       1                               // Á¬½ÓµÄ´Ó»úÊýÁ¿
+#define     BLE_DEVICE_NAME             "NBIOT"                         // BLEÉè±¸Ãû³Æ
 
-#define     BLE_MANUFACTURER_NAME       "Cleargrass Inc"                // åˆ¶é€ å•†          
-#define     BLE_FW_REV_STR              "00.00.17"                       // è½¯ä»¶ç‰ˆæœ¬
-#define     BLE_MODULE_NUM              "Duck"                          // åž‹å· 
-#define     DEFAULT_HARDWARE_VERSION    "2.00"                          // é»˜è®¤ç¡¬ä»¶ç‰ˆæœ¬  
+#define     BLE_MANUFACTURER_NAME       "Cleargrass Inc"                // ÖÆÔìÉÌ          
+#define     BLE_FW_REV_STR              "00.00.17"                       // Èí¼þ°æ±¾
+#define     BLE_MODULE_NUM              "Duck"                          // ÐÍºÅ 
+#define     DEFAULT_HARDWARE_VERSION    "2.00"                          // Ä¬ÈÏÓ²¼þ°æ±¾  
 
-#define     BLE_ADV_INTERVAL            MSEC_TO_UNITS(1000, UNIT_0_625_MS) // å¹¿æ’­é—´éš”                          // BLEè®¾å¤‡åç§°
+#define     BLE_ADV_INTERVAL            MSEC_TO_UNITS(1000, UNIT_0_625_MS) // ¹ã²¥¼ä¸ô                          // BLEÉè±¸Ãû³Æ
 #define     MIN_CONN_INTERVAL           MSEC_TO_UNITS(20, UNIT_1_25_MS)             /**< Minimum acceptable connection interval (20 ms), Connection interval uses 1.25 ms units. */
 #define     MAX_CONN_INTERVAL           MSEC_TO_UNITS(75, UNIT_1_25_MS)             /**< Maximum acceptable connection interval (75 ms), Connection interval uses 1.25 ms units. */
 #define     SLAVE_LATENCY               0                                           /**< Slave latency. */
@@ -71,88 +71,88 @@
 #define     DUCK_MAX_CONN_PARAMS_UPDATE_COUNT    3  
 
 //----------------------- flash -----------------------------------------------/
-#define     MAC_FLASH_SIZE              6                               // mac flashå‚¨å­˜å­—èŠ‚
-#define     TOKEN_FLASH_SIZE            8                               // token flashå‚¨å­˜å­—èŠ‚
+#define     MAC_FLASH_SIZE              6                               // mac flash´¢´æ×Ö½Ú
+#define     TOKEN_FLASH_SIZE            8                               // token flash´¢´æ×Ö½Ú
 
 //----------------------- BLE MIOT --------------------------------------------/
-#define     MIOT_EVENT_ID_TH            0x100D                          // æ¸©æ¹¿åº¦äº‹ä»¶ID
-#define     MIOT_EVENT_TH_LEN           3                               // æ¸©æ¹¿åº¦äº‹ä»¶é•¿åº¦ 
+#define     MIOT_EVENT_ID_TH            0x100D                          // ÎÂÊª¶ÈÊÂ¼þID
+#define     MIOT_EVENT_TH_LEN           3                               // ÎÂÊª¶ÈÊÂ¼þ³¤¶È 
 
-#define     MIOT_EVENT_ID_BAT           0x100A                          // ç”µé‡äº‹ä»¶ID 
-#define     MIOT_EVENT_BAT_LEN          1                               // ç”µé‡äº‹ä»¶é•¿åº¦ 
+#define     MIOT_EVENT_ID_BAT           0x100A                          // µçÁ¿ÊÂ¼þID 
+#define     MIOT_EVENT_BAT_LEN          1                               // µçÁ¿ÊÂ¼þ³¤¶È 
 
-#define     MIOT_EVENT_ID_HALL          0x2400                          // halläº‹ä»¶ID 
-#define     MIOT_EVENT_HALL_LEN         1                               // halläº‹ä»¶é•¿åº¦ 
+#define     MIOT_EVENT_ID_HALL          0x2400                          // hallÊÂ¼þID 
+#define     MIOT_EVENT_HALL_LEN         1                               // hallÊÂ¼þ³¤¶È 
 
-#define     MIOT_EVENT_ID_BOND          0x0002                          // ç»‘å®šäº‹ä»¶ 
-#define     MIOT_EVENT_BOND_LEN         2                               // ç»‘å®šäº‹ä»¶é•¿åº¦  
+#define     MIOT_EVENT_ID_BOND          0x0002                          // °ó¶¨ÊÂ¼þ 
+#define     MIOT_EVENT_BOND_LEN         2                               // °ó¶¨ÊÂ¼þ³¤¶È  
 
 
-#define     MIOT_SERVICE_ID             0xFE95                          // MIOTæœåŠ¡ID 
-#define     MIOT_PRODUCT_ID             0x01AA                          // MIOTäº§å“ID 
-#define     MIOT_VERSION                (0x02 & 0x0F)                   // åè®®ç‰ˆæœ¬  
-#define     MIOT_NEED_BOND              0x01                            // éœ€è¦ç»‘å®š  
+#define     MIOT_SERVICE_ID             0xFE95                          // MIOT·þÎñID 
+#define     MIOT_PRODUCT_ID             0x01AA                          // MIOT²úÆ·ID 
+#define     MIOT_VERSION                (0x02 & 0x0F)                   // Ð­Òé°æ±¾  
+#define     MIOT_NEED_BOND              0x01                            // ÐèÒª°ó¶¨  
 
-#define     MIOT_MAX_SIZE               (BLE_GAP_ADV_MAX_SIZE - 3 - 4)  // æœ€å¤§å­—èŠ‚æ•° flag 3å­—èŠ‚ MIOT 4å­—èŠ‚
+#define     MIOT_MAX_SIZE               (BLE_GAP_ADV_MAX_SIZE - 3 - 4)  // ×î´ó×Ö½ÚÊý flag 3×Ö½Ú MIOT 4×Ö½Ú
 
-#define     MIOT_MASTER_EVENT_INTERVAL  10                              // ä¸»ä»»åŠ¡é—´éš”
-#define     MIOT_SLAVE_EVENT_INTERVAL   (1 + MIOT_MASTER_EVENT_INTERVAL)// ä»Žä»»åŠ¡é—´éš”
+#define     MIOT_MASTER_EVENT_INTERVAL  10                              // Ö÷ÈÎÎñ¼ä¸ô
+#define     MIOT_SLAVE_EVENT_INTERVAL   (1 + MIOT_MASTER_EVENT_INTERVAL)// ´ÓÈÎÎñ¼ä¸ô
 
-#define     MIOT_HALL_EVENT_INTERVAL    5                               // éœå°”é—´éš”
-#define     MIOT_BAT_EVENT_INTERVAL     10                              // ç”µæ± é—´éš”
+#define     MIOT_HALL_EVENT_INTERVAL    5                               // »ô¶û¼ä¸ô
+#define     MIOT_BAT_EVENT_INTERVAL     10                              // µç³Ø¼ä¸ô
 
 //----------------------- BLE Bond --------------------------------------------/
-#define     MIOT_EVENT_ID_BOND_DURATION 30 * TASK_COMMUNAL_TIMER_FREQ   // ç»‘å®šäº‹ä»¶æŒç»­æ—¶é—´ 
-#define     MIOT_BOND_BLINK             (500 / TASK_COMMUNAL_TIMER_PERIOD)// 500ms é—ªçƒä¸€æ¬¡
-#define     MIOT_BOND_STOP_DELAY        5 * TASK_COMMUNAL_TIMER_FREQ    // 5s ç»‘å®šåŽç»§ç»­é—ªçƒä¸€æ¬¡
+#define     MIOT_EVENT_ID_BOND_DURATION 30 * TASK_COMMUNAL_TIMER_FREQ   // °ó¶¨ÊÂ¼þ³ÖÐøÊ±¼ä 
+#define     MIOT_BOND_BLINK             (500 / TASK_COMMUNAL_TIMER_PERIOD)// 500ms ÉÁË¸Ò»´Î
+#define     MIOT_BOND_STOP_DELAY        5 * TASK_COMMUNAL_TIMER_FREQ    // 5s °ó¶¨ºó¼ÌÐøÉÁË¸Ò»´Î
 
 //----------------------- LCD -------------------------------------------------/
-#define     LCD_BUFFER_SIZE             13                              // LCDç¼“å­˜å¤§å°
+#define     LCD_BUFFER_SIZE             13                              // LCD»º´æ´óÐ¡
 
 //----------------------- Sensor ----------------------------------------------/
-#define     MAX_GET_SENSOR_ERROR        10                              // æœ€å¤§é‡‡é›†ä¼ æ„Ÿå™¨é”™è¯¯æ•°
+#define     MAX_GET_SENSOR_ERROR        10                              // ×î´ó²É¼¯´«¸ÐÆ÷´íÎóÊý
 
 //----------------------- Special Code ----------------------------------------/
-#define     SPECIAL_CODE_RESET          0x10000000                      // äººä¸ºå¤ä½
+#define     SPECIAL_CODE_RESET          0x10000000                      // ÈËÎª¸´Î»
 
 //----------------------- Pin Config ------------------------------------------/
-#define     GPIO_TEST_PIN               1                               // é€Ÿåº¦æµ‹è¯• ç®¡è„š
+#define     GPIO_TEST_PIN               1                               // ËÙ¶È²âÊÔ ¹Ü½Å
 
-#define     BAT_ADC_PIN                 3                               // ç”µæ± ADC ç®¡è„š
+#define     BAT_ADC_PIN                 3                               // µç³ØADC ¹Ü½Å
 
 
-#define     UART_TX_PIN                 9                               // ä¸²å£
+#define     UART_TX_PIN                 9                               // ´®¿Ú
 #define     UART_RX_PIN                 11
 
 
-#define     SHT30_SCL_PIN               12                              // æ¸©æ¹¿åº¦æ—¶é’Ÿ
-#define     SHT30_SDA_PIN               13                              // æ¸©æ¹¿åº¦æ•°æ®
+#define     SHT30_SCL_PIN               12                              // ÎÂÊª¶ÈÊ±ÖÓ
+#define     SHT30_SDA_PIN               13                              // ÎÂÊª¶ÈÊý¾Ý
 
-#define     COMMUNAL_IIC_SCL_PIN        14                              // é€šç”¨IICæ—¶é’Ÿ
-#define     COMMUNAL_IIC_SDA_PIN        15                              // é€šç”¨IICæ•°æ®
+#define     COMMUNAL_IIC_SCL_PIN        14                              // Í¨ÓÃIICÊ±ÖÓ
+#define     COMMUNAL_IIC_SDA_PIN        15                              // Í¨ÓÃIICÊý¾Ý
 
-#define     OLED_SDA_PIN               	25                              // OLED SDA ç®¡è„š
-#define     OLED_SCL_PIN                24                              // OLED SCL ç®¡è„š
-#define     OLED_RST_PIN               	23                              // OLED RST ç®¡è„š
-#define     OLED_DC_PIN               	22                              // OLED DC ç®¡è„š æ•°æ®å‘½ä»¤é€‰æ‹©ç®¡è„š
-
-
+#define     OLED_SDA_PIN               	25                              // OLED SDA ¹Ü½Å
+#define     OLED_SCL_PIN                24                              // OLED SCL ¹Ü½Å
+#define     OLED_RST_PIN               	23                              // OLED RST ¹Ü½Å
+#define     OLED_DC_PIN               	22                              // OLED DC ¹Ü½Å Êý¾ÝÃüÁîÑ¡Ôñ¹Ü½Å
 
 
 
 
-#define     BOUTTON_PIN                 17                              // æŒ‰é”®ç®¡è„š
+
+
+#define     BOUTTON_PIN                 17                              // °´¼ü¹Ü½Å
 
 
 
 
-#define     MAX_INTERRUPT_PIN_NUM       1                               // ä¸­æ–­ç®¡è„šæ•°æ®
-#define     BUTTEN_EVENT_DELAY_MS       10                              // æŒ‰é”®äº‹ä»¶å»¶æ—¶æ—¶é—´
+#define     MAX_INTERRUPT_PIN_NUM       1                               // ÖÐ¶Ï¹Ü½ÅÊý¾Ý
+#define     BUTTEN_EVENT_DELAY_MS       10                              // °´¼üÊÂ¼þÑÓÊ±Ê±¼ä
 
 //----------------------- Battery ---------------------------------------------/
 
-#define     BAT_ADC_CHANNEL             NRF_ADC_CONFIG_INPUT_4          // ç”µæ± ADCé€šé“
-#define     BAT_ADC_BUFFER_SIZE         8                               // ADCç¼“å­˜æ·±åº¦
+#define     BAT_ADC_CHANNEL             NRF_ADC_CONFIG_INPUT_4          // µç³ØADCÍ¨µÀ
+#define     BAT_ADC_BUFFER_SIZE         8                               // ADC»º´æÉî¶È
 
 
 /* Private typedef -----------------------------------------------------------*/
@@ -166,4 +166,4 @@
 
 #endif /* __GLOBAL_CFG_H */
 
-/******************* (C) COPYRIGHT 2016 é™†è¶… ********END OF FILE***************/
+/******************* (C) COPYRIGHT 2016 Â½³¬ ********END OF FILE***************/

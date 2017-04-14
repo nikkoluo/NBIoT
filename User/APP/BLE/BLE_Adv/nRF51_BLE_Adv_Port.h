@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
 * File Name          :  nRF51_BLE_Adv_Port.h
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  01/06/2017
-* Description        :  å¹¿æ’­åŒ…æ¥å£å¤´æ–‡ä»¶
+* Description        :  ¹ã²¥°ü½Ó¿ÚÍ·ÎÄ¼ş
 *******************************************************************************/
 
 /* Define to prevent recursive inclusion -------------------------------------*/
@@ -25,11 +25,11 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void BLE_Adv_Start(u32 uiTimeout);                              // å¯åŠ¨å¹¿æ’­åŒ…
-extern  void BLE_Adv_Package(void);                                     // æ‰“åŒ…
+extern  void BLE_Adv_Start(u32 uiTimeout);                              // Æô¶¯¹ã²¥°ü
+extern  void BLE_Adv_Package(void);                                     // ´ò°ü
 
 #endif /* __NRF51_BLE_ADV_PORT_H */
 
-/******************* (C) COPYRIGHT 2017 é™†è¶… *****END OF FILE******************/
+/******************* (C) COPYRIGHT 2017 Â½³¬ *****END OF FILE******************/
 
 

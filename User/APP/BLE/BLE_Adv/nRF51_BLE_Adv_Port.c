@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
 * File Name          :  nRF51_BLE_Adv_Port.c
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  01/06/2017
-* Description        :  è“ç‰™å¹¿æ’­é…ç½®
+* Description        :  À¶ÑÀ¹ã²¥ÅäÖÃ
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "nRF51_BLE_Adv_Port.h"
@@ -20,16 +20,16 @@
 
                                 
 /* Private function prototypes -----------------------------------------------*/
-void BLE_Adv_Start(u32 uiTimeout);                                      // å¯åŠ¨å¹¿æ’­
-void BLE_Adv_Package(void);                                             // å¹¿æ’­æ•°æ®æ‰“åŒ…
+void BLE_Adv_Start(u32 uiTimeout);                                      // Æô¶¯¹ã²¥
+void BLE_Adv_Package(void);                                             // ¹ã²¥Êı¾İ´ò°ü
 
 /* Private functions ---------------------------------------------------------*/
 
 /*******************************************************************************
-*                           é™†è¶…@2017-01-10
+*                           Â½³¬@2017-01-10
 * Function Name  :  BLE_Adv_Package
-* Description    :  å¹¿æ’­é…ç½®åˆå§‹åŒ–
-* Input          :  u16 usEvent å¾…æ‰“åŒ…çš„äº‹ä»¶
+* Description    :  ¹ã²¥ÅäÖÃ³õÊ¼»¯
+* Input          :  u16 usEvent ´ı´ò°üµÄÊÂ¼ş
 *                   MIOT_Typedef *MIOT
 * Output         :  None
 * Return         :  None
@@ -43,33 +43,33 @@ void BLE_Adv_Package(void)
 //    ble_advdata_service_data_t Service_Data;
     ble_uuid_t Scan_UUIDs[] = {{BLE_UUID_BATTERY_SERVICE, BLE_UUID_TYPE_BLE},
                                {BLE_UUID_DEVICE_INFORMATION_SERVICE, BLE_UUID_TYPE_BLE}};
-    // æ¸…ç©ºç¼“å­˜    
+    // Çå¿Õ»º´æ    
     memset(&Adv_Data, 0, sizeof(Adv_Data));
 //    memset(&ucService_Data, 0, MIOT_MAX_SIZE);
 
 //    Scan_Rsp.name_type               = BLE_ADVDATA_FULL_NAME;
     
-    // 1ç»„ç§æœ‰æœåŠ¡
+    // 1×éË½ÓĞ·şÎñ
 //    Adv_Data.service_data_count   = 1;
 //    Service_Data.data.p_data      = ucService_Data;
 //    Adv_Data.p_service_data_array = &Service_Data;
 
 
-    // å¹¿æ’­ç±»å‹
+    // ¹ã²¥ÀàĞÍ
     Adv_Data.flags = BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE;
     
 
-//    // æœåŠ¡UUID
+//    // ·şÎñUUID
 //    Service_Data.service_uuid   = MIOT_SERVICE_ID;
 
-//    // å‡†å¤‡è¦å‘é€çš„æ•°æ®
+//    // ×¼±¸Òª·¢ËÍµÄÊı¾İ
 //    MIOT->Frame_Control_Bit.Event_Include = 1;
 //    MIOT->Event_ID         = usEvent; 
 //    MIOT->Current_Event_ID = MIOT->Event_ID;
 //    Service_Data.data.size = BLE_MIOT_Service_Package(MIOT->Event_ID, ucService_Data, MIOT);
 //    (MIOT->Frame_Counter)++;
 
-    // æ¸…ç©ºç¼“å­˜
+    // Çå¿Õ»º´æ
     memset(&Scan_Rsp, 0, sizeof(Scan_Rsp)); 
     Scan_Rsp.name_type               = BLE_ADVDATA_FULL_NAME;
     Scan_Rsp.uuids_complete.uuid_cnt = sizeof(Scan_UUIDs) / sizeof(Scan_UUIDs[0]);
@@ -82,10 +82,10 @@ void BLE_Adv_Package(void)
 }// End of void BLE_Adv_Package(void)
 
 /*******************************************************************************
-*                           é™†è¶…@2017-01-06
+*                           Â½³¬@2017-01-06
 * Function Name  :  BLE_Adv_Start
-* Description    :  å¯åŠ¨å¹¿æ’­
-* Input          :  u32 uiTimeout   è¶…æ—¶æ—¶é—´
+* Description    :  Æô¶¯¹ã²¥
+* Input          :  u32 uiTimeout   ³¬Ê±Ê±¼ä
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -100,22 +100,22 @@ void BLE_Adv_Start(u32 uiTimeout)
     // Start advertising.
     memset(&Adv_Params, 0, sizeof(Adv_Params));
     
-    Adv_Params.type        = BLE_GAP_ADV_TYPE_ADV_IND;                  // éå®šå‘å¯è¿æ¥æ¨¡å¼
+    Adv_Params.type        = BLE_GAP_ADV_TYPE_ADV_IND;                  // ·Ç¶¨Ïò¿ÉÁ¬½ÓÄ£Ê½
     Adv_Params.p_peer_addr = NULL;
-    Adv_Params.fp          = BLE_GAP_ADV_FP_ANY;                        // ä¸è¿‡æ»¤
-    Adv_Params.interval    = BLE_ADV_INTERVAL;                          // å¹¿æ’­é—´éš”
-    Adv_Params.timeout     = uiTimeout;                                 // å¹¿æ’­è¶…æ—¶æ—¶é—´
+    Adv_Params.fp          = BLE_GAP_ADV_FP_ANY;                        // ²»¹ıÂË
+    Adv_Params.interval    = BLE_ADV_INTERVAL;                          // ¹ã²¥¼ä¸ô
+    Adv_Params.timeout     = uiTimeout;                                 // ¹ã²¥³¬Ê±Ê±¼ä
  
     Err_Code = sd_ble_gap_adv_start(&Adv_Params);
 
     if (Err_Code != NRF_SUCCESS)
     {
-        app_trace_log("å¹¿æ’­å¯åŠ¨é”™è¯¯ç  %d!\r\n", Err_Code);
+        app_trace_log("¹ã²¥Æô¶¯´íÎóÂë %d!\r\n", Err_Code);
 
     }
     else
     {
-        // è¿›å…¥å¹¿æ’­æ€
+        // ½øÈë¹ã²¥Ì¬
         Sys_Status = SYS_STATUS_ADV;
     }
 
@@ -123,7 +123,7 @@ void BLE_Adv_Start(u32 uiTimeout)
 }// End of void BLE_Adv_Start(u32 uiTimeout)
 
 
-/******************* (C) COPYRIGHT 2017 é™†è¶… **************END OF FILE*********/
+/******************* (C) COPYRIGHT 2017 Â½³¬ **************END OF FILE*********/
 
 
 

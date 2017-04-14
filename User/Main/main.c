@@ -1,6 +1,6 @@
 /******************** (C) COPYRIGHT 2016 ***************************************
 * File Name          :  Main.c
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  Nrf51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0  
@@ -27,7 +27,7 @@
 /* Private typedef -----------------------------------------------------------*/
 
 /* Private define ------------------------------------------------------------*/
-#define DEAD_BEEF                       0xDEADBEEF                      // é”™è¯¯ç 
+#define DEAD_BEEF                       0xDEADBEEF                      // ´íÎóÂë
            
 
 /* Private macro -------------------------------------------------------------*/
@@ -35,7 +35,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* Private function prototypes -----------------------------------------------*/
-void Power_Manage(void);                                                // ç”µæºç®¡ç† è¿›å…¥ä½åŠŸè€—æ¨¡å¼
+void Power_Manage(void);                                                // µçÔ´¹ÜÀí ½øÈëµÍ¹¦ºÄÄ£Ê½
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -55,9 +55,9 @@ void assert_nrf_callback(uint16_t line_num, const uint8_t * p_file_name)
     app_error_handler(DEAD_BEEF, line_num, p_file_name);
 }
 /*******************************************************************************
-*                           é™†è¶…@2016-12-25
+*                           Â½³¬@2016-12-25
 * Function Name  : Power_Manage
-* Description    : ç”µæºç®¡ç†      
+* Description    : µçÔ´¹ÜÀí      
 * Input          : None
 * Output         : None
 * Return         : None
@@ -80,7 +80,7 @@ void Power_Manage(void)
 }// End of static void Power_Manage(void)
 
 /*******************************************************************************
-*                           é™†è¶…@2016-12-25
+*                           Â½³¬@2016-12-25
 * Function Name  : main
 * Description    : Main program      
 * Input          : None
@@ -91,7 +91,7 @@ int main(void)
 {
 
     
-    // ç³»ç»Ÿåˆå§‹åŒ–
+    // ÏµÍ³³õÊ¼»¯
     System_Init();
 
     for ( ;; )

@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2017 ÈôÜË∂Ö **********************************
+/******************** (C) COPYRIGHT 2017 ¬Ω≥¨ **********************************
 * File Name          :  LCD.h
-* Author             :  ÈôÜË∂Ö
+* Author             :  ¬Ω≥¨
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -25,11 +25,11 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void LCD_Timer_Handle(void *p_arg);                             // LCD‰ªªÂä°
-extern  void LCD_Task_Create(void);                                     // ÂàõÂª∫LCD‰ªªÂä°
-extern  void LCD_Get(void);                                             // Ëé∑ÂèñÊ∏©ÊπøÂ∫¶
+extern  void LCD_Timer_Handle(void *p_arg);                             // LCD»ŒŒÒ
+extern  void LCD_Task_Create(void);                                     // ¥¥Ω®LCD»ŒŒÒ
+extern  void LCD_Get(void);                                             // ªÒ»°Œ¬ ™∂»
 
 #endif /* __LCD_H */
 
-/******************* (C) COPYRIGHT 2017 ÈôÜË∂Ö **** END OF FILE *****************/
+/******************* (C) COPYRIGHT 2017 ¬Ω≥¨ **** END OF FILE *****************/
 

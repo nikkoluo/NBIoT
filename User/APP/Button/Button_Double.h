@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2017 й™†и¶… **********************************
+/******************** (C) COPYRIGHT 2017 ВЅі¬ **********************************
 * File Name          :  Button_Double.h
-* Author             :  й™†и¶…
+* Author             :  ВЅі¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -25,11 +25,11 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void Double_Button_Handler(void);                               // еЏЊе‡»е¤„зђ†
+extern  void Double_Button_Handler(void);                               // Л«»чґ¦Ан
 
        
 
 #endif /* __BUTTON_DOUBLE_H */
 
-/******************* (C) COPYRIGHT 2017 й™†и¶… *****END OF FILE******************/
+/******************* (C) COPYRIGHT 2017 ВЅі¬ *****END OF FILE******************/
 

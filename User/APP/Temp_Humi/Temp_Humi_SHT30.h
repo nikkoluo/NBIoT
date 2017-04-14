@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2016 ÈôÜË∂Ö **********************************
+/******************** (C) COPYRIGHT 2016 ¬Ω≥¨ **********************************
 * File Name          :  Temp_Humi_SHT30.h
-* Author             :  ÈôÜË∂Ö
+* Author             :  ¬Ω≥¨
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -67,11 +67,11 @@ etCommands ;
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  u8 SHT3x_Read_SN(u8 *ucSN);                                     // ËØªÂèñSN
-extern  u8 SHT3x_Soft_Reset(void);                                      // ËΩØÂ§ç‰Ωç
-extern  u8 SHT3x_Get_Temp_Humi(float *fTemp, float *fHumi);             // Ëé∑ÂèñÊ∏©ÊπøÂ∫¶
+extern  u8 SHT3x_Read_SN(u8 *ucSN);                                     // ∂¡»°SN
+extern  u8 SHT3x_Soft_Reset(void);                                      // »Ì∏¥Œª
+extern  u8 SHT3x_Get_Temp_Humi(float *fTemp, float *fHumi);             // ªÒ»°Œ¬ ™∂»
 
 #endif /* __TEMP_HUMI_SHT30_H */
 
-/******************* (C) COPYRIGHT 2016 ÈôÜË∂Ö **** END OF FILE *****************/
+/******************* (C) COPYRIGHT 2016 ¬Ω≥¨ **** END OF FILE *****************/
 

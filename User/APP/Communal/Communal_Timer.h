@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
 * File Name          :  Communal_Timer.h
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -25,11 +25,11 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void Communal_Timer_Timer_Handle(void *p_arg);                  // Communal_Timerä»»åŠ¡
-extern  void Communal_Timer_Task_Create(void);                          // åˆ›å»ºCommunal_Timerä»»åŠ¡
+extern  void Communal_Timer_Timer_Handle(void *p_arg);                  // Communal_TimerÈÎÎñ
+extern  void Communal_Timer_Task_Create(void);                          // ´´½¨Communal_TimerÈÎÎñ
 
 
 #endif /* __COMMUNAL_TIMER_H */
 
-/******************* (C) COPYRIGHT 2017 é™†è¶… *****END OF FILE******************/
+/******************* (C) COPYRIGHT 2017 Â½³¬ *****END OF FILE******************/
 

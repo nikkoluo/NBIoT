@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
 * File Name          :  nRF51_BLE_Evt_Handler.c
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  01/11/2017
-* Description        :  BLE event å¤„ç† ä»»åŠ¡
+* Description        :  BLE event ´¦Àí ÈÎÎñ
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "nRF51_BLE_Evt_Handler.h"
@@ -27,16 +27,16 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void ON_BLE_Event(ble_evt_t * p_ble_evt);                               // BLEäº‹ä»¶å¤„ç†
-void nRF51_Sys_Evt_Handler(uint32_t sys_evt);                           // sysäº‹ä»¶å›è°ƒ
-void nRF51_BLE_Evt_Handler(ble_evt_t * p_ble_evt);                      // BLEäº‹ä»¶å›è°ƒ
+void ON_BLE_Event(ble_evt_t * p_ble_evt);                               // BLEÊÂ¼ş´¦Àí
+void nRF51_Sys_Evt_Handler(uint32_t sys_evt);                           // sysÊÂ¼ş»Øµ÷
+void nRF51_BLE_Evt_Handler(ble_evt_t * p_ble_evt);                      // BLEÊÂ¼ş»Øµ÷
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           é™†è¶…@2017-01-06
+*                           Â½³¬@2017-01-06
 * Function Name  :  ON_BLE_EVENT
-* Description    :  BLEäº‹ä»¶å›è°ƒå‡½æ•°
-* Input          :  ble_evt_t * p_ble_evt   // å¾…å¤„ç†çš„äº‹ä»¶
+* Description    :  BLEÊÂ¼ş»Øµ÷º¯Êı
+* Input          :  ble_evt_t * p_ble_evt   // ´ı´¦ÀíµÄÊÂ¼ş
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -45,26 +45,26 @@ void ON_BLE_Event(ble_evt_t * p_ble_evt)
     u32 err_code;
     switch (p_ble_evt->header.evt_id)
     {
-        // è¿æ¥å»ºç«‹
+        // Á¬½Ó½¨Á¢
         case BLE_GAP_EVT_CONNECTED:
 
             BLE_Connect_Handle = p_ble_evt->evt.gap_evt.conn_handle;
-            app_trace_log("å¼€å§‹è¿æ¥ï¼ŒON_BLE_Eventçº¿ç¨‹çš„ä¿¡æ¯!\r\n");
+            app_trace_log("¿ªÊ¼Á¬½Ó£¬ON_BLE_EventÏß³ÌµÄĞÅÏ¢!\r\n");
 
-            // è¿›å…¥è¿æ¥æ€
+            // ½øÈëÁ¬½ÓÌ¬
             Sys_Status = SYS_STATUS_CONNECT;
 //            LCD_BT_Update_Signal(1);
 
             break;
 
-        // æ–­å¼€è¿æ¥
+        // ¶Ï¿ªÁ¬½Ó
         case BLE_GAP_EVT_DISCONNECTED:
 
             BLE_Connect_Handle = BLE_CONN_HANDLE_INVALID;
-            app_trace_log("ç»“æŸè¿æ¥ï¼ŒON_BLE_Eventçº¿ç¨‹çš„ä¿¡æ¯!\r\n");
+            app_trace_log("½áÊøÁ¬½Ó£¬ON_BLE_EventÏß³ÌµÄĞÅÏ¢!\r\n");
 //            LCD_BT_Update_Signal(0);
 
-            // é‡æ–°å‘é€å¹¿æ’­åŒ…
+            // ÖØĞÂ·¢ËÍ¹ã²¥°ü
             BLE_Adv_Start(0);
 
             break;
@@ -82,27 +82,27 @@ void ON_BLE_Event(ble_evt_t * p_ble_evt)
 }// End of void ON_BLE_Event(ble_evt_t * p_ble_evt)
 
 /*******************************************************************************
-*                           é™†è¶…@2017-01-06
+*                           Â½³¬@2017-01-06
 * Function Name  :  nRF51_Sys_Evt_Handler
-* Description    :  Sysäº‹ä»¶å›è°ƒ
+* Description    :  SysÊÂ¼ş»Øµ÷
 * Input          :  None
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
 void nRF51_Sys_Evt_Handler(uint32_t sys_evt)
 {
-    // ç³»ç»Ÿå†™flashäº‹ä»¶å›è°ƒ
+    // ÏµÍ³Ğ´flashÊÂ¼ş»Øµ÷
     pstorage_sys_event_handler(sys_evt);
 
-//    // fdså¤±è´¥åå†æ¬¡å¹¿æ’­
+//    // fdsÊ§°ÜºóÔÙ´Î¹ã²¥
 //    ble_advertising_on_sys_evt(sys_evt);
     
 }// End of void nRF51_Sys_Evt_Handler(uint32_t sys_evt)
 
 /*******************************************************************************
-*                           é™†è¶…@2017-01-06
+*                           Â½³¬@2017-01-06
 * Function Name  :  nRF51_BLE_Evt_Handler
-* Description    :  BLEäº‹ä»¶å›è°ƒ
+* Description    :  BLEÊÂ¼ş»Øµ÷
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -110,14 +110,14 @@ void nRF51_Sys_Evt_Handler(uint32_t sys_evt)
 void nRF51_BLE_Evt_Handler(ble_evt_t * p_ble_evt)
 {
 
-    // ç»‘å®šäº‹ä»¶
+    // °ó¶¨ÊÂ¼ş
     dm_ble_evt_handler(p_ble_evt);
     ble_conn_params_on_ble_evt(p_ble_evt);
     ble_bas_on_ble_evt(&Bat_Level_Service, p_ble_evt);
     ON_BLE_Event(p_ble_evt);
     BLE_Advertising_on_ble_evt(p_ble_evt);
 
-    // dfuäº‹ä»¶
+    // dfuÊÂ¼ş
     ble_dfu_on_ble_evt(&nRF51_DFU_Services, p_ble_evt);
 
     nRF51_BLE_Private_Evt(&nRF51_BLE_Service, p_ble_evt);
@@ -128,7 +128,7 @@ void nRF51_BLE_Evt_Handler(ble_evt_t * p_ble_evt)
 }// End of void nRF51_BLE_Evt_Handler(ble_evt_t * p_ble_evt)
 
 
-/******************* (C) COPYRIGHT 2017 é™†è¶… ************* END OF FILE ********/
+/******************* (C) COPYRIGHT 2017 Â½³¬ ************* END OF FILE ********/
 
 
 

@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 闄嗚秴 **********************************
+/******************** (C) COPYRIGHT 2017 陆超 **********************************
 * File Name          :  GPIO.c
-* Author             :  闄嗚秴
+* Author             :  陆超
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  01/06/2017
-* Description        :  GPIO搴旂敤绋嬪簭
+* Description        :  GPIO应用程序
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "GPIO.h"
@@ -17,17 +17,17 @@
 /* Private variables ---------------------------------------------------------*/
         
 /* Private function prototypes -----------------------------------------------*/
-void GPIO_Task_Handle(void *p_arg);                                     // GPIO浠诲姟
-void GPIO_Task_Create(void);                                            // 鍒涘缓GPIO浠诲姟
-void GPIO_TEST_High(void);                                              // Test Pin鎷夐珮
-void GPIO_TEST_Low(void);                                               // Test Pin鎷変綆                      
-void GPIO_TEST_Toggle(void);                                            // Test Pin缈昏浆
+void GPIO_Task_Handle(void *p_arg);                                     // GPIO任务
+void GPIO_Task_Create(void);                                            // 创建GPIO任务
+void GPIO_TEST_High(void);                                              // Test Pin拉高
+void GPIO_TEST_Low(void);                                               // Test Pin拉低                      
+void GPIO_TEST_Toggle(void);                                            // Test Pin翻转
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           闄嗚秴@2017-01-06
+*                           陆超@2017-01-06
 * Function Name  :  GPIO_Task_Create
-* Description    :  鍒涘缓GPIO浠诲姟
+* Description    :  创建GPIO任务
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -36,11 +36,11 @@ void GPIO_Task_Create(void)
 {
 
 
-    // 鍒濆鍖栧彉閲忓拰IO
+    // 初始化变量和IO
     GPIO_Variable_Init();
     GPIO_Port_Init();
 
-    // 榛樿鎷変綆
+    // 默认拉低
     GPIO_TEST_Low();
     
 
@@ -51,9 +51,9 @@ void GPIO_Task_Create(void)
 
 
 /*******************************************************************************
-*                           闄嗚秴@2017-01-06
+*                           陆超@2017-01-06
 * Function Name  :  GPIO_Task_Handle
-* Description    :  GPIO浠诲姟
+* Description    :  GPIO任务
 * Input          :  void *p_arg
 * Output         :  None
 * Return         :  None
@@ -65,9 +65,9 @@ void GPIO_Task_Handle(void *p_arg)
 }// End of void GPIO_Task_Handle(void *p_arg)
 
 /*******************************************************************************
-*                           闄嗚秴@2017-01-06
+*                           陆超@2017-01-06
 * Function Name  :  GPIO_TEST_High
-* Description    :  GPIO 鎷夐珮
+* Description    :  GPIO 拉高
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -79,9 +79,9 @@ void GPIO_TEST_High(void)
 }// End of void GPIO_TEST_High(void)
 
 /*******************************************************************************
-*                           闄嗚秴@2017-01-06
+*                           陆超@2017-01-06
 * Function Name  :  GPIO_TEST_Low
-* Description    :  GPIO 鎷変綆
+* Description    :  GPIO 拉低
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -93,9 +93,9 @@ void GPIO_TEST_Low(void)
 }// End of void GPIO_TEST_Low(void)
 
 /*******************************************************************************
-*                           闄嗚秴@2017-01-06
+*                           陆超@2017-01-06
 * Function Name  :  GPIO_TEST_Toggle
-* Description    :  GPIO 缈昏浆
+* Description    :  GPIO 翻转
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -108,7 +108,7 @@ void GPIO_TEST_Toggle(void)
 }// End of void GPIO_TEST_Toggle(void)
 
 
-/******************* (C) COPYRIGHT 2017 闄嗚秴 **************END OF FILE*********/
+/******************* (C) COPYRIGHT 2017 陆超 **************END OF FILE*********/
 
 
 

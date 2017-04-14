@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
 * File Name          :  LCD.c
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  04/09/2017
-* Description        :  LCDåº”ç”¨ç¨‹åº
+* Description        :  LCDÓ¦ÓÃ³ÌĞò
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "LCD.h"
@@ -16,16 +16,16 @@
 /* Private variables ---------------------------------------------------------*/
         
 /* Private function prototypes -----------------------------------------------*/
-void LCD_Task_Handle(void *p_arg);                                      // LCDä»»åŠ¡
-void LCD_Task_Create(void);                                             // åˆ›å»ºLCDä»»åŠ¡
-u32 LCD_Chip_Init(void);                                                // èŠ¯ç‰‡åˆå§‹åŒ–
+void LCD_Task_Handle(void *p_arg);                                      // LCDÈÎÎñ
+void LCD_Task_Create(void);                                             // ´´½¨LCDÈÎÎñ
+u32 LCD_Chip_Init(void);                                                // Ğ¾Æ¬³õÊ¼»¯
 
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           é™†è¶…@2017-04-09
+*                           Â½³¬@2017-04-09
 * Function Name  :  LCD_Task_Create
-* Description    :  åˆ›å»ºLCDä»»åŠ¡
+* Description    :  ´´½¨LCDÈÎÎñ
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -34,11 +34,11 @@ void LCD_Task_Create(void)
 {
     u32 err_code = NRF_SUCCESS;
 
-    // åˆå§‹åŒ–å˜é‡å’ŒIO
+    // ³õÊ¼»¯±äÁ¿ºÍIO
     LCD_Variable_Init();
     LCD_Port_Init();
     
-    // é…ç½®å‚æ•° å‘¨æœŸæ¨¡å¼è¿è¡Œ
+    // ÅäÖÃ²ÎÊı ÖÜÆÚÄ£Ê½ÔËĞĞ
     LCD_Task.Run_Mode        = APP_TIMER_MODE_REPEATED;
     LCD_Task.Timeout_handler = LCD_Task_Handle;
     LCD_Task.Period          = TASK_TEMP_HUMI_PERIOD;
@@ -46,12 +46,12 @@ void LCD_Task_Create(void)
     err_code |= app_timer_create(&LCD_Task.p_ID,
                                  LCD_Task.Run_Mode,
                                  LCD_Task.Timeout_handler);
-    // èŠ¯ç‰‡åˆå§‹åŒ–
+    // Ğ¾Æ¬³õÊ¼»¯
     err_code |= LCD_Chip_Init();
 
     if (err_code != NRF_SUCCESS)
     {
-        app_trace_log("LCDèŠ¯ç‰‡åˆå§‹åŒ–å¤±è´¥!\r\n");    
+        app_trace_log("LCDĞ¾Æ¬³õÊ¼»¯Ê§°Ü!\r\n");    
     }
     else
     {
@@ -66,12 +66,12 @@ void LCD_Task_Create(void)
 }// End of void LCD_Task_Create(void)
 
 /*******************************************************************************
-*                           é™†è¶…@2017-04-09
+*                           Â½³¬@2017-04-09
 * Function Name  :  LCD_Chip_Init
-* Description    :  èŠ¯ç‰‡åˆå§‹åŒ–
+* Description    :  Ğ¾Æ¬³õÊ¼»¯
 * Input          :  None
 * Output         :  None
-* Return         :  NRF_SUCCESS æˆåŠŸ 1å¤±è´¥
+* Return         :  NRF_SUCCESS ³É¹¦ 1Ê§°Ü
 *******************************************************************************/
 u32 LCD_Chip_Init(void)
 {
@@ -84,9 +84,9 @@ u32 LCD_Chip_Init(void)
 }// End of u32 LCD_Chip_Init(void)
 
 /*******************************************************************************
-*                           é™†è¶…@2017-04-09
+*                           Â½³¬@2017-04-09
 * Function Name  :  LCD_Task_Handle
-* Description    :  LCDä»»åŠ¡
+* Description    :  LCDÈÎÎñ
 * Input          :  void *p_arg
 * Output         :  None
 * Return         :  None
@@ -97,7 +97,7 @@ void LCD_Task_Handle(void *p_arg)
    
 }// End of void LCD_Task_Handle(void *p_arg)
 
-/******************* (C) COPYRIGHT 2017 é™†è¶… ************* END OF FILE ********/
+/******************* (C) COPYRIGHT 2017 Â½³¬ ************* END OF FILE ********/
 
 
 

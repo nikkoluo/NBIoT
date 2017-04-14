@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
 * File Name          :  nRF51_BLE_Peer.h
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -31,11 +31,11 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void nRF51_BLE_Peer_Manager_Init(bool erase_bonds);             // ç»‘å®šç®¡ç†åˆå§‹åŒ–
+extern  void nRF51_BLE_Peer_Manager_Init(bool erase_bonds);             // °ó¶¨¹ÜÀí³õÊ¼»¯
 
 
 
 #endif /* __NRF51_BLE_PEER_H */
 
-/******************* (C) COPYRIGHT 2017 é™†è¶… *****END OF FILE******************/
+/******************* (C) COPYRIGHT 2017 Â½³¬ *****END OF FILE******************/
 

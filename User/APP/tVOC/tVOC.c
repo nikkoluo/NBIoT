@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
 * File Name          :  tVOC.c
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  03/29/2017
-* Description        :  tVOCåº”ç”¨ç¨‹åº
+* Description        :  tVOCÓ¦ÓÃ³ÌĞò
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "tVOC.h"
@@ -15,18 +15,18 @@
 /* Private variables ---------------------------------------------------------*/
         
 /* Private function prototypes -----------------------------------------------*/
-void tVOC_Task_Handle(void *p_arg);                                     // tVOCä»»åŠ¡
-void tVOC_Task_Create(void);                                            // åˆ›å»ºtVOCä»»åŠ¡
-void tVOC_Get(void);                                                    // è·å–tVOC
-void tVOC_Port_Init(void);                                              // tVOCç®¡è„šåˆå§‹åŒ–
-void tVOC_Variable_Init(void);                                          // å˜é‡åˆå§‹åŒ–
-u32 tVOC_Chip_Init(void);                                               // èŠ¯ç‰‡åˆå§‹åŒ–
+void tVOC_Task_Handle(void *p_arg);                                     // tVOCÈÎÎñ
+void tVOC_Task_Create(void);                                            // ´´½¨tVOCÈÎÎñ
+void tVOC_Get(void);                                                    // »ñÈ¡tVOC
+void tVOC_Port_Init(void);                                              // tVOC¹Ü½Å³õÊ¼»¯
+void tVOC_Variable_Init(void);                                          // ±äÁ¿³õÊ¼»¯
+u32 tVOC_Chip_Init(void);                                               // Ğ¾Æ¬³õÊ¼»¯
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           é™†è¶…@2017-03-29
+*                           Â½³¬@2017-03-29
 * Function Name  :  tVOC_Task_Create
-* Description    :  åˆ›å»ºtVOCä»»åŠ¡
+* Description    :  ´´½¨tVOCÈÎÎñ
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -35,11 +35,11 @@ void tVOC_Task_Create(void)
 {
     u32 err_code = NRF_SUCCESS;
 
-    // åˆå§‹åŒ–å˜é‡å’ŒIO
+    // ³õÊ¼»¯±äÁ¿ºÍIO
     tVOC_Variable_Init();
     tVOC_Port_Init();
     
-    // é…ç½®å‚æ•° å‘¨æœŸæ¨¡å¼è¿è¡Œ
+    // ÅäÖÃ²ÎÊı ÖÜÆÚÄ£Ê½ÔËĞĞ
     tVOC_Task.Run_Mode        = APP_TIMER_MODE_REPEATED;
     tVOC_Task.Timeout_handler = tVOC_Task_Handle;
     tVOC_Task.Period          = TASK_TEMP_HUMI_PERIOD;
@@ -47,12 +47,12 @@ void tVOC_Task_Create(void)
     err_code |= app_timer_create(&tVOC_Task.p_ID,
                                  tVOC_Task.Run_Mode,
                                  tVOC_Task.Timeout_handler);
-    // èŠ¯ç‰‡åˆå§‹åŒ–
+    // Ğ¾Æ¬³õÊ¼»¯
     err_code |= tVOC_Chip_Init();
 
     if (err_code != NRF_SUCCESS)
     {
-        app_trace_log("tVOCèŠ¯ç‰‡åˆå§‹åŒ–å¤±è´¥!\r\n");    
+        app_trace_log("tVOCĞ¾Æ¬³õÊ¼»¯Ê§°Ü!\r\n");    
     }
     else
     {
@@ -67,19 +67,19 @@ void tVOC_Task_Create(void)
 }// End of void tVOC_Task_Create(void)
 
 /*******************************************************************************
-*                           é™†è¶…@2017-01-03
+*                           Â½³¬@2017-01-03
 * Function Name  :  tVOC_Chip_Init
-* Description    :  èŠ¯ç‰‡åˆå§‹åŒ–
+* Description    :  Ğ¾Æ¬³õÊ¼»¯
 * Input          :  None
 * Output         :  None
-* Return         :  NRF_SUCCESS æˆåŠŸ 1å¤±è´¥
+* Return         :  NRF_SUCCESS ³É¹¦ 1Ê§°Ü
 *******************************************************************************/
 u32 tVOC_Chip_Init(void)
 {
     u32 Err_Code = 0xFFFF;
 
 
-    // é»˜è®¤ä¼ æ„Ÿå™¨error
+    // Ä¬ÈÏ´«¸ĞÆ÷error
     System_Err.tVOC = 1;
 
     return Err_Code;
@@ -87,9 +87,9 @@ u32 tVOC_Chip_Init(void)
 }// End of u32 tVOC_Chip_Init(void)
 
 /*******************************************************************************
-*                           é™†è¶…@2017-03-08
+*                           Â½³¬@2017-03-08
 * Function Name  :  tVOC_Get
-* Description    :  è·å–tVOC
+* Description    :  »ñÈ¡tVOC
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -102,9 +102,9 @@ void tVOC_Get(void)
 }// End of void tVOC_Get(void)
 
 /*******************************************************************************
-*                           é™†è¶…@2017-03-29
+*                           Â½³¬@2017-03-29
 * Function Name  :  tVOC_Task_Handle
-* Description    :  tVOCä»»åŠ¡
+* Description    :  tVOCÈÎÎñ
 * Input          :  void *p_arg
 * Output         :  None
 * Return         :  None
@@ -118,12 +118,12 @@ void tVOC_Task_Handle(void *p_arg)
 
 
 /*******************************************************************************
-*                           é™†è¶…@2016-03-29
+*                           Â½³¬@2016-03-29
 * Function Name  :  tVOC_Port_Init
-* Description    :  tVOCç«¯å£åˆå§‹åŒ–
+* Description    :  tVOC¶Ë¿Ú³õÊ¼»¯
 * Input          :  None
 * Output         :  None
-* Return         :  1æˆåŠŸ 0å¤±è´¥
+* Return         :  1³É¹¦ 0Ê§°Ü
 *******************************************************************************/
 void tVOC_Port_Init(void)
 {
@@ -132,9 +132,9 @@ void tVOC_Port_Init(void)
 }// End of void tVOC_Port_Init(void)
 
 /*******************************************************************************
-*                           é™†è¶…@2017-03-29
+*                           Â½³¬@2017-03-29
 * Function Name  :  tVOC_Variable_Init
-* Description    :  tVOCå˜é‡åˆå§‹åŒ–
+* Description    :  tVOC±äÁ¿³õÊ¼»¯
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -145,7 +145,7 @@ void tVOC_Variable_Init(void)
     
 }// End of void tVOC_Variable_Init(void)
 
-/******************* (C) COPYRIGHT 2017 é™†è¶… ************* END OF FILE ********/
+/******************* (C) COPYRIGHT 2017 Â½³¬ ************* END OF FILE ********/
 
 
 

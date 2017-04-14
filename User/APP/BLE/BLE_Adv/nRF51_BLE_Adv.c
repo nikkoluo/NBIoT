@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
 * File Name          :  nRF51_BLE_Adv.c
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  01/06/2017
-* Description        :  è“ç‰™å¹¿æ’­åŒ…å¤„ç†
+* Description        :  À¶ÑÀ¹ã²¥°ü´¦Àí
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "nRF51_BLE_Adv.h"
@@ -17,16 +17,16 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void BLE_Advertising_on_ble_evt(ble_evt_t const * p_ble_evt);           // å¹¿æ’­äº‹ä»¶å¤„ç†
-void nRF51_BLE_Bond_Adv_Handle(void *p_arg);                            // ç»‘å®šå¹¿æ’­
+void BLE_Advertising_on_ble_evt(ble_evt_t const * p_ble_evt);           // ¹ã²¥ÊÂ¼ş´¦Àí
+void nRF51_BLE_Bond_Adv_Handle(void *p_arg);                            // °ó¶¨¹ã²¥
 
 /* Private functions ---------------------------------------------------------*/
 
 /*******************************************************************************
-*                           é™†è¶…@2017-01-06
+*                           Â½³¬@2017-01-06
 * Function Name  :  BLE_Advertising_on_ble_evt
-* Description    :  å¹¿æ’­äº‹ä»¶å¤„ç†
-* Input          :  ble_evt_t const * p_ble_evt æ—¶é—´å‚æ•°
+* Description    :  ¹ã²¥ÊÂ¼ş´¦Àí
+* Input          :  ble_evt_t const * p_ble_evt Ê±¼ä²ÎÊı
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
@@ -36,14 +36,14 @@ void BLE_Advertising_on_ble_evt(ble_evt_t const * p_ble_evt)
     {
 //        case BLE_GAP_EVT_CONNECTED:
 //        {
-//            app_trace_log("å¼€å§‹è¿æ¥ï¼Œå¹¿æ’­çº¿ç¨‹çš„ä¿¡æ¯!\r\n");
+//            app_trace_log("¿ªÊ¼Á¬½Ó£¬¹ã²¥Ïß³ÌµÄĞÅÏ¢!\r\n");
 //        }
 //        break;
 
 //        // Upon disconnection, whitelist will be activated and direct advertising is started.
 //        case BLE_GAP_EVT_DISCONNECTED:
 //        {
-//            app_trace_log("ç»“æŸè¿æ¥ï¼Œå¹¿æ’­çº¿ç¨‹çš„ä¿¡æ¯!\r\n");
+//            app_trace_log("½áÊøÁ¬½Ó£¬¹ã²¥Ïß³ÌµÄĞÅÏ¢!\r\n");
 //            
 //        }break;
 
@@ -53,7 +53,7 @@ void BLE_Advertising_on_ble_evt(ble_evt_t const * p_ble_evt)
         {
             if (p_ble_evt->evt.gap_evt.params.timeout.src == BLE_GAP_TIMEOUT_SRC_ADVERTISING)
             {
-                app_trace_log("å¹¿æ’­è¶…æ—¶ï¼Œå¹¿æ’­çº¿ç¨‹çš„ä¿¡æ¯!\r\n"); 
+                app_trace_log("¹ã²¥³¬Ê±£¬¹ã²¥Ïß³ÌµÄĞÅÏ¢!\r\n"); 
 
 
             }
@@ -67,9 +67,9 @@ void BLE_Advertising_on_ble_evt(ble_evt_t const * p_ble_evt)
 }// End of void BLE_Advertising_on_ble_evt(ble_evt_t const * p_ble_evt)
 
 /*******************************************************************************
-*                           é™†è¶…@2017-02-22
+*                           Â½³¬@2017-02-22
 * Function Name  :  nRF51_BLE_Bond_Adv_Handle
-* Description    :  ç»‘å®šå¹¿æ’­å¤„ç†
+* Description    :  °ó¶¨¹ã²¥´¦Àí
 * Input          :  void *p_arg
 * Output         :  None
 * Return         :  None
@@ -81,7 +81,7 @@ void nRF51_BLE_Bond_Adv_Handle(void *p_arg)
 }// End of void nRF51_BLE_Bond_Adv_Handle(void *p_arg)
 
 
-/******************* (C) COPYRIGHT 2017 é™†è¶… ************* END OF FILE ********/
+/******************* (C) COPYRIGHT 2017 Â½³¬ ************* END OF FILE ********/
 
 
 

@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2017 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2017 Â½³¬ **********************************
 * File Name          :  GPIO_Port.c
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  01/06/2017
-* Description        :  GPIOé©±åŠ¨ç¨‹åº
+* Description        :  GPIOÇı¶¯³ÌĞò
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "GPIO_Port.h"
@@ -16,32 +16,32 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* Private function prototypes -----------------------------------------------*/
-void GPIO_Variable_Init(void);                                          // GPIOå˜é‡åˆå§‹åŒ–
-void GPIO_Port_Init(void);                                              // GPIOç«¯å£åˆå§‹åŒ–    
-void GPIO_Set_Pin_High(u8 ucPin);                                       // ç®¡è„šç½®é«˜
-void GPIO_Set_Pin_Low(u8 ucPin);                                        // ç®¡è„šç½®ä½   
+void GPIO_Variable_Init(void);                                          // GPIO±äÁ¿³õÊ¼»¯
+void GPIO_Port_Init(void);                                              // GPIO¶Ë¿Ú³õÊ¼»¯    
+void GPIO_Set_Pin_High(u8 ucPin);                                       // ¹Ü½ÅÖÃ¸ß
+void GPIO_Set_Pin_Low(u8 ucPin);                                        // ¹Ü½ÅÖÃµÍ   
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           é™†è¶…@2017-01-03
+*                           Â½³¬@2017-01-03
 * Function Name  :  GPIO_Port_Init
-* Description    :  GPIOç«¯å£åˆå§‹åŒ–
+* Description    :  GPIO¶Ë¿Ú³õÊ¼»¯
 * Input          :  P0.01   -->   GPIO_TEST_PIN
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
 void GPIO_Port_Init(void)
 {
-    // é…ç½®ç®¡è„šä¸ºè¾“å‡º
+    // ÅäÖÃ¹Ü½ÅÎªÊä³ö
     nrf_gpio_cfg_output(GPIO_TEST_PIN);
 
        
 }// End of void  GPIO_Port_Init(void)
 
 /*******************************************************************************
-*                           é™†è¶…@2017-01-03
+*                           Â½³¬@2017-01-03
 * Function Name  :  GPIO_Variable_Init
-* Description    :  GPIOå˜é‡åˆå§‹åŒ–
+* Description    :  GPIO±äÁ¿³õÊ¼»¯
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -53,9 +53,9 @@ void GPIO_Variable_Init(void)
 }// End of void GPIO_Variable_Init(void)
 
 /*******************************************************************************
-*                           é™†è¶…@2017-01-16
+*                           Â½³¬@2017-01-16
 * Function Name  :  GPIO_Set_Pin_High
-* Description    :  ç®¡è„šç½®é«˜
+* Description    :  ¹Ü½ÅÖÃ¸ß
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -68,9 +68,9 @@ void GPIO_Set_Pin_High(u8 ucPin)
 }// End of void GPIO_Set_Pin_High(u8 ucPin)
 
 /*******************************************************************************
-*                           é™†è¶…@2017-01-16
+*                           Â½³¬@2017-01-16
 * Function Name  :  GPIO_Set_Pin_Low
-* Description    :  ç®¡è„šç½®ä½
+* Description    :  ¹Ü½ÅÖÃµÍ
 * Input          :  None
 * Output         :  None
 * Return         :  None
@@ -81,5 +81,5 @@ void GPIO_Set_Pin_Low(u8 ucPin)
     
 }// End of void GPIO_Set_Pin_Low(u8 ucPin)
 
-/******************* (C) COPYRIGHT 2017 é™†è¶… **************END OF FILE*********/
+/******************* (C) COPYRIGHT 2017 Â½³¬ **************END OF FILE*********/
 

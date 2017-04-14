@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2016 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2016 Â½³¬ **********************************
 * File Name          :  Global.h
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -40,53 +40,53 @@
 
 /* Private variables ---------------------------------------------------------*/
 //----------------------- System ----------------------------------------------/
-extern  u8                      Root_Access;                            // è¶…çº§æƒé™
-extern  u8                      Sys_Status;                             // ç³»ç»ŸçŠ¶æ€
-extern  u8                      Sys_Init;                               // ç½®ä¸€å®Œæˆåˆå§‹åŒ– 
-extern  Task_Typedef            Button_Task;                            // æŒ‰é”®ä»»åŠ¡
-extern  Task_Typedef            LCD_Task;                               // LCDä»»åŠ¡
-extern  Task_Typedef            tVOC_Task;                              // tVOCä»»åŠ¡
-extern  Task_Typedef            Communal_Timer_Task;                    // å…¬ç”¨å®šæ—¶å™¨ä»»åŠ¡
-extern  Task_Typedef            Battery_Task;                           // ç”µæ± ä»»åŠ¡
-extern  Task_Typedef            Temp_Humi_Task;                         // æ¸©æ¹¿åº¦ä»»åŠ¡
-extern  Task_Typedef            BLE_Task;                               // BLEä»»åŠ¡
-extern  Task_Typedef            WDT_Task;                               // WDTä»»åŠ¡
-extern  Task_Typedef            Debug_Rx_Task;                          // è°ƒè¯•å£æ¥æ”¶ä»»åŠ¡
-extern  Bond_Typedef            Sys_Bond;                               // ç»‘å®š
-extern  UART_Typedef            Debug_UART;                             // è°ƒè¯•ä¸²å£
-extern  Button_Typedef          Button;                                 // æŒ‰é”®ç»“æ„ä½“
+extern  u8                      Root_Access;                            // ³¬¼¶È¨ÏŞ
+extern  u8                      Sys_Status;                             // ÏµÍ³×´Ì¬
+extern  u8                      Sys_Init;                               // ÖÃÒ»Íê³É³õÊ¼»¯ 
+extern  Task_Typedef            Button_Task;                            // °´¼üÈÎÎñ
+extern  Task_Typedef            LCD_Task;                               // LCDÈÎÎñ
+extern  Task_Typedef            tVOC_Task;                              // tVOCÈÎÎñ
+extern  Task_Typedef            Communal_Timer_Task;                    // ¹«ÓÃ¶¨Ê±Æ÷ÈÎÎñ
+extern  Task_Typedef            Battery_Task;                           // µç³ØÈÎÎñ
+extern  Task_Typedef            Temp_Humi_Task;                         // ÎÂÊª¶ÈÈÎÎñ
+extern  Task_Typedef            BLE_Task;                               // BLEÈÎÎñ
+extern  Task_Typedef            WDT_Task;                               // WDTÈÎÎñ
+extern  Task_Typedef            Debug_Rx_Task;                          // µ÷ÊÔ¿Ú½ÓÊÕÈÎÎñ
+extern  Bond_Typedef            Sys_Bond;                               // °ó¶¨
+extern  UART_Typedef            Debug_UART;                             // µ÷ÊÔ´®¿Ú
+extern  Button_Typedef          Button;                                 // °´¼ü½á¹¹Ìå
 extern  Sensor_Typedef          Sensor;                                 // Sensor
-extern  Time_Base_Typedef       System_Time_Base;                       // ç³»ç»Ÿæ—¶é—´åŸºå‡†
-extern  System_ERR_Typedef      System_Err;                             // ç³»ç»Ÿé”™è¯¯ç»“æ„ä½“
-extern  BLE_Service_Typedef     nRF51_BLE_Service;                      // nRF51 BLEç§æœ‰æœåŠ¡
-extern  nrf_drv_wdt_channel_id  WDT_Channel;                            // å£°æ˜çœ‹é—¨ç‹—é€šé“å˜é‡
+extern  Time_Base_Typedef       System_Time_Base;                       // ÏµÍ³Ê±¼ä»ù×¼
+extern  System_ERR_Typedef      System_Err;                             // ÏµÍ³´íÎó½á¹¹Ìå
+extern  BLE_Service_Typedef     nRF51_BLE_Service;                      // nRF51 BLEË½ÓĞ·şÎñ
+extern  nrf_drv_wdt_channel_id  WDT_Channel;                            // ÉùÃ÷¿´ÃÅ¹·Í¨µÀ±äÁ¿
 
 //----------------------- BLE -------------------------------------------------/
-extern  u16                     BLE_Connect_Handle;                     // å½“å‰è¿æ¥å¤„ç†çŠ¶æ€
-extern  ble_bas_t               Bat_Level_Service;                      // ç”µé‡æœåŠ¡
+extern  u16                     BLE_Connect_Handle;                     // µ±Ç°Á¬½Ó´¦Àí×´Ì¬
+extern  ble_bas_t               Bat_Level_Service;                      // µçÁ¿·şÎñ
 extern  dm_application_instance_t   DM_App_Handle;                      // dm handle
 extern  ble_dfu_t               nRF51_DFU_Services;                     // DFU service
 
 //----------------------- flash -----------------------------------------------/
-extern  u8                      Flash_Used;                             // ç½®ä¸€æ—¶flashè¢«å ç”¨
-extern  pstorage_handle_t       MAC_Flash_Handle;                       // mac flashå¤„ç†
-extern  pstorage_handle_t       Token_Flash_Handle;                     // Token lashåœ°å€
+extern  u8                      Flash_Used;                             // ÖÃÒ»Ê±flash±»Õ¼ÓÃ
+extern  pstorage_handle_t       MAC_Flash_Handle;                       // mac flash´¦Àí
+extern  pstorage_handle_t       Token_Flash_Handle;                     // Token lashµØÖ·
 
 //----------------------- Button ----------------------------------------------/
-extern  app_button_cfg_t        Button_Cfg[MAX_INTERRUPT_PIN_NUM];      // Buttoné…ç½®ç»“æ„ä½“
+extern  app_button_cfg_t        Button_Cfg[MAX_INTERRUPT_PIN_NUM];      // ButtonÅäÖÃ½á¹¹Ìå
 
 //----------------------- Software IIC ----------------------------------------/
-extern  SW_I2C_Typedef          Temp_Humi_I2C;                          // æ¸©æ¹¿åº¦çš„IIC
-extern  SW_I2C_Typedef          Communal_IIC;                           // é€šç”¨IIC
+extern  SW_I2C_Typedef          Temp_Humi_I2C;                          // ÎÂÊª¶ÈµÄIIC
+extern  SW_I2C_Typedef          Communal_IIC;                           // Í¨ÓÃIIC
 
 /* Private function prototypes -----------------------------------------------*/
-extern  u32  Timestamp_Interval_Get(u32 Time1, u32 Time2);              // è®¡ç®—æ—¶é—´å·®å€¼
-extern  u32  Timestamp_Get(void);                                       // è·å–æ—¶é—´æˆ³
-extern  u8   Timestamp_Timeout(u32 Time, u32 Timeout);                  // è¶…æ—¶è®¡ç®—
-extern  u8   System_ms_Base_Timeout(u32 Time, u32 Timeout);             // msè¶…æ—¶
-extern  u32  System_ms_Base_Update(void);                               // msæ—¶é—´æˆ³æ›´æ–°
-extern  void Power_Manage(void);                                        // ç”µæºç®¡ç† è¿›å…¥ä½åŠŸè€—æ¨¡å¼
+extern  u32  Timestamp_Interval_Get(u32 Time1, u32 Time2);              // ¼ÆËãÊ±¼ä²îÖµ
+extern  u32  Timestamp_Get(void);                                       // »ñÈ¡Ê±¼ä´Á
+extern  u8   Timestamp_Timeout(u32 Time, u32 Timeout);                  // ³¬Ê±¼ÆËã
+extern  u8   System_ms_Base_Timeout(u32 Time, u32 Timeout);             // ms³¬Ê±
+extern  u32  System_ms_Base_Update(void);                               // msÊ±¼ä´Á¸üĞÂ
+extern  void Power_Manage(void);                                        // µçÔ´¹ÜÀí ½øÈëµÍ¹¦ºÄÄ£Ê½
 
 #endif /* __GLOBAL_H */
 
-/******************* (C) COPYRIGHT 2016 é™†è¶… ********END OF FILE***************/
+/******************* (C) COPYRIGHT 2016 Â½³¬ ********END OF FILE***************/

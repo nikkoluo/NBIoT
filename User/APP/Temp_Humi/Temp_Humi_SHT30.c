@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2016 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2016 Â½³¬ **********************************
 * File Name          :  Temp_Humi_SHT30.c
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  12/28/2016
-* Description        :  æ¸©æ¹¿åº¦åº”ç”¨ç¨‹åº
+* Description        :  ÎÂÊª¶ÈÓ¦ÓÃ³ÌĞò
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "Temp_Humi_SHT30.h"
@@ -17,21 +17,21 @@
 /* Private variables ---------------------------------------------------------*/
         
 /* Private function prototypes -----------------------------------------------*/
-u8 SHT3x_Read_SN(u8 *ucSN);                                             // è¯»å–SN
-u8 SHT3x_Soft_Reset(void);                                              // è½¯å¤ä½
-u8 SHT3x_Check_CRC(u8 *ucData, u8 ucLen, u8 ucCheck_Sum);               // CRCæ ¡éªŒ
-u8 SHT3x_Get_Temp_Humi(float *fTemp, float *fHumi);                     // è·å–æ¸©æ¹¿åº¦
-float SHT3x_CalcTemperature(u16 usValue);                               // è®¡ç®—æ¸©åº¦
-float SHT3x_CalcHumidity(u16 usValue);                                  // è®¡ç®—æ¹¿åº¦
+u8 SHT3x_Read_SN(u8 *ucSN);                                             // ¶ÁÈ¡SN
+u8 SHT3x_Soft_Reset(void);                                              // Èí¸´Î»
+u8 SHT3x_Check_CRC(u8 *ucData, u8 ucLen, u8 ucCheck_Sum);               // CRCĞ£Ñé
+u8 SHT3x_Get_Temp_Humi(float *fTemp, float *fHumi);                     // »ñÈ¡ÎÂÊª¶È
+float SHT3x_CalcTemperature(u16 usValue);                               // ¼ÆËãÎÂ¶È
+float SHT3x_CalcHumidity(u16 usValue);                                  // ¼ÆËãÊª¶È
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           é™†è¶…@2016-12-28
+*                           Â½³¬@2016-12-28
 * Function Name  :  SHT3x_Read_SN
-* Description    :  è¯»SN
-* Input          :  u8 è¯»å–çš„SN
+* Description    :  ¶ÁSN
+* Input          :  u8 ¶ÁÈ¡µÄSN
 * Output         :  None
-* Return         :  1æˆåŠŸ 0å¤±è´¥
+* Return         :  1³É¹¦ 0Ê§°Ü
 *******************************************************************************/
 u8 SHT3x_Read_SN(u8 *ucSN)
 {
@@ -41,13 +41,13 @@ u8 SHT3x_Read_SN(u8 *ucSN)
 }// End of u8 SHT3x_Read_SN(u8 *ucSN)
 
 /*******************************************************************************
-*                           é™†è¶…@2016-12-28
+*                           Â½³¬@2016-12-28
 * Function Name  :  SHT3x_Get_Temp_Humi
-* Description    :  è·å–æ¸©æ¹¿åº¦
-* Input          :  float *fTemp    æ¸©åº¦æ•°æ®
-*                   float *fHumi    æ¹¿åº¦æ•°æ®
+* Description    :  »ñÈ¡ÎÂÊª¶È
+* Input          :  float *fTemp    ÎÂ¶ÈÊı¾İ
+*                   float *fHumi    Êª¶ÈÊı¾İ
 * Output         :  None
-* Return         :  1æˆåŠŸ 0å¤±è´¥
+* Return         :  1³É¹¦ 0Ê§°Ü
 *******************************************************************************/
 u8 SHT3x_Get_Temp_Humi(float *fTemp, float *fHumi)
 {
@@ -58,10 +58,10 @@ u8 SHT3x_Get_Temp_Humi(float *fTemp, float *fHumi)
     
     if (ucResult)
     {
-        // é€šè¿‡äº†CRC
+        // Í¨¹ıÁËCRC
         if (SHT3x_Check_CRC(ucRead_Data, 2, ucRead_Data[2]) &&  SHT3x_Check_CRC(&ucRead_Data[3], 2, ucRead_Data[5]))
         {
-            // è®¡ç®—æ¸©æ¹¿åº¦
+            // ¼ÆËãÎÂÊª¶È
             *fTemp = SHT3x_CalcTemperature((ucRead_Data[0] << 8) + ucRead_Data[1]);
             *fHumi = SHT3x_CalcHumidity((ucRead_Data[3] << 8) + ucRead_Data[4]);
             
@@ -78,16 +78,16 @@ u8 SHT3x_Get_Temp_Humi(float *fTemp, float *fHumi)
 }// End of u8 SHT3x_Get_Temp_Humi(float *fTemp, float *fHumi)
 
 /*******************************************************************************
-*                           é™†è¶…@2016-12-28
+*                           Â½³¬@2016-12-28
 * Function Name  :  SHT3x_CalcTemperature
-* Description    :  æ¸©åº¦è®¡ç®—
-* Input          :  u16 usValue 16bitæ¸©åº¦
+* Description    :  ÎÂ¶È¼ÆËã
+* Input          :  u16 usValue 16bitÎÂ¶È
 * Output         :  None
-* Return         :  floatå‹æ¸©åº¦
+* Return         :  floatĞÍÎÂ¶È
 *******************************************************************************/
 float SHT3x_CalcTemperature(u16 usValue)
 {
-    // calculate temperature [Â°C]
+    // calculate temperature [¡ãC]
     // T = -45 + 175 * rawValue / (2^16-1)
 
     float fTemp = 0.0;
@@ -99,12 +99,12 @@ float SHT3x_CalcTemperature(u16 usValue)
 }// End of float SHT3x_CalcTemperature(u16 usValue)
 
 /*******************************************************************************
-*                           é™†è¶…@2016-12-28
+*                           Â½³¬@2016-12-28
 * Function Name  :  SHT3x_CalcHumidity
-* Description    :  æ¹¿åº¦è®¡ç®—
-* Input          :  u16 usValue 16bitæ¹¿åº¦
+* Description    :  Êª¶È¼ÆËã
+* Input          :  u16 usValue 16bitÊª¶È
 * Output         :  None
-* Return         :  floatå‹æ¹¿åº¦
+* Return         :  floatĞÍÊª¶È
 *******************************************************************************/
 float SHT3x_CalcHumidity(u16 usValue)
 {
@@ -119,13 +119,13 @@ float SHT3x_CalcHumidity(u16 usValue)
 }// End of float SHT3x_CalcHumidity(u16 usValue)
     
 /*******************************************************************************
-*                           é™†è¶…@2016-12-28
+*                           Â½³¬@2016-12-28
 * Function Name  :  SHT3x_Check_CRC
-* Description    :  CRCåˆ¤æ–­
-*                   å¤ä½åéœ€è¦è‡³å°‘delay 1ms
+* Description    :  CRCÅĞ¶Ï
+*                   ¸´Î»ºóĞèÒªÖÁÉÙdelay 1ms
 * Input          :  None
 * Output         :  None
-* Return         :  1æˆåŠŸ 0å¤±è´¥
+* Return         :  1³É¹¦ 0Ê§°Ü
 *******************************************************************************/
 u8 SHT3x_Check_CRC(u8 *ucData, u8 ucLen, u8 ucCheck_Sum)
 {
@@ -164,13 +164,13 @@ u8 SHT3x_Check_CRC(u8 *ucData, u8 ucLen, u8 ucCheck_Sum)
 }// u8 SHT3x_Check_CRC(u8 *ucData, u8 ucLen, u8 ucCheck_Sum)
     
 /*******************************************************************************
-*                           é™†è¶…@2016-12-28
+*                           Â½³¬@2016-12-28
 * Function Name  :  SHT3x_Soft_Reset
-* Description    :  è½¯å¤ä½ 
-*                   å¤ä½åéœ€è¦è‡³å°‘delay 1ms
+* Description    :  Èí¸´Î» 
+*                   ¸´Î»ºóĞèÒªÖÁÉÙdelay 1ms
 * Input          :  None
 * Output         :  None
-* Return         :  1æˆåŠŸ 0å¤±è´¥
+* Return         :  1³É¹¦ 0Ê§°Ü
 *******************************************************************************/
 u8 SHT3x_Soft_Reset(void)
 {
@@ -180,7 +180,7 @@ u8 SHT3x_Soft_Reset(void)
     ucWrite_Addr[0] = (CMD_SOFT_RESET >> 8) & 0xFF;
     ucWrite_Addr[1] = (CMD_SOFT_RESET >> 0) & 0xFF;
     
-    // å‘é€å†™å‘½ä»¤
+    // ·¢ËÍĞ´ÃüÁî
     Transfer_Succeeded = SW_I2C_Transfer(&Temp_Humi_I2C, SHT3x_WRITE_ADDR, ucWrite_Addr, 2, SW_I2C_NEED_SEND_STOP);
 
     nrf_delay_ms(5);
@@ -190,7 +190,7 @@ u8 SHT3x_Soft_Reset(void)
 }// End of u8 SHT3x_Soft_Reset(void)
 
 
-/******************* (C) COPYRIGHT 2016 é™†è¶… ************* END OF FILE ********/
+/******************* (C) COPYRIGHT 2016 Â½³¬ ************* END OF FILE ********/
 
 
 

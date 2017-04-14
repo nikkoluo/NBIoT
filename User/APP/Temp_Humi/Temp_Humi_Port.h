@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2016 ÈôÜË∂Ö **********************************
+/******************** (C) COPYRIGHT 2016 ¬Ω≥¨ **********************************
 * File Name          :  Temp_Humi_Port.h
-* Author             :  ÈôÜË∂Ö
+* Author             :  ¬Ω≥¨
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -17,10 +17,10 @@
 
 
 /* Private define ------------------------------------------------------------*/
-#define     SHT3x_ADDR                  0x44                            // SHT3xÂú∞ÂùÄ
-#define     SHT3x_WRITE_ADDR            (SHT3x_ADDR << 1)               // SHT3xÂÜôÂú∞ÂùÄ
-#define     SHT3x_READ_ADDR             (SHT3x_WRITE_ADDR | 0x01)       // SHT3xËØªÂú∞ÂùÄ
-#define     TEMP_HUMI_MAX_TIMEOUT_LOOPS (5 * 1000)                      // Ë∂ÖÊó∂Âë®Êúüus
+#define     SHT3x_ADDR                  0x44                            // SHT3xµÿ÷∑
+#define     SHT3x_WRITE_ADDR            (SHT3x_ADDR << 1)               // SHT3x–¥µÿ÷∑
+#define     SHT3x_READ_ADDR             (SHT3x_WRITE_ADDR | 0x01)       // SHT3x∂¡µÿ÷∑
+#define     TEMP_HUMI_MAX_TIMEOUT_LOOPS (5 * 1000)                      // ≥¨ ±÷‹∆⁄us
 
 
 /* Private typedef -----------------------------------------------------------*/
@@ -31,11 +31,11 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void Temp_Humi_Variable_Init(void);                             // Ê∏©ÊπøÂ∫¶ÂèòÈáèÂàùÂßãÂåñ
-extern  u8 Temp_Humi_Port_Init(void);                                   // ÁÆ°ËÑöÂàùÂßãÂåñ
-extern  u8 Temp_Humi_Read_Register(u16 usRead_Addr, u8* pBuffer, u16 usRead_Len);// ËØªÂØÑÂ≠òÂô®
-extern  u8 Temp_Humi_Write_Register(u16 usWrite_Addr, u8* pBuffer, u16 usWrite_Len);// ÂÜôÂØÑÂ≠òÂô®
+extern  void Temp_Humi_Variable_Init(void);                             // Œ¬ ™∂»±‰¡ø≥ı ºªØ
+extern  u8 Temp_Humi_Port_Init(void);                                   // π‹Ω≈≥ı ºªØ
+extern  u8 Temp_Humi_Read_Register(u16 usRead_Addr, u8* pBuffer, u16 usRead_Len);// ∂¡ºƒ¥Ê∆˜
+extern  u8 Temp_Humi_Write_Register(u16 usWrite_Addr, u8* pBuffer, u16 usWrite_Len);// –¥ºƒ¥Ê∆˜
 
 #endif /* __TEMP_HUMI_PORT_H */
 
-/******************* (C) COPYRIGHT 2016 ÈôÜË∂Ö **** END OF FILE *****************/
+/******************* (C) COPYRIGHT 2016 ¬Ω≥¨ **** END OF FILE *****************/

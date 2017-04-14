@@ -1,11 +1,11 @@
-/******************** (C) COPYRIGHT 2016 é™†è¶… **********************************
+/******************** (C) COPYRIGHT 2016 Â½³¬ **********************************
 * File Name          :  Button_Single.c
-* Author             :  é™†è¶…
+* Author             :  Â½³¬
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  12/28/2016
-* Description        :  å•å‡»åº”ç”¨ç¨‹åº
+* Description        :  µ¥»÷Ó¦ÓÃ³ÌĞò
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "Button_Single.h"
@@ -15,27 +15,27 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-void Single_Button_Handler(void);                                       // å•å‡»å¤„ç†
+void Single_Button_Handler(void);                                       // µ¥»÷´¦Àí
 
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
-*                           é™†è¶…@2016-12-28
+*                           Â½³¬@2016-12-28
 * Function Name  :  Single_Button_Handler
-* Description    :  å¤„ç†å•å‡»äº‹ä»¶
+* Description    :  ´¦Àíµ¥»÷ÊÂ¼ş
 * Input          :  None
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
 void Single_Button_Handler(void)
 {
-    // éå•å‡»çŠ¶æ€
-    app_trace_log("å•å‡»ä»»åŠ¡\r\n");
+    // ·Çµ¥»÷×´Ì¬
+    app_trace_log("µ¥»÷ÈÎÎñ\r\n");
 
 }// End of void Single_Button_Handler(void)
 
 
-/******************* (C) COPYRIGHT 2016 é™†è¶… **************END OF FILE*********/
+/******************* (C) COPYRIGHT 2016 Â½³¬ **************END OF FILE*********/
 
 
 

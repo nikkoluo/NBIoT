@@ -1,6 +1,6 @@
-/******************** (C) COPYRIGHT 2017 ÈôÜË∂Ö **********************************
+/******************** (C) COPYRIGHT 2017 ¬Ω≥¨ **********************************
 * File Name          :  Communal_Flash.h
-* Author             :  ÈôÜË∂Ö
+* Author             :  ¬Ω≥¨
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
@@ -28,16 +28,16 @@
 extern  u32 Communal_Flash_Load(uint8_t           * p_dest,
                                 pstorage_handle_t * p_src,
                                 pstorage_size_t     size,
-                                pstorage_size_t     offset);            // ËØªÂèñ
+                                pstorage_size_t     offset);            // ∂¡»°
                                                      
 
 extern  u32 Communal_Flash_Update(pstorage_handle_t * p_dest,
                                   uint8_t           * p_src,
                                   pstorage_size_t     size,
-                                  pstorage_size_t     offset);          // ÂÜôÂÖ•
-extern  u32 Communal_Flash_Clear(pstorage_handle_t * p_dest, pstorage_size_t size); // Âà†Èô§    
+                                  pstorage_size_t     offset);          // –¥»Î
+extern  u32 Communal_Flash_Clear(pstorage_handle_t * p_dest, pstorage_size_t size); // …æ≥˝    
 
 #endif /* __COMMUNAL_FLASH_H */
 
-/******************* (C) COPYRIGHT 2017 ÈôÜË∂Ö *****END OF FILE******************/
+/******************* (C) COPYRIGHT 2017 ¬Ω≥¨ *****END OF FILE******************/
 
