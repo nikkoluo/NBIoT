@@ -230,6 +230,7 @@ void OLED_Write_Data(u8 ucData);										// OLED写数据
 void OLED_Write_Cmd(u8 ucCmd);                                          // OLED写命令
 void OLED_Set_Pos(u8 x, u8 y);											// 设置坐标
 void OLED_Fill(u8 *pData);												// 数据填充
+void OLED_CLS(void);													// 清空数据
 
 
 /*******************************************************************************
@@ -345,6 +346,7 @@ void OLED_Set_Pos(u8 x, u8 y)
 * Function Name  :	OLED_Fill
 * Description	 :	OLED数据填充
 * Input 		 :	u8 *pData	待填充数据
+* Output		 :	None
 * Return		 :	None
 *******************************************************************************/
 void OLED_Fill(u8 *pData)
@@ -367,24 +369,36 @@ void OLED_Fill(u8 *pData)
 	
 }// End of void OLED_Fill(u8 *pData)
 
+/*******************************************************************************
+*							陆超@2017-04-13
+* Function Name  :	OLED_CLS
+* Description	 :	OLED清空数据
+* Input 		 :	None
+* Output		 :	None
+* Return		 :	None
+*******************************************************************************/
 void OLED_CLS(void)
 {
-	u8 y,x;	
-	for(y=0;y<8;y++)
+	u8 x, y;
+	
+	for(y = 0; y < 8; y++)
 	{
-		OLED_Write_Cmd(0xb0+y);
+		OLED_Write_Cmd(OLED_CMD_Y_ADDR + y);
 		OLED_Write_Cmd(0x01);
 		OLED_Write_Cmd(0x10); 
-		for(x=0;x<X_WIDTH;x++)
+		for(x = 0; x < X_WIDTH / 8; x++)
+		{
 			OLED_Write_Data(0);
+		}	
 	}
-}
+}// End of void OLED_CLS(void)
+
 //清除一行0-63
 void OLED_CLS_y(char y)
 {
 	u8 x;	
 	
-	OLED_Write_Cmd(0xb0+(y>>3));
+	OLED_Write_Cmd(OLED_CMD_Y_ADDR+(y>>3));
 	OLED_Write_Cmd(0x01);
 	OLED_Write_Cmd(0x10); 
 	for(x=0;x<X_WIDTH;x++)
@@ -399,7 +413,7 @@ void OLED_CLS_line_area(u8 start_x,u8 start_y,u8 width)
 {
 	u8 x;	
 	
-	OLED_Write_Cmd(0xb0+(start_y>>3));
+	OLED_Write_Cmd(OLED_CMD_Y_ADDR+(start_y>>3));
 	OLED_Write_Cmd(0x01);
 	OLED_Write_Cmd(0x10); 
 	for(x=start_x;x<width;x++)
@@ -477,7 +491,7 @@ void OLED_PutPixel(u8 x,u8 y)
 	 
     //OLED_Set_Pos(x,y); 
 	ucData1 = 0x01<<(y%8); 	
-	OLED_Write_Cmd(0xb0+(y>>3));
+	OLED_Write_Cmd(OLED_CMD_Y_ADDR+(y>>3));
 	OLED_Write_Cmd(((x&0xf0)>>4)|0x10);
 	OLED_Write_Cmd((x&0x0f)|0x00);
 	OLED_Write_Data(ucData1); 	 	
@@ -490,7 +504,7 @@ void OLED_PutPixel(u8 x,u8 y)
 //==============================================================
 void OLED_Put_Column(u8 x,u8 y,u8 ucData)
 {	
-	OLED_Write_Cmd(0xb0+(y>>3));
+	OLED_Write_Cmd(OLED_CMD_Y_ADDR+(y>>3));
 	OLED_Write_Cmd(((x&0xf0)>>4)|0x10);
 	OLED_Write_Cmd((x&0x0f)|0x00);
 	OLED_Write_Data(ucData); 	 	
