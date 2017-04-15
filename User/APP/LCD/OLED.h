@@ -70,6 +70,7 @@ extern  void OLED_Set_Pos(u8 x, u8 y);									// 设置坐标
 extern  void OLED_Init(void);											// OLED初始化
 extern  void OLED_Fill(u8 Data);										// 数据填充
 extern  void OLED_DrawPixel(u8 x, u8 y, u8 Value);						// 画点
+extern  void OLED_Draw_YPage(u8 x, u8 y, u8 *pData, u8 ucByte);			// 写Y轴
 
 #endif /* _OLED_H */
 

@@ -27,7 +27,7 @@
 
 
 /* Private variables ---------------------------------------------------------*/
-u8 OLED_Map[X_WIDTH][Y_WIDTH >> 3];										// 缓存表
+static u8 OLED_Map[X_WIDTH][Y_WIDTH >> 3];								// 显存
 
 const u8 F6x8[] =
 {
@@ -123,7 +123,7 @@ const u8 F6x8[] =
     0x00, 0x1C, 0xA0, 0xA0, 0xA0, 0x7C ,   // y
     0x00, 0x44, 0x64, 0x54, 0x4C, 0x44 ,   // z
     0x14, 0x14, 0x14, 0x14, 0x14, 0x14     // horiz lines
-};																		// 6 * 8 鏁板瓧
+};																		// 6 * 8 Ascii																	
 
 //======================================================
 // 128X64I娑叉櫠搴曞眰椹卞姩[8X16]瀛椾綋搴?
@@ -242,6 +242,8 @@ void OLED_CLS(void);													// 清空数据
 void OLED_Delay_ms(u16 ms);												// ms延时
 void OLED_Init(void);													// OLED初始化   
 void OLED_DrawPixel(u8 x, u8 y, u8 Value);								// 画点
+void OLED_DrawPixel_Map(u8 x, u8 y, u8 Value);							// 修改显存点
+void OLED_Draw_YPage(u8 x, u8 y, u8 *pData, u8 ucByte);					// 写Y轴
 
 
 /*******************************************************************************
@@ -344,7 +346,7 @@ void OLED_Write_Cmd(u8 ucCmd)
 void OLED_Set_Pos(u8 x, u8 y)
 { 
 	// 设置地址y 0~7
-	OLED_Write_Cmd(OLED_CMD_Y_ADDR + (y / Y_PAGE));
+	OLED_Write_Cmd(OLED_CMD_Y_ADDR + (y / 8));
 
 	// 设置地址x低字节和高字节
 	OLED_Write_Cmd(( x & 0x0F));
@@ -400,36 +402,6 @@ void OLED_CLS(void)
 	}
 	
 }// End of void OLED_CLS(void)
-
-//清除一行0-63
-//void OLED_CLS_y(char y)
-//{
-//	u8 x;	
-//	
-//	OLED_Write_Cmd(OLED_CMD_Y_ADDR+(y>>3));
-//	OLED_Write_Cmd(0x01);
-//	OLED_Write_Cmd(0x10); 
-//	for(x=0;x<X_WIDTH;x++)
-//	{
-//		OLED_Write_Data(0);
-//	}
-//	
-//}
-
-//清除一行上的一块区域y=0-63
-//void OLED_CLS_line_area(u8 start_x,u8 start_y,u8 width)
-//{
-//	u8 x;	
-//	
-//	OLED_Write_Cmd(OLED_CMD_Y_ADDR+(start_y>>3));
-//	OLED_Write_Cmd(0x01);
-//	OLED_Write_Cmd(0x10); 
-//	for(x=start_x;x<width;x++)
-//	{
-//		OLED_Write_Data(0);
-//	}
-//	
-//}
 
 /*******************************************************************************
 *							陆超@2017-04-15
@@ -494,7 +466,7 @@ void OLED_Init(void)
 	OLED_Write_Cmd(0xaf);//--turn on oled panel
 	OLED_CLS();  //初始清屏
 	OLED_Set_Pos(0,0);
-	OLED_Fill(0x01);
+	OLED_Fill(0xF0);
 	
 }// End of void OLED_Init(void) 
 
@@ -511,20 +483,161 @@ void OLED_Init(void)
 void OLED_DrawPixel(u8 x, u8 y, u8 Value)
 {
 
-	if (Value == 1)
-	{
-		OLED_Map[x][y / Y_PAGE] |= 0x01 << (y % Y_PAGE); 
-	}
-	else
-	{
-		OLED_Map[x][y / Y_PAGE] &= ~(0x01 << (y % Y_PAGE));
-	}
+	// 修改内存对应点
+	OLED_DrawPixel_Map(x, y, Value);
 
 	// 设置位置
 	OLED_Set_Pos(x, y);
-	OLED_Write_Data(OLED_Map[x][y / Y_PAGE]); 
+	OLED_Write_Data(OLED_Map[x][y >> 3]); 
 	
 }// End of void OLED_DrawPixel(u8 x, u8 y, u8 Value)
+
+/*******************************************************************************
+*							陆超@2017-04-16
+* Function Name  :	OLED_DrawPixel_Map
+* Description	 :	OLED 修改显存点
+* Input 		 :	u8 x		x轴 0~127
+*					u8 y    	y轴 0~64
+*					u8 Value	0清除点 1 画点
+* Output		 :	None
+* Return		 :	None
+*******************************************************************************/
+void OLED_DrawPixel_Map(u8 x, u8 y, u8 Value)
+{
+
+	if (Value == 1)
+	{
+		OLED_Map[x][y >> 3] |= 0x01 << (y % 8); 
+	}
+	else
+	{
+		OLED_Map[x][y >> 3] &= ~(0x01 << (y % 8));
+	}
+
+}// End of void OLED_DrawPixel_Map(u8 x, u8 y, u8 Value)
+
+//==============================================================
+//函数名：OLED_P6x8Str(u8 x,u8 y,u8 *p)
+//功能描述：写入一组标准ASCII字符串
+//参数：显示的位置（x,y），y为页范围0～7，要显示的字符串
+//返回：无
+//==============================================================  
+/*******************************************************************************
+*							陆超@2017-04-16
+* Function Name  :	OLED_String_6x8
+* Description	 :	OLED 显示6 * 8 ascii
+* Input 		 :	u8 x		x轴 0~127
+*					u8 y    	y轴 0~64
+*					u8 *pData   要显示的字符串
+* Output		 :	None
+* Return		 :	None
+*******************************************************************************/
+void OLED_String_6x8(u8 x, u8 y, u8 *pData)
+{
+//	u8 c=0,i=0,j=0;
+//	
+
+//	while (*(ch+j)!='\0')
+//	{    
+//		c =*(ch+j)-32;
+//		if(x>126)
+//		{
+//			x=0;
+//			y++;
+//		}
+//		OLED_Set_Pos(x, y);    
+//		for(i=0;i<6;i++) 
+//		{
+//			OLED_Write_Data(*(F6x8+c*6+i));
+//		}
+//		x+=6;
+//		j++;
+//	}
+}
+
+/*******************************************************************************
+*							陆超@2017-04-16
+* Function Name  :	OLED_Draw_YPage
+* Description	 :	OLED 写y轴
+* Input 		 :	u8 x		x轴 0~127
+*					u8 y    	y轴 0~64
+*					u8 *pData   要写入的数组
+*					u8 ucByte   要写入的字节
+* Output		 :	None
+* Return		 :	None
+*******************************************************************************/
+void OLED_Draw_YPage(u8 x, u8 y, u8 *pData, u8 ucByte)
+{
+	u8 i, Remainder, y_Page;
+
+	u8 ucAND_Sign;
+
+	// 越界保护
+	if (x >= X_WIDTH)
+	{
+		return;
+	}
+	if (y >= Y_WIDTH)
+	{
+		return;
+	}
+	
+	// 是否整字节
+	Remainder = y % 8;
+	if (Remainder != 0)
+	{
+		// 获取与标签
+		ucAND_Sign       = 0xFF << (8 - Remainder);
+		ucAND_Sign     >>= 8 - Remainder;
+
+		y_Page = y / 8;
+		for (i = 0; i < ucByte; i++)
+		{
+			// 越界
+			if (y_Page + i >= Y_PAGE - 1)
+			{
+				return;
+			}
+
+			// 分别保存上下部分
+			OLED_Map[x][y_Page + i]     &= ucAND_Sign;
+			OLED_Map[x][y_Page + i]     |= (*pData) << Remainder;
+			OLED_Map[x][y_Page + i + 1] &= ~ucAND_Sign;
+			OLED_Map[x][y_Page + i + 1] |= (*pData) >> (8 - Remainder);
+
+			// 写入数据
+			OLED_Set_Pos(x, y + (i * 8));
+			OLED_Write_Data(OLED_Map[x][y_Page + i]);
+			OLED_Set_Pos(x, y + ((i + 1) * 8));
+			OLED_Write_Data(OLED_Map[x][y_Page + (i + 1)]);
+		}
+
+	}
+	else
+	{
+		
+		y_Page = y / 8;
+		for (i = 0; i < ucByte; i++)
+		{
+			// 越界
+			if (y_Page + i >= Y_PAGE)
+			{
+				return;
+			}
+
+			
+			// 修改数据
+			OLED_Map[x][y_Page + i] = *pData++;
+
+			// 设置修改地址
+			OLED_Set_Pos(x, y + (i * 8));
+			OLED_Write_Data(OLED_Map[x][y_Page + i]);
+		}		
+	}
+
+}// End of void OLED_Draw_YPage(u8 x, u8 y, u8 *pData, u8 ucByte)
+
+
 
 /*//==============================================================
 //函数名： void OLED_Put_Column(u8 x,u8 y,u8 ucData)
@@ -567,33 +680,7 @@ void OLED_Rectangle(u8 x1,u8 y1,u8 x2,u8 y2,u8 gif)
 	}
 	
 }  
-//==============================================================
-//函数名：OLED_P6x8Str(u8 x,u8 y,u8 *p)
-//功能描述：写入一组标准ASCII字符串
-//参数：显示的位置（x,y），y为页范围0～7，要显示的字符串
-//返回：无
-//==============================================================  
-void OLED_P6x8Str(u8 x,u8 y,u8 *ch,const u8 *F6x8)
-{
-	u8 c=0,i=0,j=0;
 
-	while (*(ch+j)!='\0')
-	{    
-		c =*(ch+j)-32;
-		if(x>126)
-		{
-			x=0;
-			y++;
-		}
-		OLED_Set_Pos(x,y);    
-		for(i=0;i<6;i++) 
-		{
-			OLED_Write_Data(*(F6x8+c*6+i));
-		}
-		x+=6;
-		j++;
-	}
-}
 //==============================================================
 //函数名：OLED_P8x16Str(u8 x,u8 y,u8 *p)
 //功能描述：写入一组标准ASCII字符串

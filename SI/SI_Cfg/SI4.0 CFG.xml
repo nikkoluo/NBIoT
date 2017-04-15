@@ -111,7 +111,7 @@
 		BounceParens="1"
 		KeepCursorInWindow="0"
 		UseBlockCursor="0"
-		UseSmartTab="1"
+		UseSmartTab="0"
 		TabIndentsLine="0"
 		TabReplacesSelection="1"
 		IndentPreprocStatments="0"
@@ -1093,12 +1093,12 @@
 			ShowRefHighlights="0"
 			TabWidth="4"
 			MarginWidth="80"
-			IndentWidth="1"
+			IndentWidth="0"
 			AutoInsertPairs="1"
 			ParsePatternSymbolType=""
-			AutoIndentMode="2"
-			IndentOpenBrace="1"
-			IndentCloseBrace="1"
+			AutoIndentMode="1"
+			IndentOpenBrace="0"
+			IndentCloseBrace="0"
 			>
 			<ScreenFont name="Consolas" psize="9" fpfamily="0" charset="0" />
 			<PrinterFont name="Consolas" psize="9" fpfamily="0" charset="0" />
