@@ -51,8 +51,9 @@
 #define		Brightness					0xCF 
 
 
-#define 	X_WIDTH 					128
-#define 	Y_WIDTH 					64
+#define 	X_WIDTH 					128								// 横轴像素
+#define 	Y_WIDTH 					64								// 纵轴像素
+#define 	Y_PAGE 						(Y_WIDTH / 8)					// 纵轴像素
 
 
 /* Private typedef -----------------------------------------------------------*/
@@ -68,6 +69,7 @@ extern  void OLED_Port_Init(void);										// 端口初始化
 extern  void OLED_Set_Pos(u8 x, u8 y);									// 设置坐标
 extern  void OLED_Init(void);											// OLED初始化
 extern  void OLED_Fill(u8 Data);										// 数据填充
+extern  void OLED_DrawPixel(u8 x, u8 y, u8 Value);						// 画点
 
 #endif /* _OLED_H */
 

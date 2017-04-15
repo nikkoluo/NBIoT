@@ -42,7 +42,7 @@ void LCD_Task_Create(void)
     // 配置参数 周期模式运行
     LCD_Task.Run_Mode        = APP_TIMER_MODE_REPEATED;
     LCD_Task.Timeout_handler = LCD_Task_Handle;
-    LCD_Task.Period          = TASK_TEMP_HUMI_PERIOD;
+    LCD_Task.Period          = TASK_LCD_PERIOD;
 
     err_code |= app_timer_create(&LCD_Task.p_ID,
                                  LCD_Task.Run_Mode,
@@ -76,7 +76,7 @@ void LCD_Task_Create(void)
 *******************************************************************************/
 u32 LCD_Chip_Init(void)
 {
-    u32 Err_Code = 0xFFFF;
+    u32 Err_Code = NRF_SUCCESS;
 
 	OLED_Init();
 
@@ -94,7 +94,16 @@ u32 LCD_Chip_Init(void)
 *******************************************************************************/
 void LCD_Task_Handle(void *p_arg)
 {
-
+	u8 x = 0, y = 0, i, j;
+	OLED_CLS();
+	for (i = 0; i < 128; i++)
+	{
+		for (j = 0; j < 64 ;j ++)
+		{
+			OLED_DrawPixel(i,j,1);
+		}
+	}
+	//OLED_DrawPixel(x,y++,1);
    
 }// End of void LCD_Task_Handle(void *p_arg)
 

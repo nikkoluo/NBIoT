@@ -8,7 +8,10 @@
 * Description		 :	OLED驱动程序
 *						采用列行式，分辨率为128*64
 *						存放格式如下.
-*						[0]0 1 2 3 ... 127	
+*						[0]0 1 2 3 ... 127    	bit0
+*												bit1
+*												……
+*												bit7
 *						[1]0 1 2 3 ... 127	
 *						[2]0 1 2 3 ... 127	
 *						[3]0 1 2 3 ... 127	
@@ -24,6 +27,8 @@
 
 
 /* Private variables ---------------------------------------------------------*/
+u8 OLED_Map[X_WIDTH][Y_WIDTH >> 3];										// 缓存表
+
 const u8 F6x8[] =
 {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00 ,   // sp
@@ -339,7 +344,7 @@ void OLED_Write_Cmd(u8 ucCmd)
 void OLED_Set_Pos(u8 x, u8 y)
 { 
 	// 设置地址y 0~7
-	OLED_Write_Cmd(OLED_CMD_Y_ADDR + (y >> 3));
+	OLED_Write_Cmd(OLED_CMD_Y_ADDR + (y / Y_PAGE));
 
 	// 设置地址x低字节和高字节
 	OLED_Write_Cmd(( x & 0x0F));
@@ -357,22 +362,19 @@ void OLED_Set_Pos(u8 x, u8 y)
 *******************************************************************************/
 void OLED_Fill(u8 Data)
 {
-	u8 x, y;
+    u16 y = 0, x = 0;
 	
-	for(y = 0; y < 8; y++)
+	for (y = 0; y < Y_PAGE; y++)
 	{
-		// 设置Y地址
-		OLED_Write_Cmd(OLED_CMD_Y_ADDR + y);
-
-		// 设置X地址
-		OLED_Write_Cmd(0x00);
-		OLED_Write_Cmd(0x10);
-		for(x= 0; x < X_WIDTH; x++)
+		OLED_Set_Pos(0, y << 3);
+		for (x = 0; x < X_WIDTH; x++)
 		{
-			OLED_Write_Data(Data);
+			OLED_Map[x][y] = Data;
+			OLED_Write_Data(OLED_Map[x][y]);
 		}
 	}
-	
+
+
 }// End of void OLED_Fill(u8 *pData)
 
 /*******************************************************************************
@@ -385,17 +387,16 @@ void OLED_Fill(u8 Data)
 *******************************************************************************/
 void OLED_CLS(void)
 {
-	u8 x, y;
+    u16 y = 0, x = 0;
 	
-	for(y = 0; y < 8; y++)
+	for (y = 0; y < Y_PAGE; y++)
 	{
-		OLED_Write_Cmd(OLED_CMD_Y_ADDR + y);
-		OLED_Write_Cmd(0x00);
-		OLED_Write_Cmd(0x10); 
-		for(x = 0; x < X_WIDTH; x++)
+		OLED_Set_Pos(0, y << 3);
+		for (x = 0; x < X_WIDTH; x++)
 		{
-			OLED_Write_Data(0);
-		}	
+			OLED_Map[x][y] = 0;
+			OLED_Write_Data(OLED_Map[x][y]);
+		}
 	}
 	
 }// End of void OLED_CLS(void)
@@ -509,22 +510,19 @@ void OLED_Init(void)
 *******************************************************************************/
 void OLED_DrawPixel(u8 x, u8 y, u8 Value)
 {
-	// 要绘制的数据
-	u8 Pixel;  
 
 	if (Value == 1)
 	{
-		Pixel = 0x01 << (y % 8); 
+		OLED_Map[x][y / Y_PAGE] |= 0x01 << (y % Y_PAGE); 
 	}
 	else
 	{
-		Pixel = 0;
+		OLED_Map[x][y / Y_PAGE] &= ~(0x01 << (y % Y_PAGE));
 	}
-	
-	OLED_Write_Cmd(OLED_CMD_Y_ADDR + (y >> 3));
-	OLED_Write_Cmd((x & 0x0f) | 0x00);
-	OLED_Write_Cmd(((x & 0xf0 ) >> 4) | 0x10);
-	OLED_Write_Data(Pixel); 
+
+	// 设置位置
+	OLED_Set_Pos(x, y);
+	OLED_Write_Data(OLED_Map[x][y / Y_PAGE]); 
 	
 }// End of void OLED_DrawPixel(u8 x, u8 y, u8 Value)
 
