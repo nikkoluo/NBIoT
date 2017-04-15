@@ -19,6 +19,9 @@
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "OLED.h"
+#include "nrf_delay.h"
+
+
 
 /* Private variables ---------------------------------------------------------*/
 const u8 F6x8[] =
@@ -115,12 +118,12 @@ const u8 F6x8[] =
     0x00, 0x1C, 0xA0, 0xA0, 0xA0, 0x7C ,   // y
     0x00, 0x44, 0x64, 0x54, 0x4C, 0x44 ,   // z
     0x14, 0x14, 0x14, 0x14, 0x14, 0x14     // horiz lines
-};																		// 6 * 8 数字
+};																		// 6 * 8 鏁板瓧
 
 //======================================================
-// 128X64I液晶底层驱动[8X16]字体库
-// 设计者: powerint
-// 描  述: [8X16]西文字符的字模数据 (纵向取模,字节倒序)
+// 128X64I娑叉櫠搴曞眰椹卞姩[8X16]瀛椾綋搴?
+// 璁捐鑰? powerint
+// 鎻? 杩? [8X16]瑗挎枃瀛楃鐨勫瓧妯℃暟鎹?(绾靛悜鍙栨ā,瀛楄妭鍊掑簭)
 // !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
 //======================================================
 const u8 F8X16[]=
@@ -229,8 +232,11 @@ void OLED_Port_Init(void);												// 端口初始化
 void OLED_Write_Data(u8 ucData);										// OLED写数据
 void OLED_Write_Cmd(u8 ucCmd);                                          // OLED写命令
 void OLED_Set_Pos(u8 x, u8 y);											// 设置坐标
-void OLED_Fill(u8 *pData);												// 数据填充
+void OLED_Fill(u8 Data);												// 数据填充
 void OLED_CLS(void);													// 清空数据
+void OLED_Delay_ms(u16 ms);												// ms延时
+void OLED_Init(void);													// OLED初始化   
+void OLED_DrawPixel(u8 x, u8 y, u8 Value);								// 画点
 
 
 /*******************************************************************************
@@ -345,11 +351,11 @@ void OLED_Set_Pos(u8 x, u8 y)
 *							陆超@2017-04-13
 * Function Name  :	OLED_Fill
 * Description	 :	OLED数据填充
-* Input 		 :	u8 *pData	待填充数据
+* Input 		 :	u8 Data	待填充数据
 * Output		 :	None
 * Return		 :	None
 *******************************************************************************/
-void OLED_Fill(u8 *pData)
+void OLED_Fill(u8 Data)
 {
 	u8 x, y;
 	
@@ -363,7 +369,7 @@ void OLED_Fill(u8 *pData)
 		OLED_Write_Cmd(0x10);
 		for(x= 0; x < X_WIDTH; x++)
 		{
-			OLED_Write_Data(*pData++);
+			OLED_Write_Data(Data);
 		}
 	}
 	
@@ -384,119 +390,145 @@ void OLED_CLS(void)
 	for(y = 0; y < 8; y++)
 	{
 		OLED_Write_Cmd(OLED_CMD_Y_ADDR + y);
-		OLED_Write_Cmd(0x01);
+		OLED_Write_Cmd(0x00);
 		OLED_Write_Cmd(0x10); 
-		for(x = 0; x < X_WIDTH / 8; x++)
+		for(x = 0; x < X_WIDTH; x++)
 		{
 			OLED_Write_Data(0);
 		}	
 	}
+	
 }// End of void OLED_CLS(void)
 
 //清除一行0-63
-void OLED_CLS_y(char y)
-{
-	u8 x;	
-	
-	OLED_Write_Cmd(OLED_CMD_Y_ADDR+(y>>3));
-	OLED_Write_Cmd(0x01);
-	OLED_Write_Cmd(0x10); 
-	for(x=0;x<X_WIDTH;x++)
-	{
-		OLED_Write_Data(0);
-	}
-	
-}
+//void OLED_CLS_y(char y)
+//{
+//	u8 x;	
+//	
+//	OLED_Write_Cmd(OLED_CMD_Y_ADDR+(y>>3));
+//	OLED_Write_Cmd(0x01);
+//	OLED_Write_Cmd(0x10); 
+//	for(x=0;x<X_WIDTH;x++)
+//	{
+//		OLED_Write_Data(0);
+//	}
+//	
+//}
 
 //清除一行上的一块区域y=0-63
-void OLED_CLS_line_area(u8 start_x,u8 start_y,u8 width)
-{
-	u8 x;	
-	
-	OLED_Write_Cmd(OLED_CMD_Y_ADDR+(start_y>>3));
-	OLED_Write_Cmd(0x01);
-	OLED_Write_Cmd(0x10); 
-	for(x=start_x;x<width;x++)
-	{
-		OLED_Write_Data(0);
-	}
-	
-}
+//void OLED_CLS_line_area(u8 start_x,u8 start_y,u8 width)
+//{
+//	u8 x;	
+//	
+//	OLED_Write_Cmd(OLED_CMD_Y_ADDR+(start_y>>3));
+//	OLED_Write_Cmd(0x01);
+//	OLED_Write_Cmd(0x10); 
+//	for(x=start_x;x<width;x++)
+//	{
+//		OLED_Write_Data(0);
+//	}
+//	
+//}
 
-
-void OLED_DLY_ms(u16 ms)
+/*******************************************************************************
+*							陆超@2017-04-15
+* Function Name  :	OLED_Delay_ms
+* Description	 :	OLED ms延时
+* Input 		 :	u16 ms 延时时间
+* Output		 :	None
+* Return		 :	None
+*******************************************************************************/
+void OLED_Delay_ms(u16 ms)
 {                         
-  u16 a;
-  while(ms)
-  {
-    a=1335;
-    while(a--);
-    ms--;
-  }
-  return;
-}
+	nrf_delay_ms(ms);
+	
+}// End of void OLED_Delay_ms(u16 ms)
 
+/*******************************************************************************
+*							陆超@2017-04-15
+* Function Name  :	OLED_Init
+* Description	 :	OLED 初始化
+* Input 		 :	None
+* Output		 :	None
+* Return		 :	None
+*******************************************************************************/
 void OLED_Init(void)        
 {
-  //DDRA=0XFF;
-  
+
+	//预制SLK和SS为高电平
 	OLED_SCL_SET();
-		//预制SLK和SS为高电平   	
-	
+		   	
+
 	OLED_RST_CLR();
-	OLED_DLY_ms(50);
+	OLED_Delay_ms(50);
 	OLED_RST_SET();
 
-  OLED_Write_Cmd(0xae);//--turn off oled panel
-  OLED_Write_Cmd(0x00);//---set low column address
-  OLED_Write_Cmd(0x10);//---set high column address
-  OLED_Write_Cmd(0x40);//--set start line address  Set Mapping RAM Display Start Line (0x00~0x3F)
-  OLED_Write_Cmd(0x81);//--set contrast control register
-  OLED_Write_Cmd(0xcf); // Set SEG Output Current Brightness
-  OLED_Write_Cmd(0xa1);//--Set SEG/Column Mapping     0xa0左右反置 0xa1正常
-  OLED_Write_Cmd(0xc8);//Set COM/Row Scan Direction   0xc0上下反置 0xc8正常
-  OLED_Write_Cmd(0xa6);//--set normal display
-  OLED_Write_Cmd(0xa8);//--set multiplex ratio(1 to 64)
-  OLED_Write_Cmd(0x3f);//--1/64 duty
-  OLED_Write_Cmd(0xd3);//-set display offset	Shift Mapping RAM Counter (0x00~0x3F)
-  OLED_Write_Cmd(0x00);//-not offset
-  OLED_Write_Cmd(0xd5);//--set display clock divide ratio/oscillator frequency
-  OLED_Write_Cmd(0x80);//--set divide ratio, Set Clock as 100 Frames/Sec
-  OLED_Write_Cmd(0xd9);//--set pre-charge period
-  OLED_Write_Cmd(0xf1);//Set Pre-Charge as 15 Clocks & Discharge as 1 Clock
-  OLED_Write_Cmd(0xda);//--set com pins hardware configuration
-  OLED_Write_Cmd(0x12);
-  OLED_Write_Cmd(0xdb);//--set vcomh
-  OLED_Write_Cmd(0x40);//Set VCOM Deselect Level
-  OLED_Write_Cmd(0x20);//-Set Page Addressing Mode (0x00/0x01/0x02)
-  OLED_Write_Cmd(0x00);//
-  OLED_Write_Cmd(0x8d);//--set Charge Pump enable/disable
-  OLED_Write_Cmd(0x14);//--set(0x10) disable
-  OLED_Write_Cmd(0xa4);// Disable Entire Display On (0xa4/0xa5)
-  OLED_Write_Cmd(0xa6);// Disable Inverse Display On (0xa6/a7) 
-  OLED_Write_Cmd(0xaf);//--turn on oled panel
-  OLED_Fill(0x00);  //初始清屏
-  OLED_Set_Pos(0,0);  
+	OLED_Write_Cmd(0xae);//--turn off oled panel
+	OLED_Write_Cmd(0x00);//---set low column address
+	OLED_Write_Cmd(0x10);//---set high column address
+	OLED_Write_Cmd(0x40);//--set start line address  Set Mapping RAM Display Start Line (0x00~0x3F)
+	OLED_Write_Cmd(0x81);//--set contrast control register
+	OLED_Write_Cmd(0xcf); // Set SEG Output Current Brightness
+	OLED_Write_Cmd(0xa1);//--Set SEG/Column Mapping     0xa0左右反置 0xa1正常
+	OLED_Write_Cmd(0xc8);//Set COM/Row Scan Direction   0xc0上下反置 0xc8正常
+	OLED_Write_Cmd(0xa6);//--set normal display
+	OLED_Write_Cmd(0xa8);//--set multiplex ratio(1 to 64)
+	OLED_Write_Cmd(0x3f);//--1/64 duty
+	OLED_Write_Cmd(0xd3);//-set display offset	Shift Mapping RAM Counter (0x00~0x3F)
+	OLED_Write_Cmd(0x00);//-not offset
+	OLED_Write_Cmd(0xd5);//--set display clock divide ratio/oscillator frequency
+	OLED_Write_Cmd(0x80);//--set divide ratio, Set Clock as 100 Frames/Sec
+	OLED_Write_Cmd(0xd9);//--set pre-charge period
+	OLED_Write_Cmd(0xf1);//Set Pre-Charge as 15 Clocks & Discharge as 1 Clock
+	OLED_Write_Cmd(0xda);//--set com pins hardware configuration
+	OLED_Write_Cmd(0x12);
+	OLED_Write_Cmd(0xdb);//--set vcomh
+	OLED_Write_Cmd(0x40);//Set VCOM Deselect Level
+	OLED_Write_Cmd(0x20);//-Set Page Addressing Mode (0x00/0x01/0x02)
+	OLED_Write_Cmd(0x00);//
+	OLED_Write_Cmd(0x8d);//--set Charge Pump enable/disable
+	OLED_Write_Cmd(0x14);//--set(0x10) disable
+	OLED_Write_Cmd(0xa4);// Disable Entire Display On (0xa4/0xa5)
+	OLED_Write_Cmd(0xa6);// Disable Inverse Display On (0xa6/a7) 
+	OLED_Write_Cmd(0xaf);//--turn on oled panel
+	OLED_CLS();  //初始清屏
+	OLED_Set_Pos(0,0);
+	OLED_Fill(0x01);
 	
-} 
-//==============================================================
-//函数名： void OLED_PutPixel(u8 x,u8 y)
-//功能描述：绘制一个点（x,y）
-//参数：真实坐标值(x,y),x的范围0～127，y的范围0～64
-//返回：无
-//==============================================================
-void OLED_PutPixel(u8 x,u8 y)
+}// End of void OLED_Init(void) 
+
+/*******************************************************************************
+*							陆超@2017-04-15
+* Function Name  :	OLED_DrawPixel
+* Description	 :	OLED 画点
+* Input 		 :	u8 x		x轴 0~127
+*					u8 y    	y轴 0~64
+*					u8 Value	0清除点 1 画点
+* Output		 :	None
+* Return		 :	None
+*******************************************************************************/
+void OLED_DrawPixel(u8 x, u8 y, u8 Value)
 {
-	u8 ucData1;  //ucData1当前点的数据 
-	 
-    //OLED_Set_Pos(x,y); 
-	ucData1 = 0x01<<(y%8); 	
-	OLED_Write_Cmd(OLED_CMD_Y_ADDR+(y>>3));
-	OLED_Write_Cmd(((x&0xf0)>>4)|0x10);
-	OLED_Write_Cmd((x&0x0f)|0x00);
-	OLED_Write_Data(ucData1); 	 	
-}
-//==============================================================
+	// 要绘制的数据
+	u8 Pixel;  
+
+	if (Value == 1)
+	{
+		Pixel = 0x01 << (y % 8); 
+	}
+	else
+	{
+		Pixel = 0;
+	}
+	
+	OLED_Write_Cmd(OLED_CMD_Y_ADDR + (y >> 3));
+	OLED_Write_Cmd((x & 0x0f) | 0x00);
+	OLED_Write_Cmd(((x & 0xf0 ) >> 4) | 0x10);
+	OLED_Write_Data(Pixel); 
+	
+}// End of void OLED_DrawPixel(u8 x, u8 y, u8 Value)
+
+/*//==============================================================
 //函数名： void OLED_Put_Column(u8 x,u8 y,u8 ucData)
 //功能描述：操作一列显示，一列全显示0XFF,清除一列0X00;
 //参数：真实坐标值(x,y),x的范围0～127，y的范围0～64
@@ -527,13 +559,13 @@ void OLED_Rectangle(u8 x1,u8 y1,u8 x2,u8 y2,u8 gif)
 	for(n=x1;n<=x2;n++)
 	{
 		OLED_Write_Data(0x01<<(y1%8)); 			
-		if(gif == 1) 	OLED_DLY_ms(50);
+		if(gif == 1) 	OLED_Delay_ms(50);
 	}  
 	OLED_Set_Pos(x1,y2>>3);
   for(n=x1;n<=x2;n++)
 	{
 		OLED_Write_Data(0x01<<(y2%8)); 			
-		if(gif == 1) 	OLED_DLY_ms(5);
+		if(gif == 1) 	OLED_Delay_ms(5);
 	}
 	
 }  
@@ -716,11 +748,6 @@ void OLED_P16x16Str(u8 x,u8 y,u8 *ch,const u8 *F16x16_Idx,const u8 *F16x16)
 }
 
 
-/*输出汉字和字符混合字符串
-*Y轴是按8格递进的，y轴0~63，只能按8格的倍数显示，
-*因为列行式只能按8个字节进行
-*
-*/
 
 void OLED_Print(u8 x, u8 y, u8 *ch,u8 char_size, u8 ascii_size)
 {
@@ -781,6 +808,6 @@ void Draw_BMP(u8 x,u8 y,const u8 *bmp)
 		adder += 1;
 	} 
 
-}
+}*/
 
 

@@ -10,6 +10,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "LCD_Port.h"
 #include "nrf_gpio.h"
+#include "OLED.h"
 
 
 
@@ -37,7 +38,7 @@ u8   LCD_Port_Init(void);                                               // LCD¶Ë
 u8 LCD_Port_Init(void)
 {
     u8 Transfer_Succeeded = 0; 
-
+	OLED_Port_Init();
     return (Transfer_Succeeded);
        
 }// End of u8  LCD_Port_Init(void)

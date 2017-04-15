@@ -33,6 +33,7 @@
 #include "GPIO.h"
 #include "nRF51_BLE.h"
 #include "WDT.h"
+#include "LCD.h"
 #include "Communal_Timer.h"
 #include "app_trace.h"
 
@@ -88,6 +89,7 @@ void LFCLK_Crystal_Oscillato_Start(void)
     while (NRF_CLOCK->EVENTS_LFCLKSTARTED == 0);
 
 }// End of void LFCLK_Crystal_Oscillato_Start(void)
+
 /*******************************************************************************
 *                           陆超@2016-12-23
 * Function Name  :  System_Init
@@ -232,6 +234,9 @@ void Task_Init(void)
     
     // GPIO
     GPIO_Task_Create();
+
+	// LCD任务
+	LCD_Task_Create();
 
     // 公用定时器任务
     Communal_Timer_Task_Create();

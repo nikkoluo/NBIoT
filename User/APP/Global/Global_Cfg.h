@@ -22,8 +22,8 @@
 #ifdef      DEBUG
 #define     ENABLE_DEBUG_LOG_SUPPORT                                    // 使能系统调试
 #endif
-#define     SYS_WDT                                                     // 使能看门狗
-#define     BLE_OPEN                                                    // 使能BLE
+//#define     SYS_WDT                                                     // 使能看门狗
+//#define     BLE_OPEN                                                    // 使能BLE
 
 
 
@@ -131,8 +131,8 @@
 #define     COMMUNAL_IIC_SCL_PIN        14                              // 通用IIC时钟
 #define     COMMUNAL_IIC_SDA_PIN        15                              // 通用IIC数据
 
-#define     OLED_SDA_PIN               	25                              // OLED SDA 管脚
-#define     OLED_SCL_PIN                24                              // OLED SCL 管脚
+#define     OLED_SCL_PIN                25                              // OLED SCL 管脚
+#define     OLED_SDA_PIN               	24                              // OLED SDA 管脚
 #define     OLED_RST_PIN               	23                              // OLED RST 管脚
 #define     OLED_DC_PIN               	22                              // OLED DC 管脚 数据命令选择管脚
 

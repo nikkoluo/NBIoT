@@ -62,9 +62,12 @@
 /* Private variables ---------------------------------------------------------*/
 
 
+
 /* Private function prototypes -----------------------------------------------*/
 extern  void OLED_Port_Init(void);										// 端口初始化
 extern  void OLED_Set_Pos(u8 x, u8 y);									// 设置坐标
+extern  void OLED_Init(void);											// OLED初始化
+extern  void OLED_Fill(u8 Data);										// 数据填充
 
 #endif /* _OLED_H */
 

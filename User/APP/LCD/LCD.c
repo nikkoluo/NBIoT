@@ -11,6 +11,7 @@
 #include "LCD.h"
 #include "nrf_gpio.h"
 #include "nRF51_BLE_Private_Service.h"
+#include "OLED.h"
 #include <stdlib.h>
 
 /* Private variables ---------------------------------------------------------*/
@@ -77,7 +78,7 @@ u32 LCD_Chip_Init(void)
 {
     u32 Err_Code = 0xFFFF;
 
-
+	OLED_Init();
 
     return Err_Code;
         
