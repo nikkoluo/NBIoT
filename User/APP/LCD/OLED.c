@@ -125,7 +125,7 @@ static const u8 F6x8[] =
     0x14, 0x14, 0x14, 0x14, 0x14, 0x14     // horiz lines
 };																		// 6 * 8 Ascii																	
 
-static const u8 F8X16[]=
+static const u8 F8x16[]=
 {
 	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,// 0
 	0x00,0x00,0x00,0xF8,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x33,0x30,0x00,0x00,0x00,//!1
@@ -239,6 +239,7 @@ void OLED_DrawPixel(u8 x, u8 y, u8 Value);								// 画点
 void OLED_DrawPixel_Map(u8 x, u8 y, u8 Value);							// 修改显存点
 void OLED_Draw_YPage(u8 x, u8 y, u8 *pData, u8 ucByte);					// 写Y轴
 void OLED_String_6x8(u8 x, u8 y, u8 *pData, u8 ucLen);					// 写6*8字符
+void OLED_String_8x16(u8 x, u8 y, u8 *pData, u8 ucLen);					// 写8*16字符
 
 
 
@@ -553,7 +554,50 @@ void OLED_String_6x8(u8 x, u8 y, u8 *pData, u8 ucLen)
 		pData++;
 	}
 	
-}// End of void OLED_String_6x8(u8 x, u8 y, u8 *pData, u8 ucLen
+}// End of void OLED_String_6x8(u8 x, u8 y, u8 *pData, u8 ucLen)
+
+/*******************************************************************************
+*							陆超@2017-04-16
+* Function Name  :	OLED_String_8x16
+* Description	 :	OLED 显示8 * 16 ascii
+* Input 		 :	u8 x		x轴 0~127
+*					u8 y    	y轴 0~64
+*					u8 *pData   要显示的字符串
+*					u8 ucLen	要写的长度
+* Output		 :	None
+* Return		 :	None
+*******************************************************************************/
+void OLED_String_8x16(u8 x, u8 y, u8 *pData, u8 ucLen)
+{
+	u8 i;
+	u8 *pF8x16;
+	
+	// 是否还有字节
+	while (ucLen--)
+	{    
+		// 定位到镜像表
+		pF8x16 = (u8 *)&F8x16[((*pData) - 32) * 16];
+
+		// 是否跨行
+		if (x > X_WIDTH - 8)
+		{
+			x  = 0;
+			y += 16;
+		} 
+
+		// 修改数字
+		for(i = 0; i < 8; i++) 
+		{
+			OLED_Draw_YPage(x + i, y, &pF8x16[i], 1);
+			OLED_Draw_YPage(x + i, y + 8, &pF8x16[i + 8], 1);
+		}
+
+		// 下一个数据
+		x += 8;
+		pData++;
+	}
+
+}// End of void OLED_String_8x16(u8 x, u8 y, u8 *pData, u8 ucLen)
 
 /*******************************************************************************
 *							陆超@2017-04-16
@@ -639,260 +683,5 @@ void OLED_Draw_YPage(u8 x, u8 y, u8 *pData, u8 ucByte)
 
 
 
-/*//==============================================================
-//函数名： void OLED_Put_Column(u8 x,u8 y,u8 ucData)
-//功能描述：操作一列显示，一列全显示0XFF,清除一列0X00;
-//参数：真实坐标值(x,y),x的范围0～127，y的范围0～64
-//返回：无
-//==============================================================
-void OLED_Put_Column(u8 x,u8 y,u8 ucData)
-{	
-	OLED_Write_Cmd(OLED_CMD_Y_ADDR+(y>>3));
-	OLED_Write_Cmd(((x&0xf0)>>4)|0x10);
-	OLED_Write_Cmd((x&0x0f)|0x00);
-	OLED_Write_Data(ucData); 	 	
-}
-
-
-//==============================================================
-//函数名： void OLED_Rectangle(u8 x1,u8 y1,
-//                   u8 x2,u8 y2,u8 color,u8 gif)
-//功能描述：绘制一个实心矩形
-//参数：左上角坐标（x1,y1）,右下角坐标（x2，y2）
-//      其中x1、x2的范围0～127，y1，y2的范围0～63，即真实坐标值
-//返回：无
-//==============================================================
-void OLED_Rectangle(u8 x1,u8 y1,u8 x2,u8 y2,u8 gif)
-{
-	u8 n; 
-		
-	OLED_Set_Pos(x1,y1>>3);
-	for(n=x1;n<=x2;n++)
-	{
-		OLED_Write_Data(0x01<<(y1%8)); 			
-		if(gif == 1) 	OLED_Delay_ms(50);
-	}  
-	OLED_Set_Pos(x1,y2>>3);
-  for(n=x1;n<=x2;n++)
-	{
-		OLED_Write_Data(0x01<<(y2%8)); 			
-		if(gif == 1) 	OLED_Delay_ms(5);
-	}
-	
-}  
-
-//==============================================================
-//函数名：OLED_P8x16Str(u8 x,u8 y,u8 *p)
-//功能描述：写入一组标准ASCII字符串
-//参数：显示的位置（x,y），y为页范围0～63，要显示的字符串
-//返回：无
-//==============================================================  
-void OLED_P8x16Str(u8 x,u8 y,u8 *ch,const u8 *F8x16)
-{
-  u8 c=0,i=0,j=0;
-        
-  while (*(ch+j)!='        ')
-  {    
-    c =*(ch+j)-32;
-    if(x>120)
-	{	
-		x=0;
-		y++;
-	}
-    OLED_Set_Pos(x,y); 
-  	for(i=0;i<8;i++) 
-  	{
-  	  	OLED_Write_Data(*(F8x16+c*16+i));
-  	}
-  	OLED_Set_Pos(x,y+8);    
-  	for(i=0;i<8;i++)  
-  	{
-  	  	OLED_Write_Data(*(F8x16+c*16+i+8));  
-  	}
-  	x+=8;
-  	j++;
-  }
-}
-//输出汉字字符串
-void OLED_P14x16Str(u8 x,u8 y,u8 ch[],const u8 *F14x16_Idx,const u8 *F14x16)
-{
-	u8 wm=0,ii = 0;
-	u16 adder=1; 
-	
-	while(ch[ii] != '\0')
-	{
-	  	wm = 0;
-	  	adder = 1;
-	  	while(*(F14x16_Idx+wm) > 127)
-	  	{
-	  		if(*(F14x16_Idx+wm) == ch[ii])
-	  		{
-	  			if(*(F14x16_Idx+wm+1) == ch[ii + 1])
-	  			{
-	  				adder = wm * 14;
-	  				break;
-	  			}
-	  		}
-	  		wm += 2;			
-	  	}
-	  	if(x>118)
-		{
-			x=0;
-			y++;
-		}
-	  	OLED_Set_Pos(x , y); 
-	  	if(adder != 1)// 显示汉字					
-	  	{
-	  		OLED_Set_Pos(x , y);
-	  		for(wm = 0;wm < 14;wm++)               
-	  		{
-	  			OLED_Write_Data(*(F14x16+adder));	
-	  			adder += 1;
-	  		}      
-	  		OLED_Set_Pos(x,y + 1); 
-	  		for(wm = 0;wm < 14;wm++)          
-	  		{
-	  			OLED_Write_Data(*(F14x16+adder));
-	  			adder += 1;
-	  		}   		
-	  	}
-	  	else			  //显示空白字符			
-	  	{
-	  		ii += 1;
-	      	OLED_Set_Pos(x,y);
-	  		for(wm = 0;wm < 16;wm++)
-	  		{
-	  			OLED_Write_Data(0);
-	  		}
-	  		OLED_Set_Pos(x,y + 1);
-	  		for(wm = 0;wm < 16;wm++)
-	  		{   		
-	  			OLED_Write_Data(0);	
-	  		}
-	  	}
-	  	x += 14;
-	  	ii += 2;
-	}
-}
-//输出汉字字符串
-void OLED_P16x16Str(u8 x,u8 y,u8 *ch,const u8 *F16x16_Idx,const u8 *F16x16)
-{
-	u8 wm=0,ii = 0;
-	u16 adder=1; 
-	
-	while(*(ch+ii) != '\0')
-	{
-  	wm = 0;
-  	adder = 1;
-  	while(*(F16x16_Idx+wm) > 127)
-  	{
-  		if(*(F16x16_Idx+wm) == *(ch+ii))
-  		{
-  			if(*(F16x16_Idx+wm + 1) == *(ch+ii + 1))
-  			{
-  				adder = wm * 16;
-  				break;
-  			}
-  		}
-  		wm += 2;			
-  	}
-  	if(x>118){x=0;y++;}
-  	OLED_Set_Pos(x , y); 
-  	if(adder != 1)// 显示汉字					
-  	{
-  		OLED_Set_Pos(x , y);
-  		for(wm = 0;wm < 16;wm++)               
-  		{
-  			OLED_Write_Data(*(F16x16+adder));	
-  			adder += 1;
-  		}      
-  		OLED_Set_Pos(x,y + 8); 
-  		for(wm = 0;wm < 16;wm++)          
-  		{
-  			OLED_Write_Data(*(F16x16+adder));
-  			adder += 1;
-  		}   		
-  	}
-  	else			  //显示空白字符			
-  	{
-  		ii += 1;
-      	OLED_Set_Pos(x,y);
-  		for(wm = 0;wm < 16;wm++)
-  		{
-  			OLED_Write_Data(0);
-  		}
-  		OLED_Set_Pos(x,y + 1);
-  		for(wm = 0;wm < 16;wm++)
-  		{   		
-  			OLED_Write_Data(0);	
-  		}
-  	}
-  	x += 16;
-  	ii += 2;
-	}
-}
-
-
-
-void OLED_Print(u8 x, u8 y, u8 *ch,u8 char_size, u8 ascii_size)
-{
-	u8 ch2[3];
-	u8 ii=0;        
-	while(*(ch+ii) != '\0')
-	{
-		if(*(ch+ii) > 127)//大于127为中文，小于等于127为ASCII
-		{
-			ch2[0] = *(ch+ii);
-	 		ch2[1] = *(ch+ii+1);
-			ch2[2] = '\0';			//汉字为两个字节
-			OLED_P16x16Str(x , y, ch2,F16x16_Idx,F16x16);	//显示汉字
-			x += 16;
-			ii += 2;
-		}
-		else
-		{
-			ch2[0] = *(ch+ii);	
-			ch2[1] = '\0';			//字母占一个字节
-			if(TYPE8X16==ascii_size)
-			{
-				OLED_P8x16Str(x , y ,ch2,F8X16);	//显示字母
-				x += 8;
-			}
-			else if(TYPE6X8==ascii_size)
-			{
-				OLED_P6x8Str(x , y ,ch2,F6x8);	//显示字母
-				x += 6;
-			}
-			
-			ii+= 1;
-		}
-	}
-} 
-
-//==============================================================
-//函数名： void Draw_BMP(u8 x,u8 y)
-//功能描述：显示BMP图片128×64
-//参数：起始点坐标(x,y),x的范围0～127，y为页的范围0～63
-//返回：无
-//==============================================================
-void Draw_BMP(u8 x,u8 y,const u8 *bmp)
-{ 	
-	u8 wm=0;
-	u8 adder=0;
-  
-  	OLED_Set_Pos(x , y);
-	for(wm = 0;wm < 16;wm++)               
-	{
-		OLED_Write_Data(*(bmp+adder));	
-		adder += 1;
-	}      
-	OLED_Set_Pos(x,y + 8); 
-	for(wm = 0;wm < 16;wm++)          
-	{
-		OLED_Write_Data(*(bmp+adder));
-		adder += 1;
-	} 
-
-}*/
 
 

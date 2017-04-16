@@ -72,6 +72,7 @@ extern  void OLED_Fill(u8 Data);										// Êý¾ÝÌî³ä
 extern  void OLED_DrawPixel(u8 x, u8 y, u8 Value);						// »­µã
 extern  void OLED_Draw_YPage(u8 x, u8 y, u8 *pData, u8 ucByte);			// Ð´YÖá
 extern  void OLED_String_6x8(u8 x, u8 y, u8 *pData, u8 ucLen);			// Ð´6*8×Ö·û
+extern  void OLED_String_8x16(u8 x, u8 y, u8 *pData, u8 ucLen);			// Ð´8*16×Ö·û
 
 
 #endif /* _OLED_H */

@@ -94,11 +94,9 @@ u32 LCD_Chip_Init(void)
 *******************************************************************************/
 void LCD_Task_Handle(void *p_arg)
 {
-	u8 x = 0, y = 0, i, j;
+	u8 i, j;
 	u8 temp[2] = {'1', 0xAA};
-	u8 string = '1';
-	OLED_Fill(0xF0);
-	for (i = 0; i < 128; i+=6)
+	for (i = 0; i < 128; i+=8)
 	{
 		j += 1;
 		if (j >= 64)
@@ -108,6 +106,7 @@ void LCD_Task_Handle(void *p_arg)
 
 //		OLED_Draw_YPage(i, j, temp, 2);
 		OLED_String_6x8(i, j, &temp[0], 1);
+		OLED_String_8x16(i, j + 16, &temp[0], 1);
         temp[0]++;
 
 	}
