@@ -225,6 +225,11 @@ static const u8 F8x16[]=
 
 };
 
+const u8 Temp_Unit[32] =
+{
+	0x00,0x18,0x28,0x28,0x18,0xE0,0xF0,0x10,0x18,0x08,0x08,0x08,0x18,0x30,0x00,0x00,
+	0x00,0x00,0x00,0x00,0x00,0x07,0x0F,0x08,0x10,0x10,0x10,0x10,0x18,0x0C,0x04,0x00
+};																			/*"℃",0*/
 
 /* Private functions ---------------------------------------------------------*/
 void OLED_Port_Init(void);												// 端口初始化
@@ -240,6 +245,7 @@ void OLED_DrawPixel_Map(u8 x, u8 y, u8 Value);							// 修改显存点
 void OLED_Draw_YPage(u8 x, u8 y, u8 *pData, u8 ucByte);					// 写Y轴
 void OLED_String_6x8(u8 x, u8 y, u8 *pData, u8 ucLen);					// 写6*8字符
 void OLED_String_8x16(u8 x, u8 y, u8 *pData, u8 ucLen);					// 写8*16字符
+void OLED_String_16x16(u8 x, u8 y, u8 *pData, u8 ucLen);				// 16 * 16字符
 
 
 
@@ -542,6 +548,12 @@ void OLED_String_6x8(u8 x, u8 y, u8 *pData, u8 ucLen)
 			x  = 0;
 			y += 8;
 		} 
+		
+		// 越界保护
+		if (y >= Y_WIDTH)
+		{
+			return;
+		}
 
 		// 修改数字
 		for(i = 0; i < 6; i++) 
@@ -585,6 +597,12 @@ void OLED_String_8x16(u8 x, u8 y, u8 *pData, u8 ucLen)
 			y += 16;
 		} 
 
+		// 越界保护
+		if (y >= Y_WIDTH)
+		{
+			return;
+		}
+		
 		// 修改数字
 		for(i = 0; i < 8; i++) 
 		{
@@ -598,6 +616,54 @@ void OLED_String_8x16(u8 x, u8 y, u8 *pData, u8 ucLen)
 	}
 
 }// End of void OLED_String_8x16(u8 x, u8 y, u8 *pData, u8 ucLen)
+
+/*******************************************************************************
+*							陆超@2017-04-16
+* Function Name  :	OLED_String_16x16
+* Description	 :	OLED 显示16 * 16 字符
+* Input 		 :	u8 x		x轴 0~127
+*					u8 y    	y轴 0~64
+*					u8 *pData   要显示点阵
+*					u8 ucLen	要写的长度
+* Output		 :	None
+* Return		 :	None
+*******************************************************************************/
+void OLED_String_16x16(u8 x, u8 y, u8 *pData, u8 ucLen)
+{
+	u8 i;
+
+	
+	// 是否还有字节
+	while (ucLen--)
+	{    
+
+		// 是否跨行
+		if (x > X_WIDTH - 16)
+		{
+			x  = 0;
+			y += 16;
+		} 
+
+		// 越界保护
+		if (y >= Y_WIDTH)
+		{
+			return;
+		}
+
+		// 修改数字
+		for(i = 0; i < 16; i++) 
+		{
+			OLED_Draw_YPage(x + i, y, &pData[i], 1);
+			OLED_Draw_YPage(x + i, y + 8, &pData[i + 16], 1);
+		}
+
+		// 下一个数据
+		x += 16;
+		pData++;
+	}
+
+}// End of void OLED_String_16x16(u8 x, u8 y, u8 *pData, u8 ucLen)
+
 
 /*******************************************************************************
 *							陆超@2017-04-16

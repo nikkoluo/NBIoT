@@ -66,6 +66,10 @@ void LCD_Task_Create(void)
     // ÏÔÊ¾ÎÂÊª¶È±êºÅ
 	OLED_String_8x16(0,0, "Temp: ", sizeof("Temp: ") - 1);
 	OLED_String_8x16(0,16, "Humi: ", sizeof("humi: ") - 1);
+	OLED_String_16x16(96, 0, (u8*)Temp_Unit, 1);
+	OLED_String_8x16(102, 16, "%", sizeof("%") - 1);
+	OLED_String_8x16(0,32, "tVOC:  ...", sizeof("tVOC:  ...") - 1);
+	OLED_String_8x16(0,48, "eCO2:  ...", sizeof("eCO2:  ...") - 1);
 
 }// End of void LCD_Task_Create(void)
 
