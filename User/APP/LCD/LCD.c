@@ -114,7 +114,6 @@ void LCD_Task_Handle(void *p_arg)
 //	}
 
 	u8 ucTemp[5];
-	Sensor.sTemp -=200;
 
 	// ÎÂ¶È´óÓÚ0
 	if (Sensor.sTemp >= 0)
