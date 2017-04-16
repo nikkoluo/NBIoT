@@ -63,6 +63,9 @@ void LCD_Task_Create(void)
         }
     }
 
+    // 显示温湿度标号
+	OLED_String_8x16(0,0, "Temp: ", sizeof("Temp: ") - 1);
+	OLED_String_8x16(0,16, "Humi: ", sizeof("humi: ") - 1);
 
 }// End of void LCD_Task_Create(void)
 
@@ -94,23 +97,49 @@ u32 LCD_Chip_Init(void)
 *******************************************************************************/
 void LCD_Task_Handle(void *p_arg)
 {
-	u8 i, j;
-	u8 temp[2] = {'1', 0xAA};
-	for (i = 0; i < 128; i+=8)
-	{
-		j += 1;
-		if (j >= 64)
-		{
-			j = 0;
-		}
+//	u8 i, j;
+//	u8 temp[2] = {'1', 0xAA};
+//	for (i = 0; i < 128; i+=8)
+//	{
+//		j += 1;
+//		if (j >= 64)
+//		{
+//			j = 0;
+//		}
 
-//		OLED_Draw_YPage(i, j, temp, 2);
-		OLED_String_6x8(i, j, &temp[0], 1);
-		OLED_String_8x16(i, j + 16, &temp[0], 1);
-        temp[0]++;
+//		OLED_String_6x8(i, j, &temp[0], 1);
+//		OLED_String_8x16(i, j + 16, &temp[0], 1);
+//        temp[0]++;
+
+//	}
+
+	u8 ucTemp[5];
+	Sensor.sTemp -=200;
+
+	// 温度大于0
+	if (Sensor.sTemp >= 0)
+	{
+		// 十度内
+		if (Sensor.sTemp < 100)
+		{
+			sprintf((char *)ucTemp, "  %01d.%01d", Sensor.sTemp / 10, Sensor.sTemp % 10);
+		}
+		else
+		{
+			sprintf((char *)ucTemp, " %02d.%01d", Sensor.sTemp / 10, Sensor.sTemp % 10);
+		}
+		
+	}
+	else
+	{
+		Sensor.sTemp = abs(Sensor.sTemp);
+		sprintf((char *)ucTemp, "-%02d.%01d", Sensor.sTemp / 10, Sensor.sTemp % 10);
 
 	}
-
+	OLED_String_8x16(6 * 8, 0, ucTemp, 5);
+	// 湿度
+	sprintf((char *)ucTemp, " %02d.%01d", Sensor.usHumi / 10, Sensor.usHumi % 10);
+	OLED_String_8x16(6 * 8, 16, ucTemp, 5);
 	
 	//OLED_DrawPixel(x,y++,1);
    

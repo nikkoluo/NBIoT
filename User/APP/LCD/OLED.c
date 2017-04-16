@@ -463,7 +463,7 @@ void OLED_Init(void)
 	OLED_Write_Cmd(0xaf);//--turn on oled panel
 	OLED_CLS();  //≥ı º«Â∆¡
 	OLED_Set_Pos(0,0);
-	OLED_Fill(0xF0);
+//	OLED_Fill(0xF0);
 	
 }// End of void OLED_Init(void) 
 
