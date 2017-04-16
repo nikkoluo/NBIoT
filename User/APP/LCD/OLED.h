@@ -71,6 +71,8 @@ extern  void OLED_Init(void);											// OLED初始化
 extern  void OLED_Fill(u8 Data);										// 数据填充
 extern  void OLED_DrawPixel(u8 x, u8 y, u8 Value);						// 画点
 extern  void OLED_Draw_YPage(u8 x, u8 y, u8 *pData, u8 ucByte);			// 写Y轴
+extern  void OLED_String_6x8(u8 x, u8 y, u8 *pData, u8 ucLen);			// 写6*8字符
+
 
 #endif /* _OLED_H */
 
