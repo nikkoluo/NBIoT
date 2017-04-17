@@ -16,6 +16,8 @@
 
 
 
+
+
 /* Private variables ---------------------------------------------------------*/
      
 /* Private function prototypes -----------------------------------------------*/
@@ -26,11 +28,18 @@ void sensirion_sleep_usec(u32 useconds)
 	nrf_delay_ms(useconds / 1000);
 }
 
-static u8 sensirion_i2c_write_byte(u8 data)
+static int sensirion_i2c_write_byte(u8 data)
 {
 
+    if (SW_IIC_Write_Byte(&Communal_IIC, data))
+    {
+        return STATUS_OK;
+    }
+    else
+    {
+        return STATUS_FAIL;
+    }
 
-    return SW_IIC_Write_Byte(&Communal_IIC, data);
 }
 
 static u8 sensirion_i2c_read_byte(u8 ack)
@@ -52,7 +61,7 @@ static void sensirion_i2c_stop(void)
     SW_I2C_Stop_Condition(&Communal_IIC);
 }
 
-u8 sensirion_i2c_write(u8 address, const u8* data, u16 count)
+int sensirion_i2c_write(u8 address, const u8* data, u16 count)
 {
     u8 ret;
     u16 i;
@@ -73,7 +82,7 @@ u8 sensirion_i2c_write(u8 address, const u8* data, u16 count)
     return ret;
 }
 
-u8 sensirion_i2c_read(u8 address, u8* data, u16 count)
+int sensirion_i2c_read(u8 address, u8* data, u16 count)
 {
     u8 ret;
     u16 i;

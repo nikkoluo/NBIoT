@@ -38,8 +38,8 @@ extern "C" {
 #endif
 
 typedef unsigned long long u64;
-#define STATUS_OK 1
-#define STATUS_FAIL (0)
+#define STATUS_OK 0
+#define STATUS_FAIL (-1)
 
 #ifndef NULL
 #define NULL ((void *)0)
@@ -68,7 +68,7 @@ typedef unsigned long long u64;
 
 
 
-u8 sensirion_common_check_crc(u8 *data, u16 count, u8 checksum);
+int sensirion_common_check_crc(u8 *data, u16 count, u8 checksum);
 u8 sensirion_common_generate_crc(u8 *data, u16 count);
 
 

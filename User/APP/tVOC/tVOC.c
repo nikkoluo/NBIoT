@@ -10,6 +10,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "tVOC.h"
 #include "nrf_gpio.h"
+#include "sgpc1x.h"
+
+
 #include <stdlib.h>
 
 /* Private variables ---------------------------------------------------------*/
@@ -42,7 +45,7 @@ void tVOC_Task_Create(void)
     // 配置参数 周期模式运行
     tVOC_Task.Run_Mode        = APP_TIMER_MODE_REPEATED;
     tVOC_Task.Timeout_handler = tVOC_Task_Handle;
-    tVOC_Task.Period          = TASK_TEMP_HUMI_PERIOD;
+    tVOC_Task.Period          = TASK_TVOC_PERIOD;
 
     err_code |= app_timer_create(&tVOC_Task.p_ID,
                                  tVOC_Task.Run_Mode,
@@ -59,7 +62,7 @@ void tVOC_Task_Create(void)
         err_code |= Task_Timer_Start(&tVOC_Task, NULL);
         if (err_code != NRF_SUCCESS)
         {
-            app_trace_log("Task Temp&Humi create failed!\r\n");    
+            app_trace_log("Task tVOC create failed!\r\n");    
         }
     }
 
@@ -76,11 +79,21 @@ void tVOC_Task_Create(void)
 *******************************************************************************/
 u32 tVOC_Chip_Init(void)
 {
-    u32 Err_Code = 0xFFFF;
+    u32 Err_Code = NRF_SUCCESS;
 
 
     // 默认传感器error
     System_Err.tVOC = 1;
+
+	if (sgp_probe() != STATUS_OK) 
+	{
+		app_trace_log("tVOC芯片初始化失败!\r\n"); 
+		Err_Code = 0xFFFFFFFF;
+	}
+	else
+	{
+		System_Err.tVOC = 0;
+	}
 
     return Err_Code;
         
@@ -97,7 +110,6 @@ u32 tVOC_Chip_Init(void)
 void tVOC_Get(void)
 {
 
-
    
 }// End of void tVOC_Get(void)
 
@@ -111,6 +123,20 @@ void tVOC_Get(void)
 *******************************************************************************/
 void tVOC_Task_Handle(void *p_arg)
 {
+    u8 err;
+    u16 tvoc_ppb, co2_eq_ppm;
+
+	err = sgp_measure_iaq_blocking_read(&tvoc_ppb, &co2_eq_ppm);
+	if (err == STATUS_OK) 
+	{
+		 app_trace_log("tVOC  Concentration: %dppb\n", tvoc_ppb);
+		 app_trace_log("CO2eq Concentration: %dppm\n", co2_eq_ppm);
+
+	} 
+	else 
+	{
+		 app_trace_log("error reading IAQ values\n"); 
+	}
 
 
 }// End of void tVOC_Task_Handle(void *p_arg)

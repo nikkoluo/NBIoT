@@ -55,7 +55,7 @@ u8 sensirion_common_generate_crc(uint8_t *data, uint16_t count)
     return crc;
 }
 
-u8 sensirion_common_check_crc(uint8_t *data, uint16_t count,
+int sensirion_common_check_crc(uint8_t *data, uint16_t count,
                                   uint8_t checksum)
 {
     if (sensirion_common_generate_crc(data, count) != checksum)

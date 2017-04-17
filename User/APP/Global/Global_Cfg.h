@@ -44,6 +44,7 @@
 //----------------------- Task ------------------------------------------------/
 #define     TASK_BATTERY_PERIOD         (10 * 1000)                     // 电量检测任务周期
 #define     TASK_TEMP_HUMI_PERIOD       (1 * 1000)                      // 温湿度检测任务周期
+#define     TASK_TVOC_PERIOD      	    (1 * 1000)                      // tVOC检测任务周期
 #define     TASK_BLE_PERIOD             (1 * 1000)                      // BLE任务周期
 #define     TASK_LCD_PERIOD             (1 * 1000)                      // LCD任务周期
 #define     TASK_COMMUNAL_TIMER_PERIOD  (1 * 100)                       // 公用定时器任务周期

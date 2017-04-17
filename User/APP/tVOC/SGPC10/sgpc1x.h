@@ -30,7 +30,7 @@
 
 #ifndef SGPC1X_H
 #define SGPC1X_H
-
+#include "sensirion_common.h"
 
 s16 sgp_probe(void);
 s16 sgp_iaq_init(void);

@@ -135,7 +135,9 @@ static s16 sgp_i2c_read(u8 *data, u16 data_len) {
                                        buf[i + SGP_WORD_LEN]) == STATUS_FAIL) {
             return STATUS_FAIL;
         }
-        *((u16 *)&data[y]) = *((u16 *)&buf[i]);
+        //*((u16 *)&data[y]) = *((u16 *)&buf[i]);
+        *((u8 *)&data[y])     = *((u8 *)&buf[i]);
+        *((u8 *)&data[y + 1]) = *((u8 *)&buf[i + 1]);
     }
 
     return STATUS_OK;
