@@ -200,8 +200,8 @@ void Temp_Humi_Update(float fTemp, float fHumi)
     // 有数据刷新
     if((sTemp_Now != Sensor.sTemp) || (usHumi_Now != Sensor.usHumi))
     {
-        Sensor.sTemp               = sTemp_Now;
-        Sensor.usHumi              = usHumi_Now;
+        Sensor.sTemp  = sTemp_Now;
+        Sensor.usHumi = usHumi_Now;
         
     }
     else

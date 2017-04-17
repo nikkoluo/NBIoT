@@ -37,8 +37,9 @@
 extern "C" {
 #endif
 
-#define STATUS_OK 0
-#define STATUS_FAIL (-1)
+typedef unsigned long long u64;
+#define STATUS_OK 1
+#define STATUS_FAIL (0)
 
 #ifndef NULL
 #define NULL ((void *)0)
@@ -50,10 +51,8 @@ extern "C" {
 #define be64_to_cpu(s) (s)
 #else
 #define be16_to_cpu(s) (((u16)(s) << 8) | (0xff & ((u16)(s)) >> 8))
-#define be32_to_cpu(s) (((u32)be16_to_cpu(s) << 16) | \
-                        (0xffff & (be16_to_cpu((s) >> 16))))
-#define be64_to_cpu(s) (((u64)be32_to_cpu(s) << 32) | \
-                        (0xffffffff & ((u64)be32_to_cpu((s) >> 32))))
+#define be32_to_cpu(s) (((u32)be16_to_cpu(s) << 16) | (0xffff & (be16_to_cpu((s) >> 16))))
+#define be64_to_cpu(s) (((u64)be32_to_cpu(s) << 32) | (0xffffffff & ((u64)be32_to_cpu((s) >> 32))))
 #endif
 
 #ifndef ARRAY_SIZE
@@ -64,9 +63,15 @@ extern "C" {
 #define CRC8_INIT                   0xFF
 #define CRC8_LEN                    1
 
+
+
+
+
+
+u8 sensirion_common_check_crc(u8 *data, u16 count, u8 checksum);
 u8 sensirion_common_generate_crc(u8 *data, u16 count);
 
-s8 sensirion_common_check_crc(u8 *data, u16 count, u8 checksum);
+
 
 #ifdef __cplusplus
 }

@@ -31,15 +31,16 @@
 #include "sensirion_common.h"
 #include "sgpc1x.h"
 #include "sgpc1x_featureset.h"
+#include "tVOC_SGPC.h"
 
 
-#define SGP_RAM_WORDS                   512
+#define SGP_RAM_WORDS                   64
 #define SGP_BUFFER_SIZE                 ((SGP_RAM_WORDS + 2) * (SGP_WORD_LEN + CRC8_LEN))
 #define SGP_SERIAL_ID_LEN               6
 #define SGP_VERSIONS_LEN                (2 * SGP_WORD_LEN)
 #define SGP_FEATURESET_VERSION_OFFSET   (0 * SGP_WORD_LEN)
 #define SGP_READ_CHUNK_SIZE             240 /* 240b is divisible by 3 */
-#define SGP_MAX_PROFILE_RET_LEN         1024
+#define SGP_MAX_PROFILE_RET_LEN         128
 #define SGP_VALID_IAQ_BASELINE(b)       ((b) != 0)
 
 
@@ -166,7 +167,7 @@ static void unpack_signals(const struct sgp_profile *profile) {
     u16 i, j;
     const struct sgp_signal *signal;
     u16 data_len = profile->number_of_signals * SGP_WORD_LEN;
-    u8 buf[data_len];
+    u8 buf[128];
     u16 value;
 
     /* copy buffer */
@@ -601,7 +602,7 @@ s16 sgp_set_iaq_baseline(u32 baseline) {
         return STATUS_FAIL;
 
     u16 buf_size = SGP_COMMAND_LEN + 2 * (SGP_WORD_LEN + CRC8_LEN);
-    u8 buf[buf_size];
+    u8 buf[SGP_COMMAND_LEN + 2 * (SGP_WORD_LEN + CRC8_LEN)];
     u8 buf_idx = 0;
     const struct sgp_profile *profile;
     profile = sgp_get_profile_by_number(PROFILE_NUMBER_IAQ_SET_BASELINE);

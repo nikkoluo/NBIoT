@@ -36,7 +36,7 @@
 
 #include "sensirion_common.h"
 
-uint8_t sensirion_common_generate_crc(uint8_t *data, uint16_t count)
+u8 sensirion_common_generate_crc(uint8_t *data, uint16_t count)
 {
     uint8_t crc = CRC8_INIT;
     uint8_t current_byte;
@@ -55,7 +55,7 @@ uint8_t sensirion_common_generate_crc(uint8_t *data, uint16_t count)
     return crc;
 }
 
-int8_t sensirion_common_check_crc(uint8_t *data, uint16_t count,
+u8 sensirion_common_check_crc(uint8_t *data, uint16_t count,
                                   uint8_t checksum)
 {
     if (sensirion_common_generate_crc(data, count) != checksum)

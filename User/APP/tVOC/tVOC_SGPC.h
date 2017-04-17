@@ -25,7 +25,12 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
+void sensirion_i2c_init(void);
 
+u8 sensirion_i2c_read(u8 address, u8* data, u16 count);
+
+u8 sensirion_i2c_write(u8 address, const u8* data, u16 count);
+void sensirion_sleep_usec(u32 useconds);
 #endif /* __TVOC_SGPC_H */
 
 /******************* (C) COPYRIGHT 2017 Â½³¬ **** END OF FILE *****************/
