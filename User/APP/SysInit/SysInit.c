@@ -147,6 +147,10 @@ void Variable_Init(void)
     // 默认未初始化
     Sys_Init = 0;
 
+	// 无baseline复位
+    Sensor.tVOC_Baseline_Timestamp = 0;
+    Sensor.tVOC_Baseline_Reset     = 0;
+
 }// End of void Variable_Init(void)
 
 /*******************************************************************************

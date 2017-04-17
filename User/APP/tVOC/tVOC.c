@@ -126,11 +126,37 @@ void tVOC_Task_Handle(void *p_arg)
     u8 err;
     u16 tvoc_ppb, co2_eq_ppm;
 
+
+    if (Sensor.tVOC_Baseline_Reset == 0)
+    {
+    	Sensor.tVOC_Baseline_Timestamp++;
+
+		// 15·ÖÖÓÖØÆô
+    	if (Sensor.tVOC_Baseline_Timestamp >= 15 * 60)
+    	{
+    		Sensor.tVOC_Baseline_Reset = 1;
+
+    		if (sgp_iaq_init() == STATUS_OK)
+    		{
+    			app_trace_log("tVOC  sgp_iaq_init Success \r\n");	
+    		}
+    		else
+    		{
+    			app_trace_log("tVOC  sgp_iaq_init Failed \r\n");		
+    		}
+    	}
+    }
+
 	err = sgp_measure_iaq_blocking_read(&tvoc_ppb, &co2_eq_ppm);
 	if (err == STATUS_OK) 
 	{
 		 app_trace_log("tVOC  Concentration: %dppb\n", tvoc_ppb);
 		 app_trace_log("CO2eq Concentration: %dppm\n", co2_eq_ppm);
+
+		 // ¼ÇÂ¼tVOC eCO2
+		 Sensor.tVOC = tvoc_ppb;
+		 Sensor.eCO2 = co2_eq_ppm;
+
 
 	} 
 	else 

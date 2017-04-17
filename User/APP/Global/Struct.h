@@ -72,9 +72,12 @@ typedef struct
     float               fHumi;                                          // 湿度
     short               sTemp;                                          // 温度整型 * 0.1
     unsigned short      usHumi;                                         // 湿度整型 * 0.1
+    unsigned short      tVOC;                                         	// tVOC ppb
+    unsigned short      tVOC_Baseline_Timestamp;                        // tVOC 记录baseline时间戳
+    unsigned short      eCO2;                                         	// eCO2 ppm
     unsigned short      Bat_Val_mv;                                     // 电池电压 mv
     unsigned char       Bat_Percent;                                    // 电量百分比
-    
+    unsigned char       tVOC_Baseline_Reset;                           	// 之一时说明进行过重置
     
     
 } Sensor_Typedef;                                                		// 传感器结构体

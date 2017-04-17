@@ -68,8 +68,13 @@ void LCD_Task_Create(void)
 	OLED_String_8x16(0,16, "Humi: ", sizeof("humi: ") - 1);
 	OLED_String_16x16(96, 0, (u8*)Temp_Unit, 1);
 	OLED_String_8x16(102, 16, "%", sizeof("%") - 1);
+
+	// tVOC eCO2
 	OLED_String_8x16(0,32, "tVOC:  ...", sizeof("tVOC:  ...") - 1);
 	OLED_String_8x16(0,48, "eCO2:  ...", sizeof("eCO2:  ...") - 1);
+	OLED_String_8x16(96, 32, "ppb", sizeof("ppb") - 1);
+	OLED_String_8x16(96, 48, "ppm", sizeof("ppm") - 1);
+	
 
 }// End of void LCD_Task_Create(void)
 
@@ -117,7 +122,8 @@ void LCD_Task_Handle(void *p_arg)
 
 //	}
 
-	u8 ucTemp[5];
+	u8 ucTemp[6];
+	u8 ucLen;
 
 	// 温度大于0
 	if (Sensor.sTemp >= 0)
@@ -140,11 +146,17 @@ void LCD_Task_Handle(void *p_arg)
 
 	}
 	OLED_String_8x16(6 * 8, 0, ucTemp, 5);
+	
 	// 湿度
 	sprintf((char *)ucTemp, " %02d.%01d", Sensor.usHumi / 10, Sensor.usHumi % 10);
 	OLED_String_8x16(6 * 8, 16, ucTemp, 5);
 	
-	//OLED_DrawPixel(x,y++,1);
+	// tVOC eCO2
+	ucLen = sprintf((char *)ucTemp, " %4d", Sensor.tVOC);
+	OLED_String_8x16(6 * 8, 32, ucTemp, ucLen);
+	ucLen = sprintf((char *)ucTemp, " %4d", Sensor.eCO2);
+	OLED_String_8x16(6 * 8, 48, ucTemp, ucLen);
+	
    
 }// End of void LCD_Task_Handle(void *p_arg)
 
