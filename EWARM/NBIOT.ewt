@@ -2433,6 +2433,12 @@
         <name>$PROJ_DIR$\..\User\APP\Communal\Communal_IIC.h</name>
       </file>
       <file>
+        <name>$PROJ_DIR$\..\User\APP\Communal\Communal_IIC_2.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\Communal\Communal_IIC_2.h</name>
+      </file>
+      <file>
         <name>$PROJ_DIR$\..\User\APP\Communal\Communal_Timer.c</name>
       </file>
       <file>
@@ -2515,6 +2521,21 @@
       </file>
       <file>
         <name>$PROJ_DIR$\..\User\APP\LCD\OLED.h</name>
+      </file>
+    </group>
+    <group>
+      <name>RTC</name>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\RTC\RTC.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\RTC\RTC.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\RTC\RTC_DS1307.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\RTC\RTC_DS1307.h</name>
       </file>
     </group>
     <group>

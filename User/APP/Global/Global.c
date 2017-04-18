@@ -51,6 +51,8 @@ app_button_cfg_t        Button_Cfg[MAX_INTERRUPT_PIN_NUM];              // Butto
 //----------------------- Software IIC ----------------------------------------/
 SW_I2C_Typedef          Temp_Humi_I2C;                                  // 温湿度的IIC
 SW_I2C_Typedef          Communal_IIC;                                   // 通用IIC
+SW_I2C_Typedef          Communal_IIC_2;                                 // 通用IIC_2
+
 
 /* Private function prototypes -----------------------------------------------*/
 u32  Timestamp_Interval_Get(u32 Time1, u32 Time2);                      // 计算时间差值

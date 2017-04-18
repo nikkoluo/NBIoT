@@ -4,8 +4,8 @@
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
-* Date               :  12/28/2017
-* Description        :  温湿度驱动程序
+* Date               :  03/29/2017
+* Description        :  通用IIC驱动程序
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
 #include "Communal_IIC.h"
@@ -256,7 +256,7 @@ u8 Communal_IIC_Init(void)
 /*******************************************************************************
 *                           陆超@2017-03-29
 * Function Name  :  Communal_IIC_Variable_Init
-* Description    :  温湿度变量初始化
+* Description    :  通用IIC变量初始化
 * Input          :  None
 * Output         :  None
 * Return         :  None

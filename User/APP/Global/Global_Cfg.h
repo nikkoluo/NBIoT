@@ -119,7 +119,10 @@
 //----------------------- Pin Config ------------------------------------------/
 #define     GPIO_TEST_PIN               1                               // 速度测试 管脚
 
-#define     BAT_ADC_PIN                 3                               // 电池ADC 管脚
+#define     BAT_ADC_PIN                 3                             	// 电池ADC 管脚
+
+#define     COMMUNAL_IIC_2_SCL_PIN      7                              	// 通用IIC时钟
+#define     COMMUNAL_IIC_2_SDA_PIN      8                              	// 通用IIC数据
 
 
 #define     UART_TX_PIN                 9                               // 串口
