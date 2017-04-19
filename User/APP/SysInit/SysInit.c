@@ -18,7 +18,10 @@
 #include "app_button.h"
 #include "nrf_drv_clock.h"
 #include "Communal_IIC.h"
+#include "Communal_IIC_2.h"
 #include "tVOC.h"
+#include "RTC.h"
+
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -211,6 +214,9 @@ void Peripheral_Init(void)
     // 通讯IIC初始化
     Communal_IIC_Init();
 
+	// 通讯IIC2初始化
+    Communal_IIC_2_Init();
+
 
     
 }// End of void Peripheral_Init(void)
@@ -226,6 +232,8 @@ void Peripheral_Init(void)
 void Task_Init(void)
 {
 
+	// RTC
+	RTC_Task_Create();
 
     // 创建触摸任务
     Button_Task_Create();
@@ -241,6 +249,7 @@ void Task_Init(void)
 
 	// LCD任务
 	LCD_Task_Create();
+
 
     // 公用定时器任务
     Communal_Timer_Task_Create();

@@ -9,8 +9,8 @@
 *******************************************************************************/
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __TVOC_H
-#define __TVOC_H
+#ifndef __RTC_H
+#define __RTC_H
 
 /* Includes ------------------------------------------------------------------*/
 #include "Global.h"
@@ -29,7 +29,7 @@ extern  void RTC_Timer_Handle(void *p_arg);                             // RTC任
 extern  void RTC_Task_Create(void);                                     // 创建RTC任务
 
 
-#endif /* __TVOC_H */
+#endif /* __RTC_H */
 
 /******************* (C) COPYRIGHT 2017 陆超 **** END OF FILE *****************/
 

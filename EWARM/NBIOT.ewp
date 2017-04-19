@@ -383,6 +383,7 @@
           <state>$PROJ_DIR$\..\User\APP\tVOC</state>
           <state>$PROJ_DIR$\..\User\APP\tVOC\SGPC10</state>
           <state>$PROJ_DIR$\..\User\APP\LCD</state>
+          <state>$PROJ_DIR$\..\User\APP\RTC</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>

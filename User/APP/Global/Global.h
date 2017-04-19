@@ -43,7 +43,9 @@
 extern  u8                      Root_Access;                            // 超级权限
 extern  u8                      Sys_Status;                             // 系统状态
 extern  u8                      Sys_Init;                               // 置一完成初始化 
+extern  LCD_Typedef				LCD;									// LCD
 extern  Task_Typedef            Button_Task;                            // 按键任务
+extern  Task_Typedef            RTC_Task;								// RTC任务
 extern  Task_Typedef            LCD_Task;                               // LCD任务
 extern  Task_Typedef            tVOC_Task;                              // tVOC任务
 extern  Task_Typedef            Communal_Timer_Task;                    // 公用定时器任务

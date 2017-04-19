@@ -10,7 +10,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "RTC.h"
 #include "nrf_gpio.h"
-#include "sgpc1x.h"
+
 
 
 #include <stdlib.h>
@@ -80,20 +80,6 @@ u32 RTC_Chip_Init(void)
 {
     u32 Err_Code = NRF_SUCCESS;
 
-
-    // 默认传感器error
-    System_Err.RTC = 1;
-
-	if (sgp_probe() != STATUS_OK) 
-	{
-		app_trace_log("RTC芯片初始化失败!\r\n"); 
-		Err_Code = 0xFFFFFFFF;
-	}
-	else
-	{
-		System_Err.RTC = 0;
-	}
-
     return Err_Code;
         
 }// End of u32 RTC_Chip_Init(void)
@@ -108,46 +94,6 @@ u32 RTC_Chip_Init(void)
 *******************************************************************************/
 void RTC_Task_Handle(void *p_arg)
 {
-    u8 err;
-    u16 tvoc_ppb, co2_eq_ppm;
-
-
-    if (Sensor.RTC_Baseline_Reset == 0)
-    {
-    	Sensor.RTC_Baseline_Timestamp++;
-
-		// 15分钟重启
-    	if (Sensor.RTC_Baseline_Timestamp >= 15 * 60)
-    	{
-    		Sensor.RTC_Baseline_Reset = 1;
-
-    		if (sgp_iaq_init() == STATUS_OK)
-    		{
-    			app_trace_log("RTC  sgp_iaq_init Success \r\n");	
-    		}
-    		else
-    		{
-    			app_trace_log("RTC  sgp_iaq_init Failed \r\n");		
-    		}
-    	}
-    }
-
-	err = sgp_measure_iaq_blocking_read(&tvoc_ppb, &co2_eq_ppm);
-	if (err == STATUS_OK) 
-	{
-		 app_trace_log("RTC  Concentration: %dppb\n", tvoc_ppb);
-		 app_trace_log("CO2eq Concentration: %dppm\n", co2_eq_ppm);
-
-		 // 记录RTC eCO2
-		 Sensor.RTC = tvoc_ppb;
-		 Sensor.eCO2 = co2_eq_ppm;
-
-
-	} 
-	else 
-	{
-		 app_trace_log("error reading IAQ values\n"); 
-	}
 
 
 }// End of void RTC_Task_Handle(void *p_arg)

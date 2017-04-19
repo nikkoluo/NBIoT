@@ -19,6 +19,9 @@
 /* Private function prototypes -----------------------------------------------*/
 void LCD_Task_Handle(void *p_arg);                                      // LCD任务
 void LCD_Task_Create(void);                                             // 创建LCD任务
+void LCD_Prepare_Screen_Sensor(void);									// 准备sensor页面
+void LCD_Screen_Sensor(void);											// 显示sensor页面
+
 u32 LCD_Chip_Init(void);                                                // 芯片初始化
 
 
@@ -63,18 +66,8 @@ void LCD_Task_Create(void)
         }
     }
 
-    // 显示温湿度标号
-	OLED_String_8x16(0,0, "Temp: ", sizeof("Temp: ") - 1);
-	OLED_String_8x16(0,16, "Humi: ", sizeof("humi: ") - 1);
-	OLED_String_16x16(96, 0, (u8*)Temp_Unit, 1);
-	OLED_String_8x16(102, 16, "%", sizeof("%") - 1);
-
-	// tVOC eCO2
-	OLED_String_8x16(0,32, "tVOC:  ...", sizeof("tVOC:  ...") - 1);
-	OLED_String_8x16(0,48, "eCO2:  ...", sizeof("eCO2:  ...") - 1);
-	OLED_String_8x16(96, 32, "ppb", sizeof("ppb") - 1);
-	OLED_String_8x16(96, 48, "ppm", sizeof("ppm") - 1);
-	
+	// 准备首页数据
+	LCD_Prepare_Screen_Sensor();
 
 }// End of void LCD_Task_Create(void)
 
@@ -106,25 +99,76 @@ u32 LCD_Chip_Init(void)
 *******************************************************************************/
 void LCD_Task_Handle(void *p_arg)
 {
-//	u8 i, j;
-//	u8 temp[2] = {'1', 0xAA};
-//	for (i = 0; i < 128; i+=8)
-//	{
-//		j += 1;
-//		if (j >= 64)
-//		{
-//			j = 0;
-//		}
 
-//		OLED_String_6x8(i, j, &temp[0], 1);
-//		OLED_String_8x16(i, j + 16, &temp[0], 1);
-//        temp[0]++;
+	switch(LCD.Screen_Show)
+	{
+		case SCREEN_SENSOR:
+		{
+			LCD_Screen_Sensor();
+			
+		}break;
 
-//	}
+		case SCREEN_TIME:
+		{
 
+			
+		}break;
+
+		default:
+		break;
+		
+	}
+
+   
+}// End of void LCD_Task_Handle(void *p_arg)
+
+/*******************************************************************************
+*                           陆超@2017-04-19
+* Function Name  :  LCD_Prepare_Screen_Sensor
+* Description    :  准备sensor页面
+* Input          :  None
+* Output         :  None
+* Return         :  None
+*******************************************************************************/
+void LCD_Prepare_Screen_Sensor(void)
+{
+	OLED_CLS();
+	
+    // 显示温湿度标号
+	OLED_String_8x16(0,0, "Temp: ", sizeof("Temp: ") - 1);
+	OLED_String_8x16(0,16, "Humi: ", sizeof("humi: ") - 1);
+	OLED_String_16x16(96, 0, (u8*)Temp_Unit, 1);
+	OLED_String_8x16(102, 16, "%", sizeof("%") - 1);
+
+	// tVOC eCO2
+	OLED_String_8x16(0,32, "tVOC:  ...", sizeof("tVOC:  ...") - 1);
+	OLED_String_8x16(0,48, "eCO2:  ...", sizeof("eCO2:  ...") - 1);
+	OLED_String_8x16(96, 32, "ppb", sizeof("ppb") - 1);
+	OLED_String_8x16(96, 48, "ppm", sizeof("ppm") - 1);
+
+	LCD.Screen_Now = SCREEN_SENSOR;
+	
+}// End of void LCD_Prepare_Screen_Sensor(void)
+
+/*******************************************************************************
+*                           陆超@2017-04-19
+* Function Name  :  LCD_Screen_Sensor
+* Description    :  显示sensor页面
+* Input          :  None
+* Output         :  None
+* Return         :  None
+*******************************************************************************/
+void LCD_Screen_Sensor(void)
+{
 	u8 ucTemp[6];
 	u8 ucLen;
 
+	// 判断当前是否sensor页面
+	if (LCD.Screen_Now != SCREEN_SENSOR)
+	{
+		LCD_Prepare_Screen_Sensor();
+	}
+	
 	// 温度大于0
 	if (Sensor.sTemp >= 0)
 	{
@@ -156,9 +200,10 @@ void LCD_Task_Handle(void *p_arg)
 	OLED_String_8x16(6 * 8, 32, ucTemp, ucLen);
 	ucLen = sprintf((char *)ucTemp, " %4d", Sensor.eCO2);
 	OLED_String_8x16(6 * 8, 48, ucTemp, ucLen);
+
 	
-   
-}// End of void LCD_Task_Handle(void *p_arg)
+}// End of void LCD_Screen_Sensor(void)
+
 
 /******************* (C) COPYRIGHT 2017 陆超 ************* END OF FILE ********/
 

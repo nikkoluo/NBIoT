@@ -550,7 +550,7 @@ void OLED_String_6x8(u8 x, u8 y, u8 *pData, u8 ucLen)
 		} 
 		
 		// 越界保护
-		if (y >= Y_WIDTH)
+		if (y > Y_WIDTH - 8)
 		{
 			return;
 		}
@@ -598,7 +598,7 @@ void OLED_String_8x16(u8 x, u8 y, u8 *pData, u8 ucLen)
 		} 
 
 		// 越界保护
-		if (y >= Y_WIDTH)
+		if (y > Y_WIDTH - 16)
 		{
 			return;
 		}
@@ -645,7 +645,7 @@ void OLED_String_16x16(u8 x, u8 y, u8 *pData, u8 ucLen)
 		} 
 
 		// 越界保护
-		if (y >= Y_WIDTH)
+		if (y > Y_WIDTH - 16)
 		{
 			return;
 		}

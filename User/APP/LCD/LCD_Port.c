@@ -46,14 +46,15 @@ u8 LCD_Port_Init(void)
 /*******************************************************************************
 *                           陆超@2017-04-09
 * Function Name  :  LCD_Variable_Init
-* Description    :  温湿度变量初始化
+* Description    :  LCD变量初始化
 * Input          :  None
 * Output         :  None
 * Return         :  None
 *******************************************************************************/
 void LCD_Variable_Init(void)
 {
-
+	LCD.Screen_Now  = SCREEN_SENSOR;	
+	LCD.Screen_Show = SCREEN_SENSOR;
     
 }// End of void LCD_Variable_Init(void)
 

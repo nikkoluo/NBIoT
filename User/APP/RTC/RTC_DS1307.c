@@ -1,207 +1,229 @@
 /******************** (C) COPYRIGHT 2017 陆超 **********************************
-* File Name          :  tVOC_SGPC.c
+* File Name          :  RTC_DS1307.c
 * Author             :  陆超
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
-* Date               :  03/30/2017
-* Description        :  tVOC应用程序
+* Date               :  04/19/2017
+* Description        :  RTC_DS1307应用程序
 *******************************************************************************/
 /* Includes ------------------------------------------------------------------*/
-#include "tVOC_SGPC.h"
+#include "RTC_DS1307.h"
 #include "Communal_IIC.h"
 #include "sensirion_common.h"
 #include "nrf_delay.h"
 
-
-
-
-
-
 /* Private variables ---------------------------------------------------------*/
      
 /* Private function prototypes -----------------------------------------------*/
+u8 DS1307_Get_Week(u8 Year, u8 Month, u8 Day);							// 获取星期
+u8 DS1307_Set_Date(time_t time);										// 设置时间
+u8 DS1307_Get_Data(time_t *time);										// 获取时间
 
 /* Private functions ---------------------------------------------------------*/
 
-/*
- * ds1307 lib 0x01
- * 
- * copyright (c) Davide Gironi, 2013
- * modified by CptSpaceToaster 09/16/2014
- * 
- * Released under GPLv3.
- * Please refer to LICENSE file for licensing information.
- */
-#include "avr/io.h"
-#include "avr/pgmspace.h"
-#include "util/delay.h"
-
-#include "ds1307.h"
-#include "../twi/i2cmaster.h"
-
-/*
- * days per month
- */
-const uint8_t ds1307_daysinmonth [] PROGMEM = { 31,28,31,30,31,30,31,31,30,31,30,31 };
-
-/*
- * transform decimal value to bcd
- */
-uint8_t ds1307_dec2bcd(uint8_t val) {
+u8 DS1307_dec2bcd(u8 val)
+{
 	return val + 6 * (val / 10);
 }
 
 /*
  * transform bcd value to deciaml
  */
-static uint8_t ds1307_bcd2dec(uint8_t val) {
+static u8 DS1307_bcd2dec(u8 val) 
+{
 	return val - 6 * (val >> 4);
 }
 
-/*
- * get number of days since 2000/01/01 (valid for 2001..2099)
- */
-static uint16_t ds1307_date2days(uint8_t y, uint8_t m, uint8_t d) {
-	uint16_t days = d;
-	for (uint8_t i = 1; i < m; ++i)
-		days += pgm_read_byte(ds1307_daysinmonth + i - 1);
-	if (m > 2 && y % 4 == 0)
-		++days;
-	return days + 365 * y + (y + 3) / 4 - 1;
-}
+/*******************************************************************************
+*                           陆超@2017-04-19
+* Function Name  :  DS1307_Get_Week
+* Description    :  获取星期
+* Input          :  u8 Year		年
+*                   u8 Month	月	
+*                   u8 Day		日
+* Output         :  None
+* Return         :  星期 1~7
+*******************************************************************************/
+u8 DS1307_Get_Week(u8 Year, u8 Month, u8 Day) 
+{
+	int iWeek = 0;  
+    unsigned int y = 0, c = 0, m = 0, d = 0;  
+  
+    if ( Month == 1 || Month == 2 )  
+    {  
+        c = ( Year - 1 ) / 100;  
+        y = ( Year - 1 ) % 100;  
+        m = Month + 12;  
+        d = Day;  
+    }  
+    else  
+    {  
+        c = Year / 100;  
+        y = Year % 100;  
+        m = Month;  
+        d = Day;  
+    }  
 
-/*
- * get day of a week
- */
-uint8_t ds1307_getdayofweek(uint8_t y, uint8_t m, uint8_t d) {
-	uint16_t day = ds1307_date2days(y, m, d);
-	return (day + 6) % 7;
-}
+    // 蔡勒公式 
+    iWeek = y + y / 4 + c / 4 - 2 * c + 26 * ( m + 1 ) / 10 + d - 1;    
 
-/*
- * returns true if the given year (two digit suffix) is a leap year
- */
-bool ds1307_isleapyear(uint8_t year) {
-	if (year % 400 == 0) {
-		return true;
-	} else if (year % 100 == 0) {
-		return false;
-	} else if (year % 4 == 0) {
-		return true;
-	} else {
-		return false;
-	}
-}
+    // iWeek为负时取模 
+    iWeek = iWeek >= 0 ? ( iWeek % 7 ) : ( iWeek % 7 + 7 ); 
 
-/*
- * set date
- */
-uint8_t ds1307_setdate(uint8_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t minute, uint8_t second) {
-	//check bounds
-	if (second < 0 || second > 59 ||
-		minute < 0 || minute > 59 ||
-		hour < 0   || hour > 23   ||
-		day < 1    || day > 31    ||
-		month < 1  || month > 12  ||
-		year < 0   || year > 99)
-		return 2;
+    //星期日不作为一周的第一天  
+    if ( iWeek == 0 )    
+    {  
+        iWeek = 7;  
+    } 
 
-	//sanitize day based on month
-	if(day > pgm_read_byte(ds1307_daysinmonth + month - 1)  + (month == 2 && ds1307_isleapyear(year)))
+	return (u8)iWeek;
+
+}// End of u8 DS1307_Get_Week(u8 Year, u8 Month, u8 Day) 
+
+/*******************************************************************************
+*                           陆超@2017-04-19
+* Function Name  :  DS1307_Read_Register
+* Description    :  读寄存器
+* Input          :  u8  ucRead_Addr 要读取的地址
+*                   u8* pBuffer     缓存指针
+*                   u16 usRead_Len  读取长度
+* Output         :  None
+* Return         :  1成功 0失败
+*******************************************************************************/
+u8 DS1307_Read_Register(u8 ucRead_Addr, u8* pBuffer, u16 usRead_Len)
+{
+    u8 Transfer_Succeeded = 1;
+
+    if(usRead_Len == 0)
+    {
+        return 0;
+    }
+
+    Transfer_Succeeded &= SW_I2C_Transfer(&Communal_IIC_2, DS1307_WRITE_ADDR, &ucRead_Addr, 1, SW_I2C_DONT_SEND_STOP);
+    Transfer_Succeeded &= SW_I2C_Transfer(&Communal_IIC_2, DS1307_READ_ADDR, pBuffer, usRead_Len, SW_I2C_NEED_SEND_STOP);
+
+    nrf_delay_us(100);
+
+    return Transfer_Succeeded;
+    
+}// End of u8 DS1307_Read_Register(u8 ucRead_Addr, u8* pBuffer, u16 usRead_Len)
+
+/*******************************************************************************
+*                           陆超@2017-04-19
+* Function Name  :  DS1307_Write_Register
+* Description    :  写芯片寄存器
+* Input          :  u8 ucWrite_Addr    	要写入的地址
+*                   u8* pBuffer         缓存指针
+*                   u16 usWrite_Len     写入长度 
+* Output         :  None
+* Return         :  1成功 0失败
+*******************************************************************************/
+u8 DS1307_Write_Register(u8 ucWrite_Addr, u8* pBuffer, u16 usWrite_Len)
+{
+    unsigned char Transfer_Succeeded = 1;
+
+    // 发送写命令
+    Transfer_Succeeded &= SW_I2C_Transfer(&Communal_IIC_2, DS1307_WRITE_ADDR, &ucWrite_Addr, 1, SW_I2C_DONT_SEND_STOP);
+    
+    // 长度保护
+    if (usWrite_Len == 0)
+    {
+        return 0;
+    }
+
+    // 发送数据
+    while (usWrite_Len-- && Transfer_Succeeded)
+    {
+        Transfer_Succeeded &= SW_IIC_Write_Byte(&Communal_IIC_2, *pBuffer);
+        pBuffer++;
+    }
+
+
+    // 发送停止位
+    Transfer_Succeeded &= SW_I2C_Stop_Condition(&Communal_IIC_2);
+
+    nrf_delay_us(100);
+    
+    return Transfer_Succeeded;
+    
+}// End of u8 DS1307_Write_Register(u8 ucWrite_Addr, u8* pBuffer, u16 usWrite_Len)
+
+/*******************************************************************************
+*                           陆超@2017-04-19
+* Function Name  :  DS1307_Set_Date
+* Description    :  设置时间
+* Input          :  time_t time 待设置的时间
+* Output         :  None
+* Return         :  1成功 0失败
+*******************************************************************************/
+u8 DS1307_Set_Date(time_t time) 
+{
+	u8 Data[7];
+	u8 ucLen = 0;
+	// check bounds
+	if (time.Second > 59 ||
+	    time.Minute > 59 ||
+	    time.Hour > 23   ||
+	    time.Day < 1    || time.Day > 31    ||
+	    time.Month < 1  || time.Month > 12  ||
+	    time.Year > 99)
+		return 0;
+
+	// get day of week
+	time.Week = DS1307_Get_Week(time.Year, time.Month, time.Day);
+
+	// 准备数据
+	Data[ucLen++] = DS1307_dec2bcd(time.Second);
+	Data[ucLen++] = DS1307_dec2bcd(time.Minute);
+	Data[ucLen++] = DS1307_dec2bcd(time.Hour);
+	Data[ucLen++] = DS1307_dec2bcd(time.Week);
+	Data[ucLen++] = DS1307_dec2bcd(time.Day);
+	Data[ucLen++] = DS1307_dec2bcd(time.Month);
+	Data[ucLen++] = DS1307_dec2bcd(time.Year);
+
+	// 写日期
+	if (DS1307_Write_Register(0x00, Data, ucLen))
+	{
 		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+	
+}// End of u8 DS1307_Set_Date(time_t time) 
 
-	//get day of week
-	uint8_t dayofweek = ds1307_getdayofweek(year, month, day);
+/*******************************************************************************
+*                           陆超@2017-04-19
+* Function Name  :  DS1307_Get_Data
+* Description    :  读取时间
+* Input          :  time_t *time 读取的时间
+* Output         :  None
+* Return         :  1成功 0失败
+*******************************************************************************/
+u8 DS1307_Get_Data(time_t *time) 
+{
+	u8 Data[7];
+	u8 ucLen = 0;
 
-	//write date
-	i2c_start_wait(DS1307_ADDR | I2C_WRITE);
-	i2c_write(0x00); //start writing data at memory address 0x00
-	i2c_write(ds1307_dec2bcd(second));
-	i2c_write(ds1307_dec2bcd(minute));
-	i2c_write(ds1307_dec2bcd(hour));
-	i2c_write(ds1307_dec2bcd(dayofweek));
-	i2c_write(ds1307_dec2bcd(day));
-	i2c_write(ds1307_dec2bcd(month));
-	i2c_write(ds1307_dec2bcd(year));
-	i2c_write(0x00); //do nothing with the the external oscillator
-	i2c_stop();
+	// 读取时间
+	if (DS1307_Read_Register(0x00, Data, 7))
+	{
+		time->Second = DS1307_bcd2dec(Data[ucLen++]);
+		time->Minute = DS1307_bcd2dec(Data[ucLen++]);
+		time->Hour   = DS1307_bcd2dec(Data[ucLen++]);
+		time->Week   = DS1307_bcd2dec(Data[ucLen++]);
+		time->Day    = DS1307_bcd2dec(Data[ucLen++]);
+		time->Month  = DS1307_bcd2dec(Data[ucLen++]);
+		time->Year   = DS1307_bcd2dec(Data[ucLen++]);
+
+		return 1;
+	}
 
 	return 0;
-}
 
-/*
- * set date
- */
-uint8_t ds1307_setdate_s(time_t time) {
-	//check bounds
-	if (time.second < 0 || time.second > 59 ||
-	    time.minute < 0 || time.minute > 59 ||
-	    time.hour < 0   || time.hour > 23   ||
-	    time.day < 1    || time.day > 31    ||
-	    time.month < 1  || time.month > 12  ||
-	    time.year < 0   || time.year > 99)
-		return 2;
-
-	//sanitize day based on month
-	if(time.day > pgm_read_byte(ds1307_daysinmonth + time.month - 1) + (time.month == 2 && ds1307_isleapyear(time.year)))
-		return 1;
-
-	//get day of week
-	uint8_t dayofweek = ds1307_getdayofweek(time.year, time.month, time.day);
-
-	//write date
-	i2c_start_wait(DS1307_ADDR | I2C_WRITE);
-	i2c_write(0x00); //start writing data at memory address 0x00
-	i2c_write(ds1307_dec2bcd(time.second));
-	i2c_write(ds1307_dec2bcd(time.minute));
-	i2c_write(ds1307_dec2bcd(time.hour));
-	i2c_write(ds1307_dec2bcd(dayofweek));
-	i2c_write(ds1307_dec2bcd(time.day));
-	i2c_write(ds1307_dec2bcd(time.month));
-	i2c_write(ds1307_dec2bcd(time.year));
-	i2c_write(0x00); //do nothing with the the external oscillator
-	i2c_stop();
-
-	return 1;
-}
-
-/*
- * get date
- */
-void ds1307_getdate(uint8_t *year, uint8_t *month, uint8_t *day, uint8_t *hour, uint8_t *minute, uint8_t *second) {
-	i2c_start_wait(DS1307_ADDR | I2C_WRITE);
-	i2c_write(0x00);
-	i2c_stop();
-
-	i2c_rep_start(DS1307_ADDR | I2C_READ);
-	*second = ds1307_bcd2dec(i2c_readAck() & 0x7F);
-	*minute = ds1307_bcd2dec(i2c_readAck());
-	*hour = ds1307_bcd2dec(i2c_readAck());
-	i2c_readAck();
-	*day = ds1307_bcd2dec(i2c_readAck());
-	*month = ds1307_bcd2dec(i2c_readAck());
-	*year = ds1307_bcd2dec(i2c_readNak());
-	i2c_stop();
-}
-
-/*
- * get date
- */
-void ds1307_getdate_s(time_t *time) {
-	i2c_start(DS1307_ADDR | I2C_WRITE);
-	i2c_write(0x00);
-	i2c_stop();
-	i2c_rep_start(DS1307_ADDR | I2C_READ);
-	time->second = ds1307_bcd2dec(i2c_readAck() & 0x7F);
-	time->minute = ds1307_bcd2dec(i2c_readAck());
-	time->hour = ds1307_bcd2dec(i2c_readAck());
-	i2c_readAck();
-	time->day = ds1307_bcd2dec(i2c_readAck());
-	time->month = ds1307_bcd2dec(i2c_readAck());
-	time->year = ds1307_bcd2dec(i2c_readNak());
-	i2c_stop();
-}
+}// End of u8 DS1307_Get_Data(time_t *time) 
 
 
 

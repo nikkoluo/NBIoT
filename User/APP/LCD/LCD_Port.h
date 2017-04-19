@@ -17,6 +17,9 @@
 
 
 /* Private define ------------------------------------------------------------*/
+#define     SCREEN_SENSOR         		0                     			// 传感器页面
+#define     SCREEN_TIME         		1                     			// 时间页面
+
 
 
 

@@ -200,13 +200,8 @@ typedef struct
 
 typedef struct 
 {
-    unsigned char       Buffer[LCD_BUFFER_SIZE];                        // LCD缓存 
-    unsigned char       Main_Temp;                                      // 置一时主显示温度
-    unsigned char       BT_LOGO_Show;                                   // 置一时显示蓝牙logo
-    unsigned char       Bat_Empty_Show;                                 // 置一时显示电池空框logo
-    unsigned char       Is_LCD_On;                                      // 置一时屏幕开
-    short               Current_Show_Temp;                              // 当前显示温度
-    short               Current_Show_Humi;                              // 当前显示湿度
+    unsigned char       Screen_Show;									// 屏幕内容
+    unsigned char       Screen_Now;										// 当前内容
     
     union
     {

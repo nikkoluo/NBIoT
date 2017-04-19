@@ -1,53 +1,45 @@
 /******************** (C) COPYRIGHT 2017 ½�� **********************************
-* File Name          :  tVOC_SGPC.h
+* File Name          :  RTC_DS1307.h
 * Author             :  ½��
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  03/30/2017
-* Description        :  tVOC_SGPC header file
+* Description        :  RTC_DS1307 header file
 *******************************************************************************/
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __TVOC_SGPC_H
-#define __TVOC_SGPC_H
+#ifndef __RTC_DS1307_H
+#define __RTC_DS1307_H
 
 /* Includes ------------------------------------------------------------------*/
 #include "Global.h"
 
 
 /* Private define ------------------------------------------------------------*/
+#define     DS1307_ADDR                 0x68                            // DS1307地址
+#define     DS1307_WRITE_ADDR           (DS1307_ADDR << 1)              // DS1307写地址
+#define     DS1307_READ_ADDR            (DS1307_WRITE_ADDR | 0x01)      // DS1307读地址
 
 /* Private typedef -----------------------------------------------------------*/
-
+typedef struct clock {
+	unsigned char Month;
+	unsigned char Day;
+	unsigned char Year;
+	unsigned char Week;
+	unsigned char Hour;
+	unsigned char Minute;
+	unsigned char Second;
+} time_t;
 
 /* Private variables ---------------------------------------------------------*/
 
 
 /* Private function prototypes -----------------------------------------------*/
+extern	u8 DS1307_Set_Date(time_t time);								// 设置时间
+extern	u8 DS1307_Get_Data(time_t *time);								// 获取时间
 
-
-//structures
-typedef struct clock {
-	uint8_t month;
-	uint8_t day;
-	uint8_t year;
-	uint8_t hour;
-	uint8_t minute;
-	uint8_t second;
-} time_t;
-
-//definitions
-#define DS1307_ADDR (0x68<<1) //device address shifted over one
-
-//functions
-uint8_t ds1307_setdate(uint8_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t minute, uint8_t second);
-uint8_t ds1307_setdate_s(time_t time);
-uint8_t ds1307_getdayofweek(uint8_t y, uint8_t m, uint8_t d);
-bool ds1307_isleapyear(uint8_t year);
-void ds1307_getdate(uint8_t *year, uint8_t *month, uint8_t *day, uint8_t *hour, uint8_t *minute, uint8_t *second);
-void ds1307_getdate_s(time_t *time);
-#endif /* __TVOC_SGPC_H */
+#endif /* __RTC_DS1307_H */
 
 /******************* (C) COPYRIGHT 2017 ½�� **** END OF FILE *****************/
 
