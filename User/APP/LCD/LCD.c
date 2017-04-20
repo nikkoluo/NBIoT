@@ -10,6 +10,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "LCD.h"
 #include "LCD_Page_Sensor.h"
+#include "LCD_Page_Time.h"
 #include "nrf_gpio.h"
 #include "OLED.h"
 #include <stdlib.h>
@@ -99,15 +100,15 @@ void LCD_Task_Handle(void *p_arg)
 
 	switch(LCD.Page_Show)
 	{
-		case PAGE_SENSOR:
+		case LCD_PAGE_SENSOR:
 		{
 			LCD_Page_Sensor();
 			
 		}break;
 
-		case PAGE_TIME:
+		case LCD_PAGE_TIME:
 		{
-
+			LCD_Page_Time();
 			
 		}break;
 

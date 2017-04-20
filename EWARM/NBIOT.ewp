@@ -2192,6 +2192,12 @@
         <file>
           <name>$PROJ_DIR$\..\User\APP\LCD\LCD_Page\LCD_Page_Sensor.h</name>
         </file>
+        <file>
+          <name>$PROJ_DIR$\..\User\APP\LCD\LCD_Page\LCD_Page_Time.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\User\APP\LCD\LCD_Page\LCD_Page_Time.h</name>
+        </file>
       </group>
       <file>
         <name>$PROJ_DIR$\..\User\APP\LCD\LCD.c</name>

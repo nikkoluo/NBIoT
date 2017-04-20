@@ -109,7 +109,9 @@
 #define     MIOT_BOND_STOP_DELAY        5 * TASK_COMMUNAL_TIMER_FREQ    // 5s 绑定后继续闪烁一次
 
 //----------------------- LCD -------------------------------------------------/
-#define     LCD_BUFFER_SIZE             13                              // LCD缓存大小
+#define     LCD_PAGE_SENSOR         	0                     			// 传感器页面
+#define     LCD_PAGE_TIME         		1                     			// 时间页面
+
 
 //----------------------- Sensor ----------------------------------------------/
 #define     MAX_GET_SENSOR_ERROR        10                              // 最大采集传感器错误数

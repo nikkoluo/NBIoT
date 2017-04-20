@@ -1,16 +1,16 @@
 /******************** (C) COPYRIGHT 2017 陆超 **********************************
-* File Name          :  LCD_Page_Sensor.h
+* File Name          :  LCD_Page_Time.h
 * Author             :  陆超
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  04/09/2017
-* Description        :  LCD_Page_Sensor header file
+* Description        :  LCD_Page_Time header file
 *******************************************************************************/
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __LCD_PAGE_Sensor_H
-#define __LCD_PAGE_Sensor_H
+#ifndef __LCD_PAGE_TIME_H
+#define __LCD_PAGE_TIME_H
 
 /* Includes ------------------------------------------------------------------*/
 #include "LCD_Port.h"
@@ -25,11 +25,11 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern	void LCD_Page_Sensor_Prepare(void);								// 准备sensor页面
-extern	void LCD_Page_Sensor(void);										// 显示sensor页面
+extern	void LCD_Page_Time_Prepare(void);								// 准备Time页面
+extern	void LCD_Page_Time(void);										// 显示Time页面
 
 
-#endif /* __LCD_PAGE_Sensor_H */
+#endif /* __LCD_PAGE_TIME_H */
 
 /******************* (C) COPYRIGHT 2017 陆超 **** END OF FILE *****************/
 

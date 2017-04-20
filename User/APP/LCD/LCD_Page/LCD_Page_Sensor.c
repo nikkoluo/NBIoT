@@ -46,7 +46,7 @@ void LCD_Page_Sensor_Prepare(void)
 	OLED_String_8x16(96, 32, "ppb", sizeof("ppb") - 1);
 	OLED_String_8x16(96, 48, "ppm", sizeof("ppm") - 1);
 
-	LCD.Page_Now = PAGE_SENSOR;
+	LCD.Page_Now = LCD_PAGE_SENSOR;
 	
 }// End of void LCD_Page_Sensor_Prepare(void)
 
@@ -64,7 +64,7 @@ void LCD_Page_Sensor(void)
 	u8 ucLen;
 
 	// 判断当前是否sensor页面
-	if (LCD.Page_Now != PAGE_SENSOR)
+	if (LCD.Page_Now != LCD_PAGE_SENSOR)
 	{
 		LCD_Page_Sensor_Prepare();
 	}
