@@ -15,7 +15,7 @@
 #include <stdlib.h>
 
 /* Private variables ---------------------------------------------------------*/
-        
+static const u8 Week[][7] = {"Mon", "Tues", "Wed", "Thur", "Fri", "Sat", "Sun" };    
 /* Private function prototypes -----------------------------------------------*/
 void LCD_Page_Time_Prepare(void);									    // 准备Time页面
 void LCD_Page_Time(void);											    // 显示Time页面
@@ -32,6 +32,7 @@ void LCD_Page_Time(void);											    // 显示Time页面
 *******************************************************************************/
 void LCD_Page_Time_Prepare(void)
 {
+
 	OLED_CLS();
 	
 
@@ -49,6 +50,9 @@ void LCD_Page_Time_Prepare(void)
 *******************************************************************************/
 void LCD_Page_Time(void)
 {
+	u8 Temp[16];
+	u8 ucLen;
+	time_t Time;
 
 	// 判断当前是否Time页面
 	if (LCD.Page_Now != LCD_PAGE_TIME)
@@ -56,6 +60,21 @@ void LCD_Page_Time(void)
 		LCD_Page_Time_Prepare();
 	}
 
+	// 显示时间
+	if (DS1307_Get_Data(&Time))
+	{
+		// 年月日星期
+		ucLen = sprintf((char *)Temp, "20%02d-%02d-%02d %s", 
+										Time.Year, Time.Month,  Time.Day, (u8*)&Week[Time.Week - 1]);
+
+		OLED_String_8x16(OLED_Pos_Center(ucLen << 3),  0, Temp, ucLen);	
+
+		ucLen = sprintf((char *)Temp, "%02d:%02d:%02d",Time.Hour, Time.Minute, Time.Second );
+
+		OLED_String_8x16(OLED_Pos_Center(ucLen << 3),  16, Temp, ucLen);	
+		
+	}
+	
 	
 }// End of void LCD_Page_Time(void)
 

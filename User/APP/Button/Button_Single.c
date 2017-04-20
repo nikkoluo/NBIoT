@@ -31,6 +31,12 @@ void Single_Button_Handler(void)
 {
     // 非单击状态
     app_trace_log("单击任务\r\n");
+    
+    LCD.Page_Show++;
+    if (LCD.Page_Show >= LCD_PAGE_LAST)
+    {
+    	LCD.Page_Show = LCD_PAGE_DEFAULT;
+    }
 
 }// End of void Single_Button_Handler(void)
 

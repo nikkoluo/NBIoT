@@ -77,6 +77,8 @@ extern  void OLED_String_6x8(u8 x, u8 y, u8 *pData, u8 ucLen);			// Ð´6*8×Ö·û
 extern  void OLED_String_8x16(u8 x, u8 y, u8 *pData, u8 ucLen);			// Ð´8*16×Ö·û
 extern  void OLED_String_16x16(u8 x, u8 y, u8 *pData, u8 ucLen);		// 16 * 16×Ö·û
 
+extern  u8 OLED_Pos_Center(u8 ucLen);									// ¼ÆËã¾ÓÖÐ¶ÔÆë×ø±ê
+
 
 #endif /* _OLED_H */
 

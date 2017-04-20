@@ -14,11 +14,12 @@
 #include "nrf_delay.h"
 
 /* Private variables ---------------------------------------------------------*/
-     
+  
 /* Private function prototypes -----------------------------------------------*/
 u8 DS1307_Get_Week(u8 Year, u8 Month, u8 Day);							// 获取星期
 u8 DS1307_Set_Date(time_t time);										// 设置时间
 u8 DS1307_Get_Data(time_t *time);										// 获取时间
+u8 DS1307_Start(void);													// 启动
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -174,7 +175,7 @@ u8 DS1307_Set_Date(time_t time)
 	time.Week = DS1307_Get_Week(time.Year, time.Month, time.Day);
 
 	// 准备数据
-	Data[ucLen++] = DS1307_dec2bcd(time.Second);
+	Data[ucLen++] = DS1307_dec2bcd(time.Second) & 0x7F;
 	Data[ucLen++] = DS1307_dec2bcd(time.Minute);
 	Data[ucLen++] = DS1307_dec2bcd(time.Hour);
 	Data[ucLen++] = DS1307_dec2bcd(time.Week);
@@ -210,7 +211,7 @@ u8 DS1307_Get_Data(time_t *time)
 	// 读取时间
 	if (DS1307_Read_Register(0x00, Data, 7))
 	{
-		time->Second = DS1307_bcd2dec(Data[ucLen++]);
+		time->Second = DS1307_bcd2dec(Data[ucLen++] & 0x7F);
 		time->Minute = DS1307_bcd2dec(Data[ucLen++]);
 		time->Hour   = DS1307_bcd2dec(Data[ucLen++]);
 		time->Week   = DS1307_bcd2dec(Data[ucLen++]);
@@ -226,6 +227,38 @@ u8 DS1307_Get_Data(time_t *time)
 }// End of u8 DS1307_Get_Data(time_t *time) 
 
 
+/*******************************************************************************
+*                           陆超@2017-04-19
+* Function Name  :  DS1307_Start
+* Description    :  启动时钟
+* Input          :  None
+* Output         :  None
+* Return         :  1成功 0失败
+*******************************************************************************/
+u8 DS1307_Start(void) 
+{
+	u8 Data;
+
+	// 读取时间
+	if (DS1307_Read_Register(0x00, &Data, 1))
+	{
+		if (Data & 0x80)
+		{
+			Data &= 0x7F;
+			if (DS1307_Write_Register(0x00, &Data, 1))
+			{
+				return 1;	
+			}
+			
+			return 0;
+		}
+
+		return 1;
+	}
+
+	return 0;
+
+}// End of u8 DS1307_Start(void) 
 
 /******************* (C) COPYRIGHT 2017 陆超 ************* END OF FILE ********/
 

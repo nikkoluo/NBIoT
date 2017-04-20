@@ -18,6 +18,7 @@
 #include "ble.h"
 #include "nrf_delay.h"
 #include "Global_Typedef.h"
+#include "RTC_DS1307.h"
 #include "SW_I2C.h"
 #include "nordic_common.h"
 #include "stdio.h"
@@ -30,6 +31,7 @@
 #include "device_manager.h"
 #include "ble_dfu.h"
 #include "pstorage.h"
+
 
 /* Private define ------------------------------------------------------------*/
 

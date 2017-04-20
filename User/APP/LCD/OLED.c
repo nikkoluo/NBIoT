@@ -247,6 +247,8 @@ void OLED_String_6x8(u8 x, u8 y, u8 *pData, u8 ucLen);					// Ð´6*8×Ö·û
 void OLED_String_8x16(u8 x, u8 y, u8 *pData, u8 ucLen);					// Ð´8*16×Ö·û
 void OLED_String_16x16(u8 x, u8 y, u8 *pData, u8 ucLen);				// 16 * 16×Ö·û
 
+u8 OLED_Pos_Center(u8 ucLen);											// ¼ÆËã¾ÓÖÐ¶ÔÆë×ø±ê
+
 
 
 /*******************************************************************************
@@ -616,6 +618,20 @@ void OLED_String_8x16(u8 x, u8 y, u8 *pData, u8 ucLen)
 	}
 
 }// End of void OLED_String_8x16(u8 x, u8 y, u8 *pData, u8 ucLen)
+
+/*******************************************************************************
+*							Â½³¬@2017-04-20
+* Function Name  :	OLED_Pos_Center
+* Description	 :	OLED ¼ÆËã¾ÓÖÐ¶ÔÆë³¤¶È
+* Input 		 :	u8 ucLen ÏÔÊ¾ÄÚÈÝÏñËØ
+* Output		 :	None
+* Return		 :	x×ø±ê 0~127
+*******************************************************************************/
+u8 OLED_Pos_Center(u8 ucLen)
+{
+	return ((X_WIDTH - ucLen) >> 1)	;
+	
+}// End of u8 OLED_Pos_Center(u8 ucLen)
 
 /*******************************************************************************
 *							Â½³¬@2017-04-16

@@ -53,8 +53,8 @@ u8 LCD_Port_Init(void)
 *******************************************************************************/
 void LCD_Variable_Init(void)
 {
-	LCD.Page_Now  = LCD_PAGE_SENSOR;	
-	LCD.Page_Show = LCD_PAGE_SENSOR;
+	LCD.Page_Now  = LCD_PAGE_DEFAULT;	
+	LCD.Page_Show = LCD_PAGE_DEFAULT;
     
 }// End of void LCD_Variable_Init(void)
 

@@ -10,6 +10,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "Debug.h"
 #include "app_uart.h"
+#include "RTC_DS1307.h"
+
 #include <string.h>
 
 /* Private variables ---------------------------------------------------------*/
@@ -110,12 +112,14 @@ void Debug_Send_Wait_Empty(void)
 *******************************************************************************/
 void Receive_Data_Handler(u8* ucData, u16 usLen)
 {
+	time_t Time;
+	int Temp[7];
 
     ucData[usLen] = '\0';
     
 #ifndef SYS_TEST 
 
-    app_trace_log("接收: %s\r\n", ucData);
+ //   app_trace_log("接收: %s\r\n", ucData);
     
 #endif
 
@@ -123,6 +127,20 @@ void Receive_Data_Handler(u8* ucData, u16 usLen)
     if (Sys_Init != 1)
     {
         return;
+    }
+
+    if (memcmp(ucData, "setTime ", 8) == 0)
+    {
+    	sscanf((char*)ucData, "setTime %d %d %d %d %d %d %d", &Temp[0], &Temp[1], &Temp[2], &Temp[3], &Temp[4], &Temp[5], &Temp[6]);
+        Time.Year   = Temp[0] & 0xFF;
+        Time.Month  = Temp[1] & 0xFF;
+        Time.Day    = Temp[2] & 0xFF;
+        Time.Week   = Temp[3] & 0xFF;
+        Time.Hour   = Temp[4] & 0xFF;
+        Time.Minute = Temp[5] & 0xFF;
+        Time.Second = Temp[6] & 0xFF;
+
+    	DS1307_Set_Date(Time);										
     }
 
 }// End of void Receive_Data_Handler(u8* ucData, u16 usLen)

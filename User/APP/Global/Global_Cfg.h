@@ -109,8 +109,10 @@
 #define     MIOT_BOND_STOP_DELAY        5 * TASK_COMMUNAL_TIMER_FREQ    // 5s 绑定后继续闪烁一次
 
 //----------------------- LCD -------------------------------------------------/
+#define     LCD_PAGE_DEFAULT         	0                     			// 默认页面
 #define     LCD_PAGE_SENSOR         	0                     			// 传感器页面
 #define     LCD_PAGE_TIME         		1                     			// 时间页面
+#define     LCD_PAGE_LAST         		(LCD_PAGE_TIME + 1)            	// 时间页面
 
 
 //----------------------- Sensor ----------------------------------------------/
@@ -124,8 +126,8 @@
 
 #define     BAT_ADC_PIN                 3                             	// 电池ADC 管脚
 
-#define     COMMUNAL_IIC_2_SCL_PIN      7                              	// 通用IIC时钟
-#define     COMMUNAL_IIC_2_SDA_PIN      8                              	// 通用IIC数据
+#define     COMMUNAL_IIC_2_SCL_PIN      5                              	// 通用IIC时钟
+#define     COMMUNAL_IIC_2_SDA_PIN      6                              	// 通用IIC数据
 
 
 #define     UART_TX_PIN                 9                               // 串口

@@ -78,9 +78,17 @@ void RTC_Task_Create(void)
 *******************************************************************************/
 u32 RTC_Chip_Init(void)
 {
-    u32 Err_Code = NRF_SUCCESS;
 
-    return Err_Code;
+    if (DS1307_Start())
+    {
+    	return NRF_SUCCESS;
+    }
+    else
+    {
+    	return 0xFFFFFFFF;	
+    }
+
+    
         
 }// End of u32 RTC_Chip_Init(void)
 

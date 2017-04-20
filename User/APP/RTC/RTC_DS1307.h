@@ -22,7 +22,8 @@
 #define     DS1307_READ_ADDR            (DS1307_WRITE_ADDR | 0x01)      // DS1307读地址
 
 /* Private typedef -----------------------------------------------------------*/
-typedef struct clock {
+typedef struct
+{
 	unsigned char Month;
 	unsigned char Day;
 	unsigned char Year;
@@ -30,7 +31,9 @@ typedef struct clock {
 	unsigned char Hour;
 	unsigned char Minute;
 	unsigned char Second;
-} time_t;
+	
+} time_t;   
+
 
 /* Private variables ---------------------------------------------------------*/
 
@@ -38,6 +41,7 @@ typedef struct clock {
 /* Private function prototypes -----------------------------------------------*/
 extern	u8 DS1307_Set_Date(time_t time);								// 设置时间
 extern	u8 DS1307_Get_Data(time_t *time);								// 获取时间
+extern	u8 DS1307_Start(void);											// 启动
 
 #endif /* __RTC_DS1307_H */
 
