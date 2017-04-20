@@ -119,7 +119,7 @@ void Receive_Data_Handler(u8* ucData, u16 usLen)
     
 #ifndef SYS_TEST 
 
- //   app_trace_log("接收: %s\r\n", ucData);
+    app_trace_log("接收: %s\r\n", ucData);
     
 #endif
 

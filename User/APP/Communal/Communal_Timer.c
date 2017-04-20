@@ -62,7 +62,11 @@ void Communal_Timer_Task_Create(void)
 *******************************************************************************/
 void Communal_Timer_Task_Handle(void *p_arg)
 {
-
+	Log_Sign++;
+	if (Log_Sign >= (10 * (1000 / TASK_COMMUNAL_TIMER_PERIOD)))
+	{
+		Log_Sign = 0;	
+	}
     
 }// End of void Communal_Timer_Task_Handle(void *p_arg)
 

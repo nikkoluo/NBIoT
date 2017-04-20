@@ -242,6 +242,7 @@ u8 DS1307_Start(void)
 	// 读取时间
 	if (DS1307_Read_Register(0x00, &Data, 1))
 	{
+		// 最高位为1时时钟停止，需要清零启动
 		if (Data & 0x80)
 		{
 			Data &= 0x7F;

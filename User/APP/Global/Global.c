@@ -16,6 +16,7 @@
 u8                      Root_Access;                                    // 超级权限
 u8                      Sys_Status;                                     // 系统状态
 u8                      Sys_Init;                                       // 置一完成初始化 
+u32						Log_Sign;										// Log标志
 LCD_Typedef				LCD;											// LCD
 Task_Typedef            Button_Task;                                    // 按键任务
 Task_Typedef            RTC_Task;										// RTC任务

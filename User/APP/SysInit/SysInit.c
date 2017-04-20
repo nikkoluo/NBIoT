@@ -154,6 +154,8 @@ void Variable_Init(void)
     Sensor.tVOC_Baseline_Timestamp = 0;
     Sensor.tVOC_Baseline_Reset     = 0;
 
+    Log_Sign = 0;
+
 }// End of void Variable_Init(void)
 
 /*******************************************************************************

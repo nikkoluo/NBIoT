@@ -45,6 +45,7 @@
 extern  u8                      Root_Access;                            // 超级权限
 extern  u8                      Sys_Status;                             // 系统状态
 extern  u8                      Sys_Init;                               // 置一完成初始化 
+extern  u32						Log_Sign;								// Log输出标志
 extern  LCD_Typedef				LCD;									// LCD
 extern  Task_Typedef            Button_Task;                            // 按键任务
 extern  Task_Typedef            RTC_Task;								// RTC任务

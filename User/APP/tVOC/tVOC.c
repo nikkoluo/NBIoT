@@ -150,9 +150,11 @@ void tVOC_Task_Handle(void *p_arg)
 	err = sgp_measure_iaq_blocking_read(&tvoc_ppb, &co2_eq_ppm);
 	if (err == STATUS_OK) 
 	{
-		 app_trace_log("tVOC  Concentration: %dppb\n", tvoc_ppb);
-		 app_trace_log("CO2eq Concentration: %dppm\n", co2_eq_ppm);
-
+		if (Log_Sign < (1000 / TASK_COMMUNAL_TIMER_PERIOD))
+		{
+			app_trace_log("tVOC  Concentration: %dppb\n", tvoc_ppb);
+			app_trace_log("CO2eq Concentration: %dppm\n", co2_eq_ppm);
+		}
 		 // ¼ÇÂ¼tVOC eCO2
 		 Sensor.tVOC = tvoc_ppb;
 		 Sensor.eCO2 = co2_eq_ppm;

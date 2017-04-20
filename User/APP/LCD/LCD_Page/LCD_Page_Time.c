@@ -10,8 +10,10 @@
 /* Includes ------------------------------------------------------------------*/
 #include "LCD_Page_Time.h"
 #include "nrf_gpio.h"
+#include "sensirion_common.h"
 #include "nRF51_BLE_Private_Service.h"
 #include "OLED.h"
+#include "sgpc1x.h"
 #include <stdlib.h>
 
 /* Private variables ---------------------------------------------------------*/
@@ -35,7 +37,7 @@ void LCD_Page_Time_Prepare(void)
 
 	OLED_CLS();
 	
-
+    OLED_String_8x16(0,  40, "Base: ", 6);
 	LCD.Page_Now = LCD_PAGE_TIME;
 	
 }// End of void LCD_Page_Time_Prepare(void)
@@ -52,7 +54,9 @@ void LCD_Page_Time(void)
 {
 	u8 Temp[16];
 	u8 ucLen;
+	u32 uiBaseline;
 	time_t Time;
+
 
 	// 判断当前是否Time页面
 	if (LCD.Page_Now != LCD_PAGE_TIME)
@@ -73,6 +77,22 @@ void LCD_Page_Time(void)
 
 		OLED_String_8x16(OLED_Pos_Center(ucLen << 3),  16, Temp, ucLen);	
 		
+	}
+
+	// baseline
+	if (sgp_get_iaq_baseline(&uiBaseline) == STATUS_OK)
+	{
+		ucLen= sprintf((char *)Temp, "0x%08X", uiBaseline);
+		OLED_String_8x16(48,  40, Temp, ucLen);	
+
+		if (Log_Sign < (1000 / TASK_COMMUNAL_TIMER_PERIOD))
+		{
+			app_trace_log("-------------------baseline = 0x%08X\r\n", uiBaseline);
+		}
+	}
+	else
+	{
+		OLED_String_8x16(48,  40, "ERROR", 5);	
 	}
 	
 	
