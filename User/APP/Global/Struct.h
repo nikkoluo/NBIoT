@@ -200,8 +200,8 @@ typedef struct
 
 typedef struct 
 {
-    unsigned char       Screen_Show;									// 屏幕内容
-    unsigned char       Screen_Now;										// 当前内容
+    unsigned char       Page_Show;									    // 屏幕内容
+    unsigned char       Page_Now;										// 当前内容
     
     union
     {

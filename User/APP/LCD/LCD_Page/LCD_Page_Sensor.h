@@ -1,40 +1,35 @@
 /******************** (C) COPYRIGHT 2017 陆超 **********************************
-* File Name          :  LCD_Port.h
+* File Name          :  LCD_Page_Sensor.h
 * Author             :  陆超
 * CPU Type           :  nRF51802
 * IDE                :  IAR 7.8
 * Version            :  V1.0
 * Date               :  04/09/2017
-* Description        :  LCD_Port header file
+* Description        :  LCD_Page_Sensor header file
 *******************************************************************************/
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __LCD_PORT_H
-#define __LCD_PORT_H
+#ifndef __LCD_Page_Sensor_H
+#define __LCD_Page_Sensor_H
 
 /* Includes ------------------------------------------------------------------*/
-#include "Global.h"
+#include "LCD_Port.h"
 
 
 /* Private define ------------------------------------------------------------*/
-#define     PAGE_SENSOR         		0                     			// 传感器页面
-#define     PAGE_TIME         		    1                     			// 时间页面
-
-
 
 
 /* Private typedef -----------------------------------------------------------*/
-
-
 
 /* Private variables ---------------------------------------------------------*/
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void LCD_Variable_Init(void);                                   // LCD变量初始化
-extern  u8 LCD_Port_Init(void);                                         // 管脚初始化
+extern	void LCD_Page_Sensor_Prepare(void);								// 准备sensor页面
+extern	void LCD_Page_Sensor(void);										// 显示sensor页面
 
 
-#endif /* __LCD_PORT_H */
+#endif /* __LCD_Page_Sensor_H */
 
 /******************* (C) COPYRIGHT 2017 陆超 **** END OF FILE *****************/
+

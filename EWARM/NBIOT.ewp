@@ -384,6 +384,7 @@
           <state>$PROJ_DIR$\..\User\APP\tVOC\SGPC10</state>
           <state>$PROJ_DIR$\..\User\APP\LCD</state>
           <state>$PROJ_DIR$\..\User\APP\RTC</state>
+          <state>$PROJ_DIR$\..\User\APP\LCD\LCD_Page</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -2183,6 +2184,15 @@
     </group>
     <group>
       <name>LCD</name>
+      <group>
+        <name>LCD_Page</name>
+        <file>
+          <name>$PROJ_DIR$\..\User\APP\LCD\LCD_Page\LCD_Page_Sensor.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\User\APP\LCD\LCD_Page\LCD_Page_Sensor.h</name>
+        </file>
+      </group>
       <file>
         <name>$PROJ_DIR$\..\User\APP\LCD\LCD.c</name>
       </file>
