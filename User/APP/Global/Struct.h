@@ -177,7 +177,8 @@ typedef union
     {
         unsigned long   Temp_Humi               : 1;                    // ÎÂÊª¶È
         unsigned long   tVOC                    : 1;                    // tVOC
-        unsigned long   Reserved                : 30;
+        unsigned long   EEPROM                  : 1;                    // EEPROM
+        unsigned long   Reserved                : 29;
     };
     
 }System_ERR_Typedef;

@@ -39,6 +39,7 @@
 #include "LCD.h"
 #include "Communal_Timer.h"
 #include "app_trace.h"
+#include "EEPROM_Port.h"
 
 /* Private variables ---------------------------------------------------------*/
 
@@ -233,7 +234,10 @@ void Peripheral_Init(void)
 *******************************************************************************/
 void Task_Init(void)
 {
-
+    
+    // ≥ı ºªØEEPROM
+    EEPROM_Chip_Init();
+    
 	// RTC
 	RTC_Task_Create();
 

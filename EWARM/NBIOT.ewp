@@ -385,6 +385,7 @@
           <state>$PROJ_DIR$\..\User\APP\LCD</state>
           <state>$PROJ_DIR$\..\User\APP\RTC</state>
           <state>$PROJ_DIR$\..\User\APP\LCD\LCD_Page</state>
+          <state>$PROJ_DIR$\..\User\APP\EEPROM</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -2147,6 +2148,21 @@
       </file>
       <file>
         <name>$PROJ_DIR$\..\User\APP\DFU\nRF51_DFU.h</name>
+      </file>
+    </group>
+    <group>
+      <name>EEPROM</name>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\EEPROM\EEPROM.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\EEPROM\EEPROM.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\EEPROM\EEPROM_Port.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\EEPROM\EEPROM_Port.h</name>
       </file>
     </group>
     <group>
