@@ -12,3 +12,8 @@ SPI:  OLED
 IIC:  Sensor 
 UART: Debug
 ```
+### 命令说明
+- 设置时间<br>
+`setTime 17 4 21 5 12 04 32`<br>
+设置时间为 2017-04-21 星期五 12:04:32  
+
