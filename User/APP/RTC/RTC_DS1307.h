@@ -17,9 +17,9 @@
 
 
 /* Private define ------------------------------------------------------------*/
-#define     DS1307_ADDR                 0x68                            // DS1307鍦板潃
-#define     DS1307_WRITE_ADDR           (DS1307_ADDR << 1)              // DS1307鍐欏湴鍧�
-#define     DS1307_READ_ADDR            (DS1307_WRITE_ADDR | 0x01)      // DS1307璇诲湴鍧�
+#define     DS1307_ADDR                 0x68                            // DS1307地址
+#define     DS1307_WRITE_ADDR           (DS1307_ADDR << 1)              // DS1307写地址
+#define     DS1307_READ_ADDR            (DS1307_WRITE_ADDR | 0x01)      // DS1307读地址
 
 /* Private typedef -----------------------------------------------------------*/
 typedef struct
@@ -32,16 +32,17 @@ typedef struct
 	unsigned char Minute;
 	unsigned char Second;
 	
-} time_t;   
+} Time_t;   
 
 
 /* Private variables ---------------------------------------------------------*/
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern	u8 DS1307_Set_Date(time_t time);								// 璁剧疆鏃堕棿
-extern	u8 DS1307_Get_Data(time_t *time);								// 鑾峰彇鏃堕棿
-extern	u8 DS1307_Start(void);											// 鍚姩
+extern	u8 DS1307_Set_Date(Time_t time);								// 设置时间
+extern	u8 DS1307_Get_Data(Time_t *time);								// 获取时间
+extern	u8 DS1307_Start(void);											// 启动
+extern	u32 DS1307_Year_TO_Sec(Time_t time);							// 年月日转Nuix
 
 #endif /* __RTC_DS1307_H */
 

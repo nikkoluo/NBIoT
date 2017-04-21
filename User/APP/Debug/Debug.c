@@ -112,7 +112,7 @@ void Debug_Send_Wait_Empty(void)
 *******************************************************************************/
 void Receive_Data_Handler(u8* ucData, u16 usLen)
 {
-	time_t Time;
+	Time_t Time;
 	int Temp[7];
 
     ucData[usLen] = '\0';

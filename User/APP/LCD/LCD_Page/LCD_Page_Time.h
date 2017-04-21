@@ -17,6 +17,9 @@
 
 
 /* Private define ------------------------------------------------------------*/
+#define     LCD_BASELINE_Y_ADDR  		32                              // baseline地址
+#define     LCD_UNIX_Y_ADDR  			48                              // Unix地址
+
 
 
 /* Private typedef -----------------------------------------------------------*/

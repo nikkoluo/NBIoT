@@ -12,14 +12,16 @@
 #include "Communal_IIC.h"
 #include "sensirion_common.h"
 #include "nrf_delay.h"
+#include <time.h>
 
 /* Private variables ---------------------------------------------------------*/
   
 /* Private function prototypes -----------------------------------------------*/
 u8 DS1307_Get_Week(u8 Year, u8 Month, u8 Day);							// 获取星期
-u8 DS1307_Set_Date(time_t time);										// 设置时间
-u8 DS1307_Get_Data(time_t *time);										// 获取时间
+u8 DS1307_Set_Date(Time_t time);										// 设置时间
+u8 DS1307_Get_Data(Time_t *time);										// 获取时间
 u8 DS1307_Start(void);													// 启动
+u32 DS1307_Year_TO_Sec(Time_t time);									// 年月日转Nuix
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -154,11 +156,11 @@ u8 DS1307_Write_Register(u8 ucWrite_Addr, u8* pBuffer, u16 usWrite_Len)
 *                           陆超@2017-04-19
 * Function Name  :  DS1307_Set_Date
 * Description    :  设置时间
-* Input          :  time_t time 待设置的时间
+* Input          :  Time_t time 待设置的时间
 * Output         :  None
 * Return         :  1成功 0失败
 *******************************************************************************/
-u8 DS1307_Set_Date(time_t time) 
+u8 DS1307_Set_Date(Time_t time) 
 {
 	u8 Data[7];
 	u8 ucLen = 0;
@@ -193,17 +195,17 @@ u8 DS1307_Set_Date(time_t time)
 		return 0;
 	}
 	
-}// End of u8 DS1307_Set_Date(time_t time) 
+}// End of u8 DS1307_Set_Date(Time_t time) 
 
 /*******************************************************************************
 *                           陆超@2017-04-19
 * Function Name  :  DS1307_Get_Data
 * Description    :  读取时间
-* Input          :  time_t *time 读取的时间
+* Input          :  Time_t *time 读取的时间
 * Output         :  None
 * Return         :  1成功 0失败
 *******************************************************************************/
-u8 DS1307_Get_Data(time_t *time) 
+u8 DS1307_Get_Data(Time_t *time) 
 {
 	u8 Data[7];
 	u8 ucLen = 0;
@@ -224,7 +226,33 @@ u8 DS1307_Get_Data(time_t *time)
 
 	return 0;
 
-}// End of u8 DS1307_Get_Data(time_t *time) 
+}// End of u8 DS1307_Get_Data(Time_t *time) 
+
+/*******************************************************************************
+*                           陆超@2014-08-14
+* Function Name  :  RTC_Year_TO_Sec
+* Description    :  RTC年月日转化为秒
+* Input          :  void
+* Output         :  None
+* Return         :  1970年开始的秒
+*******************************************************************************/
+u32 DS1307_Year_TO_Sec(Time_t time)
+{
+    u32 uiTime;
+    struct tm Time;
+    Time.tm_year  = time.Year + 100;
+    Time.tm_mon   = time.Month - 1;
+    Time.tm_mday  = time.Day;
+    Time.tm_wday  = time.Week % 7;
+    Time.tm_hour  = time.Hour;
+    Time.tm_min   = time.Minute;
+    Time.tm_sec   = time.Second;
+    Time.tm_isdst = -1;
+    uiTime = mktime(&Time);
+
+    return (uiTime);
+
+}// End of u32 DS1307_Year_TO_Sec(Time_t time)
 
 
 /*******************************************************************************

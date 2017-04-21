@@ -37,7 +37,8 @@ void LCD_Page_Time_Prepare(void)
 
 	OLED_CLS();
 	
-    OLED_String_8x16(0,  40, "Base: ", 6);
+    OLED_String_8x16(0,  LCD_BASELINE_Y_ADDR, "Base: ", 6);
+    OLED_String_8x16(0,  LCD_UNIX_Y_ADDR,     "Unix: ", 6);
 	LCD.Page_Now = LCD_PAGE_TIME;
 	
 }// End of void LCD_Page_Time_Prepare(void)
@@ -55,7 +56,8 @@ void LCD_Page_Time(void)
 	u8 Temp[16];
 	u8 ucLen;
 	u32 uiBaseline;
-	time_t Time;
+	u32 Unix;
+	Time_t Time;
 
 
 	// 判断当前是否Time页面
@@ -79,11 +81,21 @@ void LCD_Page_Time(void)
 		
 	}
 
+	// UNIX
+	Unix = DS1307_Year_TO_Sec(Time);
+	ucLen= sprintf((char *)Temp, "0x%08X", Unix);
+	OLED_String_8x16(48,  LCD_UNIX_Y_ADDR, Temp, ucLen);	
+
+	if (Log_Sign < (1000 / TASK_COMMUNAL_TIMER_PERIOD))
+	{
+		app_trace_log("-------------------Unix = 0x%08X\r\n", Unix);
+	}
+
 	// baseline
 	if (sgp_get_iaq_baseline(&uiBaseline) == STATUS_OK)
 	{
 		ucLen= sprintf((char *)Temp, "0x%08X", uiBaseline);
-		OLED_String_8x16(48,  40, Temp, ucLen);	
+		OLED_String_8x16(48,  LCD_BASELINE_Y_ADDR, Temp, ucLen);	
 
 		if (Log_Sign < (1000 / TASK_COMMUNAL_TIMER_PERIOD))
 		{
@@ -92,7 +104,7 @@ void LCD_Page_Time(void)
 	}
 	else
 	{
-		OLED_String_8x16(48,  40, "ERROR", 5);	
+		OLED_String_8x16(48,  LCD_BASELINE_Y_ADDR, "ERROR", 5);	
 	}
 	
 	
