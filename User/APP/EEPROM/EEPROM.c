@@ -137,7 +137,7 @@ u8 EEPROM_Write_Data(u16 usWrite_Addr, u8* pBuffer, u16 usWrite_Len)
 u16 EEPROM_Read_Data(u16 usRead_Addr, u8* pBuffer)
 {
 	u16 usADD = 0;
-	u8 Buffer[2];
+	u8 Buffer[4];
 	u16 i;
 	u16 usReadLen = 0;
 
@@ -154,8 +154,9 @@ u16 EEPROM_Read_Data(u16 usRead_Addr, u8* pBuffer)
     }
 
 	// 读取数据和累加
-	EEPROM_Read_Buffer(usRead_Addr, pBuffer, (usReadLen) + 2);
-
+	EEPROM_Read_Buffer(usRead_Addr, pBuffer, usReadLen);
+	EEPROM_Read_Buffer(usRead_Addr + usReadLen, &Buffer[2], 2);
+	
 	// 计算累加
 	usADD += Buffer[0];
 	usADD += Buffer[1];
@@ -165,7 +166,7 @@ u16 EEPROM_Read_Data(u16 usRead_Addr, u8* pBuffer)
 	}
 
 	// 是否校验失败
-	if (usADD != ((pBuffer[(usReadLen)] << 8) + pBuffer[(usReadLen) + 1])) 
+	if (usADD != ((Buffer[2] << 8) + Buffer[3])) 
 	{
 		usReadLen = 0;
 	}

@@ -610,7 +610,9 @@ s16 sgp_set_iaq_baseline(u32 baseline) {
     profile = sgp_get_profile_by_number(PROFILE_NUMBER_IAQ_SET_BASELINE);
 
     /* assemble buffer */
-    *((u16 *)&buf[buf_idx]) = *((u16 *)profile->command.value);
+//    *((u16 *)&buf[buf_idx]) = *((u16 *)profile->command.value);
+    buf[buf_idx]     = profile->command.value[0];
+    buf[buf_idx + 1] = profile->command.value[1];
     buf_idx += SGP_COMMAND_LEN;
 
     *((u16 *)&buf[buf_idx]) = be16_to_cpu((baseline >> 16) & 0xFFFF);
@@ -619,7 +621,9 @@ s16 sgp_set_iaq_baseline(u32 baseline) {
                                              SGP_WORD_LEN);
     buf_idx += CRC8_LEN;
 
-    *((u16 *)&buf[buf_idx]) = be16_to_cpu(baseline & 0xFFFF);
+//    *((u16 *)&buf[buf_idx]) = be16_to_cpu(baseline & 0xFFFF);
+    buf[buf_idx]     = (baseline >> 8) & 0xFF;
+    buf[buf_idx + 1] = (baseline >> 0) & 0xFF;
     buf_idx += SGP_WORD_LEN;
     buf[buf_idx] = sensirion_common_generate_crc(&buf[buf_idx - SGP_WORD_LEN],
                                              SGP_WORD_LEN);

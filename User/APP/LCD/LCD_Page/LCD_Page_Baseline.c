@@ -72,10 +72,10 @@ void LCD_Page_Baseline(void)
 	if (Log_Sign < (1000 / TASK_COMMUNAL_TIMER_PERIOD))
 	{
 		app_trace_log("-------------------baseline = 0x%08X\r\n", tVOC.Baseline_Now);
-		if (tVOC.Baseline_Now)
-		{
-			tVOC_Save_Baseline(System.Unix_Sec, tVOC.Baseline_Now);
-		}
+//		if (tVOC.Baseline_Now)
+//		{
+//			tVOC_Save_Baseline(System.Unix_Sec, tVOC.Baseline_Now);
+//		}
 	}
 
 	// ±£´æ¹ýbaseline
@@ -104,7 +104,7 @@ void LCD_Page_Baseline(void)
 				uiSub_Value -= 	ucHour * 60 * 60;	
 			}
 			ucMin  = uiSub_Value / 60;
-			ucLen  = sprintf((char *)Temp, "%01dd %02dh %03dm ago", ucDay, ucHour, ucMin);
+			ucLen  = sprintf((char *)Temp, "%01dd %02dh %02dm ago", ucDay, ucHour, ucMin);
 			OLED_String_8x16(OLED_Pos_Center(ucLen << 3),  LCD_BASE_SAVETIME_Y_ADDR, Temp, ucLen);
 		}
 	}

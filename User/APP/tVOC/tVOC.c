@@ -101,7 +101,19 @@ u32 tVOC_Chip_Init(void)
 
 		// 获取baseline
 		tVOC_Get_Saved_Baseline(System.Unix_Sec, &tVOC.Baseline_Saved);
-        Err_Code = NRF_SUCCESS;
+
+		if (tVOC.Baseline_Valid)
+		{
+			if (sgp_set_iaq_baseline(tVOC.Baseline_Saved) == STATUS_OK)
+			{
+				app_trace_log("tVOC 设置baseline成功!\r\n"); 	
+			}
+			else
+			{
+				app_trace_log("tVOC 设置baseline失败!\r\n"); 	
+			}
+		}
+
 
 		
 	}
@@ -206,6 +218,7 @@ void tVOC_Baseline_Handle(void)
 				
 	    		if (sgp_iaq_init() == STATUS_OK)
 	    		{
+	    			tVOC.Baseline_Now = tVOC.Baseline_Saved;
 	    			app_trace_log("tVOC  sgp_iaq_init Success \r\n");	
 	    		}
 	    		else
@@ -242,7 +255,7 @@ u8 tVOC_Save_Baseline(u32 uiSec, u32 uiBaseline)
 {
 	u32 Buffer[2];
 	Buffer[0] = uiSec;
-	Buffer[0] = uiBaseline;
+	Buffer[1] = uiBaseline;
 
 	// 存
 	if (EEPROM_Write_Data(EEPROM_ADDR_BASELINE, (u8*)&Buffer, 8))
