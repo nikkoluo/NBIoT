@@ -37,7 +37,7 @@ void LCD_Page_Time_Prepare(void)
 
 	OLED_CLS();
 	
-    OLED_String_8x16(0,  LCD_BASELINE_Y_ADDR, "Base: ", 6);
+//    OLED_String_8x16(0,  LCD_BASELINE_Y_ADDR, "Base: ", 6);
     OLED_String_8x16(0,  LCD_UNIX_Y_ADDR,     "Unix: ", 6);
 	LCD.Page_Now = LCD_PAGE_TIME;
 	
@@ -86,33 +86,26 @@ void LCD_Page_Time(void)
 	ucLen= sprintf((char *)Temp, "0x%08X", Unix);
 	OLED_String_8x16(48,  LCD_UNIX_Y_ADDR, Temp, ucLen);
 
-	DS1307_Unix_TO_Year(Unix, &Time);
-	ucLen = sprintf((char *)Temp, "20%02d-%02d-%02d %s", 
-								Time.Year, Time.Month,  Time.Day, (u8*)&Week[Time.Week - 1]);
-	app_trace_log("Data : %s\r\n", Temp);						
-	ucLen = sprintf((char *)Temp, "%02d:%02d:%02d",Time.Hour, Time.Minute, Time.Second );
-	app_trace_log("Time : %s\r\n", Temp);
-
 	if (Log_Sign < (1000 / TASK_COMMUNAL_TIMER_PERIOD))
 	{
 		app_trace_log("-------------------Unix = 0x%08X\r\n", Unix);
 	}
 
-	// baseline
-	if (sgp_get_iaq_baseline(&uiBaseline) == STATUS_OK)
-	{
-		ucLen= sprintf((char *)Temp, "0x%08X", uiBaseline);
-		OLED_String_8x16(48,  LCD_BASELINE_Y_ADDR, Temp, ucLen);	
+//	// baseline
+//	if (sgp_get_iaq_baseline(&uiBaseline) == STATUS_OK)
+//	{
+//		ucLen= sprintf((char *)Temp, "0x%08X", uiBaseline);
+//		OLED_String_8x16(48,  LCD_BASELINE_Y_ADDR, Temp, ucLen);	
 
-		if (Log_Sign < (1000 / TASK_COMMUNAL_TIMER_PERIOD))
-		{
-			app_trace_log("-------------------baseline = 0x%08X\r\n", uiBaseline);
-		}
-	}
-	else
-	{
-		OLED_String_8x16(48,  LCD_BASELINE_Y_ADDR, "ERROR", 5);	
-	}
+//		if (Log_Sign < (1000 / TASK_COMMUNAL_TIMER_PERIOD))
+//		{
+//			app_trace_log("-------------------baseline = 0x%08X\r\n", uiBaseline);
+//		}
+//	}
+//	else
+//	{
+//		OLED_String_8x16(48,  LCD_BASELINE_Y_ADDR, "ERROR   ", 8);	
+//	}
 	
 	
 }// End of void LCD_Page_Time(void)

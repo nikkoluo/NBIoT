@@ -11,6 +11,8 @@
 #include "tVOC.h"
 #include "nrf_gpio.h"
 #include "sgpc1x.h"
+#include "EEPROM.h"
+
 
 
 #include <stdlib.h>
@@ -24,6 +26,8 @@ void tVOC_Get(void);                                                    // 获取t
 void tVOC_Port_Init(void);                                              // tVOC管脚初始化
 void tVOC_Variable_Init(void);                                          // 变量初始化
 u32 tVOC_Chip_Init(void);                                               // 芯片初始化
+u32 tVOC_Get_Saved_Baseline(u32 uiSec, u32 *pBaseline);					// 获取baseline
+u8 tVOC_Save_Baseline(u32 uiSec, u32 uiBaseline);						// 保存baseline
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
@@ -169,6 +173,55 @@ void tVOC_Task_Handle(void *p_arg)
 
 }// End of void tVOC_Task_Handle(void *p_arg)
 
+/*******************************************************************************
+*                           陆超@2017-04-22
+* Function Name  :  tVOC_Save_Baseline
+* Description    :  tVOC保存baseline
+* Input          :  u32 uiSec			当前unix秒
+*					u32 uiBaseline		tVOC Baseline
+* Output         :  None
+* Return         :  1成功 0失败
+*******************************************************************************/
+u8 tVOC_Save_Baseline(u32 uiSec, u32 uiBaseline)
+{
+	u32 Buffer[2];
+	Buffer[0] = uiSec;
+	Buffer[0] = uiBaseline;
+	return (EEPROM_Write_Data(EEPROM_ADDR_BASELINE, (u8*)&Buffer, 8));
+
+}// End of u8 tVOC_Save_Baseline(u32 uiSec, u32 uiBaseline) 
+
+/*******************************************************************************
+*                           陆超@2017-04-22
+* Function Name  :  tVOC_Save_Baseline
+* Description    :  tVOC读取baseline
+* Input          :  u32 uiSec			当前unix秒
+*					u32 *pBaseline		获取的baseline
+* Output         :  None
+* Return         :  成功 返回储存时时间          0失败 baseline超过7天也算失败
+*******************************************************************************/
+u32 tVOC_Get_Saved_Baseline(u32 uiSec, u32 *pBaseline)
+{
+	u32 Buffer[2];
+	u32 ucResult = 0;
+
+	// 读取成功
+	if (EEPROM_Read_Data(EEPROM_ADDR_BASELINE, (u8*)&Buffer))
+	{
+		// 相差7天内
+		if ((uiSec > Buffer[0]) && (uiSec - Buffer[0] < (7 * 24 * 60 * 60)))
+		{
+			// 获取baseline
+			*pBaseline = Buffer[1];	
+
+			// 获取储存时间
+			ucResult   = Buffer[0];
+		}
+	}
+
+	return ucResult;
+
+}// End of u32 tVOC_Get_Saved_Baseline(u32 uiSec, u32 *pBaseline) 
 
 
 /*******************************************************************************

@@ -25,7 +25,7 @@
 
 #define     EEPROM_TEST_ADDR            EEPROM_CHIP_SIZE - 32           // EEPROM测试数据地址
 
-#define     EEPROM_ADDR_BASELINE        (1 << 5)          				// EEPROMbaseline地址
+
 
 
 

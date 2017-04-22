@@ -76,6 +76,10 @@
 #define     MAC_FLASH_SIZE              6                               // mac flash储存字节
 #define     TOKEN_FLASH_SIZE            8                               // token flash储存字节
 
+//----------------------- EEPROM ----------------------------------------------/
+#define     EEPROM_ADDR_BASELINE        (1 << 5)          				// EEPROMbaseline地址
+
+
 //----------------------- BLE MIOT --------------------------------------------/
 #define     MIOT_EVENT_ID_TH            0x100D                          // 温湿度事件ID
 #define     MIOT_EVENT_TH_LEN           3                               // 温湿度事件长度 

@@ -27,6 +27,8 @@
 /* Private function prototypes -----------------------------------------------*/
 extern  void EEPROM_Task_Handle(void *p_arg);                           // EEPROM任务
 extern  void EEPROM_Task_Create(void);                                  // 创建EEPROM任务
+extern 	u8 EEPROM_Write_Data(u16 usWrite_Addr, u8* pBuffer, u16 usWrite_Len);	// 写数据
+extern 	u16 EEPROM_Read_Data(u16 usRead_Addr, u8* pBuffer);				// 读数据
 
 
 #endif /* __EEPROM_H */

@@ -25,9 +25,11 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-extern  void tVOC_Timer_Handle(void *p_arg);                           // tVOC任务
-extern  void tVOC_Task_Create(void);                                   // 创建tVOC任务
-extern  void tVOC_Get(void);                                           // 获取tVOC
+extern  void tVOC_Timer_Handle(void *p_arg);                          	// tVOC任务
+extern  void tVOC_Task_Create(void);                                   	// 创建tVOC任务
+extern  void tVOC_Get(void);                                           	// 获取tVOC
+extern  u32 tVOC_Get_Saved_Baseline(u32 uiSec, u32 *pBaseline);			// 获取baseline
+extern  u8 tVOC_Save_Baseline(u32 uiSec, u32 uiBaseline);				// 保存baseline
 
 #endif /* __TVOC_H */
 
