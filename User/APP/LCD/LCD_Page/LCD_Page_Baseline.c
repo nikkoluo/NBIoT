@@ -88,25 +88,26 @@ void LCD_Page_Baseline(void)
 
 			// baseline
 			ucLen= sprintf((char *)Temp, "0x%08X", tVOC.Baseline_Saved);
-			OLED_String_8x16(6 * 8,  LCD_BASE_SAVE_Y_ADDR, Temp, ucLen);vs16
+			OLED_String_8x16(6 * 8,  LCD_BASE_SAVE_Y_ADDR, Temp, ucLen);
 
-			// baseline 时间
-			uiSub_Value = System.Unix_Sec - tVOC.Baseline_LastSave_Timestamp;
-			ucDay       = uiSub_Value / (24 * 60 * 60);
-			if (ucDay)
-			{
-				uiSub_Value -= 	ucDay * 24 * 60 * 60;
-			}
-
-			ucHour = uiSub_Value / (60 * 60);
-			if (ucHour)
-			{
-				uiSub_Value -= 	ucHour * 60 * 60;	
-			}
-			ucMin  = uiSub_Value / 60;
-			ucLen  = sprintf((char *)Temp, "%01dd %02dh %02dm ago", ucDay, ucHour, ucMin);
-			OLED_String_8x16(OLED_Pos_Center(ucLen << 3),  LCD_BASE_SAVETIME_Y_ADDR, Temp, ucLen);
 		}
+
+		// baseline 时间
+		uiSub_Value = System.Unix_Sec - tVOC.Baseline_LastSave_Timestamp;
+		ucDay       = uiSub_Value / (24 * 60 * 60);
+		if (ucDay)
+		{
+			uiSub_Value -= 	ucDay * 24 * 60 * 60;
+		}
+
+		ucHour = uiSub_Value / (60 * 60);
+		if (ucHour)
+		{
+			uiSub_Value -= 	ucHour * 60 * 60;	
+		}
+		ucMin  = uiSub_Value / 60;
+		ucLen  = sprintf((char *)Temp, "%01dd %02dh %02dm ago", ucDay, ucHour, ucMin);
+		OLED_String_8x16(OLED_Pos_Center(ucLen << 3),  LCD_BASE_SAVETIME_Y_ADDR, Temp, ucLen);
 	}
 	else
 	{
