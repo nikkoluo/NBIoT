@@ -97,9 +97,11 @@ u32 tVOC_Chip_Init(void)
 	else
 	{
 		System_Err.tVOC = 0;
+        
 
 		// 获取baseline
 		tVOC_Get_Saved_Baseline(System.Unix_Sec, &tVOC.Baseline_Saved);
+        Err_Code = NRF_SUCCESS;
 
 		
 	}
@@ -181,7 +183,12 @@ void tVOC_Baseline_Handle(void)
 	// baseline有效
 	if (tVOC.Baseline_Valid)
 	{
-	
+		// 是否到1小时
+		if (System.Unix_Sec - tVOC.Baseline_LastSave_Timestamp >= 60 * 60)
+		{
+			// 更新baseline
+			tVOC_Save_Baseline(System.Unix_Sec, tVOC.Baseline_Now);		
+		}
 	}
 	else
 	{
@@ -213,6 +220,7 @@ void tVOC_Baseline_Handle(void)
 	    	if (tVOC.Baseline_Timestamp >= 12 * 60 * 60)
 	    	{
 	    		tVOC_Save_Baseline(System.Unix_Sec, tVOC.Baseline_Now);	
+
 	    	}
 	    }
     }
@@ -242,6 +250,8 @@ u8 tVOC_Save_Baseline(u32 uiSec, u32 uiBaseline)
 		// 置位baseline有效
 		tVOC.Baseline_Valid              = 1;
 		tVOC.Baseline_LastSave_Timestamp = uiSec; 
+		tVOC.Baseline_Saved			     = uiBaseline;
+		tVOC.Baseline_Refresh            = 1;
         
         return 1;
 	}
@@ -269,7 +279,7 @@ u32 tVOC_Get_Saved_Baseline(u32 uiSec, u32 *pBaseline)
 	u32 ucResult = 0;
 
 	// 读取成功
-	if (EEPROM_Read_Data(EEPROM_ADDR_BASELINE, (u8*)&Buffer))
+	if (EEPROM_Read_Data(EEPROM_ADDR_BASELINE, (u8*)Buffer))
 	{
 		// 相差7天内
 		if ((uiSec > Buffer[0]) && (uiSec - Buffer[0] < (7 * 24 * 60 * 60)))
@@ -287,7 +297,8 @@ u32 tVOC_Get_Saved_Baseline(u32 uiSec, u32 *pBaseline)
 		}
 		else
 		{
-			tVOC.Baseline_Valid = 0;
+			tVOC.Baseline_Valid              = 0;
+			tVOC.Baseline_LastSave_Timestamp = 0;
 			app_trace_log("-------------------No Saved baseline!\r\n");
 		}
 	}
@@ -322,7 +333,10 @@ void tVOC_Port_Init(void)
 void tVOC_Variable_Init(void)
 {
 	// 默认baseline无效
-	tVOC.Baseline_Valid = 0;
+	tVOC.Baseline_Valid   			 = 0;
+	tVOC.Baseline_Refresh 			 = 1;
+	tVOC.Baseline_Now                = 0;
+	tVOC.Baseline_LastSave_Timestamp = 0;
     
 }// End of void tVOC_Variable_Init(void)
 

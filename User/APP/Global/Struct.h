@@ -89,6 +89,7 @@ typedef struct
     unsigned int      	Baseline_LastSave_Timestamp;                    // tVOC 上次记录baseline时间戳
     unsigned char       Baseline_Valid;                           		// baseline有效
     unsigned char       Baseline_15min_Reset;							// tVOC 15分钟重置标志位
+    unsigned char       Baseline_Refresh;								// tVOC 刷新
     
 } tVOC_Typedef;                                                			// tVOC结构体
 

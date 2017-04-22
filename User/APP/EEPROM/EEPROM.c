@@ -147,6 +147,11 @@ u16 EEPROM_Read_Data(u16 usRead_Addr, u8* pBuffer)
 
 	// 长度
 	usReadLen = (Buffer[0] << 8) + Buffer[1];
+    
+    if (usReadLen > EEPROM_CHIP_SIZE)
+    {
+        return 0;
+    }
 
 	// 读取数据和累加
 	EEPROM_Read_Buffer(usRead_Addr, pBuffer, (usReadLen) + 2);
@@ -160,7 +165,7 @@ u16 EEPROM_Read_Data(u16 usRead_Addr, u8* pBuffer)
 	}
 
 	// 是否校验失败
-	if (usADD != ((pBuffer[(usReadLen) - 2] << 8) + pBuffer[(usReadLen) - 1])) 
+	if (usADD != ((pBuffer[(usReadLen)] << 8) + pBuffer[(usReadLen) + 1])) 
 	{
 		usReadLen = 0;
 	}

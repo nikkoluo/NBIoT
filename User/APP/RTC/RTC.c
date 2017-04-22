@@ -18,11 +18,12 @@
 /* Private variables ---------------------------------------------------------*/
         
 /* Private function prototypes -----------------------------------------------*/
-void RTC_Task_Handle(void *p_arg);                                     // RTC任务
-void RTC_Task_Create(void);                                            // 创建RTC任务
-void RTC_Port_Init(void);                                              // RTC管脚初始化
-void RTC_Variable_Init(void);                                          // 变量初始化
-u32 RTC_Chip_Init(void);                                               // 芯片初始化
+void RTC_Task_Handle(void *p_arg);                                     	// RTC任务
+void RTC_Task_Create(void);                                            	// 创建RTC任务
+void RTC_Port_Init(void);                                              	// RTC管脚初始化
+void RTC_Variable_Init(void);                                          	// 变量初始化
+u32 RTC_Chip_Init(void);                                               	// 芯片初始化
+void RTC_Time_Refresh(void);											// 刷新时间
 
 /* Private functions ---------------------------------------------------------*/
 /*******************************************************************************
@@ -83,6 +84,7 @@ u32 RTC_Chip_Init(void)
     if (DS1307_Start())
     {
     	System_Err.RTC = 0;
+    	RTC_Time_Refresh();
     	return NRF_SUCCESS;
     }
     else
@@ -95,6 +97,27 @@ u32 RTC_Chip_Init(void)
         
 }// End of u32 RTC_Chip_Init(void)
 
+
+/*******************************************************************************
+*                           陆超@2017-04-19
+* Function Name  :  RTC_Time_Refresh
+* Description    :  刷新时间
+* Input          :  void *p_arg
+* Output         :  None
+* Return         :  None
+*******************************************************************************/
+void RTC_Time_Refresh(void)
+{
+
+	if (DS1307_Get_Data(&System.Time))
+	{
+
+		System.Unix_Sec = DS1307_Year_TO_Unix(&System.Time);
+	}
+
+}// End of void RTC_Time_Refresh(void *p_arg)
+
+
 /*******************************************************************************
 *                           陆超@2017-04-19
 * Function Name  :  RTC_Task_Handle
@@ -106,11 +129,7 @@ u32 RTC_Chip_Init(void)
 void RTC_Task_Handle(void *p_arg)
 {
 
-	if (DS1307_Get_Data(&System.Time))
-	{
-
-		System.Unix_Sec = DS1307_Year_TO_Unix(&System.Time);
-	}
+	RTC_Time_Refresh();
 
 }// End of void RTC_Task_Handle(void *p_arg)
 
