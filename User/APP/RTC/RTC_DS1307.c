@@ -15,13 +15,14 @@
 #include <time.h>
 
 /* Private variables ---------------------------------------------------------*/
-  
+static const u8 DayOfMon[12] = {31, 28, 31, 30 , 31, 30, 31, 31, 30, 31, 30, 31};  
 /* Private function prototypes -----------------------------------------------*/
 u8 DS1307_Get_Week(u8 Year, u8 Month, u8 Day);							// 获取星期
 u8 DS1307_Set_Date(Time_t time);										// 设置时间
 u8 DS1307_Get_Data(Time_t *time);										// 获取时间
 u8 DS1307_Start(void);													// 启动
-u32 DS1307_Year_TO_Sec(Time_t time);									// 年月日转Nuix
+u32 DS1307_Year_TO_Unix(Time_t time);									// 年月日转unix
+void DS1307_Unix_TO_Year(u32 uiSec, Time_t *time);						// unix转年月日
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -229,30 +230,134 @@ u8 DS1307_Get_Data(Time_t *time)
 }// End of u8 DS1307_Get_Data(Time_t *time) 
 
 /*******************************************************************************
-*                           陆超@2014-08-14
-* Function Name  :  RTC_Year_TO_Sec
-* Description    :  RTC年月日转化为秒
+*                           陆超@2017-04-22
+* Function Name  :  DS1307_Year_TO_Unix
+* Description    :  RTC年月日转Unix
 * Input          :  void
 * Output         :  None
 * Return         :  1970年开始的秒
 *******************************************************************************/
-u32 DS1307_Year_TO_Sec(Time_t time)
+u32 DS1307_Year_TO_Unix(Time_t time)
 {
-    u32 uiTime;
-    struct tm Time;
-    Time.tm_year  = time.Year + 100;
-    Time.tm_mon   = time.Month - 1;
-    Time.tm_mday  = time.Day;
-    Time.tm_wday  = time.Week % 7;
-    Time.tm_hour  = time.Hour;
-    Time.tm_min   = time.Minute;
-    Time.tm_sec   = time.Second;
-    Time.tm_isdst = -1;
-    uiTime = mktime(&Time);
 
-    return (uiTime);
+	u16 rYear, i, Cyear=0;
+	u8 rMon, rDay, rHour, rMin, rSec;
+	u32 CountDay = 0;
+	
+	rSec  = time.Second;
+	rMin  = time.Minute;;
+	rHour = time.Hour;
+	rDay  = time.Day;
+	rMon  = time.Month;
+	rYear = time.Year + 2000;
 
-}// End of u32 DS1307_Year_TO_Sec(Time_t time)
+	// 闰年
+	for(i = 1970; i < rYear; i++)
+	{
+		if(((i % 4 == 0) && (i % 100 != 0)) || (i % 400 == 0))	
+		{
+			Cyear++;
+		}
+	}
+
+	// 到今年的天书
+	CountDay = Cyear * 366 + (rYear -1970 - Cyear) * 365;
+
+	// 闰年2月
+	for(i = 1; i < rMon; i++)
+	{
+		if((i == 2) && (((rYear % 4 == 0) && (rYear % 100 != 0)) || (rYear % 400 == 0)))
+		{
+			CountDay += 29;
+		}
+		else
+		{
+			CountDay += DayOfMon[i-1];
+		}
+	}
+	CountDay += (rDay - 1);
+
+	// 天数转秒数
+	CountDay = CountDay * (60 * 60 * 24) + (unsigned long)rHour * (60 * 60) + (unsigned long)rMin * 60 + rSec;
+
+	// 北京时间转化为世界时间
+	CountDay = CountDay - 8 * 3600;
+	return CountDay;
+
+}// End of u32 DS1307_Year_TO_Unix(Time_t time)
+
+/*******************************************************************************
+*                           陆超@2017-04-22
+* Function Name  :  DS1307_Unix_TO_Year
+* Description    :  Unix转年月日
+* Input          :  u32 uiSec		unix 秒
+*					Time_t *time	转换后年月日
+* Output         :  None
+* Return         :  None
+*******************************************************************************/
+void DS1307_Unix_TO_Year(u32 uiSec, Time_t *time)
+{
+	u16 i,j,usDay;
+	u32 uiDay;
+
+	// 转换为北京时间
+	uiSec = uiSec + 8 * 3600;
+
+	// 计算过去天数和剩余秒数
+	uiDay = uiSec / (60 * 60 * 24);        
+	uiSec = uiSec % (60 * 60 * 24);
+	
+	i = 1970;
+
+	// 换算年数
+	while(uiDay > 365)
+	{
+		// 闰年
+		if(((i % 4 == 0) && (i % 100 != 0)) || (i % 400 == 0))
+		{
+			uiDay -= 366;
+		}
+		else
+		{
+			uiDay -= 365;
+		}
+		i++;
+	}
+	if((uiDay == 365) && !(((i % 4 == 0) && (i % 100 != 0)) || (i % 400 == 0)))
+	{
+		uiDay -= 365;
+		i++;
+	}
+
+	// 年份
+	time->Year = i - 2000;
+	for(j = 0; j < 12; j++)  
+	{
+		if((j == 1) && (((i % 4 == 0) && (i % 100 != 0)) || (i % 400 == 0)))
+		{
+			usDay = 29;
+		}
+		else
+		{
+			usDay = DayOfMon[j];
+		}
+		if(uiDay >= usDay)
+		{
+			uiDay -= usDay;
+		}	
+		else
+		{
+			break;
+		}	
+	}
+	time->Month  = j + 1;
+	time->Day    = uiDay + 1 ;
+	time->Hour   = ((uiSec / 3600)) % 24;
+	time->Minute = (uiSec % 3600) / 60;
+	time->Second = (uiSec % 3600) % 60;
+	time->Week   = DS1307_Get_Week(time->Year, time->Month, time->Day);
+	
+}// End of void GetDateTimeFromSecond(u32 uiSec, Time_t *time)
 
 
 /*******************************************************************************

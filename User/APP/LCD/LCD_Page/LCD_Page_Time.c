@@ -82,9 +82,16 @@ void LCD_Page_Time(void)
 	}
 
 	// UNIX
-	Unix = DS1307_Year_TO_Sec(Time);
+	Unix = DS1307_Year_TO_Unix(Time);
 	ucLen= sprintf((char *)Temp, "0x%08X", Unix);
-	OLED_String_8x16(48,  LCD_UNIX_Y_ADDR, Temp, ucLen);	
+	OLED_String_8x16(48,  LCD_UNIX_Y_ADDR, Temp, ucLen);
+
+	DS1307_Unix_TO_Year(Unix, &Time);
+	ucLen = sprintf((char *)Temp, "20%02d-%02d-%02d %s", 
+								Time.Year, Time.Month,  Time.Day, (u8*)&Week[Time.Week - 1]);
+	app_trace_log("Data : %s\r\n", Temp);						
+	ucLen = sprintf((char *)Temp, "%02d:%02d:%02d",Time.Hour, Time.Minute, Time.Second );
+	app_trace_log("Time : %s\r\n", Temp);
 
 	if (Log_Sign < (1000 / TASK_COMMUNAL_TIMER_PERIOD))
 	{
