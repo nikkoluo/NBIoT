@@ -10,7 +10,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "LCD_Page_Sensor.h"
 #include "nrf_gpio.h"
-#include "nRF51_BLE_Private_Service.h"
 #include "OLED.h"
 #include <stdlib.h>
 

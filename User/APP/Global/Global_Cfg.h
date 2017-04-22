@@ -116,7 +116,8 @@
 #define     LCD_PAGE_DEFAULT         	0                     			// 默认页面
 #define     LCD_PAGE_SENSOR         	0                     			// 传感器页面
 #define     LCD_PAGE_TIME         		1                     			// 时间页面
-#define     LCD_PAGE_LAST         		(LCD_PAGE_TIME + 1)            	// 时间页面
+#define     LCD_PAGE_BASELINE         	2                     			// baseline页面
+#define     LCD_PAGE_LAST         		(LCD_PAGE_BASELINE + 1)        	// 时间页面
 
 
 //----------------------- Sensor ----------------------------------------------/

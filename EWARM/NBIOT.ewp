@@ -2203,6 +2203,12 @@
       <group>
         <name>LCD_Page</name>
         <file>
+          <name>$PROJ_DIR$\..\User\APP\LCD\LCD_Page\LCD_Page_Baseline.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\User\APP\LCD\LCD_Page\LCD_Page_Baseline.h</name>
+        </file>
+        <file>
           <name>$PROJ_DIR$\..\User\APP\LCD\LCD_Page\LCD_Page_Sensor.c</name>
         </file>
         <file>
