@@ -95,9 +95,7 @@ u8 EEPROM_Write_Data(u16 usWrite_Addr, u8* pBuffer, u16 usWrite_Len)
 	u32 uiLen = 0;
 	u16 i;
 	u8 Result = 1;
-	u8 *Write_Buffer;
-
-	Write_Buffer = malloc(usWrite_Len + 4);
+	u8 Write_Buffer[36];
 
 	// 长度地址
 	Write_Buffer[uiLen++] = (usWrite_Len >> 8) & 0xFF;
@@ -119,8 +117,6 @@ u8 EEPROM_Write_Data(u16 usWrite_Addr, u8* pBuffer, u16 usWrite_Len)
 	// 存 长度 数据 校验
 	Result = EEPROM_Write_Buffer(usWrite_Addr, Write_Buffer, uiLen);
 
-
-	free(Write_Buffer);
 	return (Result);
 
 }// ENd of u8 EEPROM_Write_Data(u16 usWrite_Addr, u8* pBuffer, u16 usWrite_Len)

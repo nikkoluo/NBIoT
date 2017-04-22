@@ -129,7 +129,7 @@ u8 EEPROM_Write_Buffer(u16 usWrite_Addr, u8* pBuffer, u16 usWrite_Len)
     u16 usTemp;
 
     // 声明读写指针和地址
-    u8 *Read_Buffer;
+    u8 Read_Buffer[36];
     u8 *Write_Buffer = pBuffer;
     u16 usRead_Addr  = usWrite_Addr;
     u16 usRead_Len   = usWrite_Len;
@@ -172,9 +172,6 @@ u8 EEPROM_Write_Buffer(u16 usWrite_Addr, u8* pBuffer, u16 usWrite_Len)
     // 比较写入数据
     if (Transfer_Succeeded)
     {
-        // 申请缓存
-        Read_Buffer = malloc(usRead_Len);
-          
         if (Read_Buffer)
         {
             // 读取写入数据并比较
@@ -196,8 +193,7 @@ u8 EEPROM_Write_Buffer(u16 usWrite_Addr, u8* pBuffer, u16 usWrite_Len)
         {
             Transfer_Succeeded = 0;  
         }  
-         
-        free(Read_Buffer);
+
           
     }
 
