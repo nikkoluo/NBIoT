@@ -386,6 +386,7 @@
           <state>$PROJ_DIR$\..\User\APP\RTC</state>
           <state>$PROJ_DIR$\..\User\APP\LCD\LCD_Page</state>
           <state>$PROJ_DIR$\..\User\APP\EEPROM</state>
+          <state>$PROJ_DIR$\..\User\APP\Historical_Data</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -2196,6 +2197,15 @@
       </file>
       <file>
         <name>$PROJ_DIR$\..\User\APP\GPIO\GPIO_Port.h</name>
+      </file>
+    </group>
+    <group>
+      <name>Historical_Data</name>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\Historical_Data\Historical_Data.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\Historical_Data\Historical_Data.h</name>
       </file>
     </group>
     <group>

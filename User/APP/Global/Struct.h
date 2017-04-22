@@ -93,6 +93,17 @@ typedef struct
     
 } tVOC_Typedef;                                                			// tVOC结构体
 
+typedef struct
+{
+    unsigned char       Buffer[HISTORICAL_DATA_SIZE];					// 历史数据
+	unsigned char       Head_Sign;										// 头位置
+	unsigned char       End_Sign;										// 尾位置
+	unsigned short      ADD_Num;                        				// 参与累加和数量
+	unsigned int      	Timestamp;                        				// 时间戳
+	unsigned int      	ADD_Sun;                        				// 累加和
+
+} Historical_Typedef;                                             		// 历史数据结构体
+
 
 typedef struct
 {

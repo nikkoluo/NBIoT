@@ -41,6 +41,9 @@
 
 #define     TICK_TO_MS                  33                              // tick数转成ms
 
+
+#define     HISTORICAL_DATA_SIZE		128								// 历史数据深度
+
 //----------------------- Task ------------------------------------------------/
 #define     TASK_BATTERY_PERIOD         (10 * 1000)                     // 电量检测任务周期
 #define     TASK_TEMP_HUMI_PERIOD       (1 * 1000)                      // 温湿度检测任务周期

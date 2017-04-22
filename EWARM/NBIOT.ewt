@@ -2518,6 +2518,15 @@
       </file>
     </group>
     <group>
+      <name>Historical_Data</name>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\Historical_Data\Historical_Data.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\User\APP\Historical_Data\Historical_Data.h</name>
+      </file>
+    </group>
+    <group>
       <name>LCD</name>
       <group>
         <name>LCD_Page</name>
