@@ -22,17 +22,7 @@
 #define     DS1307_READ_ADDR            (DS1307_WRITE_ADDR | 0x01)      // DS1307读地址
 
 /* Private typedef -----------------------------------------------------------*/
-typedef struct
-{
-	unsigned char Month;
-	unsigned char Day;
-	unsigned char Year;
-	unsigned char Week;
-	unsigned char Hour;
-	unsigned char Minute;
-	unsigned char Second;
-	
-} Time_t;   
+
 
 
 /* Private variables ---------------------------------------------------------*/
@@ -42,7 +32,7 @@ typedef struct
 extern	u8 DS1307_Set_Date(Time_t time);								// 设置时间
 extern	u8 DS1307_Get_Data(Time_t *time);								// 获取时间
 extern	u8 DS1307_Start(void);											// 启动
-extern	u32 DS1307_Year_TO_Unix(Time_t time);							// 年月日转Nuix
+extern	u32 DS1307_Year_TO_Unix(Time_t *time);							// 年月日转Nuix
 extern	void DS1307_Unix_TO_Year(u32 uiSec, Time_t *time);				// unix转年月日
 
 #endif /* __RTC_DS1307_H */

@@ -52,8 +52,6 @@ void LCD_Page_Time(void)
 {
 	u8 Temp[16];
 	u8 ucLen;
-	u32 Unix;
-	Time_t Time;
 
 
 	// 判断当前是否Time页面
@@ -63,29 +61,30 @@ void LCD_Page_Time(void)
 	}
 
 	// 显示时间
-	if (DS1307_Get_Data(&Time))
+	if (System_Err.RTC == 0)
 	{
 		// 年月日星期
 		ucLen = sprintf((char *)Temp, "20%02d-%02d-%02d %s", 
-										Time.Year, Time.Month,  Time.Day, (u8*)&Week[Time.Week - 1]);
+										System.Time.Year, System.Time.Month,  System.Time.Day, (u8*)&Week[System.Time.Week - 1]);
 
 		OLED_String_8x16(OLED_Pos_Center(ucLen << 3),  0, Temp, ucLen);	
 
-		ucLen = sprintf((char *)Temp, "%02d:%02d:%02d",Time.Hour, Time.Minute, Time.Second );
+		ucLen = sprintf((char *)Temp, "%02d:%02d:%02d",System.Time.Hour, System.Time.Minute, System.Time.Second );
 
 		OLED_String_8x16(OLED_Pos_Center(ucLen << 3),  16, Temp, ucLen);	
+
+		// UNIX
+		ucLen= sprintf((char *)Temp, "0x%08X", System.Unix_Sec);
+		OLED_String_8x16(48,  LCD_UNIX_Y_ADDR, Temp, ucLen);
+
+		if (Log_Sign < (1000 / TASK_COMMUNAL_TIMER_PERIOD))
+		{
+			app_trace_log("-------------------Unix = 0x%08X\r\n", System.Unix_Sec);
+		}
 		
 	}
 
-	// UNIX
-	Unix = DS1307_Year_TO_Unix(Time);
-	ucLen= sprintf((char *)Temp, "0x%08X", Unix);
-	OLED_String_8x16(48,  LCD_UNIX_Y_ADDR, Temp, ucLen);
 
-	if (Log_Sign < (1000 / TASK_COMMUNAL_TIMER_PERIOD))
-	{
-		app_trace_log("-------------------Unix = 0x%08X\r\n", Unix);
-	}
 	
 	
 }// End of void LCD_Page_Time(void)

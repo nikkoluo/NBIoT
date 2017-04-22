@@ -16,8 +16,9 @@
 u8                      Root_Access;                                    // 超级权限
 u8                      Sys_Status;                                     // 系统状态
 u8                      Sys_Init;                                       // 置一完成初始化 
-u32						Log_Sign;										// Log标志
+u32						Log_Sign;										// log输出控制
 LCD_Typedef				LCD;											// LCD
+tVOC_Typedef			tVOC;											// tVOC
 Task_Typedef            Button_Task;                                    // 按键任务
 Task_Typedef            RTC_Task;										// RTC任务
 Task_Typedef            LCD_Task;                                       // LCD任务
@@ -32,6 +33,7 @@ Bond_Typedef            Sys_Bond;                                       // 绑定
 UART_Typedef            Debug_UART;                                     // 调试串口
 Button_Typedef          Button;                                         // 按键结构体
 Sensor_Typedef          Sensor;                                         // Sensor
+System_Typedef			System;											// 系统通用变量
 Time_Base_Typedef       System_Time_Base;                               // 系统时间基准
 System_ERR_Typedef      System_Err;                                     // 系统错误结构体
 BLE_Service_Typedef     nRF51_BLE_Service;                              // nRF51 BLE私有服务

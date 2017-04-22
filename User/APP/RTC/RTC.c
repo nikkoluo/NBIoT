@@ -78,13 +78,16 @@ void RTC_Task_Create(void)
 *******************************************************************************/
 u32 RTC_Chip_Init(void)
 {
-
+	
+	// Æô¶¯RTC
     if (DS1307_Start())
     {
+    	System_Err.RTC = 0;
     	return NRF_SUCCESS;
     }
     else
     {
+    	System_Err.RTC = 1;
     	return 0xFFFFFFFF;	
     }
 
@@ -103,6 +106,11 @@ u32 RTC_Chip_Init(void)
 void RTC_Task_Handle(void *p_arg)
 {
 
+	if (DS1307_Get_Data(&System.Time))
+	{
+
+		System.Unix_Sec = DS1307_Year_TO_Unix(&System.Time);
+	}
 
 }// End of void RTC_Task_Handle(void *p_arg)
 

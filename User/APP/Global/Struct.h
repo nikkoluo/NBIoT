@@ -73,14 +73,25 @@ typedef struct
     short               sTemp;                                          // 温度整型 * 0.1
     unsigned short      usHumi;                                         // 湿度整型 * 0.1
     unsigned short      tVOC;                                         	// tVOC ppb
-    unsigned short      tVOC_Baseline_Timestamp;                        // tVOC 记录baseline时间戳
     unsigned short      eCO2;                                         	// eCO2 ppm
     unsigned short      Bat_Val_mv;                                     // 电池电压 mv
     unsigned char       Bat_Percent;                                    // 电量百分比
-    unsigned char       tVOC_Baseline_Reset;                           	// 之一时说明进行过重置
     
     
 } Sensor_Typedef;                                                		// 传感器结构体
+
+typedef struct
+{
+
+    unsigned int      	Baseline_Timestamp;                        		// tVOC 记录baseline时间戳
+    unsigned int      	Baseline_Saved;                        			// tVOC 记录baseline时间戳
+    unsigned int      	Baseline_Now;                        			// tVOC 记录baseline时间戳
+    unsigned int      	Baseline_LastSave_Timestamp;                    // tVOC 上次记录baseline时间戳
+    unsigned char       Baseline_Valid;                           		// baseline有效
+    unsigned char       Baseline_15min_Reset;							// tVOC 15分钟重置标志位
+    
+} tVOC_Typedef;                                                			// tVOC结构体
+
 
 typedef struct
 {
@@ -178,7 +189,8 @@ typedef union
         unsigned long   Temp_Humi               : 1;                    // 温湿度
         unsigned long   tVOC                    : 1;                    // tVOC
         unsigned long   EEPROM                  : 1;                    // EEPROM
-        unsigned long   Reserved                : 29;
+        unsigned long   RTC                  	: 1;                    // RTC
+        unsigned long   Reserved                : 28;
     };
     
 }System_ERR_Typedef;
@@ -231,6 +243,25 @@ typedef struct
     
 }UART_Typedef;
 
+typedef struct
+{
+	unsigned char Month;
+	unsigned char Day;
+	unsigned char Year;
+	unsigned char Week;
+	unsigned char Hour;
+	unsigned char Minute;
+	unsigned char Second;
+	
+} Time_t;   
+
+typedef struct
+{
+	Time_t              Time;											// 系统时间
+    unsigned long		Unix_Sec;										// unix时间
+
+    
+}System_Typedef;
 
 
 /* Private variables ---------------------------------------------------------*/

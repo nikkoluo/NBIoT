@@ -21,7 +21,7 @@ u8 DS1307_Get_Week(u8 Year, u8 Month, u8 Day);							// 获取星期
 u8 DS1307_Set_Date(Time_t time);										// 设置时间
 u8 DS1307_Get_Data(Time_t *time);										// 获取时间
 u8 DS1307_Start(void);													// 启动
-u32 DS1307_Year_TO_Unix(Time_t time);									// 年月日转unix
+u32 DS1307_Year_TO_Unix(Time_t *time);									// 年月日转unix
 void DS1307_Unix_TO_Year(u32 uiSec, Time_t *time);						// unix转年月日
 
 /* Private functions ---------------------------------------------------------*/
@@ -237,19 +237,19 @@ u8 DS1307_Get_Data(Time_t *time)
 * Output         :  None
 * Return         :  1970年开始的秒
 *******************************************************************************/
-u32 DS1307_Year_TO_Unix(Time_t time)
+u32 DS1307_Year_TO_Unix(Time_t *time)
 {
 
 	u16 rYear, i, Cyear=0;
 	u8 rMon, rDay, rHour, rMin, rSec;
 	u32 CountDay = 0;
 	
-	rSec  = time.Second;
-	rMin  = time.Minute;;
-	rHour = time.Hour;
-	rDay  = time.Day;
-	rMon  = time.Month;
-	rYear = time.Year + 2000;
+	rSec  = time->Second;
+	rMin  = time->Minute;;
+	rHour = time->Hour;
+	rDay  = time->Day;
+	rMon  = time->Month;
+	rYear = time->Year + 2000;
 
 	// 闰年
 	for(i = 1970; i < rYear; i++)
@@ -284,7 +284,7 @@ u32 DS1307_Year_TO_Unix(Time_t time)
 	CountDay = CountDay - 8 * 3600;
 	return CountDay;
 
-}// End of u32 DS1307_Year_TO_Unix(Time_t time)
+}// End of u32 DS1307_Year_TO_Unix(Time_t *time)
 
 /*******************************************************************************
 *                           陆超@2017-04-22

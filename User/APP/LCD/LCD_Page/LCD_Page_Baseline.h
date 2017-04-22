@@ -17,6 +17,10 @@
 
 
 /* Private define ------------------------------------------------------------*/
+#define     LCD_BASE_NOW_Y_ADDR  		16                            	// 当前baseline显示地址
+#define     LCD_BASE_SAVE_Y_ADDR  		32                              // 保存的baseline显示地址
+#define     LCD_BASE_SAVETIME_Y_ADDR  	48                              // 保存的baseline 时间显示地址
+
 
 
 

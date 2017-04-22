@@ -23,6 +23,7 @@
 void tVOC_Task_Handle(void *p_arg);                                     // tVOC任务
 void tVOC_Task_Create(void);                                            // 创建tVOC任务
 void tVOC_Get(void);                                                    // 获取tVOC
+void tVOC_Baseline_Handle(void);										// baseline处理
 void tVOC_Port_Init(void);                                              // tVOC管脚初始化
 void tVOC_Variable_Init(void);                                          // 变量初始化
 u32 tVOC_Chip_Init(void);                                               // 芯片初始化
@@ -84,8 +85,7 @@ void tVOC_Task_Create(void)
 u32 tVOC_Chip_Init(void)
 {
     u32 Err_Code = NRF_SUCCESS;
-
-
+    
     // 默认传感器error
     System_Err.tVOC = 1;
 
@@ -97,6 +97,11 @@ u32 tVOC_Chip_Init(void)
 	else
 	{
 		System_Err.tVOC = 0;
+
+		// 获取baseline
+		tVOC_Get_Saved_Baseline(System.Unix_Sec, &tVOC.Baseline_Saved);
+
+		
 	}
 
     return Err_Code;
@@ -130,26 +135,8 @@ void tVOC_Task_Handle(void *p_arg)
     u8 err;
     u16 tvoc_ppb, co2_eq_ppm;
 
-
-    if (Sensor.tVOC_Baseline_Reset == 0)
-    {
-    	Sensor.tVOC_Baseline_Timestamp++;
-
-		// 15分钟重启
-    	if (Sensor.tVOC_Baseline_Timestamp >= 15 * 60)
-    	{
-    		Sensor.tVOC_Baseline_Reset = 1;
-
-    		if (sgp_iaq_init() == STATUS_OK)
-    		{
-    			app_trace_log("tVOC  sgp_iaq_init Success \r\n");	
-    		}
-    		else
-    		{
-    			app_trace_log("tVOC  sgp_iaq_init Failed \r\n");		
-    		}
-    	}
-    }
+	// 处理baseline
+	tVOC_Baseline_Handle();
 
 	err = sgp_measure_iaq_blocking_read(&tvoc_ppb, &co2_eq_ppm);
 	if (err == STATUS_OK) 
@@ -175,6 +162,67 @@ void tVOC_Task_Handle(void *p_arg)
 
 /*******************************************************************************
 *                           陆超@2017-04-22
+* Function Name  :  tVOC_Baseline_Handle
+* Description    :  tVOC baseline
+* Input          :  None
+* Output         :  None
+* Return         :  None
+*******************************************************************************/
+void tVOC_Baseline_Handle(void)
+{
+	u32 Temp;
+
+	// 获取最新baseline
+    if (sgp_get_iaq_baseline(&Temp) == STATUS_OK)
+    {
+    	tVOC.Baseline_Now = Temp;	
+    }
+    
+	// baseline有效
+	if (tVOC.Baseline_Valid)
+	{
+	
+	}
+	else
+	{
+		
+		// 15分钟重启
+	    if (tVOC.Baseline_15min_Reset == 0)
+	    {
+	    	tVOC.Baseline_Timestamp++;
+
+			// 15分钟重启
+	    	if (tVOC.Baseline_Timestamp >= 15 * 60)
+	    	{
+	    		tVOC.Baseline_15min_Reset = 1;
+				tVOC.Baseline_Timestamp   = 0;
+				
+	    		if (sgp_iaq_init() == STATUS_OK)
+	    		{
+	    			app_trace_log("tVOC  sgp_iaq_init Success \r\n");	
+	    		}
+	    		else
+	    		{
+	    			app_trace_log("tVOC  sgp_iaq_init Failed \r\n");		
+	    		}
+	    	}
+	    }
+	    else
+	    {
+	    	// 12 小时首次存baseline
+	    	if (tVOC.Baseline_Timestamp >= 12 * 60 * 60)
+	    	{
+	    		tVOC_Save_Baseline(System.Unix_Sec, tVOC.Baseline_Now);	
+	    	}
+	    }
+    }
+
+
+
+}// End of void tVOC_Baseline_Handle(void)
+
+/*******************************************************************************
+*                           陆超@2017-04-22
 * Function Name  :  tVOC_Save_Baseline
 * Description    :  tVOC保存baseline
 * Input          :  u32 uiSec			当前unix秒
@@ -187,7 +235,22 @@ u8 tVOC_Save_Baseline(u32 uiSec, u32 uiBaseline)
 	u32 Buffer[2];
 	Buffer[0] = uiSec;
 	Buffer[0] = uiBaseline;
-	return (EEPROM_Write_Data(EEPROM_ADDR_BASELINE, (u8*)&Buffer, 8));
+
+	// 存
+	if (EEPROM_Write_Data(EEPROM_ADDR_BASELINE, (u8*)&Buffer, 8))
+	{
+		// 置位baseline有效
+		tVOC.Baseline_Valid              = 1;
+		tVOC.Baseline_LastSave_Timestamp = uiSec; 
+        
+        return 1;
+	}
+	else
+	{
+		tVOC.Baseline_Valid = 0;
+		return 0;
+	}
+
 
 }// End of u8 tVOC_Save_Baseline(u32 uiSec, u32 uiBaseline) 
 
@@ -216,6 +279,16 @@ u32 tVOC_Get_Saved_Baseline(u32 uiSec, u32 *pBaseline)
 
 			// 获取储存时间
 			ucResult   = Buffer[0];
+
+			tVOC.Baseline_Valid              = 1;
+			tVOC.Baseline_LastSave_Timestamp = ucResult;
+			app_trace_log("-------------------Get Saved baseline = 0x%08X\r\n", *pBaseline);
+			
+		}
+		else
+		{
+			tVOC.Baseline_Valid = 0;
+			app_trace_log("-------------------No Saved baseline!\r\n");
 		}
 	}
 
@@ -248,7 +321,8 @@ void tVOC_Port_Init(void)
 *******************************************************************************/
 void tVOC_Variable_Init(void)
 {
-
+	// 默认baseline无效
+	tVOC.Baseline_Valid = 0;
     
 }// End of void tVOC_Variable_Init(void)
 

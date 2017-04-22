@@ -11,6 +11,8 @@
 #include "LCD_Page_Baseline.h"
 #include "nrf_gpio.h"
 #include "OLED.h"
+#include "sensirion_common.h"
+#include "sgpc1x.h"
 #include <stdlib.h>
 
 /* Private variables ---------------------------------------------------------*/
@@ -30,10 +32,12 @@ void LCD_Page_Baseline(void);											    // 显示Baseline页面
 *******************************************************************************/
 void LCD_Page_Baseline_Prepare(void)
 {
-
+    u8 ucLen;
 	OLED_CLS();
-
-    OLED_String_8x16(0,  1,     "Unix: ", 6);
+    ucLen = strlen("Baseline");
+    OLED_String_8x16(OLED_Pos_Center(ucLen << 3),  0,     "Baseline", ucLen);
+    OLED_String_8x16(0,  LCD_BASE_NOW_Y_ADDR,  "Now : ", strlen("Now : "));
+    OLED_String_8x16(0,  LCD_BASE_SAVE_Y_ADDR, "Save: ", strlen("Save: "));
 	LCD.Page_Now = LCD_PAGE_BASELINE;
 	
 }// End of void LCD_Page_Baseline_Prepare(void)
@@ -50,7 +54,6 @@ void LCD_Page_Baseline(void)
 {
 	u8 Temp[16];
 	u8 ucLen;
-	u32 Unix;
 
 
 	// 判断当前是否Baseline页面
@@ -59,22 +62,15 @@ void LCD_Page_Baseline(void)
 		LCD_Page_Baseline_Prepare();
 	}
 
-//	// baseline
-//	if (sgp_get_iaq_baseline(&uiBaseline) == STATUS_OK)
-//	{
-//		ucLen= sprintf((char *)Temp, "0x%08X", uiBaseline);
-//		OLED_String_8x16(48,  LCD_BASELINE_Y_ADDR, Temp, ucLen);	
+	// baseline
+	ucLen= sprintf((char *)Temp, "0x%08X", tVOC.Baseline_Now);
+	OLED_String_8x16(6 * 8,  LCD_BASE_NOW_Y_ADDR, Temp, ucLen);	
 
-//		if (Log_Sign < (1000 / TASK_COMMUNAL_BASELINER_PERIOD))
-//		{
-//			app_trace_log("-------------------baseline = 0x%08X\r\n", uiBaseline);
-//		}
-//	}
-//	else
-//	{
-//		OLED_String_8x16(48,  LCD_BASELINE_Y_ADDR, "ERROR   ", 8);	
-//	}
-	
+	if (Log_Sign < (1000 / TASK_COMMUNAL_TIMER_PERIOD))
+	{
+		app_trace_log("-------------------baseline = 0x%08X\r\n", tVOC.Baseline_Now);
+	}
+
 	
 }// End of void LCD_Page_Baseline(void)
 

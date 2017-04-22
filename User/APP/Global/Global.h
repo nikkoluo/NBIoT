@@ -47,6 +47,7 @@ extern  u8                      Sys_Status;                             // ÏµÍ³×
 extern  u8                      Sys_Init;                               // ÖÃÒ»Íê³É³õÊ¼»¯ 
 extern  u32						Log_Sign;								// LogÊä³ö±êÖ¾
 extern  LCD_Typedef				LCD;									// LCD
+extern  tVOC_Typedef			tVOC;									// tVOC
 extern  Task_Typedef            Button_Task;                            // °´¼üÈÎÎñ
 extern  Task_Typedef            RTC_Task;								// RTCÈÎÎñ
 extern  Task_Typedef            LCD_Task;                               // LCDÈÎÎñ
@@ -61,6 +62,7 @@ extern  Bond_Typedef            Sys_Bond;                               // °ó¶¨
 extern  UART_Typedef            Debug_UART;                             // µ÷ÊÔ´®¿Ú
 extern  Button_Typedef          Button;                                 // °´¼ü½á¹¹Ìå
 extern  Sensor_Typedef          Sensor;                                 // Sensor
+extern  System_Typedef			System;									// ÏµÍ³Í¨ÓÃ±äÁ¿
 extern  Time_Base_Typedef       System_Time_Base;                       // ÏµÍ³Ê±¼ä»ù×¼
 extern  System_ERR_Typedef      System_Err;                             // ÏµÍ³´íÎó½á¹¹Ìå
 extern  BLE_Service_Typedef     nRF51_BLE_Service;                      // nRF51 BLEË½ÓÐ·þÎñ
