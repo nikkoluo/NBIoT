@@ -2,8 +2,9 @@
 
 ### 开发平台限定
 ```
-IDE: IAR V7.8
-SDK: nRF51_SDK_9.0.0_2e23562
+IDE         : IAR V7.8
+SDK         : nRF51_SDK_9.0.0_2e23562
+Code Editor : Source Insight 4.x
 ```
 
 ### 接口说明
